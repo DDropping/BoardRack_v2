@@ -12,7 +12,7 @@ Built Using CRA, React, Redux, MongoDB, Express.js, Node.js with Ant design UI f
 
 ### [BoardRack (version 2)](https://github.com/DDropping/BoardRack_v2)
 
-Built Using Next.js React, Redux, Node.js, MongoDB with Ant design UI framework
+Built Using Next.js, React, Redux, MongoDB, Node.js with Ant design UI framework
 
 ## Authors
 
