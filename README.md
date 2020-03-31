@@ -1,30 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+# BoardRack (version 2)
 
-## Getting Started
+### Classified Advertisement Website for New / Used / Custom Suftboards
 
-First, run the development server:
+### BoardRack Version 2 replaces the default Create React App framework and replaces it with the [Next.js](https://github.com/zeit/next.js/) framework. Aswell doing away with the need for Express.js replaced by Next.js' `pages/api` routing. Version 2 also replaces the standard css styling convention with [CSS in JS](https://github.com/MicheleBertoli/css-in-js) styling.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Version History
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### [BoardRack (version 1) repository](https://github.com/DDropping/BoardRack)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+#### Built Using CRA, React, Redux, MongoDB, Express.js, Node.js with Ant design UI framework
 
-## Learn More
+### [BoardRack (version 2) repository](https://github.com/DDropping/BoardRack_v2)
 
-To learn more about Next.js, take a look at the following resources:
+#### Built Using Next.js React, Redux, Node.js, MongoDB with Ant design UI framework
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Authors
 
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on ZEIT Now
-
-The easiest way to deploy your Next.js app is to use the [ZEIT Now Platform](https://zeit.co/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **David Dropping** - [ddropping](https://github.com/ddropping)
