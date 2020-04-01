@@ -14,7 +14,8 @@
     "next": "9.3.3",
     "null-loader": "^3.0.0",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "styled-components": "^5.0.1"
   },
   "devDependencies": {
     "@zeit/next-less": "^1.0.1",
