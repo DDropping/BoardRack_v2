@@ -4,7 +4,11 @@ import { ThemeProvider } from 'styled-components';
 
 const theme = {
   colors: {
-    primary: '#0070f3'
+    primaryBlue: '#00458a',
+    secondaryBlue: '#4878a9',
+    primaryWhite: '#ffffff',
+    primaryGrey: '#f3f7f9',
+    primaryGreen: '#52c41a'
   }
 };
 
