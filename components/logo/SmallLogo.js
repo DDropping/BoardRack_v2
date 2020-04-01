@@ -2,24 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 
 export const ImgWrapper = styled.div`
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
+  padding: 0.5rem;
   flex: none;
-  width: 200px;
+  max-width: 65px;
   position: relative;
-  color: inherit;
+  @media (min-width: ${props => props.theme.md}) {
+    display: none;
+  }
 `;
 
 export const Img = styled.img`
-  height: 100%;
   width: 100%;
 `;
 
 const SmallLogo = () => {
   return (
     <ImgWrapper>
-      <Img src="/images/br_logo_origional.png" alt="boardrack logo" />
+      <Img src="/images/br_logo_small.png" alt="boardrack logo" />
     </ImgWrapper>
   );
 };
