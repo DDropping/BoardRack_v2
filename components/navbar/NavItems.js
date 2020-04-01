@@ -5,7 +5,11 @@ import styled from 'styled-components';
 import navbarLinks from '../../constants/navbarLinks';
 
 const Ul = styled.ul`
+  position: absolute;
+  right: 0%;
   color: blue;
+  display: inline-block;
+  vertical-align: top;
 `;
 
 const Li = styled.li`
@@ -19,7 +23,9 @@ const NavItems = () => {
       {navbarLinks.map((navItem, index) => {
         return (
           <Li key={index}>
-            <Link href={navItem.href}>{navItem.title}</Link>
+            <Link href={navItem.href}>
+              <a>{navItem.title}</a>
+            </Link>
           </Li>
         );
       })}
