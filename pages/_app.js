@@ -16,12 +16,19 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const theme = {
+  //colors
   primaryBlue: '#00458a',
   secondaryBlue: '#4878a9',
   primaryBlack: '#222222',
   primaryWhite: '#ffffff',
   primaryGrey: '#f3f7f9',
-  primaryGreen: '#52c41a'
+  primaryGreen: '#52c41a',
+
+  //media sizes
+  sm: '576px', // Small devices (landscape phones, 576px and up)
+  md: '768px', // Medium devices (tablets, 768px and up)
+  lg: '992px', // Large devices (desktops, 992px and up)
+  xl: '1200px' // Extra large devices (large desktops, 1200px and up)
 };
 
 export default class MyApp extends App {
