@@ -1,10 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import Router from 'next/router';
+import NProgress from 'nprogress';
 
 import { DefaultLogo, SmallLogo } from '../logo';
 import NavItems from './NavItems';
 import SearchBar from './SearchBar';
 import DrawerIcon from './DrawerIcon';
+
+Router.onRouteChangeStart = () => NProgress.start();
+Router.onRouteChangeComplete = () => NProgress.done();
+Router.onRouteChangeError = () => NProgress.done();
 
 const Container = styled.section`
   width: 100vw;

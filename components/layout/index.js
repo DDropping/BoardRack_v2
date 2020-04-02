@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Head from 'next/head';
 
 import Navbar from '../navbar';
 import Footer from '../footer';
@@ -16,11 +17,16 @@ const Main = styled.main`
 
 function Layout({ children }) {
   return (
-    <Container>
-      <Navbar />
-      <Main>{children}</Main>
-      <Footer />
-    </Container>
+    <>
+      <Head>
+        <link rel="stylesheet" href="nprogress.css" />
+      </Head>
+      <Container>
+        <Navbar />
+        <Main>{children}</Main>
+        <Footer />
+      </Container>
+    </>
   );
 }
 
