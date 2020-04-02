@@ -5,11 +5,12 @@ import styled from 'styled-components';
 import navbarLinks from '../../constants/navbarLinks';
 
 const Ul = styled.ul`
-  position: absolute;
-  right: 0%;
   color: blue;
   display: inline-block;
   vertical-align: top;
+  @media (max-width: ${props => props.theme.sm}) {
+    display: none;
+  }
 `;
 
 const Li = styled.li`
@@ -17,10 +18,15 @@ const Li = styled.li`
   display: inline-block;
 `;
 
+const isAuthenticated = false;
+const navItems = navbarLinks.filter(
+  navItem => navItem.protected === isAuthenticated
+);
+
 const NavItems = () => {
   return (
     <Ul>
-      {navbarLinks.map((navItem, index) => {
+      {navItems.map((navItem, index) => {
         return (
           <Li key={index}>
             <Link href={navItem.href}>

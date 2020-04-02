@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MenuOutlined } from '@ant-design/icons';
 
+import DrawerMenu from './DrawerMenu';
+
 export const IconWrapper = styled.div`
+  margin: 0.25rem 1rem;
   font-size: 2rem;
-  padding: 0.25rem 1.25rem 0.25rem 1rem;
   cursor: pointer;
   @media (min-width: ${props => props.theme.sm}) {
     display: none;
@@ -12,10 +14,23 @@ export const IconWrapper = styled.div`
 `;
 
 const DrawerIcon = () => {
+  const [isDrawer, toggleDrawer] = useState(false);
+
+  const handleDrawer = value => {
+    toggleDrawer(value);
+  };
+
   return (
-    <IconWrapper>
-      <MenuOutlined />
-    </IconWrapper>
+    <div>
+      <IconWrapper
+        onClick={() => {
+          toggleDrawer(true);
+        }}
+      >
+        <MenuOutlined />
+      </IconWrapper>
+      <DrawerMenu isDrawer={isDrawer} handleDrawer={handleDrawer} />
+    </div>
   );
 };
 

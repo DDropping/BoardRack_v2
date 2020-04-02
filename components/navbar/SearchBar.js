@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const SearchWrapper = styled.div`
   padding: 0.5rem;
+  flex: 1;
 `;
 
 const SearchBar = () => {
