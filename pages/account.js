@@ -2,14 +2,14 @@ import Head from 'next/head';
 import { Button } from 'antd';
 import styled from 'styled-components';
 
-const Home = () => (
+const Account = () => (
   <div className="container">
     <Head>
-      <title>BoardRack | Home</title>
+      <title>BoardRack | Account</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div>home</div>
+    <div>Account Page</div>
   </div>
 );
 
-export default Home;
+export default Account;
