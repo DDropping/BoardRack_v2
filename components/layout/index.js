@@ -2,23 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Navbar from '../navbar';
+import Footer from '../footer';
 
-const NavBarWrapper = styled.section`
-  z-index: 10;
+const Container = styled.div`
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 `;
 
-const Body = styled.section`
-  z-index: -10;
+const Main = styled.div`
+  flex: 1;
 `;
 
 function Layout({ children }) {
   return (
-    <>
-      <NavBarWrapper>
-        <Navbar />
-        <Body>{children}</Body>
-      </NavBarWrapper>
-    </>
+    <Container>
+      <Navbar />
+      <Main>{children}</Main>
+      <Footer />
+    </Container>
   );
 }
 

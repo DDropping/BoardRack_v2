@@ -17,7 +17,7 @@ export const Img = styled.img`
 const DefaultLogo = () => {
   return (
     <ImgWrapper>
-      <Img src="/images/br_logo_origional.png" alt="boardrack logo" />
+      <Img src="/images/br_logo_black.png" alt="boardrack logo" />
     </ImgWrapper>
   );
 };
