@@ -3,9 +3,7 @@ import styled from 'styled-components';
 
 export const ImgWrapper = styled.div`
   padding: 0.5rem;
-  flex: none;
   max-width: 65px;
-  position: relative;
   @media (min-width: ${props => props.theme.md}) {
     display: none;
   }
