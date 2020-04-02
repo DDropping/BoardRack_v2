@@ -6,7 +6,7 @@ import NavItems from './NavItems';
 import SearchBar from './SearchBar';
 import DrawerIcon from './DrawerIcon';
 
-const Container = styled.div`
+const Container = styled.section`
   width: 100vw;
   height: 60px;
   display: flex;
