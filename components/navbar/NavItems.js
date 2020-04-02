@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 import navbarLinks from '../../constants/navbarLinks';
@@ -14,8 +15,15 @@ const Ul = styled.ul`
 `;
 
 const Li = styled.li`
-  padding: 1rem;
+  padding: 1rem 0.5rem 0.25rem 0.5rem;
+  margin: 0 0.1rem;
   display: inline-block;
+  cursor: pointer;
+  ${({ active }) => active && 'border-bottom: 2px solid #4878a9;'}
+  &:hover {
+    background-color: #4878a91f;
+    border-bottom: 2px solid #4878a9;
+  }
 `;
 
 const isAuthenticated = false;
@@ -24,15 +32,20 @@ const navItems = navbarLinks.filter(
 );
 
 const NavItems = () => {
+  const router = useRouter();
+
+  function isActive(route) {
+    return route === router.pathname;
+  }
   return (
     <Ul>
       {navItems.map((navItem, index) => {
         return (
-          <Li key={index}>
-            <Link href={navItem.href}>
+          <Link href={navItem.href}>
+            <Li key={index} active={isActive(navItem.href)}>
               <a>{navItem.title}</a>
-            </Link>
-          </Li>
+            </Li>
+          </Link>
         );
       })}
     </Ul>

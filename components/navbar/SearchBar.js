@@ -2,7 +2,7 @@ import React from 'react';
 import { Input } from 'antd';
 import styled from 'styled-components';
 
-const SearchWrapper = styled.div`
+const SearchWrapper = styled.section`
   padding: 0.5rem;
   flex: 1;
 `;
