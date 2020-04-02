@@ -1,5 +1,6 @@
 import App from 'next/app';
 import React from 'react';
+import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 
@@ -40,6 +41,9 @@ export default class MyApp extends App {
     return (
       <ThemeProvider theme={theme}>
         <Layout>
+          <Head>
+            <link rel="shortcut icon" href="/images/br_favicon.ico" />
+          </Head>
           <GlobalStyle />
           <Component {...pageProps} />
         </Layout>
