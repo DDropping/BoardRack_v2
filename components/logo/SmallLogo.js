@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 export const ImgWrapper = styled.div`
   padding: 0.5rem;
-  max-width: 65px;
+  max-width: 60px;
+  max-height: 60px;
   @media (min-width: ${props => props.theme.md}) {
     display: none;
   }

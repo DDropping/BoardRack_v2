@@ -9,8 +9,9 @@ import DrawerIcon from './DrawerIcon';
 
 const Container = styled.div`
   width: 100vw;
-  height: 65px;
+  height: 60px;
   display: flex;
+  box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);
 `;
 
 const index = () => {
