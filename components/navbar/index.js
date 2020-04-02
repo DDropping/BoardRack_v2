@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Row, Col } from 'antd';
 
 import { DefaultLogo, SmallLogo } from '../logo';
 import NavItems from './NavItems';

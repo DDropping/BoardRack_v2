@@ -3,6 +3,8 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 
+import Layout from '../components/layout';
+
 const GlobalStyle = createGlobalStyle`
 *{
   font-family: 'Roboto', sans-serif;
@@ -36,8 +38,10 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Component {...pageProps} />
+        <Layout>
+          <GlobalStyle />
+          <Component {...pageProps} />
+        </Layout>
       </ThemeProvider>
     );
   }
