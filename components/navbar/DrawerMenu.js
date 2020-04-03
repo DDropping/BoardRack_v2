@@ -8,7 +8,13 @@ import navDrawerLinks from '../../constants/navDrawerLinks';
 const Li = styled.li`
   display: block;
   font-size: 1rem;
-  padding: 1rem 0;
+  padding: 1rem 1rem 1rem 0;
+  margin-left: 1rem;
+  &:hover {
+    background-color: #4878a91f;
+    border-left: 2px solid #4878a9;
+    padding: 1rem;
+  }
 `;
 
 const isAuthenticated = false;
@@ -20,9 +26,10 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
   return (
     <Drawer
       placement="right"
-      closable={false}
+      closable
       onClose={() => handleDrawer(false)}
       visible={isDrawer}
+      bodyStyle={{ padding: 0 }}
     >
       <ul>
         {navItems.map((navItem, index) => {
