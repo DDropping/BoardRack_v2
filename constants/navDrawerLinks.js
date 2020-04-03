@@ -13,13 +13,53 @@ import {
 export default [
   { title: 'Home', href: '/', icon: <HomeOutlined />, protected: false },
   { title: 'Home', href: '/', icon: <HomeOutlined />, protected: true },
-  { title: 'Create Post', href: '/', icon: <PlusOutlined />, protected: true },
-  { title: 'Create Post', href: '/', icon: <PlusOutlined />, protected: false },
-  { title: 'My Account', href: '/', icon: <UserOutlined />, protected: true },
-  { title: 'My Posts', href: '/', icon: <FormOutlined />, protected: true },
-  { title: 'My Messages', href: '/', icon: <MailOutlined />, protected: true },
-  { title: 'My Favorites', href: '/', icon: <StarOutlined />, protected: true },
-  { title: 'Login', href: '/', icon: <UserOutlined />, protected: false },
-  { title: 'Register', href: '/', icon: <UserAddOutlined />, protected: false },
-  { title: 'Logout', href: '/', icon: <LogoutOutlined />, protected: true }
+  {
+    title: 'Create Post',
+    href: '/createpost',
+    icon: <PlusOutlined />,
+    protected: true
+  },
+  {
+    title: 'Create Post',
+    href: '/createpost',
+    icon: <PlusOutlined />,
+    protected: false
+  },
+  {
+    title: 'My Account',
+    href: '/account',
+    icon: <UserOutlined />,
+    protected: true
+  },
+  {
+    title: 'My Posts',
+    href: '/account/posts',
+    icon: <FormOutlined />,
+    protected: true
+  },
+  {
+    title: 'My Messages',
+    href: '/account/messages',
+    icon: <MailOutlined />,
+    protected: true
+  },
+  {
+    title: 'My Favorites',
+    href: '/account/favorites',
+    icon: <StarOutlined />,
+    protected: true
+  },
+  { title: 'Login', href: '/login', icon: <UserOutlined />, protected: false },
+  {
+    title: 'Register',
+    href: '/register',
+    icon: <UserAddOutlined />,
+    protected: false
+  },
+  {
+    title: 'Logout',
+    href: '/logout',
+    icon: <LogoutOutlined />,
+    protected: true
+  }
 ];

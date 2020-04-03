@@ -19,10 +19,11 @@ const Li = styled.li`
   margin: 0 0.1rem;
   display: inline-block;
   cursor: pointer;
-  ${({ active }) => active && 'border-bottom: 2px solid #4878a9;'}
+  ${({ active, theme }) =>
+    active && `border-bottom: 2px solid ${theme.primaryBlue};`}
   &:hover {
-    background-color: #4878a91f;
-    border-bottom: 2px solid #4878a9;
+    background-color: ${({ theme }) => theme.backgroundBlueMenu};
+    border-bottom: 2px solid ${({ theme }) => theme.primaryBlue};
   }
 `;
 
@@ -37,6 +38,7 @@ const NavItems = () => {
   function isActive(route) {
     return route === router.pathname;
   }
+
   return (
     <Ul>
       {navItems.map((navItem, index) => {

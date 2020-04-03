@@ -28,6 +28,8 @@ const theme = {
   primaryGrey: '#f3f7f9',
   primaryGreen: '#52c41a',
 
+  backgroundBlueMenu: '#4878a91f',
+
   //media sizes
   sm: '576px', // Small devices (landscape phones, 576px and up)
   md: '768px', // Medium devices (tablets, 768px and up)
