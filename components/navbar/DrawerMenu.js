@@ -60,9 +60,8 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
       <ul>
         {navItems.map((navItem, index) => {
           return (
-            <Link href={navItem.href}>
+            <Link href={navItem.href} key={index}>
               <Li
-                key={index}
                 active={isActive(navItem.href)}
                 onClick={() => handleDrawer(false)}
               >
