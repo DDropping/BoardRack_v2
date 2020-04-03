@@ -20,6 +20,10 @@ global theme: /pages/\_app.js
 theme provider: /pages/\_app.js
 antd theme: /assets/antd-custom.less
 
+## Production Notes
+
+change base url: utils/baseUrl
+
 ## Authors
 
 - **David Dropping** - [ddropping](https://github.com/ddropping)
