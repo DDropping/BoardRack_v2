@@ -1,10 +1,11 @@
+import jwt from 'jsonwebtoken';
+
 import connectDb from '../../../utils/connectDb';
 import Post from '../../../models/Post';
 
 connectDb();
 
 export default async (req, res) => {
-  console.log(req.body);
   const {
     title,
     price,
