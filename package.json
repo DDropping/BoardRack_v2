@@ -10,7 +10,9 @@
   "dependencies": {
     "@ant-design/icons": "^4.0.5",
     "antd": "^4.1.0",
+    "axios": "^0.19.2",
     "babel-plugin-import": "^1.13.0",
+    "isomorphic-unfetch": "^3.0.0",
     "less": "^3.11.1",
     "next": "9.3.3",
     "nprogress": "^0.2.0",

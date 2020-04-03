@@ -41,8 +41,8 @@ const NavItems = () => {
     <Ul>
       {navItems.map((navItem, index) => {
         return (
-          <Link href={navItem.href}>
-            <Li key={index} active={isActive(navItem.href)}>
+          <Link href={navItem.href} key={index}>
+            <Li active={isActive(navItem.href)}>
               <a>{navItem.title}</a>
             </Li>
           </Link>

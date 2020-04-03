@@ -6,7 +6,6 @@ const Account = () => (
   <div className="container">
     <Head>
       <title>BoardRack | Account</title>
-      <link rel="icon" href="/favicon.ico" />
     </Head>
     <div>Account Page</div>
   </div>
