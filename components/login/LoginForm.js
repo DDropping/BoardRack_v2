@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import axios from 'axios';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
+
 import catchErrors from '../../utils/catchErrors';
+import { handleLogin } from '../../utils/auth';
+import baseUrl from '../../utils/baseUrl';
 
 const InputWrapper = styled.div`
   margin-bottom: 1rem;
@@ -42,7 +46,10 @@ const LoginForm = () => {
     try {
       setLoading(true);
       setError('');
-      console.log(user);
+      const url = `${baseUrl}/api/auth/login`;
+      const payload = { ...user };
+      const response = await axios.post(url, payload);
+      handleLogin(response.data.token);
     } catch (error) {
       catchErrors(error, setError);
     } finally {
