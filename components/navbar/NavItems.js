@@ -15,7 +15,7 @@ const Ul = styled.ul`
 `;
 
 const Li = styled.li`
-  padding: 1rem 0.5rem 0.25rem 0.5rem;
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
   margin: 0 0.1rem;
   display: inline-block;
   cursor: pointer;
