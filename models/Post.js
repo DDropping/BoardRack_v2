@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const { String, Number } = mongoose.Schema.Types;
+const { String, Date, Number } = mongoose.Schema.Types;
 
 const PostSchema = new mongoose.Schema({
   user: {
