@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import axios from 'axios';
 import { Form, Input, Button, Checkbox } from 'antd';
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
+import { MailOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
+
 import catchErrors from '../../utils/catchErrors';
+import baseUrl from '../../utils/baseUrl';
+import { handleLogin } from '../../utils/auth';
 
 const InputWrapper = styled.div`
   margin-bottom: 1rem;
@@ -44,7 +48,10 @@ const RegisterForm = () => {
     try {
       setLoading(true);
       setError('');
-      console.log(user);
+      const url = `${baseUrl}/api/auth/register`;
+      const payload = { ...user };
+      const response = await axios.post(url, payload);
+      handleLogin(response.data.token);
     } catch (error) {
       catchErrors(error, setError);
     } finally {
@@ -58,12 +65,11 @@ const RegisterForm = () => {
       <InputWrapper>
         <Input
           placeholder="Username"
-          prefix={<MailOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
+          prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
           size="large"
           name="username"
           value={user.username}
           onChange={handleChange}
-          type="username"
         />
       </InputWrapper>
       <InputWrapper>
@@ -96,7 +102,7 @@ const RegisterForm = () => {
           name="confirmPassword"
           value={user.confirmPassword}
           onChange={handleChange}
-          type="confirmPassword"
+          type="password"
         />
       </InputWrapper>
       <Checkbox>Remember me</Checkbox>
