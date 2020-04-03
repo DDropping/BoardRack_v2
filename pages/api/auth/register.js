@@ -1,5 +1,5 @@
 // @route   POST api/accounts
-// @desc    register new account (username, email, password, userType)
+// @desc    register new account (username, email, password, role)
 // @access  Public
 
 import connectDb from '../../../utils/connectDb';
@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 connectDb();
 
 export default async (req, res) => {
-  const { username, email, password, confirmPassword, userType } = req.body;
+  const { username, email, password, confirmPassword, role } = req.body;
 
   if (password !== confirmPassword) {
     return res.status(400).json({
@@ -30,7 +30,7 @@ export default async (req, res) => {
       username,
       email,
       password,
-      userType
+      role
     });
 
     const salt = await bcrypt.genSalt(10);
@@ -41,14 +41,14 @@ export default async (req, res) => {
     const payload = {
       user: {
         id: user.id,
-        userType: user.userType
+        role: user.role
       }
     };
 
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: 360000 },
+      { expiresIn: '7d' },
       (err, token) => {
         if (err) throw err;
         res.status(200).json({ token });
