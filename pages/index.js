@@ -16,13 +16,13 @@ const Home = props => (
 );
 
 Home.getInitialProps = async function() {
-  const res = await fetch('https://api.tvmaze.com/search/shows?q=batman');
-  const data = await res.json();
+  const res = await fetch('http://localhost:3000/api/posts/allPosts');
+  // const data = await res.json();
 
-  console.log(`Show data fetched. Count: ${data.length}`);
+  // console.log(`Show data fetched. Count: ${data.length}`);
 
   return {
-    shows: data.map(entry => entry.show)
+    // shows: data.map(entry => entry.show)
   };
 };
 

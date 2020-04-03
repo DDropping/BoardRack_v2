@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
-new mongoose.Schema({
+const { String, Date, Number } = mongoose.Schema.Types;
+
+const UserSchema = new mongoose.Schema({
   userType: {
     type: String,
     default: 'user',
@@ -36,19 +38,19 @@ new mongoose.Schema({
   messageThreads: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'message'
+      ref: 'Message'
     }
   ],
   posts: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'post'
+      ref: 'Post'
     }
   ],
   favorites: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'post'
+      ref: 'Post'
     }
   ],
   operatingHours: {
@@ -84,3 +86,5 @@ new mongoose.Schema({
     type: String
   }
 });
+
+export default mongoose.models.User || mongoose.model('User', UserSchema);

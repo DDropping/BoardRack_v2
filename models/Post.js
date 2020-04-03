@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
-new mongoose.Schema({
+const { String, Number } = mongoose.Schema.Types;
+
+const PostSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
@@ -64,7 +66,11 @@ new mongoose.Schema({
   viewCount: {
     type: Number,
     default: 0
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
 });
 
-module.exports = Post = mongoose.model('post', PostSchema);
+export default mongoose.models.Post || mongoose.model('Post', PostSchema);
