@@ -4,6 +4,8 @@ import Head from 'next/head';
 
 import Navbar from '../navbar';
 import Footer from '../footer';
+import Login from '../login';
+import Register from '../register';
 
 const Container = styled.div`
   display: flex;
@@ -23,6 +25,8 @@ function Layout({ children }) {
       </Head>
       <Container>
         <Navbar />
+        <Login />
+        <Register />
         <Main>{children}</Main>
         <Footer />
       </Container>
