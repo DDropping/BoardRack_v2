@@ -4,7 +4,6 @@ import Post from '../../../models/Post';
 connectDb();
 
 export default async (req, res) => {
-  //const posts = await Post.find();
   console.log(req.body);
   const {
     title,
