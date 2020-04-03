@@ -3,10 +3,11 @@ import mongoose from 'mongoose';
 const { String, Date, Number } = mongoose.Schema.Types;
 
 const UserSchema = new mongoose.Schema({
-  userType: {
+  role: {
     type: String,
     default: 'user',
-    required: true
+    required: true,
+    enum: ['user', 'shop', 'shaper', 'admin', 'root']
   },
   username: {
     type: String,
@@ -19,7 +20,8 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true
+    required: true,
+    select: false
   },
   date: {
     type: Date,
