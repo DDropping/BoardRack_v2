@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import Link from 'next/link';
 export const ImgWrapper = styled.div`
   padding: 0.5rem;
   max-width: 60px;
   max-height: 60px;
+  cursor: pointer;
   @media (min-width: ${props => props.theme.md}) {
     display: none;
   }
@@ -16,9 +17,11 @@ export const Img = styled.img`
 
 const SmallLogo = () => {
   return (
-    <ImgWrapper>
-      <Img src="/images/br_logo_small.png" alt="boardrack logo" />
-    </ImgWrapper>
+    <Link href="/">
+      <ImgWrapper>
+        <Img src="/images/br_logo_small.png" alt="boardrack logo" />
+      </ImgWrapper>
+    </Link>
   );
 };
 
