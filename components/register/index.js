@@ -7,7 +7,7 @@ const index = () => {
   return (
     <Modal
       title="Register"
-      visible={true}
+      visible={false}
       onOk={() => console.log('modal')}
       onCancel={() => console.log('modal')}
       footer={null}
