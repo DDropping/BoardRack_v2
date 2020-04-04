@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
 
+import { TOGGLE_REGISTER, TOGGLE_LOGIN } from '../../actions/types';
 import catchErrors from '../../utils/catchErrors';
 import { handleLogin } from '../../utils/auth';
 import baseUrl from '../../utils/baseUrl';
@@ -23,6 +25,7 @@ const INITIAL_USER = {
 };
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [user, setUser] = useState(INITIAL_USER);
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -102,7 +105,14 @@ const LoginForm = () => {
       <div style={{ marginTop: '1rem' }}>
         Don't have an account yet?{' '}
         <Link href="/">
-          <A onClick={() => console.log('register now')}>Register now!</A>
+          <A
+            onClick={() => {
+              dispatch({ type: TOGGLE_REGISTER, payload: true });
+              dispatch({ type: TOGGLE_LOGIN, payload: false });
+            }}
+          >
+            Register now!
+          </A>
         </Link>
       </div>
     </Form>
