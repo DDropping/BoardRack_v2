@@ -23,7 +23,8 @@
     "null-loader": "^3.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "validator": "^13.0.0"
   },
   "devDependencies": {
     "@zeit/next-less": "^1.0.1",
