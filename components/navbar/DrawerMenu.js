@@ -3,8 +3,17 @@ import Link from 'next/link';
 import { Drawer } from 'antd';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  PlusOutlined,
+  UserOutlined,
+  UserAddOutlined,
+  LogoutOutlined
+} from '@ant-design/icons';
 
+import { TOGGLE_LOGIN, TOGGLE_REGISTER } from '../../actions/types';
 import navDrawerLinks from '../../constants/navDrawerLinks';
+import logoutModal from '../logout';
 
 const Img = styled.img`
   width: 80%;
@@ -27,6 +36,9 @@ const Li = styled.li`
     background-color: ${({ theme }) => theme.backgroundBlueMenu};
     border-left: 2px solid ${({ theme }) => theme.primaryBlue};
     padding: 1rem;
+    a {
+      color: ${({ theme }) => theme.primaryBlue};
+    }
   }
 `;
 
@@ -36,6 +48,11 @@ const navItems = navDrawerLinks.filter(
 );
 
 const DrawerMenu = ({ isDrawer, handleDrawer }) => {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(state => state.auth.isAuthenticated);
+  const isLogin = useSelector(state => state.overlays.isLogin);
+  const isRegister = useSelector(state => state.overlays.isRegister);
+  const isLogout = useSelector(state => state.overlays.isLogout);
   const router = useRouter();
 
   function isActive(route) {
@@ -58,11 +75,36 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
         />
       </Link>
       <ul>
+        {isAuth && (
+          <Link href={'/createpost'}>
+            <Li
+              active={isActive('/createpost') && !isLogin && !isRegister}
+              onClick={() => handleDrawer(false)}
+            >
+              <a>
+                <PlusOutlined /> Create Post
+              </a>
+            </Li>
+          </Link>
+        )}
+        {!isAuth && (
+          <Li
+            active={isActive('/createpost') && !isLogin && !isRegister}
+            onClick={() => {
+              handleDrawer(false);
+              dispatch({ type: TOGGLE_LOGIN, payload: true });
+            }}
+          >
+            <a>
+              <PlusOutlined /> Create Post
+            </a>
+          </Li>
+        )}
         {navItems.map((navItem, index) => {
           return (
             <Link href={navItem.href} key={index}>
               <Li
-                active={isActive(navItem.href)}
+                active={isActive(navItem.href) && !isLogin && !isRegister}
                 onClick={() => handleDrawer(false)}
               >
                 <a>
@@ -72,6 +114,45 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
             </Link>
           );
         })}
+        {!isAuth && (
+          <Li
+            active={isLogin}
+            onClick={() => {
+              handleDrawer(false);
+              dispatch({ type: TOGGLE_LOGIN, payload: true });
+            }}
+          >
+            <a>
+              <UserOutlined /> Login
+            </a>
+          </Li>
+        )}
+        {!isAuth && (
+          <Li
+            active={isRegister}
+            onClick={() => {
+              handleDrawer(false);
+              dispatch({ type: TOGGLE_REGISTER, payload: true });
+            }}
+          >
+            <a>
+              <UserAddOutlined /> Register
+            </a>
+          </Li>
+        )}
+        {isAuth && (
+          <Li
+            active={isLogout}
+            onClick={() => {
+              handleDrawer(false);
+              logoutModal();
+            }}
+          >
+            <a>
+              <LogoutOutlined /> Logout
+            </a>
+          </Li>
+        )}
       </ul>
     </Drawer>
   );

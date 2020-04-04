@@ -2,8 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
 
-import navbarLinks from '../../constants/navbarLinks';
+import { TOGGLE_LOGIN, TOGGLE_REGISTER } from '../../actions/types';
 
 const Ul = styled.ul`
   color: blue;
@@ -24,15 +25,17 @@ const Li = styled.li`
   &:hover {
     background-color: ${({ theme }) => theme.backgroundBlueMenu};
     border-bottom: 2px solid ${({ theme }) => theme.primaryBlue};
+    a {
+      color: ${({ theme }) => theme.primaryBlue};
+    }
   }
 `;
 
-const isAuthenticated = false;
-const navItems = navbarLinks.filter(
-  navItem => navItem.protected === isAuthenticated
-);
-
 const NavItems = () => {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(state => state.auth.isAuthenticated);
+  const isLogin = useSelector(state => state.overlays.isLogin);
+  const isRegister = useSelector(state => state.overlays.isRegister);
   const router = useRouter();
 
   function isActive(route) {
@@ -41,15 +44,41 @@ const NavItems = () => {
 
   return (
     <Ul>
-      {navItems.map((navItem, index) => {
-        return (
-          <Link href={navItem.href} key={index}>
-            <Li active={isActive(navItem.href)}>
-              <a>{navItem.title}</a>
-            </Li>
-          </Link>
-        );
-      })}
+      {isAuth && (
+        <Link href={'/createpost'}>
+          <Li active={isActive('/createpost') && !isLogin && !isRegister}>
+            <a>Create Post</a>
+          </Li>
+        </Link>
+      )}
+      {!isAuth && (
+        <Li onClick={() => dispatch({ type: TOGGLE_LOGIN, payload: true })}>
+          <a>Create Post</a>
+        </Li>
+      )}
+      {isAuth && (
+        <Link href={'/account'}>
+          <Li active={isActive('/account') && !isLogin && !isRegister}>
+            <a>My Account</a>
+          </Li>
+        </Link>
+      )}
+      {!isAuth && (
+        <Li
+          active={isLogin}
+          onClick={() => dispatch({ type: TOGGLE_LOGIN, payload: true })}
+        >
+          <a>Login</a>
+        </Li>
+      )}
+      {!isAuth && (
+        <Li
+          active={isRegister}
+          onClick={() => dispatch({ type: TOGGLE_REGISTER, payload: true })}
+        >
+          <a>Register</a>
+        </Li>
+      )}
     </Ul>
   );
 };
