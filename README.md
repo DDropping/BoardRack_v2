@@ -2,7 +2,24 @@
 
 ### Classified Advertisement Website for New / Used / Custom Suftboards
 
-#### BoardRack (version 2) replaces the default Create React App framework and replaces it with the [Next.js](https://github.com/zeit/next.js/) framework. Aswell doing away with the need for Express.js replaced by Next.js' [pages/api](https://nextjs.org/docs/api-routes/introduction) routing. Version 2 also replaces the standard css styling convention with CSS in JS conventions using [Styled-Components](https://github.com/styled-components/styled-components) along with overall code refactoring for readability and better code structure and implementation of unit testing.
+#### BoardRack (version 2) replaces the default Create React App framework and replaces it with the [Next.js](https://github.com/zeit/next.js/) framework. Aswell doing away with the need for Express.js replaced by Next.js' [pages/api](https://nextjs.org/docs/api-routes/introduction) routing. Version 2 also replaces the standard css styling convention with CSS in JS conventions using [Styled-Components](https://github.com/styled-components/styled-components) along with implementation of unit testing and overall code refactoring for readability and better code structure.
+
+## Change log:
+
+### Major Changes
+
+- Migrate from Create-React-App => Next.js
+- Migrate from Express.js => Next.js' pages/API
+- Migrate from CSS style sheets => Styled-Components css in js
+- Move towards Server Side Rendering
+- Implementation of unit testing
+- Overall site style update
+
+### Minor Changes
+
+- Implementation of global theme
+- Use of JWT stored in localstorage => cookie
+- Reduced bloat in redux store
 
 ## Version History
 
