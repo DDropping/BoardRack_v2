@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Head from 'next/head';
 
+import { withRedux } from '../../utils/with-redux-store';
 import Navbar from '../navbar';
 import Footer from '../footer';
 import Login from '../login';
@@ -34,4 +35,4 @@ function Layout({ children }) {
   );
 }
 
-export default Layout;
+export default withRedux(Layout);
