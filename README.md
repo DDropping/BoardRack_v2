@@ -34,8 +34,9 @@ Built Using Next.js, React, Redux, MongoDB, Node.js with Ant design UI framework
 ## Developer Notes
 
 global theme: /pages/\_app.js  
-theme provider: /pages/\_app.js
-antd theme: /assets/antd-custom.less
+theme provider: /pages/\_app.js  
+antd theme: /assets/antd-custom.less  
+protected routes: /pages/\_app.js
 
 ## Production Notes
 

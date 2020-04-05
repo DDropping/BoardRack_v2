@@ -54,7 +54,11 @@ export default class MyApp extends App {
     if (!token) {
       //redirect from protected routes if user not logged in
       const isProtectedRoute =
-        ctx.pathname === '/account' || ctx.pathname === '/createpost';
+        ctx.pathname === '/createpost' ||
+        ctx.pathname === '/account' ||
+        ctx.pathname === '/account/myposts' ||
+        ctx.pathname === '/account/mymessages' ||
+        ctx.pathname === '/account/myfavorites';
       if (isProtectedRoute) {
         redirectUser(ctx, '/');
       }
