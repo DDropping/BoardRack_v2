@@ -1,3 +1,8 @@
+// @route   GET api/posts/allposts
+// @desc    retrieve all posts from db
+// @res     posts: {... array of all posts}
+// @access  Public
+
 import connectDb from '../../../utils/connectDb';
 import Post from '../../../models/Post';
 

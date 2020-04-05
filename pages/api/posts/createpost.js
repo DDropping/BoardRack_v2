@@ -1,3 +1,8 @@
+// @route   POST api/posts/createpost
+// @desc    create new post in db
+// @res     post: {... all post data}
+// @access  Protected
+
 import jwt from 'jsonwebtoken';
 
 import connectDb from '../../../utils/connectDb';

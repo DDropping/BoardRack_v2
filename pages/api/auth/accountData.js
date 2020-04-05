@@ -1,3 +1,8 @@
+// @route   GET api/auth/accountData
+// @desc    use jwt in req header to retrieve user data from db
+// @res     user: {... all user data from db}
+// @access  Protected
+
 import jwt from 'jsonwebtoken';
 
 import User from '../../../models/User';

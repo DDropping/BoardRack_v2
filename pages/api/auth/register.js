@@ -1,5 +1,6 @@
-// @route   POST api/accounts
-// @desc    register new account (username, email, password, role)
+// @route   POST api/auth/register
+// @desc    register new account in db (username, email, password, role)
+// @res     jwt
 // @access  Public
 
 import connectDb from '../../../utils/connectDb';

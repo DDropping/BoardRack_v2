@@ -1,4 +1,7 @@
-//returns jwt
+// @route   POST api/auth/login
+// @desc    Authenticate account in db (username, email)
+// @res     jwt
+// @access  Public
 
 import connectDb from '../../../utils/connectDb';
 import User from '../../../models/User';
