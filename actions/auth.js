@@ -50,7 +50,6 @@ export const loginUser = ({ email, password }) => async dispatch => {
 
 /*********** LOAD USER ***********/
 export const loadUser = () => async dispatch => {
-  console.log('loadUser action: actions/auth.js');
   try {
     if (cookie.get('token')) {
       //add/remove jwt in axios default header

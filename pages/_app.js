@@ -9,7 +9,6 @@ import { parseCookies, destroyCookie } from 'nookies';
 import Layout from '../components/layout';
 import { redirectUser } from '../utils/auth';
 import baseUrl from '../utils/baseUrl';
-import setTokenHeader from '../utils/setTokenHeader';
 
 const GlobalStyle = createGlobalStyle`
 *{
@@ -44,17 +43,15 @@ const theme = {
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
-    const { token } = parseCookies(ctx);
-
     let pageProps = {};
+    const { token } = parseCookies(ctx);
+    pageProps.token = token;
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
 
     if (!token) {
-      setTokenHeader();
-
       //redirect from protected routes if user not logged in
       const isProtectedRoute =
         ctx.pathname === '/account' || ctx.pathname === '/createpost';
@@ -80,7 +77,6 @@ export default class MyApp extends App {
 
         //set user in page props
         pageProps.user = user;
-        setTokenHeader(token);
       } catch (err) {
         console.log(err);
         destroyCookie(ctx, 'token');

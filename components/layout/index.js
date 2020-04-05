@@ -9,6 +9,8 @@ import Navbar from '../navbar';
 import Footer from '../footer';
 import Login from '../login';
 import Register from '../register';
+import { loadUser } from '../../actions/auth';
+import setTokenHeader from '../../utils/setTokenHeader';
 
 const Container = styled.div`
   display: flex;
@@ -20,12 +22,16 @@ const Main = styled.main`
   flex: 1;
 `;
 
-function Layout({ children, user }) {
+function Layout({ children, user, token }) {
   const dispatch = useDispatch();
-
-  if (user) {
-    dispatch({ type: USER_LOADED, payload: user });
-  }
+  useEffect(() => {
+    if (user) {
+      dispatch({ type: USER_LOADED, payload: user });
+      setTokenHeader(token);
+    } else {
+      setTokenHeader();
+    }
+  }, [user]);
 
   return (
     <>

@@ -7,7 +7,6 @@ import fetch from 'isomorphic-unfetch';
 
 const Home = props => (
   <div className="container">
-    {console.log(props)}
     <Head>
       <title>BoardRack | Home</title>
     </Head>
