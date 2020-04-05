@@ -11,7 +11,11 @@ import {
   LogoutOutlined
 } from '@ant-design/icons';
 
-import { TOGGLE_LOGIN, TOGGLE_REGISTER } from '../../actions/types';
+import {
+  TOGGLE_LOGIN,
+  TOGGLE_REGISTER,
+  DEAUTH_USER
+} from '../../actions/types';
 import navDrawerLinks from '../../constants/navDrawerLinks';
 import logoutModal from '../logout';
 
@@ -42,11 +46,6 @@ const Li = styled.li`
   }
 `;
 
-const isAuthenticated = false;
-const navItems = navDrawerLinks.filter(
-  navitem => navitem.protected === isAuthenticated
-);
-
 const DrawerMenu = ({ isDrawer, handleDrawer }) => {
   const dispatch = useDispatch();
   const isAuth = useSelector(state => state.auth.isAuthenticated);
@@ -55,9 +54,19 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
   const isLogout = useSelector(state => state.overlays.isLogout);
   const router = useRouter();
 
+  //sort nav items depending on if user is authenticated
+  const navItems = navDrawerLinks.filter(
+    navitem => navitem.protected === isAuth
+  );
+
   function isActive(route) {
     return route === router.pathname;
   }
+
+  const handleLogout = () => {
+    dispatch({ type: DEAUTH_USER });
+    console.log('logging out with handleLogout navbar/drawermenu');
+  };
 
   return (
     <Drawer
@@ -145,7 +154,7 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
             active={isLogout}
             onClick={() => {
               handleDrawer(false);
-              logoutModal();
+              logoutModal(handleLogout);
             }}
           >
             <a>

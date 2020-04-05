@@ -1,3 +1,5 @@
+//returns jwt
+
 import connectDb from '../../../utils/connectDb';
 import User from '../../../models/User';
 const bcrypt = require('bcryptjs');
@@ -6,7 +8,7 @@ const jwt = require('jsonwebtoken');
 connectDb();
 
 export default async (req, res) => {
-  const { email, password, role } = req.body;
+  const { email, password } = req.body;
 
   try {
     //check if user exists
@@ -14,10 +16,11 @@ export default async (req, res) => {
     if (!user) {
       return res.status(404).send('Invalid Credentials');
     }
+
     //verify credentials
     const passwordsMatch = await bcrypt.compare(password, user.password);
 
-    //generate token and send to token
+    //generate token
     if (passwordsMatch) {
       const payload = {
         user: {

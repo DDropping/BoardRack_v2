@@ -1,18 +1,17 @@
+import React from 'react';
 import { Modal, Button } from 'antd';
 
 const { confirm } = Modal;
 
-function logoutModal() {
-  confirm({
+const index = handleLogout => {
+  return confirm({
     title: 'Logout',
     content: 'Are you sure you want to log out?',
     onOk() {
-      return new Promise((resolve, reject) => {
-        setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-      }).catch(() => console.log('Oops errors!'));
+      handleLogout();
     },
     onCancel() {}
   });
-}
+};
 
-export default logoutModal;
+export default index;

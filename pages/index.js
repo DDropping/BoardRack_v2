@@ -12,6 +12,13 @@ const Home = props => (
       <title>BoardRack | Home</title>
     </Head>
     <div>home</div>
+    <button
+      onClick={() => {
+        const res = axios.post('http://localhost:3000/api/posts/createpost');
+      }}
+    >
+      test
+    </button>
   </div>
 );
 

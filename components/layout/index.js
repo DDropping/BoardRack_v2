@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Head from 'next/head';
+import { useDispatch } from 'react-redux';
 
+import { USER_LOADED } from '../../actions/types';
 import { withRedux } from '../../utils/with-redux-store';
 import Navbar from '../navbar';
 import Footer from '../footer';
@@ -18,14 +20,20 @@ const Main = styled.main`
   flex: 1;
 `;
 
-function Layout({ children }) {
+function Layout({ children, user }) {
+  const dispatch = useDispatch();
+
+  if (user) {
+    dispatch({ type: USER_LOADED, payload: user });
+  }
+
   return (
     <>
       <Head>
         <link rel="stylesheet" href="nprogress.css" />
       </Head>
       <Container>
-        <Navbar />
+        <Navbar user />
         <Login />
         <Register />
         <Main>{children}</Main>

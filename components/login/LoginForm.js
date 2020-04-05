@@ -6,10 +6,11 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 
-import { TOGGLE_REGISTER, TOGGLE_LOGIN } from '../../actions/types';
+import { TOGGLE_REGISTER, TOGGLE_LOGIN, AUTH_USER } from '../../actions/types';
 import catchErrors from '../../utils/catchErrors';
-import { handleLogin } from '../../utils/auth';
+import { setCookieToken } from '../../utils/auth';
 import baseUrl from '../../utils/baseUrl';
+import { loadUser } from '../../actions/auth';
 
 const InputWrapper = styled.div`
   margin-bottom: 1rem;
@@ -31,11 +32,13 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  //disable login button if fields are empty
   useEffect(() => {
     const isUser = Object.values(user).every(el => Boolean(el));
     isUser ? setDisabled(false) : setDisabled(true);
   }, [user]);
 
+  //update user data handler
   function handleChange(event) {
     const { name, value } = event.target;
     setUser(prevState => ({
@@ -44,6 +47,7 @@ const LoginForm = () => {
     }));
   }
 
+  //login handler
   async function handleSubmit(event) {
     event.preventDefault();
     try {
@@ -51,8 +55,9 @@ const LoginForm = () => {
       setError('');
       const url = `${baseUrl}/api/auth/login`;
       const payload = { ...user };
-      const response = await axios.post(url, payload);
-      handleLogin(response.data.token);
+      const res = await axios.post(url, payload);
+      dispatch({ type: AUTH_USER, payload: res.data.token });
+      dispatch(loadUser());
     } catch (error) {
       catchErrors(error, setError);
     } finally {

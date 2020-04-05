@@ -1,10 +1,15 @@
 import App from 'next/app';
 import React from 'react';
 import Head from 'next/head';
+import axios from 'axios';
 import { ThemeProvider } from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
+import { parseCookies, destroyCookie } from 'nookies';
 
 import Layout from '../components/layout';
+import { redirectUser } from '../utils/auth';
+import baseUrl from '../utils/baseUrl';
+import setTokenHeader from '../utils/setTokenHeader';
 
 const GlobalStyle = createGlobalStyle`
 *{
@@ -39,10 +44,47 @@ const theme = {
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
+    const { token } = parseCookies(ctx);
+
     let pageProps = {};
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
+    }
+
+    if (!token) {
+      setTokenHeader();
+
+      //redirect from protected routes if user not logged in
+      const isProtectedRoute =
+        ctx.pathname === '/account' || ctx.pathname === '/createpost';
+      if (isProtectedRoute) {
+        redirectUser(ctx, '/');
+      }
+    } else {
+      try {
+        //retrieve user data from db
+        const payload = { headers: { Authorization: token } };
+        const url = `${baseUrl}/api/auth/accountData`;
+        const res = await axios.get(url, payload);
+        const user = res.data;
+
+        //redirect from admin dashboard if not authorized
+        const isRoot = user.role === 'root';
+        const isAdmin = user.role === 'admin';
+        const isNotPermitted =
+          !(isRoot || isAdmin) && ctx.pathname === '/dashboard';
+        if (isNotPermitted) {
+          redirectUser(ctx, '/');
+        }
+
+        //set user in page props
+        pageProps.user = user;
+        setTokenHeader(token);
+      } catch (err) {
+        console.log(err);
+        destroyCookie(ctx, 'token');
+      }
     }
 
     return { pageProps };
@@ -52,7 +94,7 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <ThemeProvider theme={theme}>
-        <Layout>
+        <Layout {...pageProps}>
           <Head>
             <link rel="shortcut icon" href="/images/br_favicon.ico" />
           </Head>

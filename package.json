@@ -19,6 +19,7 @@
     "less": "^3.11.1",
     "mongoose": "^5.9.7",
     "next": "9.3.3",
+    "nookies": "^2.2.2",
     "nprogress": "^0.2.0",
     "null-loader": "^3.0.0",
     "react": "16.13.1",

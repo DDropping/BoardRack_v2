@@ -6,6 +6,9 @@ import Post from '../../../models/Post';
 connectDb();
 
 export default async (req, res) => {
+  console.log(req.headers);
+
+  /*
   const {
     title,
     price,
@@ -81,4 +84,5 @@ export default async (req, res) => {
     console.error(err.message);
     re.status(500).send('Server Error');
   }
+  */
 };
