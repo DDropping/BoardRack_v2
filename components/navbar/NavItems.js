@@ -1,10 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
+import { Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 import { TOGGLE_LOGIN, TOGGLE_REGISTER } from '../../actions/types';
+import Menu from './AccountMenu';
 
 const Ul = styled.ul`
   color: blue;
@@ -33,6 +36,7 @@ const Li = styled.li`
 
 const NavItems = () => {
   const dispatch = useDispatch();
+  const user = useSelector(state => state.auth.user);
   const isAuth = useSelector(state => state.auth.isAuthenticated);
   const isLogin = useSelector(state => state.overlays.isLogin);
   const isRegister = useSelector(state => state.overlays.isRegister);
@@ -57,11 +61,13 @@ const NavItems = () => {
         </Li>
       )}
       {isAuth && (
-        <Link href={'/account'}>
+        <Dropdown overlay={<Menu />} overlayStyle={{ zIndex: 1000 }}>
           <Li active={isActive('/account') && !isLogin && !isRegister}>
-            <a>My Account</a>
+            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+              {user ? user.username : 'My Account'} <DownOutlined />
+            </a>
           </Li>
-        </Link>
+        </Dropdown>
       )}
       {!isAuth && (
         <Li

@@ -65,7 +65,6 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
 
   const handleLogout = () => {
     dispatch({ type: DEAUTH_USER });
-    console.log('logging out with handleLogout navbar/drawermenu');
   };
 
   return (
