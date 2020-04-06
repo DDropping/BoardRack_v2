@@ -3,7 +3,7 @@
 // @res     posts: {... array of all posts}
 // @access  Public
 
-import connectDb from '../../../utils/connectDb';
+import connectDb from '../../../utils/ConnectDb';
 import Post from '../../../models/Post';
 
 connectDb();

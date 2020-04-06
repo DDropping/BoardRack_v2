@@ -6,7 +6,7 @@
 import jwt from 'jsonwebtoken';
 
 import User from '../../../models/User';
-import connectDb from '../../../utils/connectDb';
+import connectDb from '../../../utils/ConnectDb';
 
 connectDb();
 

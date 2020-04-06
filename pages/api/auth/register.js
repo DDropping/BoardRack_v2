@@ -3,7 +3,7 @@
 // @res     jwt
 // @access  Public
 
-import connectDb from '../../../utils/connectDb';
+import connectDb from '../../../utils/ConnectDb';
 import User from '../../../models/User';
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
