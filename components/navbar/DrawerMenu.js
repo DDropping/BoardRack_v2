@@ -35,7 +35,12 @@ const Li = styled.li`
     active &&
     `background-color: ${theme.backgroundBlueMenu}; 
     border-left: 2px solid ${theme.primaryBlue}; 
-    padding: 1rem;`}
+    padding: 1rem;
+    margin-left: 0;
+    &:hover{
+      margin-left: 1rem;
+    }
+    `}
   &:hover {
     background-color: ${({ theme }) => theme.backgroundBlueMenu};
     border-left: 2px solid ${({ theme }) => theme.primaryBlue};
