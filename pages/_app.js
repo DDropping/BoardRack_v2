@@ -33,6 +33,7 @@ const theme = {
   primaryGreen: '#52c41a',
 
   backgroundBlueMenu: '#4878a91f',
+  backgroundGreyMenu: '#5858581f',
 
   //media sizes
   sm: '576px', // Small devices (landscape phones, 576px and up)
