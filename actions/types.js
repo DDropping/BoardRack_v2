@@ -6,3 +6,6 @@ export const DEAUTH_USER = 'DEAUTH_USER';
 //OVERLAYS
 export const TOGGLE_REGISTER = 'TOGGLE_REGISTER';
 export const TOGGLE_LOGIN = 'TOGGLE_LOGIN';
+
+//CREATE POST
+export const SET_INPUT = 'SET_INPUT';
