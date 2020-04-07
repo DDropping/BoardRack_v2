@@ -10,21 +10,29 @@ const H2 = styled.h2`
   color: ${props => props.theme.secondaryBlue};
 `;
 
+const Container = styled.div`
+  margin: 1rem;
+`;
+
 const Step1 = ({ post, handlePostChange }) => {
   return (
     <div>
-      <Row gutter={8}>
-        <Col xs={24} sm={12} md={12} className="wrapperCreatePostItem">
-          <Divider>
-            <H2>Basic Details</H2>
-          </Divider>
-          <Details post={post} handlePostChange={handlePostChange} />
+      <Row>
+        <Col xs={24} sm={12} md={12}>
+          <Container>
+            <Divider>
+              <H2>Basic Details</H2>
+            </Divider>
+            <Details post={post} handlePostChange={handlePostChange} />
+          </Container>
         </Col>
-        <Col xs={24} sm={12} md={12} className="wrapperCreatePostItem">
-          <Divider>
-            <H2>Add Photos</H2>
+        <Col xs={24} sm={12} md={12}>
+          <Container>
+            <Divider>
+              <H2>Add Photos</H2>
+            </Divider>
             <Images />
-          </Divider>
+          </Container>
         </Col>
       </Row>
     </div>
