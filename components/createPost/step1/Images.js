@@ -21,13 +21,15 @@ const Images = () => {
 
         //set axios arguments
         const generatePutUrl = `${baseUrl}/api/util/generatePutUrl`;
+        const key = Date.now();
         const options = {
           params: {
-            Key: file.name,
+            Key: key,
             ContentType: contentType
           },
           headers: {
-            'Content-Type': contentType
+            'Content-Type': contentType,
+            'x-amz-acl': 'public-read'
           }
         };
 
@@ -46,40 +48,14 @@ const Images = () => {
         const token = cookie.get('token');
         axios.defaults.headers.common['Authorization'] = token;
 
-        //get image url from s3 bucket
-        const generateGetUrl = `http://${baseUrl}/generateGetUrl`;
-        const {
-          data: { getUrl }
-        } = await axios.get(generateGetUrl, options);
-        console.log(getUrl);
+        console.log(
+          'getUrl: ',
+          `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${key}`
+        );
       }
     } catch (err) {
-      console.log(err);
+      console.log('error message', err);
     }
-
-    //send get request for s3 signed url
-    //   axios.get(generatePutUrl, options).then(res => {
-    //     const {
-    //       data: { putURL }
-    //     } = res;
-    //     console.log(res);
-    //     delete axios.defaults.headers.common['Authorization'];
-    //     axios
-    //       .put(putURL, file, options)
-    //       .then(res => {
-    //         setImg({ message: 'Upload Successful' });
-    //         setTimeout(() => {
-    //           setImg({ message: '' });
-    //           document.querySelector('#upload-image').value = '';
-    //         }, 2000);
-    //       })
-    //       .catch(err => {
-    //         setImg({ message: 'Sorry, something went wrong' });
-    //         console.log('err', err);
-    //       });
-    //     const token = cookie.get('token');
-    //     axios.defaults.headers.common['Authorization'] = token;
-    //   });
   };
 
   return (
