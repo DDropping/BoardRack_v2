@@ -3,6 +3,7 @@ import { Row, Col, Divider } from 'antd';
 import styled from 'styled-components';
 
 import Details from './Details';
+import Images from './Images';
 
 const H2 = styled.h2`
   font-weight: bold;
@@ -22,6 +23,7 @@ const Step1 = ({ post, handlePostChange }) => {
         <Col xs={24} sm={12} md={12} className="wrapperCreatePostItem">
           <Divider>
             <H2>Add Photos</H2>
+            <Images />
           </Divider>
         </Col>
       </Row>
