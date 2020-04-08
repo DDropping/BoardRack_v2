@@ -8,7 +8,8 @@ import {
   StarFilled,
   LoadingOutlined,
   CheckCircleOutlined,
-  ExclamationCircleOutlined
+  ExclamationCircleOutlined,
+  CloseCircleOutlined
 } from '@ant-design/icons';
 import { DELETE_IMG_PREVIEW, SET_DEFAULT_IMAGE } from '../../../actions/types';
 
@@ -75,12 +76,6 @@ const Delete = styled.span`
   color: ${({ theme }) => theme.secondaryRed};
 `;
 
-const DefaultImage = styled.div`
-  background-color: ${({ theme }) => theme.backgroundGreyMenu};
-  position: absolute;
-  z-index: 10;
-`;
-
 const ImagePreview = () => {
   const dispatch = useDispatch();
   const imgList = useSelector(state => state.imgUpload.imgList);
@@ -120,13 +115,19 @@ const ImagePreview = () => {
           </Star>
           <br />
           <Delete>
-            <Tooltip placement="right" title="Delete Image">
-              {item.isLoading ? (
-                <DeleteOutlined style={{ color: '#5858581f' }} />
-              ) : (
+            {item.isLoading && !item.error && (
+              <DeleteOutlined style={{ color: '#5858581f' }} />
+            )}
+            {!item.isLoading && !item.error && (
+              <Tooltip placement="right" title="Delete Image">
                 <DeleteOutlined onClick={() => showDelete(item.imgKey)} />
-              )}
-            </Tooltip>
+              </Tooltip>
+            )}
+            {item.error && (
+              <Tooltip placement="right" title="Delete Image">
+                <DeleteOutlined onClick={() => showDelete(item.imgKey)} />
+              </Tooltip>
+            )}
           </Delete>
         </Options>
         <ImgContainer>
@@ -136,13 +137,19 @@ const ImagePreview = () => {
           <Img src={item.objectUrl} isLoading={item.isLoading} />
         </ImgContainer>
         <Status>
-          {item.isLoading ? (
+          {item.isLoading && !item.error && (
             <div>
               <LoadingOutlined /> Loading...
             </div>
-          ) : (
+          )}
+          {!item.isLoading && !item.error && (
             <div>
               <CheckCircleOutlined style={{ color: '#52c41a' }} /> Complete
+            </div>
+          )}
+          {item.error && (
+            <div>
+              <CloseCircleOutlined style={{ color: '#ee7a7a' }} /> Upload Error
             </div>
           )}
           <div style={{ maxWidth: '90%' }}>

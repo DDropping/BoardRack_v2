@@ -5,7 +5,8 @@ import {
   SET_THUMBNAIL_URL,
   SET_STANDARD_URL,
   DELETE_IMG_PREVIEW,
-  SET_DEFAULT_IMAGE
+  SET_DEFAULT_IMAGE,
+  UPLOAD_ERROR
 } from '../actions/types';
 
 const initialState = {
@@ -30,6 +31,7 @@ export default function(state = initialState, action) {
             imgKey: action.payload.imgKey,
             isLoading: true,
             percentage: 0,
+            error: false,
             objectUrl: action.payload.objectUrl,
             standardUrl: null,
             thumbnailUrl: null
@@ -90,7 +92,13 @@ export default function(state = initialState, action) {
         ...state,
         imgList: newImgList
       };
-
+    case UPLOAD_ERROR:
+      return {
+        ...state,
+        imgList: state.imgList.map(item =>
+          item.imgKey === action.payload ? { ...item, error: true } : item
+        )
+      };
     default:
       return state;
   }

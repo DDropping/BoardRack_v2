@@ -8,7 +8,9 @@ import {
   SET_STANDARD_URL,
   SET_THUMBNAIL_URL,
   SET_IMG_KEY,
-  SET_UPLOAD_PERCENTAGE
+  SET_UPLOAD_PERCENTAGE,
+  UPLOAD_ERROR,
+  DELETE_IMG_PREVIEW
 } from '../actions/types';
 
 export const uploadImage = (imgKey, file) => async dispatch => {
@@ -126,5 +128,9 @@ export const uploadImage = (imgKey, file) => async dispatch => {
     axios.defaults.headers.common['Authorization'] = token;
   } catch (err) {
     console.log('error message', err);
+    dispatch({ type: UPLOAD_ERROR, payload: imgKey });
+    setTimeout(function() {
+      dispatch({ type: DELETE_IMG_PREVIEW, payload: imgKey });
+    }, 5000);
   }
 };
