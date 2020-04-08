@@ -9,3 +9,5 @@ export const TOGGLE_LOGIN = 'TOGGLE_LOGIN';
 
 //CREATE POST
 export const SET_INPUT = 'SET_INPUT';
+export const SET_OBJECTURL_URL = 'SET_OBJECTURL_URL';
+export const SET_IMG_KEY = 'SET_IMG_KEY';
