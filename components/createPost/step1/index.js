@@ -3,7 +3,7 @@ import { Row, Col, Divider } from 'antd';
 import styled from 'styled-components';
 
 import Details from './Details';
-import Images from './Images';
+import ImageUpload from './ImageUpload';
 
 const H2 = styled.h2`
   font-weight: bold;
@@ -31,7 +31,7 @@ const Step1 = ({ post, handlePostChange }) => {
             <Divider>
               <H2>Add Photos</H2>
             </Divider>
-            <Images />
+            <ImageUpload />
           </Container>
         </Col>
       </Row>
