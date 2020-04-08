@@ -12,7 +12,7 @@ import logoutModal from '../logout';
 const A = styled.a`
   padding: 0 0.5rem;
   transition: all 0.2s ease-in-out;
-  ${({ active, theme }) =>
+  ${({ active, theme, key }) =>
     active &&
     `background-color: ${theme.backgroundBlueMenu}; 
     border-left: 2px solid ${theme.primaryBlue}; 
@@ -21,6 +21,17 @@ const A = styled.a`
     background-color: ${({ theme }) => theme.backgroundBlueMenu};
     border-left: 2px solid ${({ theme }) => theme.primaryBlue};
     color: ${({ theme }) => theme.primaryBlue};
+    padding-left: 1rem;
+  }
+`;
+
+const Logout = styled.div`
+  padding: 0 0.5rem;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: ${({ theme }) => theme.backgroundRedMenu};
+    border-left: 2px solid ${({ theme }) => theme.primaryRed};
+    color: ${({ theme }) => theme.primaryRed};
     padding-left: 1rem;
   }
 `;
@@ -61,7 +72,7 @@ const AccountMenu = () => {
         return (
           <Menu.Item key={index} style={{ padding: 0, margin: 0 }}>
             <Link href={item.href}>
-              <A href="/">
+              <A href="/" key={index}>
                 {item.icon} {item.title}
               </A>
             </Link>
@@ -74,9 +85,11 @@ const AccountMenu = () => {
         onClick={() => {
           logoutModal(handleLogout);
         }}
-        style={{ color: 'red' }}
+        style={{ padding: 0, margin: 0 }}
       >
-        <LogoutOutlined /> Logout
+        <Logout href="">
+          <LogoutOutlined /> Logout
+        </Logout>
       </Menu.Item>
     </Menu>
   );

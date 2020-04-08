@@ -20,6 +20,7 @@
 - Implementation of global theme
 - Use of JWT stored in localstorage => cookie
 - Reduced bloat in redux store
+- Use of presigned urls for image uploads
 
 ## Version History
 
