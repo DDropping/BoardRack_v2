@@ -27,6 +27,8 @@ const theme = {
   //colors
   primaryBlue: '#00458a',
   secondaryBlue: '#4878a9',
+  primaryRed: '#ef4040',
+  secondaryRed: '#ee7a7a',
   primaryBlack: '#222222',
   primaryWhite: '#ffffff',
   primaryGrey: '#f3f7f9',
@@ -34,6 +36,7 @@ const theme = {
 
   backgroundBlueMenu: '#4878a91f',
   backgroundGreyMenu: '#5858581f',
+  backgroundRedMenu: '#ef40401f',
 
   //media sizes
   sm: '576px', // Small devices (landscape phones, 576px and up)
