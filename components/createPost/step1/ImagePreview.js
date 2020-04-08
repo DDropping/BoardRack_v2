@@ -1,18 +1,25 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { Progress, Modal, Tooltip } from 'antd';
 import {
   DeleteOutlined,
   StarOutlined,
   StarFilled,
-  LoadingOutlined
+  LoadingOutlined,
+  CheckCircleOutlined,
+  ExclamationCircleOutlined
 } from '@ant-design/icons';
+import { DELETE_IMG_PREVIEW, SET_DEFAULT_IMAGE } from '../../../actions/types';
+
+const { confirm } = Modal;
 
 const PreviewContainer = styled.div`
   display: flex;
   margin-top: 0.5rem;
   width: 100%;
   height: 5rem;
+  background-color: ${props => (props.primary ? '#f3f7f9' : null)};
 `;
 
 const ImgContainer = styled.div`
@@ -46,9 +53,9 @@ const Img = styled.img`
 `;
 
 const Status = styled.div`
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
   flex: 1;
-  padding-left: 1rem;
-  line-height: 5rem;
   div {
     font-size: 1.25rem;
     vertical-align: middle; /* center vertically */
@@ -68,17 +75,58 @@ const Delete = styled.span`
   color: ${({ theme }) => theme.secondaryRed};
 `;
 
+const DefaultImage = styled.div`
+  background-color: ${({ theme }) => theme.backgroundGreyMenu};
+  position: absolute;
+  z-index: 10;
+`;
+
 const ImagePreview = () => {
+  const dispatch = useDispatch();
   const imgList = useSelector(state => state.imgUpload.imgList);
-  console.log(imgList);
+
+  function handleDelete(imgKey) {
+    dispatch({ type: DELETE_IMG_PREVIEW, payload: imgKey });
+  }
+
+  function showDelete(imgKey) {
+    confirm({
+      title: 'Are you sure you want to delete this image?',
+      icon: <ExclamationCircleOutlined />,
+      onOk() {
+        handleDelete(imgKey);
+      }
+    });
+  }
+
+  function handleSetDefaultImage(imgKey) {
+    dispatch({ type: SET_DEFAULT_IMAGE, payload: imgKey });
+  }
+
   return imgList.map((item, index) => {
     return (
-      <PreviewContainer key={index}>
+      <PreviewContainer key={index} primary={index === 0 ? true : false}>
         <Options>
-          <Star>{index === 0 ? <StarFilled /> : <StarOutlined />}</Star>
+          <Star>
+            {index === 0 ? (
+              <StarFilled />
+            ) : (
+              <Tooltip placement="right" title="Set Default Image">
+                <StarOutlined
+                  onClick={() => handleSetDefaultImage(item.imgKey)}
+                />
+              </Tooltip>
+            )}
+          </Star>
           <br />
           <Delete>
-            <DeleteOutlined />
+            <Tooltip placement="right" title="Delete Image">
+              {item.isLoading ? (
+                <DeleteOutlined style={{ color: '#5858581f' }} />
+              ) : (
+                <DeleteOutlined onClick={() => showDelete(item.imgKey)} />
+              )}
+            </Tooltip>
           </Delete>
         </Options>
         <ImgContainer>
@@ -94,9 +142,17 @@ const ImagePreview = () => {
             </div>
           ) : (
             <div>
-              <CheckCircleOutlined /> Complete
+              <CheckCircleOutlined style={{ color: '#52c41a' }} /> Complete
             </div>
           )}
+          <div style={{ maxWidth: '90%' }}>
+            <Progress
+              status="normal"
+              strokeColor="#4878a9"
+              trailColor="#4878a91f"
+              percent={item.percentage}
+            />
+          </div>
         </Status>
       </PreviewContainer>
     );

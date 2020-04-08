@@ -2,15 +2,16 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'antd';
 import { FileImageOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
 
 import { uploadImage } from '../../../actions/createpost';
 
 const Images = () => {
   const dispatch = useDispatch();
-  const imgKey = useSelector(state => state.imgUpload.imgKey);
+  const imgList = useSelector(state => state.imgUpload.imgList);
 
   const handleUpload = file => {
-    dispatch(uploadImage(imgKey, file));
+    dispatch(uploadImage(imgList.length, file));
   };
 
   return (
@@ -19,8 +20,7 @@ const Images = () => {
         type="dashed"
         style={{
           width: '100%',
-          height: '8rem',
-          backgroundColor: '#4878a91f'
+          height: '8rem'
         }}
       >
         <label style={{ width: '100%', height: '100%', color: '#00000090' }}>
