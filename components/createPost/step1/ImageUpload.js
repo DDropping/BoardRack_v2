@@ -4,7 +4,7 @@ import { Button } from 'antd';
 import { FileImageOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 
-import { uploadImage } from '../../../actions/createpost';
+import { uploadImage } from '../../../actions/uploadImage';
 
 const Images = () => {
   const dispatch = useDispatch();

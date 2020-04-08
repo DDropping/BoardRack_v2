@@ -11,7 +11,7 @@ import {
   SET_UPLOAD_PERCENTAGE,
   UPLOAD_ERROR,
   DELETE_IMG_PREVIEW
-} from '../actions/types';
+} from './types';
 
 export const uploadImage = (imgKey, file) => async dispatch => {
   //image compression options
