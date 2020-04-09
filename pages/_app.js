@@ -16,7 +16,6 @@ const GlobalStyle = createGlobalStyle`
   padding: 0;
   margin: 0;
   text-decoration: none;
-  transition: all 0.2s ease-in-out;
   a{
     color: ${props => props.theme.primaryBlack}
     }
