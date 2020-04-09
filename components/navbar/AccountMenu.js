@@ -12,7 +12,7 @@ import logoutModal from '../logout';
 const A = styled.a`
   padding: 0 0.5rem;
   transition: all 0.2s ease-in-out;
-  ${({ active, theme, key }) =>
+  ${({ active, theme }) =>
     active &&
     `background-color: ${theme.backgroundBlueMenu}; 
     border-left: 2px solid ${theme.primaryBlue}; 

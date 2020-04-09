@@ -26,27 +26,37 @@ const Img = styled.img`
 `;
 
 const Li = styled.li`
+  transition: all 0.2s ease-in-out;
   display: block;
   font-size: 1rem;
-  padding: 1rem 1rem 1rem 0;
-  margin-left: 1rem;
+  padding: 1rem;
   margin-bottom: 0.25rem;
   ${({ active, theme }) =>
     active &&
     `background-color: ${theme.backgroundBlueMenu}; 
-    border-left: 2px solid ${theme.primaryBlue}; 
-    padding: 1rem;
-    margin-left: 0;
-    &:hover{
-      margin-left: 1rem;
-    }
     `}
   &:hover {
     background-color: ${({ theme }) => theme.backgroundBlueMenu};
     border-left: 2px solid ${({ theme }) => theme.primaryBlue};
-    padding: 1rem;
+    padding-left: 1.5rem;
     a {
       color: ${({ theme }) => theme.primaryBlue};
+    }
+  }
+`;
+
+const Logout = styled.div`
+  transition: all 0.2s ease-in-out;
+  display: block;
+  font-size: 1rem;
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+  &:hover {
+    background-color: ${({ theme }) => theme.backgroundRedMenu};
+    border-left: 2px solid ${({ theme }) => theme.primaryRed};
+    padding-left: 1.5rem;
+    a {
+      color: ${({ theme }) => theme.primaryRed};
     }
   }
 `;
@@ -154,7 +164,7 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
           </Li>
         )}
         {isAuth && (
-          <Li
+          <Logout
             active={isLogout}
             onClick={() => {
               handleDrawer(false);
@@ -164,7 +174,7 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
             <a>
               <LogoutOutlined /> Logout
             </a>
-          </Li>
+          </Logout>
         )}
       </ul>
     </Drawer>

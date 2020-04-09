@@ -8,6 +8,9 @@ export const IconWrapper = styled.div`
   margin: 0.25rem 1rem;
   font-size: 2rem;
   cursor: pointer;
+  &:hover {
+    color: ${({ theme }) => theme.primaryBlue};
+  }
   @media (min-width: ${props => props.theme.sm}) {
     display: none;
   }
