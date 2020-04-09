@@ -12,7 +12,7 @@ import Support from './Support';
 
 const Container = styled.section`
   width: 100vw;
-  color: #eee;
+  color: ${({ theme }) => theme.secondaryWhite};
   background-color: ${props => props.theme.primaryBlue};
   text-align: center;
   padding: 1rem;
