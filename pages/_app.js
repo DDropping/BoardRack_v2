@@ -26,11 +26,18 @@ const theme = {
   //colors
   primaryBlue: '#00458a',
   secondaryBlue: '#4878a9',
+
   primaryRed: '#ef4040',
   secondaryRed: '#ee7a7a',
+
   primaryBlack: '#222222',
+
   primaryWhite: '#ffffff',
+  secondaryWhite: '#eeeeee',
+
   primaryGrey: '#f3f7f9',
+  primaryLightGrey: '#bbb',
+
   primaryGreen: '#52c41a',
 
   backgroundBlueMenu: '#4878a91f',
