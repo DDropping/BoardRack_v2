@@ -1,11 +1,7 @@
 import React from 'react';
 
 const Step2 = ({ handlePostChange }) => {
-  return (
-    <div>
-      <div>Step 2</div>
-    </div>
-  );
+  return <div>Step 2</div>;
 };
 
 export default Step2;
