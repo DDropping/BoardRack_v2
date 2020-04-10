@@ -9,5 +9,20 @@
         "style": true
       }
     ]
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        [
+          "module-resolver",
+          {
+            "root": ["./"],
+            "alias": {
+              "@components": "./components/"
+            }
+          }
+        ]
+      ]
+    }
+  }
 }
