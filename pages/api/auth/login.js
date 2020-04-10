@@ -11,6 +11,17 @@ const jwt = require('jsonwebtoken');
 connectDb();
 
 export default async (req, res) => {
+  switch (req.method) {
+    case 'POST':
+      await handlePostRequest(req, res);
+      break;
+    default:
+      res.status(405).send(`Method ${req.method} not allowed`);
+      break;
+  }
+};
+
+async function handlePostRequest(req, res) {
   const { email, password } = req.body;
 
   try {
@@ -47,4 +58,4 @@ export default async (req, res) => {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
-};
+}
