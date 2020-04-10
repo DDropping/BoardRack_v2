@@ -81,7 +81,7 @@ const LoginForm = () => {
         />
       </InputWrapper>
       <InputWrapper>
-        <Input
+        <Input.Password
           placeholder="Password"
           prefix={<LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
           size="large"

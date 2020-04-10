@@ -92,7 +92,7 @@ const RegisterForm = () => {
         />
       </InputWrapper>
       <InputWrapper>
-        <Input
+        <Input.Password
           placeholder="Password"
           prefix={<LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
           size="large"
@@ -103,7 +103,7 @@ const RegisterForm = () => {
         />
       </InputWrapper>
       <InputWrapper>
-        <Input
+        <Input.Password
           placeholder="Confirm Password"
           prefix={<LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
           size="large"
