@@ -8,6 +8,11 @@ import Step1 from '../components/createPost/step1';
 import Step2 from '../components/createPost/step2';
 import Step3 from '../components/createPost/step3';
 
+const Container = styled.section`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
 const CreatePost = () => {
   const [step, setStep] = useState(0);
   const [post, setPost] = useState({});
@@ -36,7 +41,7 @@ const CreatePost = () => {
   }
 
   return (
-    <div className="container">
+    <Container>
       <Head>
         <title>BoardRack | Create Post</title>
       </Head>
@@ -44,7 +49,7 @@ const CreatePost = () => {
       {step === 0 && <Step1 post={post} handlePostChange={handlePostChange} />}
       {step === 1 && <Step2 post={post} handlePostChange={handlePostChange} />}
       {step === 2 && <Step3 post={post} handlePostChange={handlePostChange} />}
-    </div>
+    </Container>
   );
 };
 
