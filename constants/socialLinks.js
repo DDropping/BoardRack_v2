@@ -1,11 +1,10 @@
 import React from 'react';
 import {
   FacebookOutlined,
-  InstagramOutlined,
-  YoutubeOutlined,
-  TwitterOutlined,
   GithubOutlined,
-  LinkedinOutlined
+  InstagramOutlined,
+  TwitterOutlined,
+  YoutubeOutlined
 } from '@ant-design/icons';
 
 export default [

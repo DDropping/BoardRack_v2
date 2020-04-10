@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  HomeOutlined,
-  UserOutlined,
   FormOutlined,
+  HomeOutlined,
   MailOutlined,
-  StarOutlined
+  StarOutlined,
+  UserOutlined
 } from '@ant-design/icons';
 
 export default [
