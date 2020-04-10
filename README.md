@@ -8,12 +8,13 @@
 
 ### Major Changes
 
-- Migrate from Create-React-App => Next.js
-- Migrate from Express.js => Next.js' pages/API
-- Migrate from CSS style sheets => Styled-Components css in js
-- Move towards Server Side Rendering
-- Implementation of unit testing
-- Overall site style update
+- Migrate from Create-React-App => [Next.js](https://github.com/zeit/next.js/)
+- Migrate from Express.js => Next.js' [pages/api](https://nextjs.org/docs/api-routes/introduction)
+- Migrate from CSS style sheets => [Styled-Components](https://github.com/styled-components/styled-components) css in js
+- Move towards Server Side Rendering (SSR)
+- Implementation of unit testing with [Jest](https://github.com/facebook/jest) and [Enzyme](https://github.com/enzymejs/enzyme)
+- App-wide code optimization and refactoring
+- App-wide component style update
 
 ### Minor Changes
 
@@ -36,7 +37,7 @@ Built Using Next.js, React, Redux, MongoDB, Node.js with Ant design UI framework
 
 global theme: /pages/\_app.js  
 theme provider: /pages/\_app.js  
-antd theme: /assets/antd-custom.less  
+antd theme: /public/antd-custom.less  
 protected routes: /pages/\_app.js
 
 ## Production Notes
