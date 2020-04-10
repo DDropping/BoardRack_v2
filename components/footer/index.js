@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Row, Col } from 'antd';
 import Link from 'next/link';
+import { Col, Row } from 'antd';
+import styled from 'styled-components';
 
 import LogoWhite from '../logo/DefaultLogoWhite';
 import Company from './Company';

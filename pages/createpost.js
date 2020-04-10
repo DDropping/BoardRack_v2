@@ -1,17 +1,10 @@
-import react, { useState } from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
-import { Button } from 'antd';
-import styled from 'styled-components';
 
-import PostSteps from '../components/createPost/Steps';
-import Step1 from '../components/createPost/step1';
-import Step2 from '../components/createPost/step2';
 import Step3 from '../components/createPost/step3';
-
-const Container = styled.section`
-  max-width: 1200px;
-  margin: 0 auto;
-`;
+import Step2 from '../components/createPost/step2';
+import Step1 from '../components/createPost/step1';
+import PostSteps from '../components/createPost/Steps';
 
 const CreatePost = () => {
   const [step, setStep] = useState(0);
@@ -41,7 +34,7 @@ const CreatePost = () => {
   }
 
   return (
-    <Container>
+    <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
       <Head>
         <title>BoardRack | Create Post</title>
       </Head>
@@ -49,7 +42,7 @@ const CreatePost = () => {
       {step === 0 && <Step1 post={post} handlePostChange={handlePostChange} />}
       {step === 1 && <Step2 post={post} handlePostChange={handlePostChange} />}
       {step === 2 && <Step3 post={post} handlePostChange={handlePostChange} />}
-    </Container>
+    </div>
   );
 };
 

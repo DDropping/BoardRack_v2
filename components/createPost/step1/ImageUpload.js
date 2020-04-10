@@ -23,7 +23,7 @@ const Images = () => {
           height: '8rem'
         }}
       >
-        <label style={{ width: '100%', height: '100%', color: '#00000090' }}>
+        <label style={{ width: '100%', height: '100%' }}>
           <FileImageOutlined style={{ fontSize: '3rem' }} />
           <br />
           Click To Upload Image

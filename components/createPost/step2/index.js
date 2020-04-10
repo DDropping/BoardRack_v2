@@ -1,7 +1,13 @@
 import React from 'react';
 
+import Dimensions from './Dimensions';
+
 const Step2 = ({ handlePostChange }) => {
-  return <div>Step 2</div>;
+  return (
+    <div>
+      <Dimensions />
+    </div>
+  );
 };
 
 export default Step2;

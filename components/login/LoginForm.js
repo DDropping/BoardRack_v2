@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import styled from 'styled-components';
 import axios from 'axios';
-import { Form, Input, Button, Checkbox } from 'antd';
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
+import { Button, Checkbox, Form, Input } from 'antd';
+import { MailOutlined, LockOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
 
 import { TOGGLE_REGISTER, TOGGLE_LOGIN, AUTH_USER } from '../../actions/types';
 import catchErrors from '../../utils/catchErrors';
@@ -58,6 +58,7 @@ const LoginForm = () => {
       const res = await axios.post(url, payload);
       dispatch({ type: AUTH_USER, payload: res.data.token });
       dispatch(loadUser());
+      dispatch({ type: TOGGLE_LOGIN, payload: false });
     } catch (error) {
       catchErrors(error, setError);
     } finally {

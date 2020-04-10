@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Divider } from 'antd';
+import { Col, Divider, Row } from 'antd';
 import styled from 'styled-components';
 
 import Details from './Details';

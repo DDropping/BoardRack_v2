@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { Drawer } from 'antd';
-import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -10,6 +9,7 @@ import {
   UserAddOutlined,
   LogoutOutlined
 } from '@ant-design/icons';
+import styled from 'styled-components';
 
 import {
   TOGGLE_LOGIN,

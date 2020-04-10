@@ -1,9 +1,9 @@
-import { Menu, Avatar } from 'antd';
 import Link from 'next/link';
-import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Avatar, Menu } from 'antd';
+import styled from 'styled-components';
 
 import { DEAUTH_USER } from '../../actions/types';
 import navDrawerLinks from '../../constants/navDrawerLinks';
@@ -62,10 +62,13 @@ const AccountMenu = () => {
           paddingTop: '1rem'
         }}
       >
-        <Avatar
-          size={150}
-          icon={<UserOutlined style={{ fontSize: '6rem' }} />}
-        />
+        <Link href="/account">
+          <Avatar
+            size={150}
+            style={{ backgroundColor: '#4878a9' }}
+            icon={<UserOutlined style={{ fontSize: '6rem' }} />}
+          />
+        </Link>
       </Menu.Item>
 
       {navItems.map((item, index) => {

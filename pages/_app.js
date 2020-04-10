@@ -19,6 +19,9 @@ const GlobalStyle = createGlobalStyle`
   a{
     color: ${props => props.theme.primaryBlack}
     }
+    .ant-menu-item-selected{
+      background-color: none;
+    }
   }
 `;
 

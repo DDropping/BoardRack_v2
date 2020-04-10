@@ -24,10 +24,7 @@ const Wrapper = styled.div`
 const Subscribe = () => {
   return (
     <Wrapper>
-      <Search
-        placeholder="input search loading with enterButton"
-        enterButton="Submit"
-      />
+      <Search placeholder="Email..." enterButton="Submit" />
     </Wrapper>
   );
 };

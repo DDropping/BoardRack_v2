@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Row, Col, Input, Select, InputNumber } from 'antd';
+import { Col, Form, Input, InputNumber, Row, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_INPUT } from '../../../actions/types';
 
