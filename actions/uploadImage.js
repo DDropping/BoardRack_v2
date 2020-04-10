@@ -30,14 +30,14 @@ export const uploadImage = (imgKey, file) => async dispatch => {
   function handleProgress(percentage) {
     dispatch({
       type: SET_UPLOAD_PERCENTAGE,
-      payload: { imgKey: imgKey, percentage: percentage / 2 }
+      payload: { imgKey: imgKey, percentage: Math.round(percentage / 2) }
     });
   }
 
   function handleProgress2(percentage) {
     dispatch({
       type: SET_UPLOAD_PERCENTAGE,
-      payload: { imgKey: imgKey, percentage: percentage / 2 + 50 }
+      payload: { imgKey: imgKey, percentage: Math.round(percentage / 2 + 50) }
     });
   }
 
