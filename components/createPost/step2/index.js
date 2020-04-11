@@ -3,6 +3,7 @@ import { Col, Divider, Row } from 'antd';
 import styled from 'styled-components';
 
 import Dimensions from './Dimensions';
+import ModelAndFins from './ModelAndFins';
 
 const H2 = styled.h2`
   font-weight: bold;
@@ -30,6 +31,7 @@ const Step2 = () => {
             <Divider>
               <H2>Fins</H2>
             </Divider>
+            <ModelAndFins />
           </SectionContainer>
         </Col>
       </Row>

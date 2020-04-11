@@ -74,7 +74,7 @@ const Dimensions = () => {
         </Col>
         <Col xs={8} sm={8} md={8} lg={8}>
           <Input
-            placeholder="2"
+            placeholder="2 1/4"
             suffix="in."
             value={lengthIn}
             onChange={event => handleFraction('lengthIn', event.target.value)}
