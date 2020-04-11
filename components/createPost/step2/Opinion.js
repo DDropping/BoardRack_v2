@@ -18,7 +18,7 @@ const Opinion = () => {
   return (
     <Form>
       <Row gutter={[16, 16]}>
-        <Col xs={8} sm={8} md={8} lg={8}>
+        <Col xs={10} sm={10} md={10} lg={10}>
           <h3 style={{ textAlign: 'right' }} style={{ textAlign: 'right' }}>
             Wave Size:
           </h3>
@@ -34,7 +34,7 @@ const Opinion = () => {
             }
           />
         </Col>
-        <Col xs={8} sm={9}>
+        <Col xs={6} sm={7}>
           <Tooltip
             placement="topLeft"
             title={'What size waves does your board perform well in?'}
@@ -47,7 +47,7 @@ const Opinion = () => {
       </Row>
 
       <Row gutter={[16, 16]}>
-        <Col xs={8} sm={8} md={8} lg={8}>
+        <Col xs={10} sm={10} md={10} lg={10}>
           <h3 style={{ textAlign: 'right' }} style={{ textAlign: 'right' }}>
             Drive & Speed:
           </h3>
@@ -63,7 +63,7 @@ const Opinion = () => {
             }
           />
         </Col>
-        <Col xs={8} sm={9}>
+        <Col xs={6} sm={7}>
           <Tooltip
             placement="topLeft"
             title={
@@ -78,7 +78,7 @@ const Opinion = () => {
       </Row>
 
       <Row gutter={[16, 16]}>
-        <Col xs={8} sm={8} md={8} lg={8}>
+        <Col xs={10} sm={10} md={10} lg={10}>
           <h3 style={{ textAlign: 'right' }} style={{ textAlign: 'right' }}>
             Paddle Power:
           </h3>
@@ -94,7 +94,7 @@ const Opinion = () => {
             }
           />
         </Col>
-        <Col xs={8} sm={9}>
+        <Col xs={6} sm={7}>
           <Tooltip
             placement="topLeft"
             title={'How easy is your board to paddle?'}
@@ -107,7 +107,7 @@ const Opinion = () => {
       </Row>
 
       <Row gutter={[16, 16]}>
-        <Col xs={8} sm={8} md={8} lg={8}>
+        <Col xs={10} sm={10} md={10} lg={10}>
           <h3 style={{ textAlign: 'right' }} style={{ textAlign: 'right' }}>
             Movability:
           </h3>
@@ -123,7 +123,7 @@ const Opinion = () => {
             }
           />
         </Col>
-        <Col xs={8} sm={9}>
+        <Col xs={6} sm={7}>
           <Tooltip
             placement="topLeft"
             title={'How easy does your board move in the water?'}
