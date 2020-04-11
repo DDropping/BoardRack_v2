@@ -19,6 +19,9 @@ const Wrapper = styled.div`
   .ant-input {
     border: 1px solid #01458a;
   }
+  .ant-input-group-addon {
+    background-color: ${({ theme }) => theme.primaryBlue};
+  }
 `;
 
 const Subscribe = () => {
