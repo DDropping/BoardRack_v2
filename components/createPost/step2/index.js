@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Dimensions from './Dimensions';
 import ModelAndFins from './ModelAndFins';
 import Construction from './Construction';
+import Opinion from './Opinion';
 
 const H2 = styled.h2`
   font-weight: bold;
@@ -50,6 +51,7 @@ const Step2 = () => {
             <Divider>
               <H2>Opinion</H2>
             </Divider>
+            <Opinion />
           </SectionContainer>
         </Col>
       </Row>
