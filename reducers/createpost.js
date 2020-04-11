@@ -1,4 +1,4 @@
-import { SET_INPUT } from '../actions/types';
+import { SET_INPUT, CANCEL_POST } from '../actions/types';
 
 const initialState = {};
 
@@ -9,6 +9,10 @@ export default function(state = initialState, action) {
       return {
         ...state,
         [payload.name]: payload.value
+      };
+    case CANCEL_POST:
+      return {
+        initialState
       };
     default:
       return state;

@@ -5,6 +5,7 @@ import Step3 from '../components/createPost/step3';
 import Step2 from '../components/createPost/step2';
 import Step1 from '../components/createPost/step1';
 import PostSteps from '../components/createPost/Steps';
+import NavButtons from '../components/createPost/NavButtons';
 
 const CreatePost = () => {
   const [step, setStep] = useState(1);
@@ -22,6 +23,7 @@ const CreatePost = () => {
       {step === 0 && <Step1 />}
       {step === 1 && <Step2 />}
       {step === 2 && <Step3 />}
+      <NavButtons step={step} handleStepChange={handleStepChange} />
     </div>
   );
 };
