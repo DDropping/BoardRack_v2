@@ -29,7 +29,9 @@ const Opinion = () => {
             size="default"
             suffix="ft."
             value={waveSize}
-            onChange={event => handleNumber('waveSize', event.target.value)}
+            onChange={event =>
+              handleInputChange('waveSize', event.target.value)
+            }
           />
         </Col>
         <Col xs={8} sm={9}>
@@ -56,7 +58,9 @@ const Opinion = () => {
             size="default"
             suffix="/5"
             value={driveSpeed}
-            onChange={event => handleNumber('driveSpeed', event.target.value)}
+            onChange={event =>
+              handleInputChange('driveSpeed', event.target.value)
+            }
           />
         </Col>
         <Col xs={8} sm={9}>
@@ -85,7 +89,9 @@ const Opinion = () => {
             size="default"
             suffix="/5"
             value={paddlePower}
-            onChange={event => handleNumber('paddlePower', event.target.value)}
+            onChange={event =>
+              handleInputChange('paddlePower', event.target.value)
+            }
           />
         </Col>
         <Col xs={8} sm={9}>
@@ -103,7 +109,7 @@ const Opinion = () => {
       <Row gutter={[16, 16]}>
         <Col xs={8} sm={8} md={8} lg={8}>
           <h3 style={{ textAlign: 'right' }} style={{ textAlign: 'right' }}>
-            Paddle Power:
+            Movability:
           </h3>
         </Col>
         <Col xs={8} sm={7} md={6}>
@@ -112,7 +118,9 @@ const Opinion = () => {
             size="default"
             suffix="/5"
             value={movability}
-            onChange={event => handleNumber('movability', event.target.value)}
+            onChange={event =>
+              handleInputChange('movability', event.target.value)
+            }
           />
         </Col>
         <Col xs={8} sm={9}>

@@ -23,17 +23,17 @@ const Step2 = () => {
         <Col xs={24} sm={12} md={12}>
           <SectionContainer>
             <Divider>
-              <H2>Dimensions</H2>
+              <H2>Model & Fins</H2>
             </Divider>
-            <Dimensions />
+            <ModelAndFins />
           </SectionContainer>
         </Col>
         <Col xs={24} sm={12} md={12}>
           <SectionContainer>
             <Divider>
-              <H2>Fins</H2>
+              <H2>Dimensions</H2>
             </Divider>
-            <ModelAndFins />
+            <Dimensions />
           </SectionContainer>
         </Col>
       </Row>
