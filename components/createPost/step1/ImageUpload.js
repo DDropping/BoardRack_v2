@@ -26,22 +26,25 @@ const Images = () => {
         <label style={{ width: '100%', height: '100%' }}>
           <FileImageOutlined style={{ fontSize: '3rem' }} />
           <br />
-          Click To Upload Image
-          <input
-            id="upload-image"
-            type="file"
-            accept="image/*"
-            onChange={event => handleUpload(event.target.files[0])}
-            style={{
-              position: 'absolute',
-              top: '0',
-              left: ' 0',
-              opacity: '0',
-              width: '100%',
-              height: '100%',
-              cursor: 'pointer'
-            }}
-          />
+          <span>Click To Upload Image</span>
+          {imgList.length > 0 && <span> ({imgList.length} / 8)</span>}
+          {imgList.length < 8 && (
+            <input
+              id="upload-image"
+              type="file"
+              accept="image/*"
+              onChange={event => handleUpload(event.target.files[0])}
+              style={{
+                position: 'absolute',
+                top: '0',
+                left: ' 0',
+                opacity: '0',
+                width: '100%',
+                height: '100%',
+                cursor: 'pointer'
+              }}
+            />
+          )}
         </label>
       </Button>
     </div>
