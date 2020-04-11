@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import Dimensions from './Dimensions';
 import ModelAndFins from './ModelAndFins';
+import Construction from './Construction';
 
 const H2 = styled.h2`
   font-weight: bold;
@@ -41,6 +42,7 @@ const Step2 = () => {
             <Divider>
               <H2>Construction</H2>
             </Divider>
+            <Construction />
           </SectionContainer>
         </Col>
         <Col xs={24} sm={12} md={12}>

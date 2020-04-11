@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Form, Input, InputNumber, Row, Select } from 'antd';
+import { Col, Form, Input, Row, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_INPUT } from '../../../actions/types';
 
@@ -56,6 +56,7 @@ const ModelAndFins = () => {
           <Select
             placeholder="Fin System..."
             style={{ width: '100%' }}
+            value={finSystem}
             onChange={event => handleInputChange('finSystem', event)}
           >
             <Select.Option value="Future">Future</Select.Option>
@@ -74,6 +75,7 @@ const ModelAndFins = () => {
         <Col xs={16} sm={16} md={16} lg={16}>
           <Select
             placeholder="Fin Configuration..."
+            value={finConfiguration}
             style={{ width: '100%' }}
             onChange={event => handleInputChange('finConfiguration', event)}
           >
