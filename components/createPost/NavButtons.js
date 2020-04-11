@@ -40,44 +40,50 @@ const NavButtons = ({ step, handleStepChange }) => {
         onClick={cancelConfirm}
         type="danger"
         ghost
-        style={{ margin: '1rem' }}
+        style={{ margin: '0.5rem' }}
       >
         Cancel
       </Button>
 
-      <Button
-        onClick={() => handleStepChange(step - 1)}
-        style={{ marginRight: '5px' }}
-        type="primary"
-        ghost
-        disabled={step < 1 ? true : false}
-        style={{ margin: '1rem' }}
-      >
-        <LeftOutlined />
-        Previous
-      </Button>
+      {step !== 0 && (
+        <Button
+          onClick={() => handleStepChange(step - 1)}
+          style={{ marginRight: '5px' }}
+          type="primary"
+          ghost
+          disabled={step < 1 ? true : false}
+          style={{ margin: '0.5rem' }}
+        >
+          <LeftOutlined />
+          Previous
+        </Button>
+      )}
 
       <span style={{ flex: 1 }} />
 
-      <Button
-        onClick={() => handleStepChange(step + 1)}
-        type="primary"
-        ghost
-        disabled={step > 1 ? true : false}
-        style={{ margin: '1rem' }}
-      >
-        Next
-        <RightOutlined />
-      </Button>
+      {step !== 2 && (
+        <Button
+          onClick={() => handleStepChange(step + 1)}
+          type="primary"
+          ghost
+          disabled={step > 1 ? true : false}
+          style={{ margin: '0.5rem' }}
+        >
+          Next
+          <RightOutlined />
+        </Button>
+      )}
 
-      <Button
-        onClick={() => console.log('publish')}
-        type="primary"
-        disabled={step === 2 ? false : true}
-        style={{ margin: '1rem' }}
-      >
-        Publish
-      </Button>
+      {step === 2 && (
+        <Button
+          onClick={() => console.log('publish')}
+          type="primary"
+          disabled={step === 2 ? false : true}
+          style={{ margin: '0.5rem' }}
+        >
+          Publish
+        </Button>
+      )}
     </Container>
   );
 };
