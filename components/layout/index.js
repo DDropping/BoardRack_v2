@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
 import Head from 'next/head';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 
 import { USER_LOADED } from '../../actions/types';
 import { withRedux } from '../../utils/with-redux-store';
@@ -9,7 +9,6 @@ import Navbar from '../navbar';
 import Footer from '../footer';
 import Login from '../login';
 import Register from '../register';
-import { loadUser } from '../../actions/auth';
 import setTokenHeader from '../../utils/setTokenHeader';
 
 const Container = styled.div`
@@ -19,11 +18,13 @@ const Container = styled.div`
 `;
 
 const Main = styled.main`
+  position: relative;
   flex: 1;
 `;
 
 function Layout({ children, user, token }) {
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (user) {
       dispatch({ type: USER_LOADED, payload: user });

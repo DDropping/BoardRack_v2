@@ -4,16 +4,12 @@ import styled from 'styled-components';
 
 import policyLinks from '../../constants/policyLinks';
 
-const Title = styled.div`
-  font-size: 1.25rem;
-`;
-
 const Li = styled.li`
   display: block;
   a {
-    color: #bbb;
+    color: ${({ theme }) => theme.primaryLightGrey};
     &:hover {
-      color: #fff;
+      color: ${({ theme }) => theme.primaryWhite};
     }
   }
 `;

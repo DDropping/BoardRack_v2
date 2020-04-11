@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { Progress, Modal, Tooltip } from 'antd';
+import { Modal, Progress, Tooltip } from 'antd';
 import {
   DeleteOutlined,
   StarOutlined,
@@ -11,6 +10,8 @@ import {
   ExclamationCircleOutlined,
   CloseCircleOutlined
 } from '@ant-design/icons';
+import styled from 'styled-components';
+
 import { DELETE_IMG_PREVIEW, SET_DEFAULT_IMAGE } from '../../../actions/types';
 
 const { confirm } = Modal;

@@ -23,7 +23,7 @@ export const loginUser = ({ email, password }) => async dispatch => {
 
   //post new account to DB
   try {
-    const res = await axios.post('/api/auth', body, config);
+    const res = await axios.post(`${baseUrl}/api/auth`, body, config);
 
     //successful login
     dispatch({ type: AUTH_USER, payload: res.data.token });

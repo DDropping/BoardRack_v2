@@ -11,6 +11,17 @@ import connectDb from '../../../utils/ConnectDb';
 connectDb();
 
 export default async (req, res) => {
+  switch (req.method) {
+    case 'GET':
+      await handleGetRequest(req, res);
+      break;
+    default:
+      res.status(405).send(`Method ${req.method} not allowed`);
+      break;
+  }
+};
+
+async function handleGetRequest(req, res) {
   if (!('authorization' in req.headers)) {
     return res.status(401).send('No authorization token');
   }
@@ -29,4 +40,4 @@ export default async (req, res) => {
   } catch (err) {
     res.status(403).send('Invalid Token');
   }
-};
+}

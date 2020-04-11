@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Divider } from 'antd';
+import { Col, Divider, Row } from 'antd';
 import styled from 'styled-components';
 
 import Details from './Details';
@@ -11,30 +11,30 @@ const H2 = styled.h2`
   color: ${props => props.theme.secondaryBlue};
 `;
 
-const Container = styled.div`
+const SectionContainer = styled.div`
   margin: 1rem;
 `;
 
-const Step1 = ({ post, handlePostChange }) => {
+const Step1 = () => {
   return (
     <div>
       <Row>
         <Col xs={24} sm={12} md={12}>
-          <Container>
+          <SectionContainer>
             <Divider>
               <H2>Basic Details</H2>
             </Divider>
-            <Details post={post} handlePostChange={handlePostChange} />
-          </Container>
+            <Details />
+          </SectionContainer>
         </Col>
         <Col xs={24} sm={12} md={12}>
-          <Container>
+          <SectionContainer>
             <Divider>
               <H2>Add Photos</H2>
             </Divider>
             <ImageUpload />
             <ImagePreview />
-          </Container>
+          </SectionContainer>
         </Col>
       </Row>
     </div>

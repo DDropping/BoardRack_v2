@@ -1,7 +1,7 @@
 import React from 'react';
-import { Form, Row, Col, Input, Select, InputNumber } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_INPUT } from '../../../actions/types';
+import { Col, Form, Input, InputNumber, Row, Select } from 'antd';
 
 const Details = () => {
   const dispatch = useDispatch();
@@ -18,9 +18,7 @@ const Details = () => {
     <Form>
       <Row gutter={[16, 16]}>
         <Col xs={7} sm={7} md={7}>
-          <h3 style={{ textAlign: 'right' }} style={{ textAlign: 'right' }}>
-            Title:
-          </h3>
+          <h3 style={{ textAlign: 'right' }}>Title:</h3>
         </Col>
         <Col xs={17} sm={17} md={17}>
           <Input

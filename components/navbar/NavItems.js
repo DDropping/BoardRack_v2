@@ -1,10 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
-import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
 
 import { TOGGLE_LOGIN, TOGGLE_REGISTER } from '../../actions/types';
 import Menu from './AccountMenu';
@@ -19,6 +19,7 @@ const Ul = styled.ul`
 `;
 
 const Li = styled.li`
+  transition: all 0.2s ease-in-out;
   padding: 1rem 0.5rem 0.5rem 0.5rem;
   margin: 0 0.1rem;
   display: inline-block;

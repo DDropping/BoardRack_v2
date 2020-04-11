@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import styled from 'styled-components';
 
 import socialLinks from '../../constants/socialLinks';
@@ -8,10 +7,10 @@ const LiSocial = styled.li`
   display: inline-block;
   margin: 0.75rem;
   a {
-    color: #bbb;
+    color: ${({ theme }) => theme.primaryLightGrey};
     font-size: 2rem;
     &:hover {
-      color: #fff;
+      color: ${({ theme }) => theme.primaryWhite};
     }
   }
 `;
