@@ -79,7 +79,7 @@ export const loadUserToStore = user => async dispatch => {
   try {
     await dispatch({ type: USER_LOADED, payload: user });
     if (
-      !store.getState().currentLocation.lat &&
+      !store.getState().currentLocation.isLocated &&
       store.getState().auth.user.location
     ) {
       dispatch({
