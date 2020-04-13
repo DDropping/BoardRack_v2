@@ -11,6 +11,8 @@ import Login from '../login';
 import Register from '../register';
 import setTokenHeader from '../../utils/setTokenHeader';
 
+import { loadUserToStore } from '../../actions/auth';
+
 const Container = styled.div`
   display: flex;
   min-height: 100vh;
@@ -27,7 +29,7 @@ function Layout({ children, user, token }) {
 
   useEffect(() => {
     if (user) {
-      dispatch({ type: USER_LOADED, payload: user });
+      dispatch(loadUserToStore(user));
       setTokenHeader(token);
     } else {
       setTokenHeader();
