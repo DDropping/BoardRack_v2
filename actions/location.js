@@ -5,6 +5,7 @@ import { store } from '../store';
 import { UpdateDefaultLocationNotification } from '../components/notifications';
 import { loadUser } from './auth';
 import {
+  TOGGLE_MAP_LOADING,
   UPDATE_LOCATION_IMAGE,
   TOGGLE_LOCATION_LOADING,
   UPDATE_CURRENT_LOCATION
@@ -130,6 +131,7 @@ export const updateUserLocation = location => async dispatch => {
 // GET USER'S LOCATION MAP IMAGE FROM DEVELOPER.HERE API ------------------------
 export const getLocationMap = ({ lat, lng }) => async dispatch => {
   try {
+    dispatch({ type: TOGGLE_MAP_LOADING, payload: true });
     //if user is logged in and lattitude and longitude are in temp location reducer in redux
     if (store.getState().auth.isAuthenticated) {
       const url = `${baseUrl}/api/location/locationMap`;
@@ -149,9 +151,11 @@ export const getLocationMap = ({ lat, lng }) => async dispatch => {
         type: UPDATE_LOCATION_IMAGE,
         payload: locationUrl.data
       });
+      dispatch({ type: TOGGLE_MAP_LOADING, payload: false });
       return locationUrl.data;
     }
   } catch (err) {
+    dispatch({ type: TOGGLE_MAP_LOADING, payload: false });
     console.log(err);
   }
 };

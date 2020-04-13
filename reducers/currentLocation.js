@@ -2,12 +2,14 @@ import {
   UPDATE_CURRENT_LOCATION,
   TOGGLE_LOCATION_LOADING,
   UPDATE_LOCATION_IMAGE,
-  LOAD_DEFAULT_LOCATION_TO_CURRENT
+  LOAD_DEFAULT_LOCATION_TO_CURRENT,
+  TOGGLE_MAP_LOADING
 } from '../actions/types';
 
 const initialState = {
   isLoading: false,
   isLocated: false,
+  isMapLoading: false,
   location: {
     lat: null,
     lng: null,
@@ -34,6 +36,11 @@ export default function(state = initialState, action) {
         ...state,
         isLoading: action.payload
       };
+    case TOGGLE_MAP_LOADING:
+      return {
+        ...state,
+        isMapLoading: action.payload
+      };
     case UPDATE_CURRENT_LOCATION:
       return {
         ...state,
@@ -54,6 +61,7 @@ export default function(state = initialState, action) {
     case UPDATE_LOCATION_IMAGE:
       return {
         ...state,
+        isMapLoading: false,
         location: {
           ...state.location,
           locationImage: action.payload
