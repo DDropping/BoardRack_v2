@@ -12,6 +12,9 @@ const { Search } = Input;
 const GetLocationForm = () => {
   const dispatch = useDispatch();
   const isLocated = useSelector(state => state.currentLocation.isLocated);
+  const isImageLoading = useSelector(
+    state => state.currentLocation.isImageLoading
+  );
   const location = useSelector(state => state.currentLocation.location);
 
   const handleGetLocation = value => {
@@ -25,7 +28,8 @@ const GetLocationForm = () => {
           ? location.city + ', ' + location.state + ' ' + location.postalCode
           : 'Address, City, State...'
       }
-      enterButton="Submit"
+      enterButton="Locate"
+      loading={isImageLoading}
       size="large"
       onSearch={value => handleGetLocation(value)}
     />

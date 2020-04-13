@@ -13,10 +13,23 @@ const H2 = styled.h2`
 `;
 
 const LocationContainer = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
   padding: 0 0.5rem 0 1rem;
-  vertical-align: middle;
+
+  display: flex;
+  flex-direction: column;
+`;
+
+const H3 = styled.h3`
+  text-align: center;
+  padding-top: 1rem;
+  margin-top: auto;
+  .location {
+    font-style: italic;
+    color: ${({ theme }) => theme.secondaryBlue};
+  }
 `;
 
 const Disclaimer = styled.span`
@@ -25,6 +38,9 @@ const Disclaimer = styled.span`
 `;
 
 const Step3 = () => {
+  const isLocated = useSelector(state => state.currentLocation.isLocated);
+  const location = useSelector(state => state.currentLocation.location);
+
   return (
     <div>
       <Row>
@@ -39,6 +55,18 @@ const Step3 = () => {
             <GetLocationForm />
 
             <Disclaimer>*Your address will not be public</Disclaimer>
+            <H3>
+              <span>Location:</span>{' '}
+              <span className="location">
+                {isLocated
+                  ? location.city +
+                    ', ' +
+                    location.state +
+                    ' ' +
+                    location.postalCode
+                  : 'Not Selected'}
+              </span>
+            </H3>
           </LocationContainer>
         </Col>
         <Col xs={24} sm={12} md={12}>
