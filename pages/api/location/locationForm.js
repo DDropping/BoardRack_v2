@@ -11,6 +11,10 @@ export default async (req, res) => {
   }
 };
 
+// @route   POST api/location/locationForm
+// @desc    retrieve user location with developer.here api and form
+// @res     address = { lat, lng, Label, Country, State, County, City, District, PostalCode
+// @access  Public
 async function handlePostRequest(req, res) {
   try {
     const { value } = req.body;

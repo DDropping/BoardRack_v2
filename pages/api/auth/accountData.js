@@ -1,8 +1,3 @@
-// @route   GET api/auth/accountData
-// @desc    use jwt in req header to retrieve user data from db
-// @res     user: {... all user data from db}
-// @access  Protected
-
 import jwt from 'jsonwebtoken';
 
 import User from '../../../models/User';
@@ -21,6 +16,10 @@ export default async (req, res) => {
   }
 };
 
+// @route   GET api/auth/accountData
+// @desc    use jwt in req header to retrieve user data from db
+// @res     user: {... all user data from db}
+// @access  Protected
 async function handleGetRequest(req, res) {
   if (!('authorization' in req.headers)) {
     return res.status(401).send('No authorization token');

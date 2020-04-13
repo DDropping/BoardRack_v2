@@ -1,8 +1,3 @@
-// @route   POST api/auth/login
-// @desc    Authenticate account in db (username, email)
-// @res     jwt
-// @access  Public
-
 import connectDb from '../../../utils/ConnectDb';
 import User from '../../../models/User';
 const bcrypt = require('bcryptjs');
@@ -21,6 +16,10 @@ export default async (req, res) => {
   }
 };
 
+// @route   POST api/auth/login
+// @desc    Authenticate account in db (username, email)
+// @res     jwt
+// @access  Public
 async function handlePostRequest(req, res) {
   const { email, password } = req.body;
 

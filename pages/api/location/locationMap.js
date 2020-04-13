@@ -1,3 +1,7 @@
+// @route   GET api/externalAPI/locationMap
+// @desc    Get picture of location of map given coords
+// @access  Public
+
 const request = require('request');
 const AWS = require('aws-sdk');
 
@@ -17,7 +21,15 @@ export default async (req, res) => {
   }
 };
 
+// @route   POST api/location/locationMap
+// @desc    retrieve location map given lat and lng
+// @res     url of location map
+// @access  Protected
 async function handlePostRequest(req, res) {
+  if (!('authorization' in req.headers)) {
+    return res.status(401).send('No authorization token');
+  }
+
   try {
     var lat = req.body.lat.toFixed(2);
     var lng = req.body.lng.toFixed(2);

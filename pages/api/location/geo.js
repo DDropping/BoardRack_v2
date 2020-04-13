@@ -11,6 +11,10 @@ export default async (req, res) => {
   }
 };
 
+// @route   POST api/location/geo
+// @desc    retrieve user location with developer.here api and geolocation
+// @res     address = { lat, lng, Country, State, County, City, District, PostalCode }
+// @access  Public
 async function handlePostRequest(req, res) {
   const { lat, lng } = req.body;
   const url = `https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?prox=${lat}%2C${lng}%2C250&mode=retrieveAddresses&maxresults=1&gen=9&apiKey=${process.env.HERE_API_KEY}`;

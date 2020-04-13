@@ -16,6 +16,10 @@ export default async (req, res) => {
   }
 };
 
+// @route   PUT api/location/updateUserLocation
+// @desc    Update users default location
+// @res     -
+// @access  Protected
 async function handlePutRequest(req, res) {
   if (!('authorization' in req.headers)) {
     return res.status(401).send('No authorization token');

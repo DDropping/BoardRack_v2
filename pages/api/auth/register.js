@@ -1,8 +1,3 @@
-// @route   POST api/auth/register
-// @desc    register new account in db (username, email, password, role)
-// @res     jwt
-// @access  Public
-
 import connectDb from '../../../utils/ConnectDb';
 import User from '../../../models/User';
 const bcrypt = require('bcryptjs');
@@ -23,6 +18,10 @@ export default async (req, res) => {
   }
 };
 
+// @route   POST api/auth/register
+// @desc    register new account in db (username, email, password, role)
+// @res     jwt
+// @access  Public
 async function handlePostRequest(req, res) {
   const { username, email, password, confirmPassword, role } = req.body;
 
