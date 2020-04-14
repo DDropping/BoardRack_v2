@@ -8,7 +8,7 @@ import PostSteps from '../components/createPost/Steps';
 import NavButtons from '../components/createPost/NavButtons';
 
 const CreatePost = () => {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
 
   const handleStepChange = current => {
     setStep(current);
