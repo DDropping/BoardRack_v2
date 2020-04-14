@@ -10,6 +10,8 @@ import {
   ExclamationCircleOutlined
 } from '@ant-design/icons';
 
+import { publishPost } from '../../actions/publishPost';
+
 const { confirm } = Modal;
 
 const Container = styled.section`
@@ -18,8 +20,11 @@ const Container = styled.section`
 
 const NavButtons = ({ step, handleStepChange }) => {
   const dispatch = useDispatch();
+  const location = useSelector(state => state.currentLocation.location);
+  const imgList = useSelector(state => state.imgUpload.imgList);
+  const formData = useSelector(state => state.createPostForm);
 
-  function cancelConfirm() {
+  function handleCancelConfirm() {
     confirm({
       title: 'Cancel Post',
       icon: <ExclamationCircleOutlined />,
@@ -34,10 +39,14 @@ const NavButtons = ({ step, handleStepChange }) => {
     });
   }
 
+  const handlePublish = () => {
+    dispatch(publishPost(location, imgList, formData));
+  };
+
   return (
     <Container>
       <Button
-        onClick={cancelConfirm}
+        onClick={handleCancelConfirm}
         type="danger"
         ghost
         style={{ margin: '0.5rem' }}
@@ -76,7 +85,7 @@ const NavButtons = ({ step, handleStepChange }) => {
 
       {step === 2 && (
         <Button
-          onClick={() => console.log('publish')}
+          onClick={() => handlePublish()}
           type="primary"
           disabled={step === 2 ? false : true}
           style={{ margin: '0.5rem' }}
