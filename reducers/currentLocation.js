@@ -47,15 +47,7 @@ export default function(state = initialState, action) {
         isLocated: true,
         location: {
           ...state.location,
-          lat: action.payload.lat,
-          lng: action.payload.lng,
-          label: action.payload.Label,
-          country: action.payload.Country,
-          state: action.payload.State,
-          county: action.payload.County,
-          city: action.payload.City,
-          district: action.payload.District,
-          postalCode: action.payload.PostalCode
+          ...action.payload
         }
       };
     case UPDATE_LOCATION_IMAGE:
