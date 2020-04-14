@@ -40,6 +40,7 @@ const theme = {
 
   primaryGrey: '#f3f7f9',
   primaryLightGrey: '#bbb',
+  primaryDarkGrey: '#949494',
 
   primaryGreen: '#52c41a',
 

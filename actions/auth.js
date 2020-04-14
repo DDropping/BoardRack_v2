@@ -1,8 +1,13 @@
 import axios from 'axios';
 import cookie from 'js-cookie';
 
+import { store } from '../store';
 import setTokenHeader from '../utils/setTokenHeader';
-import { AUTH_USER, USER_LOADED } from './types';
+import {
+  AUTH_USER,
+  USER_LOADED,
+  LOAD_DEFAULT_LOCATION_TO_CURRENT
+} from './types';
 import baseUrl from '../utils/baseUrl';
 
 /*********** LOGIN USER ***********/
@@ -64,6 +69,24 @@ export const loadUser = () => async dispatch => {
     // if (res.data.location) {
     //   dispatch({ type: USER_LOADED_SET_LOCATION, payload: res.data.location });
     // }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+/*********** UPDATE USER IN REDUX STORE ***********/
+export const loadUserToStore = user => async dispatch => {
+  try {
+    await dispatch({ type: USER_LOADED, payload: user });
+    if (
+      !store.getState().currentLocation.isLocated &&
+      store.getState().auth.user.location
+    ) {
+      dispatch({
+        type: LOAD_DEFAULT_LOCATION_TO_CURRENT,
+        payload: store.getState().auth.user.location
+      });
+    }
   } catch (err) {
     console.log(err);
   }

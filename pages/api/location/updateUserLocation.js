@@ -1,14 +1,14 @@
 import jwt from 'jsonwebtoken';
 
-import User from '../../../models/User';
 import connectDb from '../../../utils/ConnectDb';
+import User from '../../../models/User';
 
 connectDb();
 
 export default async (req, res) => {
   switch (req.method) {
-    case 'GET':
-      await handleGetRequest(req, res);
+    case 'PUT':
+      await handlePutRequest(req, res);
       break;
     default:
       res.status(405).send(`Method ${req.method} not allowed`);
@@ -16,27 +16,28 @@ export default async (req, res) => {
   }
 };
 
-// @route   GET api/auth/accountData
-// @desc    use jwt in req header to retrieve user data from db
-// @res     user: {... all user data from db}
+// @route   PUT api/location/updateUserLocation
+// @desc    Update users default location
+// @res     -
 // @access  Protected
-async function handleGetRequest(req, res) {
+async function handlePutRequest(req, res) {
   if (!('authorization' in req.headers)) {
     return res.status(401).send('No authorization token');
   }
 
   try {
+    //get user id
     const decodedUser = jwt.verify(
       req.headers.authorization,
       process.env.JWT_SECRET
     );
-    const user = await User.findById(decodedUser.user.id);
-    if (user) {
-      res.status(200).json(user);
-    } else {
-      res.status(404).send('user not found');
-    }
+    //update account
+    const id = decodedUser.user.id;
+    const update = req.body;
+    await User.findByIdAndUpdate(id, update);
+    res.json({ msg: 'Account Updated' });
   } catch (err) {
-    res.status(403).send('Invalid Token');
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 }
