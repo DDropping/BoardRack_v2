@@ -41,13 +41,13 @@ async function handlePostRequest(req, res) {
     const address = {
       lat: Latitude,
       lng: Longitude,
-      Label,
-      Country,
-      State,
-      County,
-      City,
-      District,
-      PostalCode
+      label: Label,
+      country: Country,
+      state: State,
+      country: County,
+      city: City,
+      district: District,
+      postalCode: PostalCode
     };
 
     res.json(address);
