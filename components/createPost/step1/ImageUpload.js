@@ -18,9 +18,11 @@ const Images = () => {
     <div>
       <Button
         type="dashed"
+        className="input-button"
         style={{
           width: '100%',
-          height: '8rem'
+          height: '8rem',
+          backgroundColor: '#bbb3'
         }}
       >
         <label style={{ width: '100%', height: '100%' }}>
