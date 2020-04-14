@@ -11,6 +11,17 @@ import {
   UPDATE_CURRENT_LOCATION
 } from './types';
 
+// GET USER'S LOCATION WITH IP --------------------------------------------------
+export const getLocationWithIp = () => async dispatch => {
+  try {
+    const url = `${baseUrl}/api/location/ip`;
+    const res = await axios.get(url);
+    dispatch({ type: UPDATE_CURRENT_LOCATION, payload: res.data });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 // GET USER'S LOCATION WITH LOCATION FORM ---------------------------------------
 export const handleLocationForm = ({ value }) => async dispatch => {
   dispatch({ type: TOGGLE_LOCATION_LOADING, payload: true });
