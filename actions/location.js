@@ -8,7 +8,8 @@ import {
   TOGGLE_MAP_LOADING,
   UPDATE_LOCATION_IMAGE,
   TOGGLE_LOCATION_LOADING,
-  UPDATE_CURRENT_LOCATION
+  UPDATE_CURRENT_LOCATION,
+  UPDATE_CURRENT_LOCATION_IP
 } from './types';
 
 // GET USER'S LOCATION WITH IP --------------------------------------------------
@@ -16,7 +17,7 @@ export const getLocationWithIp = () => async dispatch => {
   try {
     const url = `${baseUrl}/api/location/ip`;
     const res = await axios.get(url);
-    dispatch({ type: UPDATE_CURRENT_LOCATION, payload: res.data });
+    dispatch({ type: UPDATE_CURRENT_LOCATION_IP, payload: res.data });
   } catch (err) {
     console.log(err);
   }

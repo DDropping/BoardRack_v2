@@ -39,6 +39,9 @@ const Disclaimer = styled.span`
 
 const Step3 = () => {
   const isLocated = useSelector(state => state.currentLocation.isLocated);
+  const isLocatedWithIp = useSelector(
+    state => state.currentLocation.isLocatedWithIp
+  );
   const location = useSelector(state => state.currentLocation.location);
 
   return (
@@ -58,7 +61,7 @@ const Step3 = () => {
             <H3>
               <span>Location:</span>{' '}
               <span className="location">
-                {isLocated
+                {isLocated && !isLocatedWithIp
                   ? location.city +
                     ', ' +
                     location.state +

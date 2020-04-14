@@ -12,6 +12,9 @@ const { Search } = Input;
 const GetLocationForm = () => {
   const dispatch = useDispatch();
   const isLocated = useSelector(state => state.currentLocation.isLocated);
+  const isLocatedWithIp = useSelector(
+    state => state.currentLocation.isLocatedWithIp
+  );
   const isImageLoading = useSelector(
     state => state.currentLocation.isImageLoading
   );
@@ -24,7 +27,7 @@ const GetLocationForm = () => {
   return (
     <Search
       placeholder={
-        isLocated
+        isLocated && !isLocatedWithIp
           ? location.city + ', ' + location.state + ' ' + location.postalCode
           : 'Address, City, State...'
       }
