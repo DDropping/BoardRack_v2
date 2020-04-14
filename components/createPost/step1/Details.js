@@ -6,7 +6,7 @@ import { Col, Form, Input, InputNumber, Row, Select } from 'antd';
 const Details = () => {
   const dispatch = useDispatch();
   const { title, price, boardType, condition, description } = useSelector(
-    state => state.createpost
+    state => state.createPostForm
   );
 
   function handleInputChange(name, value) {

@@ -6,7 +6,7 @@ import { SET_INPUT } from '../../../actions/types';
 const Construction = () => {
   const dispatch = useDispatch();
   const { tail, construction, contour, glassing } = useSelector(
-    state => state.createpost
+    state => state.createPostForm
   );
 
   function handleInputChange(name, value) {

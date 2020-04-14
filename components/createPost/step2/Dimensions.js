@@ -6,7 +6,7 @@ import { SET_INPUT } from '../../../actions/types';
 const Dimensions = () => {
   const dispatch = useDispatch();
   const { lengthFt, lengthIn, width, depth, volume } = useSelector(
-    state => state.createpost
+    state => state.createPostForm
   );
 
   function handleInputChange(name, value) {

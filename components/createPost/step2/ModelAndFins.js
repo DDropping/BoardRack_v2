@@ -6,7 +6,7 @@ import { SET_INPUT } from '../../../actions/types';
 const ModelAndFins = () => {
   const dispatch = useDispatch();
   const { shaper, model, finSystem, finConfiguration } = useSelector(
-    state => state.createpost
+    state => state.createPostForm
   );
 
   function handleInputChange(name, value) {

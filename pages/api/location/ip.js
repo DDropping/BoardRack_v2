@@ -16,8 +16,7 @@ export default async (req, res) => {
 // @res     address = { lat, lng, Country, Region, City, PostalCode }
 // @access  Public
 async function handleGetRequest(req, res) {
-  //var ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
-  const ip = '66.215.112.75';
+  var ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
   try {
     if (ip === '::1' || ip === '127.0.0.1') {
     } else {

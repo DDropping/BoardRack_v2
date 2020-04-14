@@ -2,14 +2,14 @@ import { combineReducers } from 'redux';
 
 import auth from './auth';
 import overlays from './overlays';
-import createpost from './createpost';
+import createPostForm from './createPostForm';
 import imgUpload from './imgUpload';
 import currentLocation from './currentLocation';
 
 export default combineReducers({
   auth,
   currentLocation,
-  createpost,
+  createPostForm,
   imgUpload,
   overlays
 });

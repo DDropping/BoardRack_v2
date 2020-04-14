@@ -7,7 +7,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 const Opinion = () => {
   const dispatch = useDispatch();
   const { waveSize, driveSpeed, paddlePower, movability } = useSelector(
-    state => state.createpost
+    state => state.createPostForm
   );
 
   function handleInputChange(name, value) {
