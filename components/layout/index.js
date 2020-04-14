@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { USER_LOADED } from '../../actions/types';
@@ -12,6 +12,7 @@ import Register from '../register';
 import setTokenHeader from '../../utils/setTokenHeader';
 
 import { loadUserToStore } from '../../actions/auth';
+import { getLocationWithIp } from '../../actions/location';
 
 const Container = styled.div`
   display: flex;
@@ -26,8 +27,12 @@ const Main = styled.main`
 
 function Layout({ children, user, token }) {
   const dispatch = useDispatch();
+  const isLocated = useSelector(state => state.currentLocation.isLocated);
 
   useEffect(() => {
+    if (!isLocated) {
+      dispatch(getLocationWithIp());
+    }
     if (user) {
       dispatch(loadUserToStore(user));
       setTokenHeader(token);
