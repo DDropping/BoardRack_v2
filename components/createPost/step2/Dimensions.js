@@ -52,10 +52,6 @@ const Dimensions = () => {
     } else return;
   }
 
-  function convertFraction(value) {
-    eval(value.trim().replace(' ', '+'));
-  }
-
   return (
     <Form>
       <Row gutter={[16, 16]}>

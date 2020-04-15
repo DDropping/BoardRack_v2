@@ -61,7 +61,6 @@ async function handlePostRequest(req, res) {
     location
   } = req.body;
 
-  console.log(location);
   const postFields = {};
   postFields.user = decodedUser.user.id;
   if (title) postFields.title = title;
@@ -82,11 +81,18 @@ async function handlePostRequest(req, res) {
   if (shaper) postFields.shaper = shaper;
   if (model) postFields.model = model;
 
+  let length = 0;
   if (lengthFt) postFields.lengthFt = lengthFt;
   if (lengthIn) postFields.lengthIn = lengthIn;
+  if (lengthFt) length += 12 * lengthFt;
+  if (lengthIn) length += eval(lengthIn.trim().replace(' ', '+'));
+  if (lengthFt || lengthIn) postFields.lengthValue = length;
   if (width) postFields.width = width;
+  if (width) postFields.widthValue = eval(width.trim().replace(' ', '+'));
   if (depth) postFields.depth = depth;
+  if (depth) postFields.depthValue = eval(depth.trim().replace(' ', '+'));
   if (volume) postFields.volume = volume;
+  if (volume) postFields.volumeValue = eval(volume.trim().replace(' ', '+'));
 
   //list of image urls
   if (images) postFields.images = images;
