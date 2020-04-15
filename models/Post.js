@@ -15,14 +15,8 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  boardType: {
-    type: String,
-    required: true
-  },
-  condition: {
-    type: String,
-    required: true
-  },
+  boardType: { type: String },
+  condition: { type: String },
   description: { type: String },
   tail: { type: String },
   finSystem: { type: String },
@@ -46,8 +40,8 @@ const PostSchema = new mongoose.Schema({
   shaper: { type: String },
   model: { type: String },
   location: {
-    lat: { type: Number },
-    lng: { type: Number },
+    lat: { type: Number, required: true },
+    lng: { type: Number, required: true },
     country: { type: String },
     state: { type: String },
     city: { type: String },
