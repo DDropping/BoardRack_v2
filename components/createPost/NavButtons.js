@@ -23,6 +23,7 @@ const NavButtons = ({ step, handleStepChange }) => {
   const location = useSelector(state => state.currentLocation.location);
   const imgList = useSelector(state => state.imgUpload.imgList);
   const formData = useSelector(state => state.createPostForm);
+  const isLoading = useSelector(state => state.createPostForm.isLoading);
 
   function handleCancelConfirm() {
     confirm({
@@ -86,6 +87,7 @@ const NavButtons = ({ step, handleStepChange }) => {
       {step === 2 && (
         <Button
           onClick={() => handlePublish()}
+          loading={isLoading}
           type="primary"
           disabled={step === 2 ? false : true}
           style={{ margin: '0.5rem' }}

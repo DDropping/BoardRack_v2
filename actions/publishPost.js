@@ -5,9 +5,11 @@ import {
   successNotification,
   failNotification
 } from '../components/notifications';
+import { TOGGLE_CREATE_POST_LOADING } from '../actions/types';
 
 export const publishPost = (location, imgList, formData) => async dispatch => {
   try {
+    dispatch({ type: TOGGLE_CREATE_POST_LOADING, payload: true });
     const postItems = formData;
     console.log(imgList);
     const images = imgList.map(obj => {
@@ -41,14 +43,15 @@ export const publishPost = (location, imgList, formData) => async dispatch => {
 
     //post new account to DB
     const url = `${baseUrl}/api/posts/createpost`;
-    const res = await axios.post(url, body, config);
-    console.log(res);
+    await axios.post(url, body, config);
+    dispatch({ type: TOGGLE_CREATE_POST_LOADING, payload: false });
     successNotification(
       'New Post Created!',
       'Your Post Has Been Created And Is Live For The World To See',
       4.5
     );
   } catch (err) {
+    dispatch({ type: TOGGLE_CREATE_POST_LOADING, payload: false });
     if (err) {
       console.log(err);
       failNotification(
