@@ -89,7 +89,13 @@ const NavButtons = ({ step, handleStepChange }) => {
           onClick={() => handlePublish()}
           loading={isLoading}
           type="primary"
-          disabled={step === 2 ? false : true}
+          disabled={
+            !formData.title ||
+            !formData.price ||
+            !location.locationImage ||
+            !location.lat ||
+            !location.lng
+          }
           style={{ margin: '0.5rem' }}
         >
           Publish
