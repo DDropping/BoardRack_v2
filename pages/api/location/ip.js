@@ -16,9 +16,10 @@ export default async (req, res) => {
 // @res     address = { lat, lng, Country, Region, City, PostalCode }
 // @access  Public
 async function handleGetRequest(req, res) {
-  var ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
+  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   try {
     if (ip === '::1' || ip === '127.0.0.1') {
+      res.send('Local Development');
     } else {
       const approxLocation = await axios.get(
         `http://api.ipstack.com/${ip}?access_key=${process.env.IPSTACK_ACCESS_KEY}`
