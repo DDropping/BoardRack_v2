@@ -27,7 +27,7 @@ const Details = () => {
           <Input
             placeholder="Surfboard"
             value={title}
-            style={!title ? { border: '2px solid #e40303' } : null}
+            style={title === '' ? { border: '2px solid #e40303' } : null}
             onChange={event => handleInputChange('title', event.target.value)}
           />
         </Col>
@@ -41,8 +41,12 @@ const Details = () => {
         </Col>
         <Col xs={17} sm={17} md={17}>
           <InputNumber
-            style={{ width: '100%' }}
             value={price}
+            style={
+              price === null
+                ? { border: '2px solid #e40303', width: '100%' }
+                : { width: '100%' }
+            }
             formatter={value =>
               `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
             }

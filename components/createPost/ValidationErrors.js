@@ -15,7 +15,7 @@ const ValidationErrors = () => {
   return (
     <Container>
       {!formData.title && formData.title !== '' && <div>*Title Required</div>}
-      {isNaN(formData.title) && <div>*Price Required</div>}
+      {isNaN(formData.price) && <div>*Price Required</div>}
       {(!location.lat || !location.lng) && <div>*Location Required</div>}
     </Container>
   );
