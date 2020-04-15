@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_INPUT } from '../../../actions/types';
 import { Col, Form, Input, InputNumber, Row, Select } from 'antd';
+import styled from 'styled-components';
 
 const Details = () => {
   const dispatch = useDispatch();
@@ -18,12 +19,15 @@ const Details = () => {
     <Form>
       <Row gutter={[16, 16]}>
         <Col xs={7} sm={7} md={7}>
-          <h3 style={{ textAlign: 'right' }}>Title:</h3>
+          <h3 style={{ textAlign: 'right' }}>
+            <span style={{ color: 'red' }}>* </span>Title:
+          </h3>
         </Col>
         <Col xs={17} sm={17} md={17}>
           <Input
             placeholder="Surfboard"
             value={title}
+            style={!title ? { border: '2px solid #e40303' } : null}
             onChange={event => handleInputChange('title', event.target.value)}
           />
         </Col>
@@ -31,7 +35,9 @@ const Details = () => {
 
       <Row gutter={[16, 16]}>
         <Col xs={7} sm={7} md={7}>
-          <h3 style={{ textAlign: 'right' }}>Price:</h3>
+          <h3 style={{ textAlign: 'right' }}>
+            <span style={{ color: 'red' }}>* </span>Price:
+          </h3>
         </Col>
         <Col xs={17} sm={17} md={17}>
           <InputNumber

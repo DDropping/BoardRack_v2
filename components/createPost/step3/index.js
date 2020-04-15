@@ -6,6 +6,7 @@ import { Row, Col, Divider } from 'antd';
 import GetLocationButton from './GetLocationButton';
 import GetLocationForm from './GetLocationForm';
 import Map from './Map';
+import ValidationErrors from '../ValidationErrors';
 
 const H2 = styled.h2`
   font-weight: bold;
@@ -59,6 +60,7 @@ const Step3 = () => {
 
             <Disclaimer>*Your address will not be public</Disclaimer>
             <H3>
+              <span style={{ color: 'red' }}>* </span>
               <span>Location:</span>{' '}
               <span className="location">
                 {isLocated && !isLocatedWithIp
@@ -75,6 +77,9 @@ const Step3 = () => {
         <Col xs={24} sm={12} md={12}>
           <Map />
         </Col>
+      </Row>
+      <Row>
+        <ValidationErrors />
       </Row>
     </div>
   );

@@ -15,6 +15,37 @@ const Opinion = () => {
     dispatch({ type: SET_INPUT, payload: payload });
   }
 
+  function handleWaveSize(name, value) {
+    /* get ascii value of next character entered */
+    const character = value.slice(-1);
+    const ascii = character.charCodeAt(0);
+
+    /* if first character is not a number, set to empty string: (FIXES: first character entered was allowed) */
+    if (isNaN(value.charAt(0)) || value.charAt(0) === ' ') {
+      handleInputChange(name, '');
+    } else if (
+      /* check if next character is "." "/" or 0-9 */
+      (ascii > 44 && ascii < 58) ||
+      /* allow empty value */
+      value === '' ||
+      /* prevent double space */
+      (character === ' ' && value.charAt(value.length - 2) !== ' ') ||
+      /* prevent double dot */
+      (character === '.' && value.charAt(value.length - 2) !== '.')
+    ) {
+      handleInputChange(name, value);
+    } else return;
+  }
+
+  function handleNumber(name, value) {
+    if (isNaN(value.charAt(0))) {
+      /* check if first character is a number */
+      handleInputChange(name, '');
+    } else if (!isNaN(value) && value <= 5 && value >= 0) {
+      handleInputChange(name, value);
+    } else return;
+  }
+
   return (
     <Form>
       <Row gutter={[16, 16]}>
@@ -29,9 +60,7 @@ const Opinion = () => {
             size="default"
             suffix="ft."
             value={waveSize}
-            onChange={event =>
-              handleInputChange('waveSize', event.target.value)
-            }
+            onChange={event => handleWaveSize('waveSize', event.target.value)}
           />
         </Col>
         <Col xs={6} sm={7}>
@@ -58,9 +87,7 @@ const Opinion = () => {
             size="default"
             suffix="/5"
             value={driveSpeed}
-            onChange={event =>
-              handleInputChange('driveSpeed', event.target.value)
-            }
+            onChange={event => handleNumber('driveSpeed', event.target.value)}
           />
         </Col>
         <Col xs={6} sm={7}>
@@ -89,9 +116,7 @@ const Opinion = () => {
             size="default"
             suffix="/5"
             value={paddlePower}
-            onChange={event =>
-              handleInputChange('paddlePower', event.target.value)
-            }
+            onChange={event => handleNumber('paddlePower', event.target.value)}
           />
         </Col>
         <Col xs={6} sm={7}>
@@ -118,9 +143,7 @@ const Opinion = () => {
             size="default"
             suffix="/5"
             value={movability}
-            onChange={event =>
-              handleInputChange('movability', event.target.value)
-            }
+            onChange={event => handleNumber('movability', event.target.value)}
           />
         </Col>
         <Col xs={6} sm={7}>
