@@ -90,11 +90,7 @@ const NavButtons = ({ step, handleStepChange }) => {
           loading={isLoading}
           type="primary"
           disabled={
-            !formData.title ||
-            !formData.price ||
-            !location.locationImage ||
-            !location.lat ||
-            !location.lng
+            !formData.title || !formData.price || !location.lat || !location.lng
           }
           style={{ margin: '0.5rem' }}
         >
