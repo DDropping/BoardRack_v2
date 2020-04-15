@@ -11,9 +11,29 @@ import Post from '../../../models/Post';
 connectDb();
 
 export default async (req, res) => {
-  console.log(req.headers);
+  switch (req.method) {
+    case 'POST':
+      await handlePostRequest(req, res);
+      break;
+    default:
+      res.status(405).send(`Method ${req.method} not allowed`);
+      break;
+  }
+};
 
-  /*
+// @route   POST api/posts/createpost
+// @desc    create new post in db
+// @res     post{...postItems}
+// @access  Protected
+async function handlePostRequest(req, res) {
+  if (!('authorization' in req.headers)) {
+    return res.status(401).send('No authorization token');
+  }
+  const decodedUser = jwt.verify(
+    req.headers.authorization,
+    process.env.JWT_SECRET
+  );
+
   const {
     title,
     price,
@@ -41,8 +61,9 @@ export default async (req, res) => {
     location
   } = req.body;
 
+  console.log(location);
   const postFields = {};
-  // postFields.user = req.user.id;
+  postFields.user = decodedUser.user.id;
   if (title) postFields.title = title;
   if (price) postFields.price = price;
   if (boardType) postFields.boardType = boardType;
@@ -89,5 +110,4 @@ export default async (req, res) => {
     console.error(err.message);
     re.status(500).send('Server Error');
   }
-  */
-};
+}

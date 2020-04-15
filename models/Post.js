@@ -52,9 +52,8 @@ const PostSchema = new mongoose.Schema({
   },
   images: [
     {
-      imgKey: String,
       thumbnail: String,
-      default: String
+      standard: String
     }
   ],
   favorites: [

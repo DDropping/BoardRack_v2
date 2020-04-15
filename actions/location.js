@@ -106,10 +106,10 @@ export const checkToUpdateUserLocation = ({
       location: {
         lat: locationData.lat,
         lng: locationData.lng,
-        country: locationData.Country,
-        state: locationData.State,
-        city: locationData.City,
-        postalCode: locationData.PostalCode,
+        country: locationData.country,
+        state: locationData.state,
+        city: locationData.city,
+        postalCode: locationData.postalCode,
         locationImage: store.getState().currentLocation.location.locationImage
       }
     };

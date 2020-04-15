@@ -30,7 +30,11 @@ const Map = () => {
       )}
       {currentLocation.isLocated && currentLocation.isMapLoading && (
         <img
-          src={currentLocation.location.locationImage}
+          src={
+            currentLocation.location.locationImage
+              ? currentLocation.location.locationImage
+              : '/images/br_default_map.png'
+          }
           alt="location map"
           style={{ filter: 'grayscale(100%)' }}
         />
