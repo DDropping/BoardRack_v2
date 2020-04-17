@@ -1,18 +1,44 @@
 {
-  "presets": ["next/babel"],
-  "plugins": [
-    ["styled-components", { "ssr": true }],
-    [
-      "import",
-      {
-        "libraryName": "antd",
-        "style": true
-      }
-    ]
-  ],
   "env": {
-    "test": {
+    "development": {
+      "presets": ["next/babel"],
       "plugins": [
+        [
+          "styled-components",
+          { "ssr": true, "displayName": true, "preprocess": false }
+        ],
+        [
+          "import",
+          {
+            "libraryName": "antd",
+            "style": true
+          }
+        ]
+      ]
+    },
+    "production": {
+      "presets": ["next/babel"],
+      "plugins": [
+        [
+          "styled-components",
+          { "ssr": true, "displayName": false, "preprocess": false }
+        ],
+        [
+          "import",
+          {
+            "libraryName": "antd",
+            "style": true
+          }
+        ]
+      ]
+    },
+    "test": {
+      "presets": [["next/babel", { "preset-env": { "modules": "commonjs" } }]],
+      "plugins": [
+        [
+          "styled-components",
+          { "ssr": true, "displayName": false, "preprocess": false }
+        ],
         [
           "module-resolver",
           {
