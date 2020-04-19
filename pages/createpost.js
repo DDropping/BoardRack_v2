@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Step3 from '../components/createPost/step3';
 import Step2 from '../components/createPost/step2';
 import Step1 from '../components/createPost/step1';
-import PostSteps from '../components/createPost/Steps';
+import PostSteps from '../components/createPost/PostSteps';
 import NavButtons from '../components/createPost/NavButtons';
 
 const CreatePost = () => {
