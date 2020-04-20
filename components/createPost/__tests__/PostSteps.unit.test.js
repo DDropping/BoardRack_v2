@@ -3,17 +3,19 @@ import { shallow } from 'enzyme';
 
 import PostSteps from '../PostSteps';
 
-// let wrapped;
-// beforeEach(() => {
-//  wrapped = shallow(<Details />);
-// });
+let wrapped;
+beforeEach(() => {
+  wrapped = shallow(<PostSteps />);
+});
 
-// afterEach(() => {
-//   wrapped.unmount();
-// });
+afterEach(() => {
+  wrapped.unmount();
+});
 
-it('has a form', () => {
-  const wrapped = shallow(<PostSteps />);
-
+it('has a steps bar', () => {
   expect(wrapped.find('Steps').length).toBe(1);
+});
+
+it('has three steps', () => {
+  expect(wrapped.find('Step').length).toBe(3);
 });
