@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import PostSteps from '../PostSteps';
+import PostSteps from '@components/createPost/PostSteps';
 
 let wrapped;
 beforeEach(() => {
