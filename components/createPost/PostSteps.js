@@ -15,31 +15,19 @@ const PostSteps = ({ step, handleStepChange }) => {
       <Step
         title="Create New Post"
         subTitle=""
-        status={
-          (step === 0 && 'process') ||
-          (step === 1 && 'finish') ||
-          (step === 2 && 'finish')
-        }
+        {...(step === 0 ? (status = 'process') : (status = 'wait'))}
         description="Photos & Details"
       />
       <Step
         title="Optional Details"
         subTitle=""
-        status={
-          (step === 0 && 'wait') ||
-          (step === 1 && 'process') ||
-          (step === 2 && 'finish')
-        }
+        {...(step === 1 ? (status = 'process') : (status = 'wait'))}
         description="Dimensions & more"
       />
       <Step
         title="Publish Post"
         subTitle=""
-        status={
-          (step === 0 && 'wait') ||
-          (step === 1 && 'wait') ||
-          (step === 2 && 'process')
-        }
+        {...(step === 2 ? (status = 'process') : (status = 'wait'))}
         description="Location & Confirm"
       />
     </Steps>
