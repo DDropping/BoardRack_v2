@@ -44,8 +44,7 @@
           {
             "root": ["./"],
             "alias": {
-              "@components": "./components/",
-              "@provider": "./utils/providerSetup"
+              "@components": "./components/"
             }
           }
         ]
