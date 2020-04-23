@@ -5,10 +5,6 @@ import { Provider } from 'react-redux';
 import Details from '@components/createpost/step1/Details';
 import { initializeStore } from '../../../../store';
 
-let store, wrapper;
-const initialState = {};
-store = initializeStore(initialState);
-
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation(query => ({
@@ -23,11 +19,18 @@ Object.defineProperty(window, 'matchMedia', {
   }))
 });
 
-it('has 5 rows', () => {
+let store, wrapper;
+const initialState = {};
+store = initializeStore(initialState);
+
+beforeEach(() => {
   wrapper = mount(
     <Provider store={store}>
       <Details />
     </Provider>
   );
+});
+
+it('has 5 rows', () => {
   expect(wrapper.find('Row').length).toBe(5);
 });
