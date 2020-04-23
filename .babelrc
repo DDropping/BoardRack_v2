@@ -44,7 +44,9 @@
           {
             "root": ["./"],
             "alias": {
-              "@components": "./components/"
+              "@components": "./components/",
+              "@reducers": "./reducers/",
+              "@actions": "./actions/"
             }
           }
         ]
