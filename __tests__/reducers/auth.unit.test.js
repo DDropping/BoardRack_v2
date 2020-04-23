@@ -1,4 +1,4 @@
-import authReducer from '@reducers/auth';
+import auth from '@reducers/auth';
 import { AUTH_USER, USER_LOADED, DEAUTH_USER } from '@actions/types';
 
 it('handles action of type AUTH_USER', () => {
@@ -7,7 +7,7 @@ it('handles action of type AUTH_USER', () => {
     payload: 'test_token'
   };
 
-  const newState = authReducer({}, action);
+  const newState = auth({}, action);
 
   expect(newState).toEqual({ token: 'test_token', isAuthenticated: true });
 });
@@ -18,7 +18,7 @@ it('handles action of type USER_LOADED', () => {
     payload: 'test_user'
   };
 
-  const newState = authReducer({}, action);
+  const newState = auth({}, action);
 
   expect(newState).toEqual({ user: 'test_user', isAuthenticated: true });
 });
@@ -28,7 +28,7 @@ it('handles action of type DEAUTH_USER', () => {
     type: DEAUTH_USER
   };
 
-  const newState = authReducer({}, action);
+  const newState = auth({}, action);
 
   expect(newState).toEqual({ token: null, isAuthenticated: false, user: null });
 });

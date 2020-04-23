@@ -1,4 +1,4 @@
-import currentLocationReducer from '@reducers/currentLocation';
+import currentLocation from '@reducers/currentLocation';
 import {
   UPDATE_CURRENT_LOCATION,
   TOGGLE_LOCATION_LOADING,
@@ -14,7 +14,7 @@ it('handles action of type UPDATE_CURRENT_LOCATION', () => {
     payload: { city: 'test_city', state: 'test_state' }
   };
 
-  const newState = currentLocationReducer({}, action);
+  const newState = currentLocation({}, action);
 
   expect(newState).toEqual({
     isLocated: true,
@@ -32,7 +32,7 @@ it('handles action of type TOGGLE_LOCATION_LOADING', () => {
     payload: true
   };
 
-  const newState = currentLocationReducer({}, action);
+  const newState = currentLocation({}, action);
 
   expect(newState).toEqual({
     isLoading: true
@@ -45,7 +45,7 @@ it('handles action of type UPDATE_LOCATION_IMAGE', () => {
     payload: 'test_locationImage_url'
   };
 
-  const newState = currentLocationReducer({}, action);
+  const newState = currentLocation({}, action);
 
   expect(newState).toEqual({
     isMapLoading: false,
@@ -64,7 +64,7 @@ it('handles action of type LOAD_DEFAULT_LOCATION_TO_CURRENT', () => {
     }
   };
 
-  const newState = currentLocationReducer({}, action);
+  const newState = currentLocation({}, action);
 
   expect(newState).toEqual({
     isLocated: true,
@@ -81,7 +81,7 @@ it('handles action of type TOGGLE_MAP_LOADING', () => {
     payload: true
   };
 
-  const newState = currentLocationReducer({}, action);
+  const newState = currentLocation({}, action);
 
   expect(newState).toEqual({
     isMapLoading: true
@@ -97,7 +97,7 @@ it('handles action of type UPDATE_CURRENT_LOCATION_IP', () => {
     }
   };
 
-  const newState = currentLocationReducer({}, action);
+  const newState = currentLocation({}, action);
 
   expect(newState).toEqual({
     isLocated: false,
