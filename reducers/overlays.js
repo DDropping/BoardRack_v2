@@ -2,8 +2,7 @@ import { TOGGLE_LOGIN, TOGGLE_REGISTER } from '../actions/types';
 
 const initialState = {
   isLogin: false,
-  isRegister: false,
-  isLogout: false
+  isRegister: false
 };
 
 export default function(state = initialState, action) {
