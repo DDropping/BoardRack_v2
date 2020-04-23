@@ -23,7 +23,7 @@ export default function(state = initialState, action) {
       };
     case CANCEL_POST:
       return {
-        initialState
+        ...initialState
       };
     default:
       return state;
