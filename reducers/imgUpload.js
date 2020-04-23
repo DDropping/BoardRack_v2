@@ -43,7 +43,11 @@ export default function(state = initialState, action) {
         ...state,
         imgList: state.imgList.map(item =>
           item.imgKey === action.payload.imgKey
-            ? { ...item, standardUrl: action.payload.standardUrl }
+            ? {
+                ...item,
+                standardUrl: action.payload.standardUrl,
+                isLoading: false
+              }
             : item
         )
       };
@@ -54,8 +58,7 @@ export default function(state = initialState, action) {
           item.imgKey === action.payload.imgKey
             ? {
                 ...item,
-                thumbnailUrl: action.payload.thumbnailUrl,
-                isLoading: false
+                thumbnailUrl: action.payload.thumbnailUrl
               }
             : item
         )
