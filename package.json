@@ -1,6 +1,6 @@
 {
-  "name": "boardrack_v2",
-  "version": "0.1.0",
+  "name": "boardrack",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.0.5",
+    "@zeit/next-less": "^1.0.1",
     "antd": "^4.1.3",
     "aws-sdk": "^2.653.0",
     "axios": "^0.19.2",
@@ -39,7 +40,6 @@
     "validator": "^13.0.0"
   },
   "devDependencies": {
-    "@zeit/next-less": "^1.0.1",
     "babel-core": "^6.26.3",
     "babel-jest": "^25.3.0",
     "babel-plugin-module-resolver": "^4.0.0",

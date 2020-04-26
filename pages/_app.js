@@ -6,6 +6,8 @@ import { ThemeProvider } from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 import { parseCookies, destroyCookie } from 'nookies';
 
+import 'antd/dist/antd.less'
+
 import Layout from '../components/layout';
 import { redirectUser } from '../utils/auth';
 import baseUrl from '../utils/baseUrl';
