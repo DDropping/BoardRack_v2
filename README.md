@@ -48,6 +48,7 @@ change base url: utils/baseUrl
 
 antd-less and next compatibility issue made some antd component styles fail to load on initial render
 - fix: pre-load antd library styles into _app.js  
+- note: any antd components used need to be pre-loaded into _app.js
 
 ## Authors
 
