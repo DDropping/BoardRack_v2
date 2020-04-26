@@ -46,7 +46,8 @@
             "alias": {
               "@components": "./components/",
               "@reducers": "./reducers/",
-              "@actions": "./actions/"
+              "@actions": "./actions/",
+              "@pages": "./pages"
             }
           }
         ]
