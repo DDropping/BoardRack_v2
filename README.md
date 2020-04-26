@@ -44,6 +44,11 @@ protected routes: /pages/\_app.js
 
 change base url: utils/baseUrl
 
+## Other Notes
+
+antd-less and next compatibility issue made some antd component styles fail to load on initial render
+- fix: pre-load antd library styles into _app.js  
+
 ## Authors
 
 - **David Dropping** - [ddropping](https://github.com/ddropping)
