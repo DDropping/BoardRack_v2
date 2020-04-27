@@ -1,12 +1,7 @@
-import React from "react";
-import { mount } from "enzyme";
-import { Provider } from "react-redux";
 import moxios from "moxios";
 import Cookie from "js-cookie";
 
-import baseUrl from "../../utils/baseUrl";
 import * as actions from "@actions/auth";
-import * as types from "@actions/types";
 import { initializeStore } from "../../store";
 
 const initialState = {};
