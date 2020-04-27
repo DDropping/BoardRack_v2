@@ -37,7 +37,6 @@ export const handleLocationForm = ({ value }) => async (dispatch) => {
 
   try {
     const res = await axios.post(url, body, config);
-    console.log("location: ", res.data);
     dispatch({ type: UPDATE_CURRENT_LOCATION, payload: res.data });
     dispatch({ type: TOGGLE_LOCATION_LOADING, payload: false });
 
