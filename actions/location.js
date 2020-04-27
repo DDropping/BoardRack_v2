@@ -1,19 +1,19 @@
-import axios from 'axios';
+import axios from "axios";
 
-import baseUrl from '../utils/baseUrl';
-import { store } from '../store';
-import { UpdateDefaultLocationNotification } from '../components/notifications';
-import { loadUser } from './auth';
+import baseUrl from "../utils/baseUrl";
+import { store } from "../store";
+import { UpdateDefaultLocationNotification } from "../components/notifications";
+import { loadUserByCookie } from "./auth";
 import {
   TOGGLE_MAP_LOADING,
   UPDATE_LOCATION_IMAGE,
   TOGGLE_LOCATION_LOADING,
   UPDATE_CURRENT_LOCATION,
-  UPDATE_CURRENT_LOCATION_IP
-} from './types';
+  UPDATE_CURRENT_LOCATION_IP,
+} from "./types";
 
 // GET USER'S LOCATION WITH IP --------------------------------------------------
-export const getLocationWithIp = () => async dispatch => {
+export const getLocationWithIp = () => async (dispatch) => {
   try {
     const url = `${baseUrl}/api/location/ip`;
     const res = await axios.get(url);
@@ -24,20 +24,20 @@ export const getLocationWithIp = () => async dispatch => {
 };
 
 // GET USER'S LOCATION WITH LOCATION FORM ---------------------------------------
-export const handleLocationForm = ({ value }) => async dispatch => {
+export const handleLocationForm = ({ value }) => async (dispatch) => {
   dispatch({ type: TOGGLE_LOCATION_LOADING, payload: true });
 
   const url = `${baseUrl}/api/location/locationForm`;
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      "Content-Type": "application/json",
+    },
   };
   const body = JSON.stringify({ value });
 
   try {
     const res = await axios.post(url, body, config);
-    console.log('location: ', res.data);
+    console.log("location: ", res.data);
     dispatch({ type: UPDATE_CURRENT_LOCATION, payload: res.data });
     dispatch({ type: TOGGLE_LOCATION_LOADING, payload: false });
 
@@ -54,12 +54,12 @@ export const handleLocationForm = ({ value }) => async dispatch => {
 };
 
 // GET USER'S LOCATION WITH GEOCODE ---------------------------------------------
-export const handleGeolocation = ({ lat, lng }) => async dispatch => {
+export const handleGeolocation = ({ lat, lng }) => async (dispatch) => {
   const url = `${baseUrl}/api/location/geo`;
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      "Content-Type": "application/json",
+    },
   };
   const body = JSON.stringify({ lat, lng });
 
@@ -82,9 +82,9 @@ export const handleGeolocation = ({ lat, lng }) => async dispatch => {
 
 // CHECK TO UPDATE USER'S LOCATION IN DB / UPDATE USER'S LOCATION IN DB ----------------
 //save location as user's default location if no location exists yet
-export const checkToUpdateUserLocation = ({
-  locationData
-}) => async dispatch => {
+export const checkToUpdateUserLocation = ({ locationData }) => async (
+  dispatch
+) => {
   try {
     //check if it's required to retrieve image of user's location from developer.here API
     var lat = locationData.lat;
@@ -110,8 +110,8 @@ export const checkToUpdateUserLocation = ({
         state: locationData.state,
         city: locationData.city,
         postalCode: locationData.postalCode,
-        locationImage: store.getState().currentLocation.location.locationImage
-      }
+        locationImage: store.getState().currentLocation.location.locationImage,
+      },
     };
     //if user doesn't have a saved location yet, save their current location to db
     if (!store.getState().auth.user.location) {
@@ -130,18 +130,18 @@ export const checkToUpdateUserLocation = ({
 };
 
 // UPDATE USER'S LOCATION IN DB -------------------------------------------------
-export const updateUserLocation = location => async dispatch => {
+export const updateUserLocation = (location) => async (dispatch) => {
   const url = `${baseUrl}/api/location/updateUserLocation`;
   try {
     await axios.put(url, location);
-    dispatch(loadUser());
+    dispatch(loadUserByCookie());
   } catch (err) {
     console.log(err);
   }
 };
 
 // GET USER'S LOCATION MAP IMAGE FROM DEVELOPER.HERE API ------------------------
-export const getLocationMap = ({ lat, lng }) => async dispatch => {
+export const getLocationMap = ({ lat, lng }) => async (dispatch) => {
   try {
     dispatch({ type: TOGGLE_MAP_LOADING, payload: true });
     //if user is logged in and lattitude and longitude are in temp location reducer in redux
@@ -149,19 +149,19 @@ export const getLocationMap = ({ lat, lng }) => async dispatch => {
       const url = `${baseUrl}/api/location/locationMap`;
       const config = {
         headers: {
-          'Content-Type': 'application/json'
-        }
+          "Content-Type": "application/json",
+        },
       };
       const body = {
         lat,
-        lng
+        lng,
       };
 
       const locationUrl = await axios.post(url, body, config);
       //update location image in temp location reducer
       await dispatch({
         type: UPDATE_LOCATION_IMAGE,
-        payload: locationUrl.data
+        payload: locationUrl.data,
       });
       dispatch({ type: TOGGLE_MAP_LOADING, payload: false });
       return locationUrl.data;

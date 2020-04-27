@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { Button, Checkbox, Form, Input } from 'antd';
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
-import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { Button, Checkbox, Form, Input } from "antd";
+import { MailOutlined, LockOutlined } from "@ant-design/icons";
+import styled from "styled-components";
 
-import { TOGGLE_REGISTER, TOGGLE_LOGIN, AUTH_USER } from '../../actions/types';
-import catchErrors from '../../utils/catchErrors';
-import { setCookieToken } from '../../utils/auth';
-import baseUrl from '../../utils/baseUrl';
-import { loadUser } from '../../actions/auth';
+import { TOGGLE_REGISTER, TOGGLE_LOGIN, AUTH_USER } from "../../actions/types";
+import catchErrors from "../../utils/catchErrors";
+import baseUrl from "../../utils/baseUrl";
+import { loadUserByCookie } from "../../actions/auth";
 
 const InputWrapper = styled.div`
   margin-bottom: 1rem;
@@ -21,8 +20,8 @@ const A = styled.a`
 `;
 
 const INITIAL_USER = {
-  email: '',
-  password: ''
+  email: "",
+  password: "",
 };
 
 const LoginForm = () => {
@@ -30,20 +29,20 @@ const LoginForm = () => {
   const [user, setUser] = useState(INITIAL_USER);
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   //disable login button if fields are empty
   useEffect(() => {
-    const isUser = Object.values(user).every(el => Boolean(el));
+    const isUser = Object.values(user).every((el) => Boolean(el));
     isUser ? setDisabled(false) : setDisabled(true);
   }, [user]);
 
   //update user data handler
   function handleChange(event) {
     const { name, value } = event.target;
-    setUser(prevState => ({
+    setUser((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   }
 
@@ -52,12 +51,12 @@ const LoginForm = () => {
     event.preventDefault();
     try {
       setLoading(true);
-      setError('');
+      setError("");
       const url = `${baseUrl}/api/auth/login`;
       const payload = { ...user };
       const res = await axios.post(url, payload);
       dispatch({ type: AUTH_USER, payload: res.data.token });
-      dispatch(loadUser());
+      dispatch(loadUserByCookie());
       dispatch({ type: TOGGLE_LOGIN, payload: false });
     } catch (error) {
       catchErrors(error, setError);
@@ -72,7 +71,7 @@ const LoginForm = () => {
       <InputWrapper>
         <Input
           placeholder="Email"
-          prefix={<MailOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
+          prefix={<MailOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
           size="large"
           name="email"
           value={user.email}
@@ -83,7 +82,7 @@ const LoginForm = () => {
       <InputWrapper>
         <Input.Password
           placeholder="Password"
-          prefix={<LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
+          prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
           size="large"
           name="password"
           value={user.password}
@@ -93,7 +92,7 @@ const LoginForm = () => {
       </InputWrapper>
       <Checkbox>Remember me</Checkbox>
       <Link href="/">
-        <A style={{ float: 'right' }}>Forgot password</A>
+        <A style={{ float: "right" }}>Forgot password</A>
       </Link>
       <Form.Item>
         <Button
@@ -101,15 +100,15 @@ const LoginForm = () => {
           htmlType="submit"
           loading={loading}
           size="large"
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
           disabled={disabled}
           onClick={handleSubmit}
         >
           Login
         </Button>
       </Form.Item>
-      <div style={{ marginTop: '1rem' }}>
-        Don't have an account yet?{' '}
+      <div style={{ marginTop: "1rem" }}>
+        Don't have an account yet?{" "}
         <Link href="/">
           <A
             onClick={() => {

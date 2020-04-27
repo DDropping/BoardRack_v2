@@ -7,7 +7,7 @@ import { USER_LOADED, LOAD_DEFAULT_LOCATION_TO_CURRENT } from "./types";
 import baseUrl from "../utils/baseUrl";
 
 /*********** LOAD USER ***********/
-export const loadUser = () => async (dispatch) => {
+export const loadUserByCookie = () => async (dispatch) => {
   try {
     if (cookie.get("token")) {
       //add/remove jwt in axios default header
@@ -28,7 +28,7 @@ export const loadUser = () => async (dispatch) => {
 };
 
 /*********** UPDATE USER IN REDUX STORE ***********/
-export const loadUserToStore = (user) => async (dispatch) => {
+export const loadUserByProps = (user) => async (dispatch) => {
   try {
     await dispatch({ type: USER_LOADED, payload: user });
     if (
