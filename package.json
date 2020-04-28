@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
+    "testUnit": "jest unit",
+    "testInt": "jest int",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
