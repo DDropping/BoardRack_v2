@@ -1,23 +1,25 @@
-import axios from 'axios';
+import axios from "axios";
 
-import baseUrl from '../utils/baseUrl';
+import baseUrl from "../utils/baseUrl";
 import {
   successNotification,
-  failNotification
-} from '../components/notifications';
-import { TOGGLE_CREATE_POST_LOADING } from '../actions/types';
+  failNotification,
+} from "../components/notifications";
+import { TOGGLE_CREATE_POST_LOADING } from "../actions/types";
 
-export const publishPost = (location, imgList, formData) => async dispatch => {
+export const publishPost = (location, imgList, formData) => async (
+  dispatch
+) => {
   try {
     dispatch({ type: TOGGLE_CREATE_POST_LOADING, payload: true });
     const postItems = formData;
     console.log(imgList);
-    const images = imgList.map(obj => {
-      console.log(obj.standardUrl);
-      console.log(obj.thumbnailUrl);
+    const images = imgList.map((imgObject) => {
+      console.log(imgObject.standardUrl);
+      console.log(imgObject.thumbnailUrl);
       return {
-        standard: obj.standardUrl,
-        thumbnail: obj.thumbnailUrl
+        standard: imgObject.standardUrl,
+        thumbnail: imgObject.thumbnailUrl,
       };
     });
 
@@ -34,8 +36,8 @@ export const publishPost = (location, imgList, formData) => async dispatch => {
     //set headers for request
     const config = {
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Content-Type": "application/json",
+      },
     };
 
     //stringify the form items
@@ -46,8 +48,8 @@ export const publishPost = (location, imgList, formData) => async dispatch => {
     await axios.post(url, body, config);
     dispatch({ type: TOGGLE_CREATE_POST_LOADING, payload: false });
     successNotification(
-      'New Post Created!',
-      'Your Post Has Been Created And Is Live For The World To See',
+      "New Post Created!",
+      "Your Post Has Been Created And Is Live For The World To See",
       4.5
     );
   } catch (err) {
@@ -55,8 +57,8 @@ export const publishPost = (location, imgList, formData) => async dispatch => {
     if (err) {
       console.log(err);
       failNotification(
-        'Uhh Ohh, Something Went Wrong',
-        'Sorry, Your Post Could Not Be Created At This Time',
+        "Uhh Ohh, Something Went Wrong",
+        "Sorry, Your Post Could Not Be Created At This Time",
         4.5
       );
     }
