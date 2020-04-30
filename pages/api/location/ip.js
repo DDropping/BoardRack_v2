@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
-export default async (req, res) => {
+const handler = async (req, res) => {
   switch (req.method) {
-    case 'GET':
+    case "GET":
       await handleGetRequest(req, res);
       break;
     default:
@@ -16,9 +16,9 @@ export default async (req, res) => {
 // @res     address = { lat, lng, Country, Region, City, PostalCode }
 // @access  Public
 async function handleGetRequest(req, res) {
-  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  var ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
   try {
-    if (ip === '::1' || ip === '127.0.0.1') {
+    if (ip === "::1" || ip === "127.0.0.1") {
     } else {
       const approxLocation = await axios.get(
         `http://api.ipstack.com/${ip}?access_key=${process.env.IPSTACK_ACCESS_KEY}`
@@ -31,7 +31,7 @@ async function handleGetRequest(req, res) {
         city,
         zip,
         latitude,
-        longitude
+        longitude,
       } = approxLocation.data;
 
       const location = {
@@ -40,13 +40,15 @@ async function handleGetRequest(req, res) {
         city: city,
         postalCode: zip,
         lat: latitude,
-        lng: longitude
+        lng: longitude,
       };
 
       res.json(location);
     }
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 }
+
+export default handler;

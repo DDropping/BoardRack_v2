@@ -1,8 +1,8 @@
-import { generatePutUrl } from '../../../utils/AWSPresigner';
+import { generatePutUrl } from "../../../utils/AWSPresigner";
 
-export default async (req, res) => {
+const handler = async (req, res) => {
   switch (req.method) {
-    case 'GET':
+    case "GET":
       await handleGetRequest(req, res);
       break;
     default:
@@ -14,10 +14,12 @@ export default async (req, res) => {
 async function handleGetRequest(req, res) {
   const { Key, ContentType } = req.query;
   generatePutUrl(Key, ContentType)
-    .then(putURL => {
+    .then((putURL) => {
       res.send({ putURL });
     })
-    .catch(err => {
+    .catch((err) => {
       res.send(err);
     });
 }
+
+export default handler;

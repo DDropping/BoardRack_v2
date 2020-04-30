@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async (req, res) => {
+const handler = async (req, res) => {
   switch (req.method) {
     case "POST":
       await handlePostRequest(req, res);
@@ -55,3 +55,5 @@ async function handlePostRequest(req, res) {
     res.status(500).send("Server Error");
   }
 }
+
+export default handler;

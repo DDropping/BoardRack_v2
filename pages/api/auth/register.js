@@ -1,15 +1,15 @@
-import connectDb from '../../../utils/ConnectDb';
-import User from '../../../models/User';
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-import isEmail from 'validator/lib/isEmail';
-import isLength from 'validator/lib/isLength';
+import connectDb from "../../../utils/ConnectDb";
+import User from "../../../models/User";
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+import isEmail from "validator/lib/isEmail";
+import isLength from "validator/lib/isLength";
 
 connectDb();
 
-export default async (req, res) => {
+const handler = async (req, res) => {
   switch (req.method) {
-    case 'POST':
+    case "POST":
       await handlePostRequest(req, res);
       break;
     default:
@@ -28,21 +28,21 @@ async function handlePostRequest(req, res) {
   try {
     //validate username email and password
     if (!isLength(username, { min: 3, max: 15 })) {
-      return res.status(422).send('Username must be 3-15 characters');
+      return res.status(422).send("Username must be 3-15 characters");
     } else if (!isLength(password, { min: 6 })) {
       return res
         .status(422)
-        .send('Password must be at least 6 characters long');
+        .send("Password must be at least 6 characters long");
     } else if (!isEmail(email)) {
-      return res.status(422).send('Invalid email');
+      return res.status(422).send("Invalid email");
     } else if (password !== confirmPassword) {
-      return res.status(422).send('Passwords do not match');
+      return res.status(422).send("Passwords do not match");
     }
 
     //check if user already exists
     let user = await User.findOne({ email });
     if (user) {
-      return res.status(422).send('Email is already registered to an account');
+      return res.status(422).send("Email is already registered to an account");
     }
 
     //create user
@@ -50,7 +50,7 @@ async function handlePostRequest(req, res) {
       username,
       email,
       password,
-      role
+      role,
     });
 
     //encrypt password
@@ -64,13 +64,13 @@ async function handlePostRequest(req, res) {
     const payload = {
       user: {
         id: user.id,
-        role: user.role
-      }
+        role: user.role,
+      },
     };
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: '7d' },
+      { expiresIn: "7d" },
       (err, token) => {
         if (err) throw err;
         res.status(200).json({ token });
@@ -78,6 +78,8 @@ async function handlePostRequest(req, res) {
     );
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 }
+
+export default handler;

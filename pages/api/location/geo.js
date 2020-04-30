@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
-export default async (req, res) => {
+const handler = async (req, res) => {
   switch (req.method) {
-    case 'POST':
+    case "POST":
       await handlePostRequest(req, res);
       break;
     default:
@@ -28,7 +28,7 @@ async function handlePostRequest(req, res) {
       County,
       City,
       District,
-      PostalCode
+      PostalCode,
     } = location.data.Response.View[0].Result[0].Location.Address;
 
     const address = {
@@ -39,12 +39,14 @@ async function handlePostRequest(req, res) {
       county: County,
       city: City,
       district: District,
-      postalCode: PostalCode
+      postalCode: PostalCode,
     };
 
     res.json(address);
   } catch (err) {
     console.log(err);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 }
+
+export default handler;

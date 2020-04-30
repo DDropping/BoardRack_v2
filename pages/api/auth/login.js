@@ -1,13 +1,13 @@
-import connectDb from '../../../utils/ConnectDb';
-import User from '../../../models/User';
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+import connectDb from "../../../utils/ConnectDb";
+import User from "../../../models/User";
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 connectDb();
 
-export default async (req, res) => {
+const handler = async (req, res) => {
   switch (req.method) {
-    case 'POST':
+    case "POST":
       await handlePostRequest(req, res);
       break;
     default:
@@ -25,9 +25,9 @@ async function handlePostRequest(req, res) {
 
   try {
     //check if user exists
-    const user = await User.findOne({ email }).select('+password');
+    const user = await User.findOne({ email }).select("+password");
     if (!user) {
-      return res.status(404).send('Invalid Credentials');
+      return res.status(404).send("Invalid Credentials");
     }
 
     //verify credentials
@@ -38,23 +38,25 @@ async function handlePostRequest(req, res) {
       const payload = {
         user: {
           id: user.id,
-          role: user.role
-        }
+          role: user.role,
+        },
       };
       jwt.sign(
         payload,
         process.env.JWT_SECRET,
-        { expiresIn: '7d' },
+        { expiresIn: "7d" },
         (err, token) => {
           if (err) throw err;
           res.status(200).json({ token });
         }
       );
     } else {
-      res.status(401).send('Invalid Credentials');
+      res.status(401).send("Invalid Credentials");
     }
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 }
+
+export default handler;
