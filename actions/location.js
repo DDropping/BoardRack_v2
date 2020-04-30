@@ -94,9 +94,14 @@ export const checkToUpdateUserLocation = ({ locationData }) => async (
       await dispatch(getLocationMap({ lat, lng }));
     } else {
       //if new location is greater than 1 mile(0.014degrees) away, retrieve new location image
-      var latDistance = Math.abs(store.getState().auth.user.location.lat - lat);
-      var lngDistance = Math.abs(store.getState().auth.user.location.lng - lng);
-      if (latDistance > 0.014 && lngDistance > 0.014) {
+      var latDistance =
+        Math.abs(store.getState().auth.user.location.lat) - Math.abs(lat);
+      var lngDistance =
+        Math.abs(store.getState().auth.user.location.lng) - Math.abs(lng);
+      var distance = Math.sqrt(
+        Math.pow(latDistance, 2) + Math.pow(lngDistance, 2)
+      );
+      if (distance > 0.0135) {
         await dispatch(getLocationMap({ lat, lng }));
       }
     }
@@ -119,7 +124,14 @@ export const checkToUpdateUserLocation = ({ locationData }) => async (
     //if user does have a location saved in db
     if (store.getState().auth.user.location) {
       //if new location is greater than 1 mile(0.014degrees) away, ask if user wants to save new location as default
-      if (latDistance > 0.014 && lngDistance > 0.014) {
+      var latDistance =
+        Math.abs(store.getState().auth.user.location.lat) - Math.abs(lat);
+      var lngDistance =
+        Math.abs(store.getState().auth.user.location.lng) - Math.abs(lng);
+      var distance = Math.sqrt(
+        Math.pow(latDistance, 2) + Math.pow(lngDistance, 2)
+      );
+      if (distance > 0.0135) {
         UpdateDefaultLocationNotification(body);
       }
     }
