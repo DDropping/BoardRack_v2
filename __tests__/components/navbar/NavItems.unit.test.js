@@ -43,7 +43,7 @@ describe("NavItems when user is not authenticated", () => {
   });
 
   it("does not have a my account link", () => {
-    const link = wrapper.find(".create-post-link");
+    const link = wrapper.find(".ant-dropdown-link");
     expect(link.length).toBe(0);
   });
 });
