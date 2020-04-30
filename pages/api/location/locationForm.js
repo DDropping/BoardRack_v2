@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
 export default async (req, res) => {
   switch (req.method) {
-    case 'POST':
+    case "POST":
       await handlePostRequest(req, res);
       break;
     default:
@@ -21,7 +21,6 @@ async function handlePostRequest(req, res) {
     const encodedValue = encodeURIComponent(value);
     const url = `https://geocoder.ls.hereapi.com/6.2/geocode.json?searchtext=${encodedValue}&gen=9&apiKey=${process.env.HERE_API_KEY}`;
     const location = await axios.get(url);
-    console.log(location.data.Response.View[0].Result[0]);
 
     const {
       Label,
@@ -30,12 +29,12 @@ async function handlePostRequest(req, res) {
       County,
       City,
       District,
-      PostalCode
+      PostalCode,
     } = location.data.Response.View[0].Result[0].Location.Address;
 
     const {
       Latitude,
-      Longitude
+      Longitude,
     } = location.data.Response.View[0].Result[0].Location.DisplayPosition;
 
     const address = {
@@ -47,12 +46,12 @@ async function handlePostRequest(req, res) {
       country: County,
       city: City,
       district: District,
-      postalCode: PostalCode
+      postalCode: PostalCode,
     };
 
     res.json(address);
   } catch (err) {
     console.log(err);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 }

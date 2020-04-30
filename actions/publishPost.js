@@ -13,10 +13,7 @@ export const publishPost = (location, imgList, formData) => async (
   try {
     dispatch({ type: TOGGLE_CREATE_POST_LOADING, payload: true });
     const postItems = formData;
-    console.log(imgList);
     const images = imgList.map((imgObject) => {
-      console.log(imgObject.standardUrl);
-      console.log(imgObject.thumbnailUrl);
       return {
         standard: imgObject.standardUrl,
         thumbnail: imgObject.thumbnailUrl,
