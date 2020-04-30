@@ -1,0 +1,1666 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div>
+  <div
+    className="ant-row"
+    style={Object {}}
+  >
+    <div
+      className="ant-col ant-col-xs-24 ant-col-sm-12 ant-col-md-12"
+      style={Object {}}
+    >
+      <div
+        className="sc-1mdab8-1 eNUCtN"
+      >
+        <div
+          className="ant-divider ant-divider-horizontal ant-divider-with-text-center"
+          role="separator"
+        >
+          <span
+            className="ant-divider-inner-text"
+          >
+            <h2
+              className="sc-1mdab8-0 hvVCat"
+            >
+              Model & Fins
+            </h2>
+          </span>
+        </div>
+        <form
+          className="ant-form ant-form-horizontal"
+          onSubmit={[Function]}
+        >
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Shaper:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-16 ant-col-sm-16 ant-col-md-16 ant-col-lg-16"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <input
+                className="ant-input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Shaper..."
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Model:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-16 ant-col-sm-16 ant-col-md-16 ant-col-lg-16"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <input
+                className="ant-input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Model..."
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Fin System:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-16 ant-col-sm-16 ant-col-md-16 ant-col-lg-16"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <div
+                className="ant-select ant-select-single ant-select-show-arrow"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  className="ant-select-selector"
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                >
+                  <span
+                    className="ant-select-selection-search"
+                  >
+                    <input
+                      aria-activedescendant="undefined_list_0"
+                      aria-autocomplete="list"
+                      aria-controls="undefined_list"
+                      aria-haspopup="listbox"
+                      aria-owns="undefined_list"
+                      autoComplete="off"
+                      className="ant-select-selection-search-input"
+                      onChange={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseDown={[Function]}
+                      onPaste={[Function]}
+                      readOnly={true}
+                      role="combobox"
+                      style={
+                        Object {
+                          "opacity": 0,
+                        }
+                      }
+                      value=""
+                    />
+                  </span>
+                  <span
+                    className="ant-select-selection-placeholder"
+                  >
+                    Fin System...
+                  </span>
+                </div>
+                <span
+                  aria-hidden={true}
+                  className="ant-select-arrow"
+                  onMouseDown={[Function]}
+                  style={
+                    Object {
+                      "WebkitUserSelect": "none",
+                      "userSelect": "none",
+                    }
+                  }
+                  unselectable="on"
+                >
+                  <span
+                    aria-label="down"
+                    className="anticon anticon-down"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className=""
+                      data-icon="down"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Configuration:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-16 ant-col-sm-16 ant-col-md-16 ant-col-lg-16"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <div
+                className="ant-select ant-select-single ant-select-show-arrow"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  className="ant-select-selector"
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                >
+                  <span
+                    className="ant-select-selection-search"
+                  >
+                    <input
+                      aria-activedescendant="undefined_list_0"
+                      aria-autocomplete="list"
+                      aria-controls="undefined_list"
+                      aria-haspopup="listbox"
+                      aria-owns="undefined_list"
+                      autoComplete="off"
+                      className="ant-select-selection-search-input"
+                      onChange={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseDown={[Function]}
+                      onPaste={[Function]}
+                      readOnly={true}
+                      role="combobox"
+                      style={
+                        Object {
+                          "opacity": 0,
+                        }
+                      }
+                      value=""
+                    />
+                  </span>
+                  <span
+                    className="ant-select-selection-placeholder"
+                  >
+                    Fin Configuration...
+                  </span>
+                </div>
+                <span
+                  aria-hidden={true}
+                  className="ant-select-arrow"
+                  onMouseDown={[Function]}
+                  style={
+                    Object {
+                      "WebkitUserSelect": "none",
+                      "userSelect": "none",
+                    }
+                  }
+                  unselectable="on"
+                >
+                  <span
+                    aria-label="down"
+                    className="anticon anticon-down"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className=""
+                      data-icon="down"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div
+      className="ant-col ant-col-xs-24 ant-col-sm-12 ant-col-md-12"
+      style={Object {}}
+    >
+      <div
+        className="sc-1mdab8-1 eNUCtN"
+      >
+        <div
+          className="ant-divider ant-divider-horizontal ant-divider-with-text-center"
+          role="separator"
+        >
+          <span
+            className="ant-divider-inner-text"
+          >
+            <h2
+              className="sc-1mdab8-0 hvVCat"
+            >
+              Dimensions
+            </h2>
+          </span>
+        </div>
+        <form
+          className="ant-form ant-form-horizontal"
+          onSubmit={[Function]}
+        >
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Length:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <span
+                className="ant-input-affix-wrapper"
+                onMouseUp={[Function]}
+              >
+                <input
+                  className="ant-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  placeholder="6"
+                  style={null}
+                  type="text"
+                  value=""
+                />
+                <span
+                  className="ant-input-suffix"
+                >
+                  ft.
+                </span>
+              </span>
+            </div>
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <span
+                className="ant-input-affix-wrapper"
+                onMouseUp={[Function]}
+              >
+                <input
+                  className="ant-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  placeholder="2 1/4"
+                  style={null}
+                  type="text"
+                  value=""
+                />
+                <span
+                  className="ant-input-suffix"
+                >
+                  in.
+                </span>
+              </span>
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Width:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <span
+                className="ant-input-affix-wrapper"
+                onMouseUp={[Function]}
+              >
+                <input
+                  className="ant-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  placeholder="18 3/8"
+                  style={null}
+                  type="text"
+                  value=""
+                />
+                <span
+                  className="ant-input-suffix"
+                >
+                  in.
+                </span>
+              </span>
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Depth:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <span
+                className="ant-input-affix-wrapper"
+                onMouseUp={[Function]}
+              >
+                <input
+                  className="ant-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  placeholder="2 1/2"
+                  style={null}
+                  type="text"
+                  value=""
+                />
+                <span
+                  className="ant-input-suffix"
+                >
+                  in.
+                </span>
+              </span>
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Volume:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <span
+                className="ant-input-affix-wrapper"
+                onMouseUp={[Function]}
+              >
+                <input
+                  className="ant-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  placeholder="30"
+                  style={null}
+                  type="text"
+                  value=""
+                />
+                <span
+                  className="ant-input-suffix"
+                >
+                  liters.
+                </span>
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ant-row"
+    style={Object {}}
+  >
+    <div
+      className="ant-col ant-col-xs-24 ant-col-sm-12 ant-col-md-12"
+      style={Object {}}
+    >
+      <div
+        className="sc-1mdab8-1 eNUCtN"
+      >
+        <div
+          className="ant-divider ant-divider-horizontal ant-divider-with-text-center"
+          role="separator"
+        >
+          <span
+            className="ant-divider-inner-text"
+          >
+            <h2
+              className="sc-1mdab8-0 hvVCat"
+            >
+              Construction
+            </h2>
+          </span>
+        </div>
+        <form
+          className="ant-form ant-form-horizontal"
+          onSubmit={[Function]}
+        >
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Tail:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-16 ant-col-sm-16 ant-col-md-16 ant-col-lg-16"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <div
+                className="ant-select ant-select-single ant-select-show-arrow"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  className="ant-select-selector"
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                >
+                  <span
+                    className="ant-select-selection-search"
+                  >
+                    <input
+                      aria-activedescendant="undefined_list_0"
+                      aria-autocomplete="list"
+                      aria-controls="undefined_list"
+                      aria-haspopup="listbox"
+                      aria-owns="undefined_list"
+                      autoComplete="off"
+                      className="ant-select-selection-search-input"
+                      onChange={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseDown={[Function]}
+                      onPaste={[Function]}
+                      readOnly={true}
+                      role="combobox"
+                      style={
+                        Object {
+                          "opacity": 0,
+                        }
+                      }
+                      value=""
+                    />
+                  </span>
+                  <span
+                    className="ant-select-selection-placeholder"
+                  >
+                    Tail Shape...
+                  </span>
+                </div>
+                <span
+                  aria-hidden={true}
+                  className="ant-select-arrow"
+                  onMouseDown={[Function]}
+                  style={
+                    Object {
+                      "WebkitUserSelect": "none",
+                      "userSelect": "none",
+                    }
+                  }
+                  unselectable="on"
+                >
+                  <span
+                    aria-label="down"
+                    className="anticon anticon-down"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className=""
+                      data-icon="down"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Construction:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-16 ant-col-sm-16 ant-col-md-16 ant-col-lg-16"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <div
+                className="ant-select ant-select-single ant-select-show-arrow"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  className="ant-select-selector"
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                >
+                  <span
+                    className="ant-select-selection-search"
+                  >
+                    <input
+                      aria-activedescendant="undefined_list_0"
+                      aria-autocomplete="list"
+                      aria-controls="undefined_list"
+                      aria-haspopup="listbox"
+                      aria-owns="undefined_list"
+                      autoComplete="off"
+                      className="ant-select-selection-search-input"
+                      onChange={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseDown={[Function]}
+                      onPaste={[Function]}
+                      readOnly={true}
+                      role="combobox"
+                      style={
+                        Object {
+                          "opacity": 0,
+                        }
+                      }
+                      value=""
+                    />
+                  </span>
+                  <span
+                    className="ant-select-selection-placeholder"
+                  >
+                    Construction...
+                  </span>
+                </div>
+                <span
+                  aria-hidden={true}
+                  className="ant-select-arrow"
+                  onMouseDown={[Function]}
+                  style={
+                    Object {
+                      "WebkitUserSelect": "none",
+                      "userSelect": "none",
+                    }
+                  }
+                  unselectable="on"
+                >
+                  <span
+                    aria-label="down"
+                    className="anticon anticon-down"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className=""
+                      data-icon="down"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Glassing:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-16 ant-col-sm-16 ant-col-md-16 ant-col-lg-16"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <div
+                className="ant-select ant-select-single ant-select-show-arrow"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  className="ant-select-selector"
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                >
+                  <span
+                    className="ant-select-selection-search"
+                  >
+                    <input
+                      aria-activedescendant="undefined_list_0"
+                      aria-autocomplete="list"
+                      aria-controls="undefined_list"
+                      aria-haspopup="listbox"
+                      aria-owns="undefined_list"
+                      autoComplete="off"
+                      className="ant-select-selection-search-input"
+                      onChange={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseDown={[Function]}
+                      onPaste={[Function]}
+                      readOnly={true}
+                      role="combobox"
+                      style={
+                        Object {
+                          "opacity": 0,
+                        }
+                      }
+                      value=""
+                    />
+                  </span>
+                  <span
+                    className="ant-select-selection-placeholder"
+                  >
+                    Glassing...
+                  </span>
+                </div>
+                <span
+                  aria-hidden={true}
+                  className="ant-select-arrow"
+                  onMouseDown={[Function]}
+                  style={
+                    Object {
+                      "WebkitUserSelect": "none",
+                      "userSelect": "none",
+                    }
+                  }
+                  unselectable="on"
+                >
+                  <span
+                    aria-label="down"
+                    className="anticon anticon-down"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className=""
+                      data-icon="down"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-8 ant-col-md-8 ant-col-lg-8"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Contour:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-16 ant-col-sm-16 ant-col-md-16 ant-col-lg-16"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <input
+                className="ant-input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Contour..."
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div
+      className="ant-col ant-col-xs-24 ant-col-sm-12 ant-col-md-12"
+      style={Object {}}
+    >
+      <div
+        className="sc-1mdab8-1 eNUCtN"
+      >
+        <div
+          className="ant-divider ant-divider-horizontal ant-divider-with-text-center"
+          role="separator"
+        >
+          <span
+            className="ant-divider-inner-text"
+          >
+            <h2
+              className="sc-1mdab8-0 hvVCat"
+            >
+              Opinion
+            </h2>
+          </span>
+        </div>
+        <form
+          className="ant-form ant-form-horizontal"
+          onSubmit={[Function]}
+        >
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-10 ant-col-sm-10 ant-col-md-10 ant-col-lg-10"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Wave Size:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-7 ant-col-md-6"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <span
+                className="ant-input-affix-wrapper"
+                onMouseUp={[Function]}
+              >
+                <input
+                  className="ant-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  placeholder="4-7"
+                  style={null}
+                  type="text"
+                  value=""
+                />
+                <span
+                  className="ant-input-suffix"
+                >
+                  ft.
+                </span>
+              </span>
+            </div>
+            <div
+              className="ant-col ant-col-xs-6 ant-col-sm-7"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <span
+                aria-label="question-circle"
+                className="anticon anticon-question-circle"
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                role="img"
+                style={
+                  Object {
+                    "color": "#4878a9",
+                    "padding": "5px",
+                  }
+                }
+              >
+                <svg
+                  aria-hidden="true"
+                  className=""
+                  data-icon="question-circle"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                  />
+                  <path
+                    d="M623.6 316.7C593.6 290.4 554 276 512 276s-81.6 14.5-111.6 40.7C369.2 344 352 380.7 352 420v7.6c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V420c0-44.1 43.1-80 96-80s96 35.9 96 80c0 31.1-22 59.6-56.1 72.7-21.2 8.1-39.2 22.3-52.1 40.9-13.1 19-19.9 41.8-19.9 64.9V620c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-22.7a48.3 48.3 0 0130.9-44.8c59-22.7 97.1-74.7 97.1-132.5.1-39.3-17.1-76-48.3-103.3zM472 732a40 40 0 1080 0 40 40 0 10-80 0z"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-10 ant-col-sm-10 ant-col-md-10 ant-col-lg-10"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Drive & Speed:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-7 ant-col-md-6"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <span
+                className="ant-input-affix-wrapper"
+                onMouseUp={[Function]}
+              >
+                <input
+                  className="ant-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  placeholder="4"
+                  style={null}
+                  type="text"
+                  value=""
+                />
+                <span
+                  className="ant-input-suffix"
+                >
+                  /5
+                </span>
+              </span>
+            </div>
+            <div
+              className="ant-col ant-col-xs-6 ant-col-sm-7"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <span
+                aria-label="question-circle"
+                className="anticon anticon-question-circle"
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                role="img"
+                style={
+                  Object {
+                    "color": "#4878a9",
+                    "padding": "5px",
+                  }
+                }
+              >
+                <svg
+                  aria-hidden="true"
+                  className=""
+                  data-icon="question-circle"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                  />
+                  <path
+                    d="M623.6 316.7C593.6 290.4 554 276 512 276s-81.6 14.5-111.6 40.7C369.2 344 352 380.7 352 420v7.6c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V420c0-44.1 43.1-80 96-80s96 35.9 96 80c0 31.1-22 59.6-56.1 72.7-21.2 8.1-39.2 22.3-52.1 40.9-13.1 19-19.9 41.8-19.9 64.9V620c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-22.7a48.3 48.3 0 0130.9-44.8c59-22.7 97.1-74.7 97.1-132.5.1-39.3-17.1-76-48.3-103.3zM472 732a40 40 0 1080 0 40 40 0 10-80 0z"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-10 ant-col-sm-10 ant-col-md-10 ant-col-lg-10"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Paddle Power:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-7 ant-col-md-6"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <span
+                className="ant-input-affix-wrapper"
+                onMouseUp={[Function]}
+              >
+                <input
+                  className="ant-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  placeholder="5"
+                  style={null}
+                  type="text"
+                  value=""
+                />
+                <span
+                  className="ant-input-suffix"
+                >
+                  /5
+                </span>
+              </span>
+            </div>
+            <div
+              className="ant-col ant-col-xs-6 ant-col-sm-7"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <span
+                aria-label="question-circle"
+                className="anticon anticon-question-circle"
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                role="img"
+                style={
+                  Object {
+                    "color": "#4878a9",
+                    "padding": "5px",
+                  }
+                }
+              >
+                <svg
+                  aria-hidden="true"
+                  className=""
+                  data-icon="question-circle"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                  />
+                  <path
+                    d="M623.6 316.7C593.6 290.4 554 276 512 276s-81.6 14.5-111.6 40.7C369.2 344 352 380.7 352 420v7.6c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V420c0-44.1 43.1-80 96-80s96 35.9 96 80c0 31.1-22 59.6-56.1 72.7-21.2 8.1-39.2 22.3-52.1 40.9-13.1 19-19.9 41.8-19.9 64.9V620c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-22.7a48.3 48.3 0 0130.9-44.8c59-22.7 97.1-74.7 97.1-132.5.1-39.3-17.1-76-48.3-103.3zM472 732a40 40 0 1080 0 40 40 0 10-80 0z"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-10 ant-col-sm-10 ant-col-md-10 ant-col-lg-10"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Movability:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-8 ant-col-sm-7 ant-col-md-6"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <span
+                className="ant-input-affix-wrapper"
+                onMouseUp={[Function]}
+              >
+                <input
+                  className="ant-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  placeholder="3"
+                  style={null}
+                  type="text"
+                  value=""
+                />
+                <span
+                  className="ant-input-suffix"
+                >
+                  /5
+                </span>
+              </span>
+            </div>
+            <div
+              className="ant-col ant-col-xs-6 ant-col-sm-7"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <span
+                aria-label="question-circle"
+                className="anticon anticon-question-circle"
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                role="img"
+                style={
+                  Object {
+                    "color": "#4878a9",
+                    "padding": "5px",
+                  }
+                }
+              >
+                <svg
+                  aria-hidden="true"
+                  className=""
+                  data-icon="question-circle"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                  />
+                  <path
+                    d="M623.6 316.7C593.6 290.4 554 276 512 276s-81.6 14.5-111.6 40.7C369.2 344 352 380.7 352 420v7.6c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V420c0-44.1 43.1-80 96-80s96 35.9 96 80c0 31.1-22 59.6-56.1 72.7-21.2 8.1-39.2 22.3-52.1 40.9-13.1 19-19.9 41.8-19.9 64.9V620c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-22.7a48.3 48.3 0 0130.9-44.8c59-22.7 97.1-74.7 97.1-132.5.1-39.3-17.1-76-48.3-103.3zM472 732a40 40 0 1080 0 40 40 0 10-80 0z"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
