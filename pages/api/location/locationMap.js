@@ -1,18 +1,16 @@
-// @route   GET api/externalAPI/locationMap
-// @desc    Get picture of location of map given coords
-// @access  Public
+const request = require("request");
+const AWS = require("aws-sdk");
 
-const request = require('request');
-const AWS = require('aws-sdk');
+import authenticate from "../../../middleware/auth";
 
 var s3 = new AWS.S3({
   accessKeyId: process.env.S3_ACCESS_KEY_ID,
-  secretAccessKey: process.env.S3_SECRET_ACCESS_KEY
+  secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
 });
 
-export default async (req, res) => {
+const handler = async (req, res) => {
   switch (req.method) {
-    case 'POST':
+    case "POST":
       await handlePostRequest(req, res);
       break;
     default:
@@ -26,10 +24,6 @@ export default async (req, res) => {
 // @res     url of location map
 // @access  Protected
 async function handlePostRequest(req, res) {
-  if (!('authorization' in req.headers)) {
-    return res.status(401).send('No authorization token');
-  }
-
   try {
     var lat = req.body.lat.toFixed(2);
     var lng = req.body.lng.toFixed(2);
@@ -37,15 +31,17 @@ async function handlePostRequest(req, res) {
     request({ url, encoding: null }, (err, resp, buffer) => {
       s3.upload({
         Bucket: process.env.S3_BUCKET,
-        ACL: 'public-read',
+        ACL: "public-read",
         Key: Date.now().toString(),
-        Body: buffer
+        Body: buffer,
       })
         .promise()
-        .then(data => res.send(data.Location));
+        .then((data) => res.send(data.Location));
     });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 }
+
+export default authenticate(handler);
