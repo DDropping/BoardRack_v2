@@ -1,18 +1,13 @@
-// @route   POST api/posts/createpost
-// @desc    create new post in db
-// @res     post: {... all post data}
-// @access  Protected
+import connectDb from "../../../utils/ConnectDb";
+import Post from "../../../models/Post";
 
-import jwt from 'jsonwebtoken';
-
-import connectDb from '../../../utils/ConnectDb';
-import Post from '../../../models/Post';
+import authenticate from "../../../middleware/auth";
 
 connectDb();
 
-export default async (req, res) => {
+const handler = async (req, res) => {
   switch (req.method) {
-    case 'POST':
+    case "POST":
       await handlePostRequest(req, res);
       break;
     default:
@@ -26,14 +21,6 @@ export default async (req, res) => {
 // @res     post{...postItems}
 // @access  Protected
 async function handlePostRequest(req, res) {
-  if (!('authorization' in req.headers)) {
-    return res.status(401).send('No authorization token');
-  }
-  const decodedUser = jwt.verify(
-    req.headers.authorization,
-    process.env.JWT_SECRET
-  );
-
   const {
     title,
     price,
@@ -58,11 +45,11 @@ async function handlePostRequest(req, res) {
     shaper,
     model,
     images,
-    location
+    location,
   } = req.body;
 
   const postFields = {};
-  postFields.user = decodedUser.user.id;
+  postFields.user = req.user.id;
   if (title) postFields.title = title;
   if (price) postFields.price = price;
   if (boardType) postFields.boardType = boardType;
@@ -85,14 +72,14 @@ async function handlePostRequest(req, res) {
   if (lengthFt) postFields.lengthFt = lengthFt;
   if (lengthIn) postFields.lengthIn = lengthIn;
   if (lengthFt) length += 12 * lengthFt;
-  if (lengthIn) length += eval(lengthIn.trim().replace(' ', '+'));
+  if (lengthIn) length += eval(lengthIn.trim().replace(" ", "+"));
   if (lengthFt || lengthIn) postFields.lengthValue = length;
   if (width) postFields.width = width;
-  if (width) postFields.widthValue = eval(width.trim().replace(' ', '+'));
+  if (width) postFields.widthValue = eval(width.trim().replace(" ", "+"));
   if (depth) postFields.depth = depth;
-  if (depth) postFields.depthValue = eval(depth.trim().replace(' ', '+'));
+  if (depth) postFields.depthValue = eval(depth.trim().replace(" ", "+"));
   if (volume) postFields.volume = volume;
-  if (volume) postFields.volumeValue = eval(volume.trim().replace(' ', '+'));
+  if (volume) postFields.volumeValue = eval(volume.trim().replace(" ", "+"));
 
   //list of image urls
   if (images) postFields.images = images;
@@ -114,6 +101,8 @@ async function handlePostRequest(req, res) {
     res.json(post);
   } catch (err) {
     console.error(err.message);
-    re.status(500).send('Server Error');
+    re.status(500).send("Server Error");
   }
 }
+
+export default authenticate(handler);
