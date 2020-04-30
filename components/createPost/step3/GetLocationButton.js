@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Button } from 'antd';
-import { EnvironmentOutlined, LoadingOutlined } from '@ant-design/icons';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "antd";
+import { EnvironmentOutlined, LoadingOutlined } from "@ant-design/icons";
 
-import { TOGGLE_LOCATION_LOADING } from '../../../actions/types';
-import { handleGeolocation } from '../../../actions/location';
+import { TOGGLE_LOCATION_LOADING } from "../../../actions/types";
+import { handleGeolocation } from "../../../actions/location";
 
 const GetLocationButton = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(state => state.currentLocation.isLoading);
+  const isLoading = useSelector((state) => state.currentLocation.isLoading);
   const [isForm, toggleForm] = useState(false);
 
   const handleGetLocation = () => {
@@ -24,7 +24,7 @@ const GetLocationButton = () => {
     }
   };
 
-  const retrievedLocation = location => {
+  const retrievedLocation = (location) => {
     const lat = location.coords.latitude;
     const lng = location.coords.longitude;
     dispatch(handleGeolocation({ lat, lng }));
@@ -38,7 +38,7 @@ const GetLocationButton = () => {
       loading={isLoading}
       onClick={handleGetLocation}
     >
-      {isLoading ? <LoadingOutlined /> : <EnvironmentOutlined />} Get Location
+      {!isLoading && <EnvironmentOutlined />} Get Location
     </Button>
   );
 };
