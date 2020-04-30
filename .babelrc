@@ -49,8 +49,7 @@
               "@components": "./components/",
               "@reducers": "./reducers/",
               "@actions": "./actions/",
-              "@store": "./store.js",
-              "@pages": "./pages"
+              "@store": "./store.js"
             }
           }
         ]
