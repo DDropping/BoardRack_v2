@@ -1,11 +1,10 @@
-import jwt from "jsonwebtoken";
-
 import User from "../../../models/User";
 import connectDb from "../../../utils/ConnectDb";
+import authenticate from "../../../middleware/auth";
 
 connectDb();
 
-export default async (req, res) => {
+const handler = async (req, res) => {
   switch (req.method) {
     case "GET":
       await handleGetRequest(req, res);
@@ -21,16 +20,8 @@ export default async (req, res) => {
 // @res     user: {... all user data from db}
 // @access  Protected
 async function handleGetRequest(req, res) {
-  if (!("authorization" in req.headers)) {
-    return res.status(401).send("No authorization token");
-  }
-
   try {
-    const decodedUser = jwt.verify(
-      req.headers.authorization,
-      process.env.JWT_SECRET
-    );
-    const user = await User.findById(decodedUser.user.id);
+    const user = await User.findById(req.user.id);
     if (user) {
       res.status(200).json(user);
     } else {
@@ -40,3 +31,5 @@ async function handleGetRequest(req, res) {
     res.status(403).send("Invalid Token");
   }
 }
+
+export default authenticate(handler);
