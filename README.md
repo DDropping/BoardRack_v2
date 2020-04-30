@@ -12,7 +12,7 @@
 - Migrate from Express.js => Next.js' [pages/api](https://nextjs.org/docs/api-routes/introduction)
 - Migrate from CSS style sheets => [Styled-Components](https://github.com/styled-components/styled-components) css in js
 - Move towards Server Side Rendering (SSR)
-- Implementation of unit testing with [Jest](https://github.com/facebook/jest) and [Enzyme](https://github.com/enzymejs/enzyme)
+- Implementation of unit, integration, & snapshot testing with [Jest](https://github.com/facebook/jest) and [Enzyme](https://github.com/enzymejs/enzyme)
 - App-wide code optimization and refactoring
 - App-wide component style update
 
@@ -47,8 +47,9 @@ change base url: utils/baseUrl
 ## Other Notes
 
 antd-less and next compatibility issue made some antd component styles fail to load on initial render
-- fix: pre-load antd library styles into _app.js  
-- note: any antd components used need to be pre-loaded into _app.js
+
+- fix: pre-load antd library styles into \_app.js
+- note: any antd components used need to be pre-loaded into \_app.js
 
 ## Authors
 
