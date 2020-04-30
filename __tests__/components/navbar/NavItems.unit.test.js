@@ -1,6 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { Provider } from "react-redux";
+import renderer from "react-test-renderer";
 
 import NavItems from "@components/navbar/NavItems";
 import { initializeStore } from "@store";
@@ -20,6 +21,11 @@ describe("NavItems when user is not authenticated", () => {
 
   afterEach(() => {
     wrapper.unmount();
+  });
+
+  it("matches snapshot", () => {
+    const tree = renderer.create(wrapper).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 
   it("has a create post link that will redirect to login", () => {
@@ -69,6 +75,11 @@ describe("NavItems when user is authenticated", () => {
     wrapper.unmount();
   });
 
+  it("matches snapshot", () => {
+    const tree = renderer.create(wrapper).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   it("has a create post link", () => {
     const link = wrapper.find(".create-post-link");
     expect(link.length).toBe(1);
@@ -114,6 +125,11 @@ describe("NavItems when user is authenticated but loadUser() failed", () => {
         <NavItems />
       </Provider>
     );
+  });
+
+  it("matches snapshot", () => {
+    const tree = renderer.create(wrapper).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 
   it("has a my account link", () => {
