@@ -1,13 +1,11 @@
-import React from "react";
-import { Carousel } from "antd";
-import styled from "styled-components";
+import React from 'react';
+import { Carousel } from 'antd';
+import styled from 'styled-components';
 
 const CarouselWrapper = styled.div`
   .ant-carousel .slick-slide {
     text-align: center;
-    height: 160px;
     line-height: 160px;
-    background: ${({ theme }) => theme.primaryBlue};
     overflow: hidden;
   }
 
@@ -16,21 +14,48 @@ const CarouselWrapper = styled.div`
   }
 `;
 
+export const ImgWrapper = styled.div`
+  max-width: 100%;
+  min-width: 800px;
+  cursor: pointer;
+  /* @media (max-width: ${(props) => props.theme.md}) {
+    display: none;
+  } */
+`;
+
+export const Img = styled.img`
+  width: 100%;
+`;
+
 const index = () => {
   return (
     <CarouselWrapper>
       <Carousel autoplay autoplaySpeed={7000} dotPosition="top">
         <div>
-          <h3>1</h3>
+          <ImgWrapper>
+            <Img src="/images/banner/calculator.png" alt="boardrack logo" />
+          </ImgWrapper>
         </div>
         <div>
-          <h3>2</h3>
+          <ImgWrapper>
+            <Img
+              src="/images/banner/findwhatyoulove.png"
+              alt="boardrack logo"
+            />
+          </ImgWrapper>
         </div>
         <div>
-          <h3>3</h3>
+          <ImgWrapper>
+            <Img src="/images/banner/calculator.png" alt="boardrack logo" />
+          </ImgWrapper>
         </div>
         <div>
-          <h3>4</h3>
+          <ImgWrapper>
+            <Img
+              src="/images/banner/findwhatyoulove.png"
+              alt="boardrack logo"
+            />
+          </ImgWrapper>
         </div>
       </Carousel>
     </CarouselWrapper>
