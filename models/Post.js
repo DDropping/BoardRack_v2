@@ -15,23 +15,21 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  boardType: {
-    type: String,
-    required: true
-  },
-  condition: {
-    type: String,
-    required: true
-  },
+  boardType: { type: String },
+  condition: { type: String },
   description: { type: String },
   tail: { type: String },
   finSystem: { type: String },
   finConfiguration: { type: String },
   lengthFt: { type: String },
   lengthIn: { type: String },
+  lengthValue: { type: Number },
   width: { type: String },
+  widthValue: { type: Number },
   depth: { type: String },
+  depthValue: { type: Number },
   volume: { type: String },
+  volumeValue: { type: Number },
   construction: { type: String },
   glassing: { type: String },
   contour: { type: String },
@@ -42,8 +40,8 @@ const PostSchema = new mongoose.Schema({
   shaper: { type: String },
   model: { type: String },
   location: {
-    lat: { type: Number },
-    lng: { type: Number },
+    lat: { type: Number, required: true },
+    lng: { type: Number, required: true },
     country: { type: String },
     state: { type: String },
     city: { type: String },
@@ -52,9 +50,8 @@ const PostSchema = new mongoose.Schema({
   },
   images: [
     {
-      imgKey: String,
       thumbnail: String,
-      default: String
+      standard: String
     }
   ],
   favorites: [

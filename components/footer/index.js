@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Row, Col } from 'antd';
 import Link from 'next/link';
+import { Col, Row } from 'antd';
+import styled from 'styled-components';
 
 import LogoWhite from '../logo/DefaultLogoWhite';
 import Company from './Company';
@@ -12,7 +12,7 @@ import Support from './Support';
 
 const Container = styled.section`
   width: 100vw;
-  color: #eee;
+  color: ${({ theme }) => theme.secondaryWhite};
   background-color: ${props => props.theme.primaryBlue};
   text-align: center;
   padding: 1rem;

@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import Router from 'next/router';
 import NProgress from 'nprogress';
+import styled from 'styled-components';
 
 import { DefaultLogo, SmallLogo } from '../logo';
 import NavItems from './NavItems';

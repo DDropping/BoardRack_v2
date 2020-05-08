@@ -7,9 +7,9 @@ import supportLinks from '../../constants/supportLinks';
 const Li = styled.li`
   display: block;
   a {
-    color: #bbb;
+    color: ${({ theme }) => theme.primaryLightGrey};
     &:hover {
-      color: #fff;
+      color: ${({ theme }) => theme.primaryWhite};
     }
   }
 `;

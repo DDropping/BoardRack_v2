@@ -1,17 +1,23 @@
 import React from 'react';
 import Head from 'next/head';
-import { Button } from 'antd';
 import styled from 'styled-components';
+import { Button } from 'antd';
 import axios from 'axios';
 import fetch from 'isomorphic-unfetch';
 
 const Home = props => (
   <div className="container">
-    {console.log(props)}
     <Head>
       <title>BoardRack | Home</title>
     </Head>
     <div>home</div>
+    <button
+      onClick={() => {
+        const res = axios.post('http://localhost:3000/api/posts/createpost');
+      }}
+    >
+      test
+    </button>
   </div>
 );
 

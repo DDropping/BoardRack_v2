@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import { Button } from 'antd';
 import styled from 'styled-components';
+import { Button } from 'antd';
 
 const Account = () => (
   <div className="container">

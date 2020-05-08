@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import Link from 'next/link';
+import styled from 'styled-components';
+
 export const ImgWrapper = styled.div`
   padding: 0.5rem;
   max-width: 60px;

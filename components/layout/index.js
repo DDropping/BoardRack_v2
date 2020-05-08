@@ -1,11 +1,18 @@
-import React from 'react';
-import styled from 'styled-components';
-import Head from 'next/head';
+import React, { useEffect } from "react";
+import Head from "next/head";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 
-import Navbar from '../navbar';
-import Footer from '../footer';
-import Login from '../login';
-import Register from '../register';
+import { USER_LOADED } from "../../actions/types";
+import { withRedux } from "../../utils/with-redux-store";
+import Navbar from "../navbar";
+import Footer from "../footer";
+import Login from "../login";
+import Register from "../register";
+import setTokenHeader from "../../utils/setTokenHeader";
+
+import { loadUserByProps } from "../../actions/auth";
+import { getLocationWithIp } from "../../actions/location";
 
 const Container = styled.div`
   display: flex;
@@ -14,17 +21,33 @@ const Container = styled.div`
 `;
 
 const Main = styled.main`
+  position: relative;
   flex: 1;
 `;
 
-function Layout({ children }) {
+function Layout({ children, user, token }) {
+  const dispatch = useDispatch();
+  const isLocated = useSelector((state) => state.currentLocation.isLocated);
+
+  useEffect(() => {
+    if (!isLocated) {
+      dispatch(getLocationWithIp());
+    }
+    if (user) {
+      dispatch(loadUserByProps(user));
+      setTokenHeader(token);
+    } else {
+      setTokenHeader();
+    }
+  }, [user]);
+
   return (
     <>
       <Head>
         <link rel="stylesheet" href="nprogress.css" />
       </Head>
       <Container>
-        <Navbar />
+        <Navbar user />
         <Login />
         <Register />
         <Main>{children}</Main>
@@ -34,4 +57,4 @@ function Layout({ children }) {
   );
 }
 
-export default Layout;
+export default withRedux(Layout);
