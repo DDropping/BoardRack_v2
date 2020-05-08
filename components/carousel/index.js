@@ -1,6 +1,6 @@
-import React from "react";
-import { Carousel } from "antd";
-import styled from "styled-components";
+import React from 'react';
+import { Carousel } from 'antd';
+import styled from 'styled-components';
 
 const CarouselContainer = styled.div`
   position: relative;
@@ -18,7 +18,7 @@ const CarouselWrapper = styled.div`
 const ImgWrapper = styled.div`
   position: relative;
   max-width: 100vw;
-  min-width: 1200px;
+  min-width: 3600px;
   max-height: 500px;
   overflow: hidden;
   margin-left: 50%; /**used to allow overflow to the left */
