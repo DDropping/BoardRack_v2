@@ -1,0 +1,664 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div>
+  <div
+    className="ant-row"
+    style={Object {}}
+  >
+    <div
+      className="ant-col ant-col-xs-24 ant-col-sm-12 ant-col-md-12"
+      style={Object {}}
+    >
+      <div
+        className="sc-1p87c3o-1 jYTmwz"
+      >
+        <div
+          className="ant-divider ant-divider-horizontal ant-divider-with-text-center"
+          role="separator"
+        >
+          <span
+            className="ant-divider-inner-text"
+          >
+            <h2
+              className="sc-1p87c3o-0 flfyAz"
+            >
+              Basic Details
+            </h2>
+          </span>
+        </div>
+        <form
+          className="ant-form ant-form-horizontal"
+          onSubmit={[Function]}
+        >
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-7 ant-col-sm-7 ant-col-md-7"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                <span
+                  style={
+                    Object {
+                      "color": "red",
+                    }
+                  }
+                >
+                  * 
+                </span>
+                Title:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-17 ant-col-sm-17 ant-col-md-17"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <input
+                className="ant-input"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Surfboard"
+                style={null}
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-7 ant-col-sm-7 ant-col-md-7"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                <span
+                  style={
+                    Object {
+                      "color": "red",
+                    }
+                  }
+                >
+                  * 
+                </span>
+                Price:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-17 ant-col-sm-17 ant-col-md-17"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <div
+                className="ant-input-number"
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  className="ant-input-number-handler-wrap"
+                >
+                  <span
+                    aria-disabled={false}
+                    aria-label="Increase Value"
+                    className="ant-input-number-handler ant-input-number-handler-up "
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseUp={[Function]}
+                    onTouchCancel={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchMove={[Function]}
+                    onTouchStart={[Function]}
+                    role="button"
+                    unselectable="unselectable"
+                  >
+                    <span
+                      aria-label="up"
+                      className="anticon anticon-up ant-input-number-handler-up-inner"
+                      role="img"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className=""
+                        data-icon="up"
+                        fill="currentColor"
+                        focusable="false"
+                        height="1em"
+                        viewBox="64 64 896 896"
+                        width="1em"
+                      >
+                        <path
+                          d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                  <span
+                    aria-disabled={false}
+                    aria-label="Decrease Value"
+                    className="ant-input-number-handler ant-input-number-handler-down "
+                    onMouseDown={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseUp={[Function]}
+                    onTouchCancel={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchMove={[Function]}
+                    onTouchStart={[Function]}
+                    role="button"
+                    unselectable="unselectable"
+                  >
+                    <span
+                      aria-label="down"
+                      className="anticon anticon-down ant-input-number-handler-down-inner"
+                      role="img"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className=""
+                        data-icon="down"
+                        fill="currentColor"
+                        focusable="false"
+                        height="1em"
+                        viewBox="64 64 896 896"
+                        width="1em"
+                      >
+                        <path
+                          d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                </div>
+                <div
+                  className="ant-input-number-input-wrap"
+                >
+                  <input
+                    aria-valuemin={-9007199254740991}
+                    autoComplete="off"
+                    className="ant-input-number-input"
+                    min={-9007199254740991}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    onKeyUp={[Function]}
+                    onMouseUp={[Function]}
+                    required={false}
+                    role="spinbutton"
+                    step={1}
+                    value="$ "
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-7 ant-col-sm-7 ant-col-md-7 ant-col-lg-7"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Type:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-17 ant-col-sm-17 ant-col-md-17 ant-col-lg-17"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <div
+                className="ant-select ant-select-single ant-select-show-arrow"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  className="ant-select-selector"
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                >
+                  <span
+                    className="ant-select-selection-search"
+                  >
+                    <input
+                      aria-activedescendant="undefined_list_0"
+                      aria-autocomplete="list"
+                      aria-controls="undefined_list"
+                      aria-haspopup="listbox"
+                      aria-owns="undefined_list"
+                      autoComplete="off"
+                      className="ant-select-selection-search-input"
+                      onChange={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseDown={[Function]}
+                      onPaste={[Function]}
+                      readOnly={true}
+                      role="combobox"
+                      style={
+                        Object {
+                          "opacity": 0,
+                        }
+                      }
+                      value=""
+                    />
+                  </span>
+                  <span
+                    className="ant-select-selection-placeholder"
+                  >
+                    Shortboard
+                  </span>
+                </div>
+                <span
+                  aria-hidden={true}
+                  className="ant-select-arrow"
+                  onMouseDown={[Function]}
+                  style={
+                    Object {
+                      "WebkitUserSelect": "none",
+                      "userSelect": "none",
+                    }
+                  }
+                  unselectable="on"
+                >
+                  <span
+                    aria-label="down"
+                    className="anticon anticon-down"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className=""
+                      data-icon="down"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-7 ant-col-sm-7 ant-col-md-7 ant-col-lg-7"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Condition:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-17 ant-col-sm-17 ant-col-md-17 ant-col-lg-17"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <div
+                className="ant-select ant-select-single ant-select-show-arrow"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  className="ant-select-selector"
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                >
+                  <span
+                    className="ant-select-selection-search"
+                  >
+                    <input
+                      aria-activedescendant="undefined_list_0"
+                      aria-autocomplete="list"
+                      aria-controls="undefined_list"
+                      aria-haspopup="listbox"
+                      aria-owns="undefined_list"
+                      autoComplete="off"
+                      className="ant-select-selection-search-input"
+                      onChange={[Function]}
+                      onKeyDown={[Function]}
+                      onMouseDown={[Function]}
+                      onPaste={[Function]}
+                      readOnly={true}
+                      role="combobox"
+                      style={
+                        Object {
+                          "opacity": 0,
+                        }
+                      }
+                      value=""
+                    />
+                  </span>
+                  <span
+                    className="ant-select-selection-placeholder"
+                  >
+                    Used
+                  </span>
+                </div>
+                <span
+                  aria-hidden={true}
+                  className="ant-select-arrow"
+                  onMouseDown={[Function]}
+                  style={
+                    Object {
+                      "WebkitUserSelect": "none",
+                      "userSelect": "none",
+                    }
+                  }
+                  unselectable="on"
+                >
+                  <span
+                    aria-label="down"
+                    className="anticon anticon-down"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className=""
+                      data-icon="down"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "marginBottom": 8,
+                "marginLeft": -8,
+                "marginRight": -8,
+                "marginTop": -8,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-0 ant-col-sm-0 ant-col-md-7 ant-col-lg-7"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <h3
+                style={
+                  Object {
+                    "textAlign": "right",
+                  }
+                }
+              >
+                Description:
+              </h3>
+            </div>
+            <div
+              className="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-17 ant-col-lg-17"
+              style={
+                Object {
+                  "paddingBottom": 8,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 8,
+                }
+              }
+            >
+              <textarea
+                className="ant-input"
+                name="description"
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Description..."
+                style={Object {}}
+                value=""
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div
+      className="ant-col ant-col-xs-24 ant-col-sm-12 ant-col-md-12"
+      style={Object {}}
+    >
+      <div
+        className="sc-1p87c3o-1 jYTmwz"
+      >
+        <div
+          className="ant-divider ant-divider-horizontal ant-divider-with-text-center"
+          role="separator"
+        >
+          <span
+            className="ant-divider-inner-text"
+          >
+            <h2
+              className="sc-1p87c3o-0 flfyAz"
+            >
+              Add Photos
+            </h2>
+          </span>
+        </div>
+        <div>
+          <button
+            className="ant-btn input-button ant-btn-dashed"
+            onClick={[Function]}
+            style={
+              Object {
+                "backgroundColor": "#bbb3",
+                "height": "8rem",
+                "width": "100%",
+              }
+            }
+            type="button"
+          >
+            <label
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+            >
+              <span
+                aria-label="file-image"
+                className="anticon anticon-file-image"
+                role="img"
+                style={
+                  Object {
+                    "fontSize": "3rem",
+                  }
+                }
+              >
+                <svg
+                  aria-hidden="true"
+                  className=""
+                  data-icon="file-image"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M553.1 509.1l-77.8 99.2-41.1-52.4a8 8 0 00-12.6 0l-99.8 127.2a7.98 7.98 0 006.3 12.9H696c6.7 0 10.4-7.7 6.3-12.9l-136.5-174a8.1 8.1 0 00-12.7 0zM360 442a40 40 0 1080 0 40 40 0 10-80 0zm494.6-153.4L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0042 42h216v494z"
+                  />
+                </svg>
+              </span>
+              <br />
+              <span>
+                Click To Upload Image
+              </span>
+              <input
+                accept="image/*"
+                id="upload-image"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "cursor": "pointer",
+                    "height": "100%",
+                    "left": " 0",
+                    "opacity": "0",
+                    "position": "absolute",
+                    "top": "0",
+                    "width": "100%",
+                  }
+                }
+                type="file"
+              />
+            </label>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

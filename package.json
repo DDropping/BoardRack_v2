@@ -1,15 +1,58 @@
 {
-  "name": "boardrack_v2",
-  "version": "0.1.0",
+  "name": "boardrack",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest",
+    "testUnit": "jest unit",
+    "testInt": "jest int",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.0.5",
+    "@zeit/next-less": "^1.0.1",
+    "antd": "^4.1.3",
+    "aws-sdk": "^2.653.0",
+    "axios": "^0.19.2",
+    "babel-plugin-import": "^1.13.0",
+    "bcryptjs": "^2.4.3",
+    "browser-image-compression": "^1.0.9",
+    "isomorphic-unfetch": "^3.0.0",
+    "js-cookie": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "less": "^3.11.1",
+    "mongoose": "^5.9.7",
+    "moxios": "^0.4.0",
     "next": "9.3.3",
+    "nookies": "^2.2.2",
+    "nprogress": "^0.2.0",
+    "null-loader": "^3.0.0",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "request": "^2.88.2",
+    "styled-components": "^5.0.1",
+    "validator": "^13.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^25.3.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "jest": "^25.3.0",
+    "jest-cli": "^25.5.2",
+    "less-vars-to-js": "^1.3.0",
+    "next-compose-plugins": "^2.2.0",
+    "react-test-renderer": "^16.13.1"
   }
 }
