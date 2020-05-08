@@ -1,19 +1,22 @@
-import React from 'react';
-import Head from 'next/head';
-import styled from 'styled-components';
-import { Button } from 'antd';
-import axios from 'axios';
-import fetch from 'isomorphic-unfetch';
+import React from "react";
+import Head from "next/head";
+import styled from "styled-components";
+import { Button } from "antd";
+import axios from "axios";
+import fetch from "isomorphic-unfetch";
 
-const Home = props => (
+import Carousel from "../components/carousel";
+
+const Home = (props) => (
   <div className="container">
     <Head>
       <title>BoardRack | Home</title>
     </Head>
+    <Carousel />
     <div>home</div>
     <button
       onClick={() => {
-        const res = axios.post('http://localhost:3000/api/posts/createpost');
+        const res = axios.post("http://localhost:3000/api/posts/createpost");
       }}
     >
       test
