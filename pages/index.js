@@ -12,15 +12,19 @@ const Home = (props) => (
     <Head>
       <title>BoardRack | Home</title>
     </Head>
-    <Carousel />
-    <div>home</div>
-    <button
-      onClick={() => {
-        const res = axios.post("http://localhost:3000/api/posts/createpost");
-      }}
-    >
-      test
-    </button>
+    <div style={{ zIndex: 1, position: "relative" }}>
+      <Carousel />
+    </div>
+    <div style={{ zIndex: 10, position: "relative" }}>
+      home
+      <button
+        onClick={() => {
+          const res = axios.post("http://localhost:3000/api/posts/createpost");
+        }}
+      >
+        test
+      </button>
+    </div>
   </div>
 );
 
