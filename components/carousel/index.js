@@ -38,7 +38,7 @@ const index = () => {
         <Carousel autoplay autoplaySpeed={7000} dotPosition="top">
           <div>
             <ImgWrapper>
-              <Img src="/images/banner/calculator.png" alt="boardrack logo" />
+              <Img src="/images/banner/buysell.png" alt="boardrack logo" />
             </ImgWrapper>
           </div>
           <div>
