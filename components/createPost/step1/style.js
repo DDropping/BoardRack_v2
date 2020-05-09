@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const PreviewContainer = styled.div`
+export const PreviewContainer = styled.div`
   display: flex;
   margin-top: 0.5rem;
   width: 100%;
@@ -8,7 +8,7 @@ const PreviewContainer = styled.div`
   background-color: ${(props) => (props.primary ? '#f3f7f9' : null)};
 `;
 
-const ImgContainer = styled.div`
+export const ImgContainer = styled.div`
   position: relative;
   height: 5rem;
   line-height: 5rem;
@@ -18,7 +18,7 @@ const ImgContainer = styled.div`
   text-align: center; /* center horizontally */
 `;
 
-const ImgBackground = styled.div`
+export const ImgBackground = styled.div`
   position: absolute;
   left: 0;
   top: 0;
@@ -30,7 +30,7 @@ const ImgBackground = styled.div`
   background-position: center;
 `;
 
-const Img = styled.img`
+export const Img = styled.img`
   max-height: 100%;
   max-width: 100%;
   opacity: ${(props) => (props.isLoading ? 0 : 1)};
@@ -38,7 +38,7 @@ const Img = styled.img`
   position: relative;
 `;
 
-const Status = styled.div`
+export const Status = styled.div`
   padding-top: 0.5rem;
   padding-left: 0.5rem;
   flex: 1;
@@ -48,15 +48,15 @@ const Status = styled.div`
   }
 `;
 
-const Options = styled.div`
+export const Options = styled.div`
   font-size: 1.5rem;
   margin: 0 0.5rem;
 `;
 
-const Star = styled.span`
+export const Star = styled.span`
   color: ${({ theme }) => theme.secondaryBlue};
 `;
 
-const Delete = styled.span`
+export const Delete = styled.span`
   color: ${({ theme }) => theme.secondaryRed};
 `;
