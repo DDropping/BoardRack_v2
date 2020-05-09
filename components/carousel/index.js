@@ -53,7 +53,7 @@ const index = () => {
           </div>
           <div>
             <ImgWrapper>
-              <Img src="/images/banner/findlove.png" alt="boardrack logo" />
+              <Img src="/images/banner/supportlocal.png" alt="boardrack logo" />
             </ImgWrapper>
           </div>
         </Carousel>
