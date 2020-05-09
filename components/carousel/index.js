@@ -43,10 +43,7 @@ const index = () => {
           </div>
           <div>
             <ImgWrapper>
-              <Img
-                src="/images/banner/findwhatyoulove.png"
-                alt="boardrack logo"
-              />
+              <Img src="/images/banner/findlove.png" alt="boardrack logo" />
             </ImgWrapper>
           </div>
           <div>
@@ -56,10 +53,7 @@ const index = () => {
           </div>
           <div>
             <ImgWrapper>
-              <Img
-                src="/images/banner/findwhatyoulove.png"
-                alt="boardrack logo"
-              />
+              <Img src="/images/banner/findlove.png" alt="boardrack logo" />
             </ImgWrapper>
           </div>
         </Carousel>
