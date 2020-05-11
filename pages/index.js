@@ -6,6 +6,7 @@ import axios from "axios";
 import fetch from "isomorphic-unfetch";
 
 import Carousel from "../components/carousel";
+import FiltersBar from "../components/filtersBar";
 
 const Home = (props) => (
   <div className="container">
@@ -16,14 +17,7 @@ const Home = (props) => (
       <Carousel />
     </div>
     <div style={{ zIndex: 10, position: "relative" }}>
-      home
-      <button
-        onClick={() => {
-          const res = axios.post("http://localhost:3000/api/posts/createpost");
-        }}
-      >
-        test
-      </button>
+      <FiltersBar />
     </div>
   </div>
 );
