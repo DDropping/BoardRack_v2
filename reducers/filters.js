@@ -1,4 +1,4 @@
-import { TOGGLE_FILTERS } from "../actions/types";
+import { TOGGLE_FILTERS, CHANGE_LAYOUT } from "../actions/types";
 
 const initialState = {
   isFiltersVisible: true,
@@ -18,6 +18,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isFiltersVisible: !state.isFiltersVisible,
+      };
+    case CHANGE_LAYOUT:
+      return {
+        ...state,
+        layout: action.payload,
       };
     default:
       return {
