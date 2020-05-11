@@ -7,6 +7,7 @@ import fetch from "isomorphic-unfetch";
 
 import Carousel from "../components/carousel";
 import FiltersBar from "../components/filtersBar";
+import FiltersBox from "../components/filtersBox";
 
 const Home = (props) => (
   <div className="container">
@@ -18,6 +19,7 @@ const Home = (props) => (
     </div>
     <div style={{ zIndex: 10, position: "relative" }}>
       <FiltersBar />
+      <FiltersBox />
     </div>
   </div>
 );
