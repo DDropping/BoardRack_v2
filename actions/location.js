@@ -24,7 +24,8 @@ export const getLocationWithIp = () => async (dispatch) => {
 };
 
 // GET USER'S LOCATION WITH LOCATION FORM ---------------------------------------
-export const handleLocationForm = ({ value }) => async (dispatch) => {
+export const handleLocationForm = (value) => async (dispatch) => {
+  console.log("action: ", value);
   dispatch({ type: TOGGLE_LOCATION_LOADING, payload: true });
 
   const url = `${baseUrl}/api/location/locationForm`;
