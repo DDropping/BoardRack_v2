@@ -108,7 +108,7 @@ const Location = () => {
         block
         loading={isLoading}
         style={{ marginBottom: "0.25rem" }}
-        onClick={handleGetLocationForm}
+        onClick={locationValue !== "" && handleGetLocationForm}
       >
         Update Location
       </Button>
