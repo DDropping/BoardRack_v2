@@ -1,7 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { SyncOutlined } from '@ant-design/icons';
+import React from "react";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+import { SyncOutlined } from "@ant-design/icons";
 
 const MapWrapper = styled.div`
   position: relative;
@@ -22,23 +22,27 @@ const LoadingIcon = styled.div`
 `;
 
 const Map = () => {
-  const currentLocation = useSelector(state => state.currentLocation);
+  const currentLocation = useSelector((state) => state.currentLocation);
   return (
     <MapWrapper>
-      {!currentLocation.isLocated && (
+      {(!currentLocation.isLocated ||
+        (currentLocation.isLocated &&
+          !currentLocation.location.locationImage)) && (
         <img src="/images/br_default_map.png" alt="location map" />
       )}
+
       {currentLocation.isLocated && currentLocation.isMapLoading && (
         <img
           src={
             currentLocation.location.locationImage
               ? currentLocation.location.locationImage
-              : '/images/br_default_map.png'
+              : "/images/br_default_map.png"
           }
           alt="location map"
-          style={{ filter: 'grayscale(100%)' }}
+          style={{ filter: "grayscale(100%)" }}
         />
       )}
+
       {currentLocation.isLocated && !currentLocation.isMapLoading && (
         <img src={currentLocation.location.locationImage} alt="location map" />
       )}
