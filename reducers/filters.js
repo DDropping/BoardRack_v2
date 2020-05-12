@@ -5,6 +5,8 @@ import {
   UPDATE_PRICE_MIN,
   UPDATE_ANY_PRICE,
   UPDATE_CONDITION,
+  UPDATE_BOARD_TYPE,
+  UPDATE_DISTANCE,
 } from "../actions/types";
 
 const initialState = {
@@ -54,6 +56,18 @@ export default function (state = initialState, action) {
       return {
         ...state,
         condition: action.payload,
+      };
+    //board type
+    case UPDATE_BOARD_TYPE:
+      return {
+        ...state,
+        boardType: action.payload,
+      };
+    //distance
+    case UPDATE_DISTANCE:
+      return {
+        ...state,
+        distance: action.payload,
       };
     default:
       return {
