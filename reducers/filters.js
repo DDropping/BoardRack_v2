@@ -4,6 +4,7 @@ import {
   UPDATE_PRICE_MAX,
   UPDATE_PRICE_MIN,
   UPDATE_ANY_PRICE,
+  UPDATE_CONDITION,
 } from "../actions/types";
 
 const initialState = {
@@ -47,6 +48,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         anyPrice: action.payload,
+      };
+    //condition
+    case UPDATE_CONDITION:
+      return {
+        ...state,
+        condition: action.payload,
       };
     default:
       return {
