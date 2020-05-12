@@ -15,3 +15,9 @@ export const LocationTextWrapper = styled.h2`
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
+
+export const PriceRangeContainer = styled.div`
+  .ant-input-number-disabled .ant-input-number-input {
+    cursor: pointer;
+  }
+`;
