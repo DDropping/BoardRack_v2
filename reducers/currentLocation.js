@@ -1,11 +1,12 @@
 import {
+  USER_LOADED_SET_LOCATION,
   UPDATE_CURRENT_LOCATION,
   TOGGLE_LOCATION_LOADING,
   UPDATE_LOCATION_IMAGE,
   LOAD_DEFAULT_LOCATION_TO_CURRENT,
   TOGGLE_MAP_LOADING,
-  UPDATE_CURRENT_LOCATION_IP
-} from '../actions/types';
+  UPDATE_CURRENT_LOCATION_IP,
+} from "../actions/types";
 
 const initialState = {
   isLoading: false,
@@ -16,32 +17,32 @@ const initialState = {
     lat: null,
     lng: null,
     country: null,
-    state: 'CA',
+    state: "CA",
     county: null,
-    city: 'San Francisco',
+    city: "San Francisco",
     district: null,
-    postalCode: '94121',
-    locationImage: null
-  }
+    postalCode: "94121",
+    locationImage: null,
+  },
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case LOAD_DEFAULT_LOCATION_TO_CURRENT:
       return {
         ...state,
         isLocated: true,
-        location: action.payload
+        location: action.payload,
       };
     case TOGGLE_LOCATION_LOADING:
       return {
         ...state,
-        isLoading: action.payload
+        isLoading: action.payload,
       };
     case TOGGLE_MAP_LOADING:
       return {
         ...state,
-        isMapLoading: action.payload
+        isMapLoading: action.payload,
       };
     case UPDATE_CURRENT_LOCATION:
       return {
@@ -50,8 +51,8 @@ export default function(state = initialState, action) {
         isLocatedWithIp: false,
         location: {
           ...state.location,
-          ...action.payload
-        }
+          ...action.payload,
+        },
       };
     case UPDATE_CURRENT_LOCATION_IP:
       return {
@@ -60,8 +61,8 @@ export default function(state = initialState, action) {
         isLocatedWithIp: true,
         location: {
           ...state.location,
-          ...action.payload
-        }
+          ...action.payload,
+        },
       };
     case UPDATE_LOCATION_IMAGE:
       return {
@@ -69,12 +70,12 @@ export default function(state = initialState, action) {
         isMapLoading: false,
         location: {
           ...state.location,
-          locationImage: action.payload
-        }
+          locationImage: action.payload,
+        },
       };
     default:
       return {
-        ...state
+        ...state,
       };
   }
 }
