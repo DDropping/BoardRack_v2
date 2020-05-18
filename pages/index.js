@@ -1,9 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import styled from "styled-components";
-import { Button } from "antd";
-import axios from "axios";
-import fetch from "isomorphic-unfetch";
 
 import Carousel from "../components/carousel";
 import FiltersBar from "../components/filtersBar";

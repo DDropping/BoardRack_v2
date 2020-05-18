@@ -51,6 +51,7 @@ async function handlePostRequest(req, res) {
       email,
       password,
       role,
+      date: Date.now(),
     });
 
     //encrypt password
