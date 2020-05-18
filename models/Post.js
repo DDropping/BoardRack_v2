@@ -1,19 +1,19 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const { String, Date, Number } = mongoose.Schema.Types;
 
 const PostSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
+    ref: "user",
   },
   title: {
     type: String,
-    required: true
+    required: true,
   },
   price: {
     type: String,
-    required: true
+    required: true,
   },
   boardType: { type: String },
   condition: { type: String },
@@ -46,28 +46,28 @@ const PostSchema = new mongoose.Schema({
     state: { type: String },
     city: { type: String },
     postalCode: { type: String },
-    locationImage: { type: String }
+    locationImage: { type: String },
   },
   images: [
     {
       thumbnail: String,
-      standard: String
-    }
+      standard: String,
+    },
   ],
   favorites: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'user'
-    }
+      ref: "user",
+    },
   ],
   viewCount: {
     type: Number,
-    default: 0
+    default: 0,
   },
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-export default mongoose.models.Post || mongoose.model('Post', PostSchema);
+export default mongoose.models.Post || mongoose.model("Post", PostSchema);
