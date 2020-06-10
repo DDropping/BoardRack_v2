@@ -7,16 +7,14 @@ import {
   UPDATE_CONDITION,
   UPDATE_BOARD_TYPE,
   UPDATE_DISTANCE,
-} from "../actions/types";
+} from '../actions/types';
 
 const initialState = {
   isFiltersVisible: true,
-  layout: "Gallery",
-  sort: "Newest",
+  layout: 'Gallery',
+  sort: 'Newest',
   distance: 25,
-  anyPrice: true, // any price
-  priceLow: null,
-  priceHigh: null,
+  price: { any: true, min: null, max: null },
   boardType: [],
   condition: [],
 };
@@ -39,17 +37,26 @@ export default function (state = initialState, action) {
     case UPDATE_PRICE_MAX:
       return {
         ...state,
-        priceHigh: action.payload,
+        price: {
+          ...state.price,
+          max: action.payload,
+        },
       };
     case UPDATE_PRICE_MIN:
       return {
         ...state,
-        priceLow: action.payload,
+        price: {
+          ...state.price,
+          min: action.payload,
+        },
       };
     case UPDATE_ANY_PRICE:
       return {
         ...state,
-        anyPrice: action.payload,
+        price: {
+          ...state.price,
+          any: action.payload,
+        },
       };
     //condition
     case UPDATE_CONDITION:
