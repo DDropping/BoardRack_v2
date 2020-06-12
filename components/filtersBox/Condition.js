@@ -1,17 +1,17 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Checkbox, Row, Col } from "antd";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Checkbox, Row, Col } from 'antd';
 
-import { UPDATE_CONDITION } from "../../actions/types";
+import { UPDATE_CONDITION } from '../../actions/types';
 
 const CheckboxGroup = Checkbox.Group;
 
 const conditionOptions = [
-  "New",
-  "Lightly Used",
-  "Used",
-  "Heavily Used",
-  "Thrashed",
+  'New',
+  'Heavily Used',
+  'Lightly Used',
+  'Thrashed',
+  'Used',
 ];
 
 const Condition = () => {
@@ -29,7 +29,7 @@ const Condition = () => {
   return (
     <div>
       <strong>Condition:</strong>
-      <div style={{ borderBottom: "1px solid #E9E9E9" }}>
+      <div style={{ borderBottom: '1px solid #E9E9E9' }}>
         <Checkbox
           onChange={onCheckAllChange}
           checked={
