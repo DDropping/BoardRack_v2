@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
-import { Carousel } from "antd";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import React, { useRef } from 'react';
+import { Carousel } from 'antd';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 import {
   CarouselContainer,
@@ -10,7 +10,7 @@ import {
   ArrowWrapper,
   PreviousArrow,
   NextArrow,
-} from "./style";
+} from './style';
 
 const index = () => {
   const carouselRef = useRef();
@@ -24,7 +24,7 @@ const index = () => {
       </ArrowWrapper>
       <ArrowWrapper>
         <NextArrow onClick={() => carouselRef.current.next()}>
-          <RightOutlined style={{ float: "right" }} />
+          <RightOutlined />
         </NextArrow>
       </ArrowWrapper>
       <CarouselWrapper>
