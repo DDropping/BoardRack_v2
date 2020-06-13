@@ -1,21 +1,23 @@
-import React from "react";
-import Head from "next/head";
+import React from 'react';
+import Head from 'next/head';
 
-import Carousel from "../components/carousel";
-import FiltersBar from "../components/filtersBar";
-import FiltersBox from "../components/filtersBox";
+import Carousel from '../components/carousel';
+import FiltersBar from '../components/filtersBar';
+import FiltersBox from '../components/filtersBox';
+import PostCard from '../components/postCard';
 
 const Home = (props) => (
   <div className="container">
     <Head>
       <title>BoardRack | Home</title>
     </Head>
-    <div style={{ zIndex: 1, position: "relative" }}>
+    <div style={{ zIndex: 1, position: 'relative' }}>
       <Carousel />
     </div>
-    <div style={{ zIndex: 10, position: "relative" }}>
+    <div style={{ zIndex: 10, position: 'relative' }}>
       <FiltersBar />
       <FiltersBox />
+      <PostCard />
     </div>
   </div>
 );
