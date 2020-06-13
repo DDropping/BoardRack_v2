@@ -1,10 +1,13 @@
 import React from 'react';
 
+import { CardContainer } from './style';
+import Header from './Header';
+
 const index = () => {
   return (
-    <div>
-      <div>PostCard</div>
-    </div>
+    <CardContainer>
+      <Header />
+    </CardContainer>
   );
 };
 
