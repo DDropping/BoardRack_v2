@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { EyeOutlined } from '@ant-design/icons';
 
-const Views = (viewCount) => {
+const Views = ({ count }) => {
   const ViewsContainer = styled.div`
     display: inline-block;
     margin-right: 2px;
@@ -13,7 +13,8 @@ const Views = (viewCount) => {
 
   return (
     <ViewsContainer>
-      {viewCount.viewCount} <EyeOutlined style={{ marginRight: '10px' }} />
+      {count}
+      <EyeOutlined style={{ marginRight: '10px' }} />
     </ViewsContainer>
   );
 };
