@@ -8,6 +8,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <strong>$price</strong>
+      <div style={{ flex: 1 }} />
       <ViewCounter count={12} />
       <FavoriteCounter count={12} postId={123123123} />
     </HeaderContainer>

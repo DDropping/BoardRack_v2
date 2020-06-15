@@ -16,6 +16,7 @@ export const CardContainer = styled.div`
 `;
 
 export const HeaderContainer = styled.div`
+  display: flex;
   z-index: 2;
   width: 100%;
   height: 32px;
