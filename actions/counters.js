@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const addFavorite = (id) => async (dispatch) => {
+export const favorite = (id) => async (dispatch) => {
   //set headers for request
   const config = {
     headers: {
@@ -9,17 +9,34 @@ export const addFavorite = (id) => async (dispatch) => {
   };
 
   //stringify the form items
-  const postid = { postId: postId };
+  const postid = { postId: id };
   const body = JSON.stringify(postid);
 
   //update post to DB
   try {
     await axios.put('/api/posts/favorite', body, config);
-    successNotification(
-      'Post Favorited',
-      'This post has been added to your favorites',
-      3.5
-    );
+  } catch (err) {
+    if (err) {
+      console.log(err);
+    }
+  }
+};
+
+export const unfavorite = (id) => async (dispatch) => {
+  //set headers for request
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  //stringify the form items
+  const postid = { postId: id };
+  const body = JSON.stringify(postid);
+
+  //update post to DB
+  try {
+    await axios.put('/api/posts/unfavorite', body, config);
   } catch (err) {
     if (err) {
       console.log(err);
