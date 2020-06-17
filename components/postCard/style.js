@@ -27,3 +27,21 @@ export const HeaderContainer = styled.div`
     cursor: default;
   }
 `;
+
+export const ContentContainer = styled.div`
+  z-index: 2;
+  height: 80px;
+  width: 100%;
+  padding: 10px;
+  position: absolute;
+  bottom: 0px;
+  background: ${({ theme }) => theme.primaryWhite};
+`;
+
+export const ContentTitle = styled.div`
+  font-size: 18px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
