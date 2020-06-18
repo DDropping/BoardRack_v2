@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Carousel from '../components/carousel';
 import FiltersBar from '../components/filtersBar';
 import FiltersBox from '../components/filtersBox';
-import PostCard from '../components/postCard';
+import PostList from '../components/post';
 
 const Home = (props) => (
   <div className="container">
@@ -17,7 +17,7 @@ const Home = (props) => (
     <div style={{ zIndex: 10, position: 'relative' }}>
       <FiltersBar />
       <FiltersBox />
-      <PostCard />
+      <PostList />
     </div>
   </div>
 );

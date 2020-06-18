@@ -4,7 +4,8 @@ import { CardContainer } from './style';
 import Header from './Header';
 import Content from './Content';
 
-const index = () => {
+const index = ({ postData }) => {
+  console.log(postData);
   return (
     <CardContainer>
       <Header />
