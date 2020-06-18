@@ -4,13 +4,14 @@ import { HeaderContainer } from './style';
 import ViewCounter from '../counters/Views';
 import FavoriteCounter from '../counters/Favorites';
 
-const Header = () => {
+const Header = ({ data }) => {
+  console.log(data);
   return (
     <HeaderContainer>
-      <strong>$price</strong>
+      <strong>{'$' + data.price}</strong>
       <div style={{ flex: 1 }} />
-      <ViewCounter count={12} />
-      <FavoriteCounter count={12} postId={123123123} />
+      <ViewCounter count={data.viewCount} />
+      <FavoriteCounter favorites={data.favorites} postId={123123123} />
     </HeaderContainer>
   );
 };

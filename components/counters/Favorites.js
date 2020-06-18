@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Tooltip } from 'antd';
 import styled from 'styled-components';
 
-const Favorites = ({ count, postId }) => {
+const Favorites = ({ favorites, postId }) => {
   const user = useSelector((state) => state.auth.user);
   const [isFavorite, setFavorite] = useState(false);
 
@@ -25,7 +25,7 @@ const Favorites = ({ count, postId }) => {
 
   return (
     <FavoritesContainer>
-      {count}
+      {favorites.length}
       {!user && (
         <Tooltip placement="top" title="Login to favorite">
           <StarOutlined />
