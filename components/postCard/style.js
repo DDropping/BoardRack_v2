@@ -15,6 +15,7 @@ export const CardContainer = styled.div`
   }
 `;
 
+//POST CARD HEADER
 export const HeaderContainer = styled.div`
   display: flex;
   z-index: 2;
@@ -28,6 +29,7 @@ export const HeaderContainer = styled.div`
   }
 `;
 
+//POST CARD CONTENT
 export const ContentContainer = styled.div`
   z-index: 2;
   height: 80px;
@@ -44,4 +46,37 @@ export const ContentTitle = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+//POST CARD IMAGES
+export const ImageContainer = styled.div`
+  position: relative;
+  text-align: center; /* needed to allow vertical centering */
+  line-height: 268px; /* overall post card height - post header height | used to center photo in white space*/
+  height: 268px;
+  width: 250px;
+  background-color: #f3f7f9;
+  overflow: hidden;
+`;
+
+export const ImageBackgroundWrapper = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  filter: opacity(0.2);
+  -webkit-filter: opacity(0.2);
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+`;
+
+export const ImageWrapper = styled.img`
+  max-height: 100%; /* overall post card height - post header height | used to center photo in white space*/
+  max-width: 100%;
+  vertical-align: middle; /* center vertically */
+  margin: 0 auto; /* center horizontally */
+  position: relative;
+  border: 1px solid rgb(255, 255, 255);
+  margin-top: -3px; /* fix margin issue */
 `;
