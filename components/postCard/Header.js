@@ -11,7 +11,7 @@ const Header = ({ data }) => {
       <strong>{'$' + data.price}</strong>
       <div style={{ flex: 1 }} />
       <ViewCounter count={data.viewCount} />
-      <FavoriteCounter favorites={data.favorites} postId={123123123} />
+      <FavoriteCounter favorites={data.favorites} postId={data.postId} />
     </HeaderContainer>
   );
 };

@@ -6,6 +6,7 @@ import Content from './Content';
 
 const index = ({ postData }) => {
   const headerData = {
+    postId: postData._id,
     price: postData.price,
     favorites: postData.favorites,
     viewCount: postData.viewCount,
