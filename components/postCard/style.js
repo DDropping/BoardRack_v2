@@ -6,7 +6,7 @@ export const CardContainer = styled.div`
   width: 300px;
   height: 400px; /* overall size of post card */
   margin-left: 10px;
-  margin-bottom: 10px;
+  margin-top: 10px;
   background: ${({ theme }) => theme.primaryWhite};
   transition: box-shadow 0.3s;
   box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);
