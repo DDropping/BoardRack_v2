@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { ImageContainer, ImageBackgroundWrapper, ImageWrapper } from './style';
-const Images = ({ post }) => {
+const Images = ({ data }) => {
   return (
     <ImageContainer>
       <ImageBackgroundWrapper
         style={
-          post.images[0]
-            ? { backgroundImage: 'url(' + post.images[0].thumbnail + ')' }
+          data.image
+            ? { backgroundImage: 'url(' + data.image.thumbnail + ')' }
             : {
                 backgroundImage:
                   process.env.PUBLIC_URL +
@@ -18,8 +18,8 @@ const Images = ({ post }) => {
       <ImageWrapper
         alt=""
         src={
-          post.images[0]
-            ? post.images[0].thumbnail
+          data.image
+            ? data.image.thumbnail
             : process.env.PUBLIC_URL + '/images/br-placeholder-shortboard.png'
         }
       />

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { CardContainer } from './style';
 import Header from './Header';
+import Images from './Images';
 import Content from './Content';
 
 const index = ({ postData }) => {
@@ -10,6 +11,9 @@ const index = ({ postData }) => {
     price: postData.price,
     favorites: postData.favorites,
     viewCount: postData.viewCount,
+  };
+  const imageData = {
+    image: postData.images[0],
   };
   const contentData = {
     title: postData.title,
@@ -22,6 +26,7 @@ const index = ({ postData }) => {
   return (
     <CardContainer>
       <Header data={headerData} />
+      <Images data={imageData} />
       <Content data={contentData} />
     </CardContainer>
   );

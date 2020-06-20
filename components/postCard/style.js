@@ -52,9 +52,9 @@ export const ContentTitle = styled.div`
 export const ImageContainer = styled.div`
   position: relative;
   text-align: center; /* needed to allow vertical centering */
-  line-height: 268px; /* overall post card height - post header height | used to center photo in white space*/
-  height: 268px;
-  width: 250px;
+  width: 300px;
+  height: 288px;
+  line-height: 288px; /* overall post card height - post header height | used to center photo in white space*/
   background-color: #f3f7f9;
   overflow: hidden;
 `;
@@ -66,8 +66,8 @@ export const ImageBackgroundWrapper = styled.div`
   filter: opacity(0.2);
   -webkit-filter: opacity(0.2);
   background-size: cover;
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   background-position: center;
 `;
 
