@@ -3,23 +3,33 @@ import React from 'react';
 import { ContentContainer, ContentTitle } from './style';
 
 const Content = ({ data }) => {
-  console.log(data);
+  const length =
+    data.lengthFt && data.lengthIn
+      ? data.lengthFt + "'" + data.lengthIn + '" '
+      : '?? ';
+  const width = data.width ? ' ' + data.width + '" ' : ' ?? ';
+  const depth = data.depth ? ' ' + data.depth + '" ' : ' ??';
+  const volume = data.volume ? data.volume + 'L' : null;
 
-  const dims =
-    data.lengthFt && data.lengthIn && data.width && data.depth
-      ? data.lengthFt +
-        "'" +
-        data.lengthIn +
-        '" x ' +
-        data.width +
-        '" x ' +
-        data.depth +
-        '"'
-      : null;
   return (
     <ContentContainer>
       <ContentTitle>{data.title}</ContentTitle>
-      {dims !== null && dims}
+      <strong>
+        <i>{length}</i>
+      </strong>
+      x
+      <strong>
+        <i>{width}</i>
+      </strong>
+      x
+      <strong>
+        <i>{depth}</i>
+      </strong>
+      <span style={{ float: 'right' }}>
+        <strong>
+          <i>{volume}</i>
+        </strong>
+      </span>
     </ContentContainer>
   );
 };
