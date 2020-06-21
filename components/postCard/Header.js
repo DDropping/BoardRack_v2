@@ -5,7 +5,6 @@ import ViewCounter from '../counters/Views';
 import FavoriteCounter from '../counters/Favorites';
 
 const Header = ({ data }) => {
-  console.log(data);
   return (
     <HeaderContainer>
       <strong>{'$' + data.price}</strong>

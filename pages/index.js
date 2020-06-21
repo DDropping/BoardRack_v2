@@ -16,8 +16,10 @@ const Home = (props) => (
     </div>
     <div style={{ zIndex: 10, position: 'relative' }}>
       <FiltersBar />
-      <FiltersBox />
-      <PostList />
+      <div style={{ display: 'flex' }}>
+        <FiltersBox />
+        <PostList />
+      </div>
     </div>
   </div>
 );

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const FiltersBoxContainer = styled.div`
   position: relative;
+  display: inline-block;
+  vertical-align: top;
   padding: 0.5rem;
   margin-top: 0.5rem;
   margin-right: 0.5rem;

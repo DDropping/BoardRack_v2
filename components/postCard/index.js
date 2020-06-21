@@ -6,6 +6,8 @@ import Images from './Images';
 import Content from './Content';
 
 const index = ({ postData }) => {
+  console.log(postData);
+
   const headerData = {
     postId: postData._id,
     price: postData.price,
