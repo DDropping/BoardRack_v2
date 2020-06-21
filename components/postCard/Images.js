@@ -8,20 +8,12 @@ const Images = ({ data }) => {
         style={
           data.image
             ? { backgroundImage: 'url(' + data.image.thumbnail + ')' }
-            : {
-                backgroundImage:
-                  process.env.PUBLIC_URL +
-                  '/images/br-placeholder-shortboard.png',
-              }
+            : null
         }
       />
       <ImageWrapper
         alt=""
-        src={
-          data.image
-            ? data.image.thumbnail
-            : process.env.PUBLIC_URL + '/images/br-placeholder-shortboard.png'
-        }
+        src={data.image ? data.image.thumbnail : '/images/br_default_post.png'}
       />
     </ImageContainer>
   );
