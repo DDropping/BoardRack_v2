@@ -1,5 +1,6 @@
 import connectDb from '../../../utils/ConnectDb';
 import Post from '../../../models/Post';
+import User from '../../../models/User';
 
 import authenticate from '../../../middleware/auth';
 
@@ -22,7 +23,6 @@ const handler = async (req, res) => {
 async function handlePutRequest(req, res) {
   try {
     const post = await Post.findById(req.body.postId);
-
     //check if user has already favorited the post
     if (
       post.favorites.filter((favorite) => favorite.toString() === req.user.id)

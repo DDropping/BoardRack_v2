@@ -3,6 +3,15 @@ import { StarOutlined, StarFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { Tooltip } from 'antd';
 import styled from 'styled-components';
+import axios from 'axios';
+
+const FavoritesContainer = styled.div`
+  display: inline-block;
+  position: relative;
+  margin-right: 2px;
+  font-size: 18px;
+  color: ${({ theme }) => theme.primaryBlue};
+`;
 
 const Favorites = ({ favorites, postId }) => {
   const user = useSelector((state) => state.auth.user);
@@ -15,13 +24,27 @@ const Favorites = ({ favorites, postId }) => {
     }
   }, [user]);
 
-  const FavoritesContainer = styled.div`
-    display: inline-block;
-    position: relative;
-    margin-right: 2px;
-    font-size: 18px;
-    color: ${({ theme }) => theme.primaryBlue};
-  `;
+  async function addFavorite(postId) {
+    //set headers for request
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    //stringify the form items
+    const data = { postId: postId };
+    const body = JSON.stringify(data);
+
+    //update post to DB
+    try {
+      await axios.put('/api/posts/favorite', body, config);
+    } catch (err) {
+      if (err) {
+        console.log(err);
+      }
+    }
+  }
 
   return (
     <FavoritesContainer>
@@ -41,6 +64,7 @@ const Favorites = ({ favorites, postId }) => {
       {user && !isFavorite && (
         <StarOutlined
           onClick={(e) => {
+            addFavorite(postId);
             setFavorite(true);
           }}
         />
