@@ -13,8 +13,9 @@ import Support from './Support';
 const Container = styled.section`
   width: 100vw;
   color: ${({ theme }) => theme.secondaryWhite};
-  background-color: ${props => props.theme.primaryBlue};
+  background-color: ${(props) => props.theme.primaryBlue};
   text-align: center;
+  margin-top: 10px;
   padding: 1rem;
 `;
 
