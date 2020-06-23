@@ -23,7 +23,6 @@ export const HeaderContainer = styled.div`
   height: 32px;
   padding: 5px;
   background: ${({ theme }) => theme.primaryWhite};
-  border-bottom: 2px solid ${({ theme }) => theme.primaryGrey};
   :hover {
     cursor: default;
   }
