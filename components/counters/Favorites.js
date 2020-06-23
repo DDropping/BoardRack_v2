@@ -46,6 +46,28 @@ const Favorites = ({ favorites, postId }) => {
     }
   }
 
+  async function removeFavorite(postId) {
+    //set headers for request
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    //stringify the form items
+    const data = { postId: postId };
+    const body = JSON.stringify(data);
+
+    //update post to DB
+    try {
+      await axios.put('/api/posts/unfavorite', body, config);
+    } catch (err) {
+      if (err) {
+        console.log(err);
+      }
+    }
+  }
+
   return (
     <FavoritesContainer>
       {favorites.length}
@@ -57,6 +79,7 @@ const Favorites = ({ favorites, postId }) => {
       {user && isFavorite && (
         <StarFilled
           onClick={(e) => {
+            removeFavorite(postId);
             setFavorite(false);
           }}
         />

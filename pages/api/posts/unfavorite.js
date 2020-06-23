@@ -1,5 +1,6 @@
 import connectDb from '../../../utils/ConnectDb';
 import Post from '../../../models/Post';
+import User from '../../../models/User';
 
 import authenticate from '../../../middleware/auth';
 
