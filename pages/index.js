@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Carousel from '../components/carousel';
 import FiltersBar from '../components/filtersBar';
 import FiltersBox from '../components/filtersBox';
-import PostList from '../components/post';
+import PostList from '../components/displayPosts';
 
 const Home = (props) => (
   <div className="container">

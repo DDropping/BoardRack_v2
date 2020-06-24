@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -9,6 +10,14 @@ const Container = styled.div`
   display: inline-block;
   vertical-align: top;
   flex: 1;
+  li {
+    list-style-type: none;
+    a {
+      :hover {
+        color: ${({ theme }) => theme.primaryBlack};
+      }
+    }
+  }
 `;
 
 const index = () => {
@@ -26,7 +35,18 @@ const index = () => {
   return (
     <Container>
       {posts.map((post, index) => {
-        return <PostCard key={index} postData={post} />;
+        return (
+          <li key={index}>
+            <Link
+              href={`/postdetails/[postId]?postId=${post._id}`}
+              as={`/postdetails/${post._id}`}
+            >
+              <a>
+                <PostCard key={index} postData={post} />
+              </a>
+            </Link>
+          </li>
+        );
       })}
     </Container>
   );
