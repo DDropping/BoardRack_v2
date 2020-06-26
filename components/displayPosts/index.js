@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import axios from 'axios';
 import styled from 'styled-components';
 
 import baseUrl from '../../utils/baseUrl';
 import PostCard from '../postCard';
+import PostModal from '../postModal';
 
 const Container = styled.div`
   display: inline-block;
@@ -21,6 +23,7 @@ const Container = styled.div`
 `;
 
 const index = () => {
+  const router = useRouter();
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -34,13 +37,11 @@ const index = () => {
 
   return (
     <Container>
+      {!!router.query.postId && <PostModal postId={router.query.postId} />}
       {posts.map((post, index) => {
         return (
           <li key={index}>
-            <Link
-              href={`/postdetails/[postId]?postId=${post._id}`}
-              as={`/postdetails/${post._id}`}
-            >
+            <Link href={`/?postId=${post._id}`} as={`/postdetails/${post._id}`}>
               <a>
                 <PostCard key={index} postData={post} />
               </a>
