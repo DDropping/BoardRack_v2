@@ -12,7 +12,7 @@ const index = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const url = `${baseUrl}/api/posts/allPosts`;
+      const url = `${baseUrl}/api/posts/postdetails`;
       const res = await axios.get(url);
       setPosts(res.data);
     }

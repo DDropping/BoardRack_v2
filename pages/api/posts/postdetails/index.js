@@ -1,5 +1,5 @@
-import connectDb from '../../../utils/ConnectDb';
-import Post from '../../../models/Post';
+import connectDb from '../../../../utils/ConnectDb';
+import Post from '../../../../models/Post';
 
 connectDb();
 
