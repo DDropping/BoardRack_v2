@@ -1,9 +1,11 @@
 import React from 'react';
 
-const index = () => {
+const index = ({ quickData }) => {
+  console.log('quickData:', quickData);
   return (
     <div>
-      <div>post page</div>
+      {quickData ? quickData.title : 'post page'}
+      {quickData ? quickData.price : 'post page'}
     </div>
   );
 };

@@ -7,14 +7,14 @@ import FiltersBox from '../components/filtersBox';
 import PostList from '../components/displayPosts';
 
 const Home = (props) => (
-  <div className="container">
+  <div>
     <Head>
       <title>BoardRack | Home</title>
     </Head>
     <div style={{ zIndex: 1, position: 'relative' }}>
       <Carousel />
     </div>
-    <div style={{ zIndex: 10, position: 'relative' }}>
+    <div style={{ zIndex: 2, position: 'relative' }}>
       <FiltersBar />
       <div style={{ display: 'flex' }}>
         <FiltersBox />

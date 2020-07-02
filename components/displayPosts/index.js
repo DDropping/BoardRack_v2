@@ -25,6 +25,7 @@ const Container = styled.div`
 const index = () => {
   const router = useRouter();
   const [posts, setPosts] = useState([]);
+  console.log(posts);
 
   useEffect(() => {
     async function fetchData() {
@@ -36,8 +37,8 @@ const index = () => {
   }, []);
 
   return (
-    <Container>
-      {!!router.query.postId && <PostModal postId={router.query.postId} />}
+    <Container id="__br_displayPosts">
+      <PostModal quickData={posts} />
       {posts.map((post, index) => {
         return (
           <li key={index}>
