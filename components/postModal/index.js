@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { useRouter } from 'next/router';
 
+import './react-modal-custom.less';
 import PostPage from '../postPage';
 
 Modal.setAppElement('#__next');
@@ -14,7 +15,6 @@ const index = ({ quickData }) => {
 
   const customStyles = {
     overlay: { zIndex: 9999 },
-    body: { overflow: 'hidden' },
   };
 
   return (
@@ -22,6 +22,7 @@ const index = ({ quickData }) => {
       isOpen={!!router.query.postId}
       onRequestClose={() => closeModal()}
       style={customStyles}
+      bodyOpenClassName={'ReactModal__Body--open'}
     >
       <PostPage
         quickData={quickData.find(
