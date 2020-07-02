@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import axios from 'axios';
 
@@ -9,9 +8,7 @@ import PostModal from '../postModal';
 import { Container, Li } from './style';
 
 const index = () => {
-  const router = useRouter();
   const [posts, setPosts] = useState([]);
-  console.log(posts);
 
   useEffect(() => {
     async function fetchData() {

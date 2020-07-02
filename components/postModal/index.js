@@ -38,6 +38,7 @@ const index = ({ quickData }) => {
       bodyOpenClassName={'ReactModal__Body--open'}
     >
       <PostPage
+        postId={router.query.postId}
         quickData={quickData.find(
           (element) => element._id === router.query.postId
         )}
