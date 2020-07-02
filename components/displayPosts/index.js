@@ -6,7 +6,7 @@ import axios from 'axios';
 import baseUrl from '../../utils/baseUrl';
 import PostCard from '../postCard';
 import PostModal from '../postModal';
-import { Container } from './style';
+import { Container, Li } from './style';
 
 const index = () => {
   const router = useRouter();
@@ -27,7 +27,7 @@ const index = () => {
       <PostModal quickData={posts} />
       {posts.map((post, index) => {
         return (
-          <li key={index}>
+          <Li key={index}>
             <Link
               scroll={false}
               href={`/?postId=${post._id}`}
@@ -37,7 +37,7 @@ const index = () => {
                 <PostCard key={index} postData={post} />
               </a>
             </Link>
-          </li>
+          </Li>
         );
       })}
     </Container>

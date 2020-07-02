@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from 'react-modal';
 import { useRouter } from 'next/router';
 
@@ -9,12 +9,25 @@ Modal.setAppElement('#__next');
 
 const index = ({ quickData }) => {
   const router = useRouter();
+
   function closeModal() {
     router.push('/');
   }
 
   const customStyles = {
     overlay: { zIndex: 9999 },
+    content: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      width: '100%',
+      margin: '0 auto',
+      borderRadius: 0,
+      padding: 0,
+      maxWidth: '1000px',
+    },
   };
 
   return (
