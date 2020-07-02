@@ -2,25 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import axios from 'axios';
-import styled from 'styled-components';
 
 import baseUrl from '../../utils/baseUrl';
 import PostCard from '../postCard';
 import PostModal from '../postModal';
-
-const Container = styled.div`
-  display: inline-block;
-  vertical-align: top;
-  flex: 1;
-  li {
-    list-style-type: none;
-    a {
-      :hover {
-        color: ${({ theme }) => theme.primaryBlack};
-      }
-    }
-  }
-`;
+import { Container } from './style';
 
 const index = () => {
   const router = useRouter();
@@ -42,7 +28,11 @@ const index = () => {
       {posts.map((post, index) => {
         return (
           <li key={index}>
-            <Link href={`/?postId=${post._id}`} as={`/postdetails/${post._id}`}>
+            <Link
+              scroll={false}
+              href={`/?postId=${post._id}`}
+              as={`/postdetails/${post._id}`}
+            >
               <a>
                 <PostCard key={index} postData={post} />
               </a>
