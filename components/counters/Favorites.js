@@ -3,7 +3,8 @@ import { StarOutlined, StarFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { Tooltip } from 'antd';
 import styled from 'styled-components';
-import axios from 'axios';
+
+import { addFavorite, removeFavorite } from './util';
 
 const FavoritesContainer = styled.div`
   display: inline-block;
@@ -23,50 +24,6 @@ const Favorites = ({ favorites, postId }) => {
       setFavorite(user.favorites.includes(postId));
     }
   }, [user]);
-
-  async function addFavorite(postId) {
-    //set headers for request
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    //stringify the form items
-    const data = { postId: postId };
-    const body = JSON.stringify(data);
-
-    //update post to DB
-    try {
-      await axios.put('/api/posts/favorite', body, config);
-    } catch (err) {
-      if (err) {
-        console.log(err);
-      }
-    }
-  }
-
-  async function removeFavorite(postId) {
-    //set headers for request
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    //stringify the form items
-    const data = { postId: postId };
-    const body = JSON.stringify(data);
-
-    //update post to DB
-    try {
-      await axios.put('/api/posts/unfavorite', body, config);
-    } catch (err) {
-      if (err) {
-        console.log(err);
-      }
-    }
-  }
 
   return (
     <FavoritesContainer>
