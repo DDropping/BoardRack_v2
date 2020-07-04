@@ -1,17 +1,17 @@
-import React from 'react';
-import Link from 'next/link';
-import { Col, Row } from 'antd';
-import styled from 'styled-components';
+import React from "react";
+import Link from "next/link";
+import { Col, Row } from "antd";
+import styled from "styled-components";
 
-import LogoWhite from '../logo/DefaultLogoWhite';
-import Company from './Company';
-import Policy from './Policy';
-import Social from './Social';
-import Subscribe from './Subscribe';
-import Support from './Support';
+import LogoWhite from "../logo/DefaultLogoWhite";
+import Company from "./Company";
+import Policy from "./Policy";
+import Social from "./Social";
+import Subscribe from "./Subscribe";
+import Support from "./Support";
 
 const Container = styled.section`
-  width: 100vw;
+  width: 100%;
   color: ${({ theme }) => theme.secondaryWhite};
   background-color: ${(props) => props.theme.primaryBlue};
   text-align: center;
