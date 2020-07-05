@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import axios from "axios";
 
-import baseUrl from '../../utils/baseUrl';
-import PostCard from '../postCard';
-import PostModal from '../postModal';
-import { Container, Li } from './style';
+import baseUrl from "../../utils/baseUrl";
+import PostCard from "../postCard";
+import PostModal from "../postModal";
+import { Container, Li } from "./style";
 
 const index = () => {
   const [posts, setPosts] = useState([]);
@@ -20,7 +20,7 @@ const index = () => {
   }, []);
 
   return (
-    <Container id="__br_displayPosts">
+    <Container>
       <PostModal quickData={posts} />
       {posts.map((post, index) => {
         return (

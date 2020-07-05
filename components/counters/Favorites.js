@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { StarOutlined, StarFilled } from '@ant-design/icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { Tooltip } from 'antd';
-import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
+import { StarOutlined, StarFilled } from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { Tooltip } from "antd";
+import styled from "styled-components";
 
-import { addFavorite, removeFavorite } from './util';
+import { addFavorite, removeFavorite } from "../../actions/counters";
 
 const FavoritesContainer = styled.div`
   display: inline-block;
@@ -15,6 +15,7 @@ const FavoritesContainer = styled.div`
 `;
 
 const Favorites = ({ favorites, postId }) => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const [isFavorite, setFavorite] = useState(false);
 
@@ -36,7 +37,7 @@ const Favorites = ({ favorites, postId }) => {
       {user && isFavorite && (
         <StarFilled
           onClick={(e) => {
-            removeFavorite(postId);
+            dispatch(removeFavorite(postId));
             setFavorite(false);
           }}
         />
@@ -44,7 +45,7 @@ const Favorites = ({ favorites, postId }) => {
       {user && !isFavorite && (
         <StarOutlined
           onClick={(e) => {
-            addFavorite(postId);
+            dispatch(addFavorite(postId));
             setFavorite(true);
           }}
         />

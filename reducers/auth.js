@@ -1,37 +1,61 @@
-import { AUTH_USER, USER_LOADED, DEAUTH_USER } from '../actions/types';
-import cookie from 'js-cookie';
+import {
+  AUTH_USER,
+  USER_LOADED,
+  DEAUTH_USER,
+  UPDATE_USER_FAVORITES_ADD,
+  UPDATE_USER_FAVORITES_REMOVE,
+} from "../actions/types";
+import cookie from "js-cookie";
 
 const initialState = {
-  token: cookie.get('token'),
+  token: cookie.get("token"),
   isAuthenticated: false,
-  user: null
+  user: null,
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     // update token
     case AUTH_USER:
-      cookie.set('token', action.payload);
+      cookie.set("token", action.payload);
       return {
         ...state,
         token: action.payload,
-        isAuthenticated: true
+        isAuthenticated: true,
       };
     //update user data
     case USER_LOADED:
       return {
         ...state,
         user: action.payload,
-        isAuthenticated: true
+        isAuthenticated: true,
       };
     //logout user
     case DEAUTH_USER:
-      cookie.remove('token');
+      cookie.remove("token");
       return {
         ...state,
         token: null,
         isAuthenticated: false,
-        user: null
+        user: null,
+      };
+    case UPDATE_USER_FAVORITES_ADD:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          favorites: [...state.user.favorites, action.payload],
+        },
+      };
+    case UPDATE_USER_FAVORITES_REMOVE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          favorites: state.user.favorites.filter(
+            (item) => item !== action.payload
+          ),
+        },
       };
     default:
       return state;

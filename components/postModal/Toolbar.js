@@ -9,7 +9,7 @@ import {
   CloseCircleOutlined,
 } from "@ant-design/icons";
 
-import { addFavorite, removeFavorite } from "../counters/util";
+import { addFavorite, removeFavorite } from "../../actions/counters";
 import { Container, ToolbarButton, ToolbarButtonClose } from "./stlye";
 
 const Toolbar = ({ postId }) => {
@@ -35,7 +35,7 @@ const Toolbar = ({ postId }) => {
       {isAuthenticated && !isFavorite && (
         <ToolbarButton
           onClick={() => {
-            addFavorite(postId);
+            dispatch(addFavorite(postId));
             setFavorite(true);
           }}
         >
@@ -46,7 +46,7 @@ const Toolbar = ({ postId }) => {
       {isAuthenticated && isFavorite && (
         <ToolbarButton
           onClick={() => {
-            removeFavorite(postId);
+            dispatch(removeFavorite(postId));
             setFavorite(false);
           }}
         >
