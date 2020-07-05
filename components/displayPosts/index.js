@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import axios from "axios";
 
 import baseUrl from "../../utils/baseUrl";
@@ -25,15 +24,7 @@ const index = () => {
       {posts.map((post, index) => {
         return (
           <Li key={index}>
-            <Link
-              scroll={false}
-              href={`/?postId=${post._id}`}
-              as={`/postdetails/${post._id}`}
-            >
-              <a>
-                <PostCard key={index} postData={post} />
-              </a>
-            </Link>
+            <PostCard key={index} postData={post} />
           </Li>
         );
       })}

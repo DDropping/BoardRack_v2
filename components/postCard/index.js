@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
+import Link from "next/link";
 
-import { CardContainer } from './style';
-import Header from './Header';
-import Images from './Images';
-import Content from './Content';
+import { CardContainer } from "./style";
+import Header from "./Header";
+import Images from "./Images";
+import Content from "./Content";
 
 const index = ({ postData }) => {
   const headerData = {
@@ -26,8 +27,16 @@ const index = ({ postData }) => {
   return (
     <CardContainer>
       <Header data={headerData} />
-      <Images data={imageData} />
-      <Content data={contentData} />
+      <Link
+        scroll={false}
+        href={`/?postId=${postData._id}`}
+        as={`/postdetails/${postData._id}`}
+      >
+        <a>
+          <Images data={imageData} />
+          <Content data={contentData} />
+        </a>
+      </Link>
     </CardContainer>
   );
 };

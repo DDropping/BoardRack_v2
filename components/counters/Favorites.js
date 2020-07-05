@@ -36,7 +36,7 @@ const Favorites = ({ favorites, postId }) => {
       )}
       {user && isFavorite && (
         <StarFilled
-          onClick={(e) => {
+          onClick={() => {
             dispatch(removeFavorite(postId));
             setFavorite(false);
           }}
@@ -44,7 +44,7 @@ const Favorites = ({ favorites, postId }) => {
       )}
       {user && !isFavorite && (
         <StarOutlined
-          onClick={(e) => {
+          onClick={() => {
             dispatch(addFavorite(postId));
             setFavorite(true);
           }}
