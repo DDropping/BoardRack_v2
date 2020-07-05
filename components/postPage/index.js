@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
 
-import baseUrl from '../../utils/baseUrl';
+import baseUrl from "../../utils/baseUrl";
+import Images from "./images";
 
 const index = ({ quickData, postId }) => {
   const router = useRouter();
@@ -18,12 +19,13 @@ const index = ({ quickData, postId }) => {
     }
   }, []);
 
-  console.log('quickData:', quickData);
-  console.log('postData:', postData);
+  console.log("quickData:", quickData);
+  console.log("postData:", postData);
   return (
     <div>
-      {postData ? postData.title : 'Loading...'}
-      {postData ? postData.price : 'Loading...'}
+      {postData && <Images images={postData.images} />}
+      {postData ? postData.title : "Loading..."}
+      {postData ? postData.price : "Loading..."}
     </div>
   );
 };
