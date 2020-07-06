@@ -7,6 +7,7 @@ import baseUrl from "../../utils/baseUrl";
 import Images from "./images";
 import UserBox from "./userBox";
 import CountersBar from "./countersBar";
+import Description from "./details/description";
 
 const index = ({ quickData, postId }) => {
   const router = useRouter();
@@ -35,6 +36,7 @@ const index = ({ quickData, postId }) => {
             views={postData.viewCount}
             favorites={postData.favorites}
           />
+          <Description description={postData.description} />
         </DataContainer>
       )}
     </div>
