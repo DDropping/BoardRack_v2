@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
+import { DataContainer } from "./style";
 import baseUrl from "../../utils/baseUrl";
 import Images from "./images";
+import UserBox from "./userBox";
 
 const index = ({ quickData, postId }) => {
   const router = useRouter();
@@ -24,8 +26,11 @@ const index = ({ quickData, postId }) => {
   return (
     <div>
       {postData && <Images images={postData.images} />}
-      {postData ? postData.title : "Loading..."}
-      {postData ? postData.price : "Loading..."}
+      <DataContainer>
+        {postData && (
+          <UserBox user={postData.user} location={postData.location} />
+        )}
+      </DataContainer>
     </div>
   );
 };
