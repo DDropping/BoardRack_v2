@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from "antd";
 
-import { Title, ItemKey, ItemValue } from "../style";
+import { ContainerNoOutline, Title, ItemKey, ItemValue } from "../style";
 
 const index = ({ post }) => {
   return (
@@ -11,8 +11,7 @@ const index = ({ post }) => {
         post.width ||
         post.depth ||
         post.volume) && (
-        <div>
-          <br />
+        <ContainerNoOutline>
           <Title>Dimensions</Title>
           <Row>
             <Col xs={12} sm={10} md={8} lg={8}>
@@ -31,7 +30,7 @@ const index = ({ post }) => {
               <ItemValue>{post.volume && post.volume + " L"}</ItemValue>
             </Col>
           </Row>
-        </div>
+        </ContainerNoOutline>
       )}
     </>
   );

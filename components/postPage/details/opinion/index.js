@@ -1,14 +1,13 @@
 import React from "react";
 import { Row, Col } from "antd";
 
-import { Title, OpinionKey, OpinionValue } from "../style";
+import { ContainerNoOutline, Title, OpinionKey, OpinionValue } from "../style";
 
 const index = ({ post }) => {
   return (
     <>
       {(post.waveSize || post.drive || post.paddlePower || post.movability) && (
-        <div>
-          <br />
+        <ContainerNoOutline>
           <Title>Surfer's Opinion</Title>
           <Row>
             <Col span={12}>
@@ -38,7 +37,7 @@ const index = ({ post }) => {
               </div>
             </Col>
           </Row>
-        </div>
+        </ContainerNoOutline>
       )}
     </>
   );

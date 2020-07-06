@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
-export const BoxOutline = styled.div`
+export const ContainerOutline = styled.div`
   border-top: 2px solid #00458a;
+  padding: 5px;
+`;
+export const ContainerNoOutline = styled.div`
   padding: 5px;
 `;
 

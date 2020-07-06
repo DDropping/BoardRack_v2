@@ -8,7 +8,7 @@ const index = ({ description }) => {
         <Row>
           <Col span={1} />
           <Col span={23}>
-            <div>{description}</div>
+            <div style={{ margin: "10px 0" }}>{description}</div>
           </Col>
         </Row>
       )}

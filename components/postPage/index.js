@@ -11,6 +11,7 @@ import Description from "./details/description";
 import GeneralDetails from "./details/generalDetails";
 import Dimensions from "./details/dimensions";
 import Opinion from "./details/opinion";
+import Map from "./map";
 
 const index = ({ quickData, postId }) => {
   const router = useRouter();
@@ -43,6 +44,11 @@ const index = ({ quickData, postId }) => {
           <GeneralDetails post={postData} />
           <Dimensions post={postData} />
           <Opinion post={postData} />
+          <Map
+            map={postData.location.locationImage}
+            lat={postData.location.lat}
+            lng={postData.location.lng}
+          />
         </DataContainer>
       )}
     </div>
