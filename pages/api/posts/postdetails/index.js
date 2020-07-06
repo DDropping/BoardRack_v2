@@ -1,11 +1,11 @@
-import connectDb from '../../../../utils/ConnectDb';
-import Post from '../../../../models/Post';
+import connectDb from "../../../../utils/ConnectDb";
+import Post from "../../../../models/Post";
 
 connectDb();
 
 const handler = async (req, res) => {
   switch (req.method) {
-    case 'GET':
+    case "GET":
       await handleGetRequest(req, res);
       break;
     default:
@@ -19,7 +19,7 @@ const handler = async (req, res) => {
 // @res     posts: {... array of all posts}
 // @access  Public
 async function handleGetRequest(req, res) {
-  const posts = await Post.find();
+  const posts = await Post.find({}).populate("user", "username");
   res.status(200).json(posts);
 }
 
