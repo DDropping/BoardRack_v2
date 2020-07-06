@@ -8,7 +8,7 @@ const index = ({ map, lat, lng }) => {
       href={`https://maps.google.com/?q=${lat},${lng}&z=8`}
     >
       <img
-        style={{ maxWidth: "100%", marginTop: "1rem" }}
+        style={{ maxWidth: "100%", margin: "1rem 0" }}
         alt="location map"
         src={map}
       />

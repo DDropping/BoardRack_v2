@@ -12,6 +12,7 @@ import GeneralDetails from "./details/generalDetails";
 import Dimensions from "./details/dimensions";
 import Opinion from "./details/opinion";
 import Map from "./map";
+import SimilarPosts from "./similarPosts";
 
 const index = ({ quickData, postId }) => {
   const router = useRouter();
@@ -49,6 +50,7 @@ const index = ({ quickData, postId }) => {
             lat={postData.location.lat}
             lng={postData.location.lng}
           />
+          <SimilarPosts postId={postData._id} />
         </DataContainer>
       )}
     </div>

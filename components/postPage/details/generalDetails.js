@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from "antd";
 
-import { ContainerOutline, Title, ItemKey, ItemValue } from "../style";
+import { ContainerOutline, Title, ItemKey, ItemValue } from "./style";
 
 const index = ({ post }) => {
   return (
