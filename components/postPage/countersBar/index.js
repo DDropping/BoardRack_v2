@@ -9,11 +9,11 @@ const index = ({ date, views, favorites }) => {
     let timePostedAgo = new Date() - new Date(date);
 
     if (timePostedAgo > 8.64e7)
-      setTime(Math.floor(timePostedAgo / 8.64e7) + " days");
+      setTime(Math.floor(timePostedAgo / 8.64e7) + " day(s)");
     else if (timePostedAgo > 3.6e6)
-      setTime(Math.floor(timePostedAgo / 3.6e6) + " hours");
+      setTime(Math.floor(timePostedAgo / 3.6e6) + " hour(s)");
     else if (timePostedAgo > 60e3)
-      setTime(Math.floor(timePostedAgo / 60e3) + " minutes");
+      setTime(Math.floor(timePostedAgo / 60e3) + " minute(s)");
     else setTime("1 minute");
   }, []);
 
