@@ -8,6 +8,7 @@ import Images from "./images";
 import UserBox from "./userBox";
 import CountersBar from "./countersBar";
 import Description from "./details/description";
+import GeneralDetails from "./details/generalDetails";
 
 const index = ({ quickData, postId }) => {
   const router = useRouter();
@@ -37,6 +38,7 @@ const index = ({ quickData, postId }) => {
             favorites={postData.favorites}
           />
           <Description description={postData.description} />
+          <GeneralDetails post={postData} />
         </DataContainer>
       )}
     </div>
