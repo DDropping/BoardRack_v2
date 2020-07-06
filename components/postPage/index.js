@@ -9,6 +9,7 @@ import UserBox from "./userBox";
 import CountersBar from "./countersBar";
 import Description from "./details/description";
 import GeneralDetails from "./details/generalDetails";
+import Dimensions from "./details/dimensions";
 
 const index = ({ quickData, postId }) => {
   const router = useRouter();
@@ -39,6 +40,7 @@ const index = ({ quickData, postId }) => {
           />
           <Description description={postData.description} />
           <GeneralDetails post={postData} />
+          <Dimensions post={postData} />
         </DataContainer>
       )}
     </div>
