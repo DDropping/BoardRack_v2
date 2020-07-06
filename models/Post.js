@@ -5,7 +5,7 @@ const { String, Date, Number } = mongoose.Schema.Types;
 const PostSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    ref: "User",
   },
   title: {
     type: String,
@@ -57,7 +57,7 @@ const PostSchema = new mongoose.Schema({
   favorites: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      ref: "User",
     },
   ],
   viewCount: {
