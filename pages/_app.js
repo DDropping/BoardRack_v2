@@ -26,6 +26,8 @@ import "antd/lib/row/style/index.js";
 import "antd/lib/select/style/index.js";
 import "antd/lib/steps/style/index.js";
 
+import "../components/postModal/react-modal-custom.less";
+
 import Layout from "../components/layout";
 import { redirectUser } from "../utils/auth";
 import baseUrl from "../utils/baseUrl";
