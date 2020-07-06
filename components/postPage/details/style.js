@@ -20,3 +20,13 @@ export const ItemValue = styled.div`
   font-size: 15px;
   font-weight: bold;
 `;
+
+export const OpinionKey = styled.span`
+  font-size: 15px;
+  text-indent: 1rem;
+`;
+
+export const OpinionValue = styled.span`
+  font-size: 15px;
+  font-weight: bold;
+`;

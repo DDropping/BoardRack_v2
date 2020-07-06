@@ -24,7 +24,6 @@ const index = ({ post }) => {
               <ItemKey>{post.model && "Model: "}</ItemKey>
               <ItemKey>{post.boardType && "Board Type: "}</ItemKey>
               <ItemKey>{post.condition && "Condition: "}</ItemKey>
-              <br />
               <ItemKey>{post.tail && "Tail Shape: "}</ItemKey>
               <ItemKey>
                 {(post.finSystem || post.finConfiguration) && "Fin System: "}
@@ -38,7 +37,6 @@ const index = ({ post }) => {
               <ItemValue>{post.model && post.model}</ItemValue>
               <ItemValue>{post.boardType && post.boardType}</ItemValue>
               <ItemValue>{post.condition && post.condition}</ItemValue>
-              <br />
               <ItemValue>{post.tail && post.tail}</ItemValue>
               <ItemValue>
                 {post.finSystem && post.finSystem + " "}

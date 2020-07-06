@@ -12,10 +12,10 @@ const index = ({ post }) => {
         post.depth ||
         post.volume) && (
         <div>
+          <br />
           <Title>Dimensions</Title>
           <Row>
-            <Col span={1} />
-            <Col xs={11} sm={9} md={7} lg={7}>
+            <Col xs={12} sm={10} md={8} lg={8}>
               <ItemKey>{post.lengthFt && post.lengthIn && "Length: "}</ItemKey>
               <ItemKey>{post.width && "Width: "}</ItemKey>
               <ItemKey>{post.depth && "Depth: "}</ItemKey>
