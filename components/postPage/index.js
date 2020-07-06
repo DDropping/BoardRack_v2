@@ -6,6 +6,7 @@ import { DataContainer } from "./style";
 import baseUrl from "../../utils/baseUrl";
 import Images from "./images";
 import UserBox from "./userBox";
+import CountersBar from "./countersBar";
 
 const index = ({ quickData, postId }) => {
   const router = useRouter();
@@ -26,11 +27,16 @@ const index = ({ quickData, postId }) => {
   return (
     <div>
       {postData && <Images images={postData.images} />}
-      <DataContainer>
-        {postData && (
+      {postData && (
+        <DataContainer>
           <UserBox user={postData.user} location={postData.location} />
-        )}
-      </DataContainer>
+          <CountersBar
+            date={postData.date}
+            views={postData.viewCount}
+            favorites={postData.favorites}
+          />
+        </DataContainer>
+      )}
     </div>
   );
 };
