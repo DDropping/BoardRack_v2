@@ -5,7 +5,7 @@ const { String, Date, Number } = mongoose.Schema.Types;
 const PostSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "user",
   },
   title: {
     type: String,
@@ -57,7 +57,7 @@ const PostSchema = new mongoose.Schema({
   favorites: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "user",
     },
   ],
   viewCount: {
@@ -70,4 +70,4 @@ const PostSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.Post || mongoose.model("Post", PostSchema);
+export default mongoose.models.post || mongoose.model("post", PostSchema);

@@ -1,14 +1,14 @@
 //Message details model:
 //postID, messageThreads[{}]
 
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const { String, Date, Number } = mongoose.Schema.Types;
 
 const MessageSchema = new mongoose.Schema({
   postId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Post",
+    ref: "post",
   },
   authorId: {
     type: String,
@@ -38,5 +38,5 @@ const MessageSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.Message ||
-  mongoose.model("Message", MessageSchema);
+export default mongoose.models.message ||
+  mongoose.model("message", MessageSchema);

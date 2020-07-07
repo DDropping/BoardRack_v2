@@ -40,19 +40,19 @@ const UserSchema = new mongoose.Schema({
   messageThreads: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Message",
+      ref: "message",
     },
   ],
   posts: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Post",
+      ref: "post",
     },
   ],
   favorites: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Post",
+      ref: "post",
     },
   ],
   operatingHours: {
@@ -89,4 +89,4 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.User || mongoose.model("User", UserSchema);
+export default mongoose.models.user || mongoose.model("user", UserSchema);

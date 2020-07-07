@@ -19,8 +19,18 @@ const handler = async (req, res) => {
 // @res     posts: {... array of all posts}
 // @access  Public
 async function handleGetRequest(req, res) {
-  const posts = await Post.find({}).populate("user", "username");
-  res.status(200).json(posts);
+  try {
+    const posts = await Post.find({}).populate("user", "username");
+
+    if (!posts) {
+      return res.status(400).json({ msg: "There is no posts" });
+    }
+
+    res.status(200).json(posts);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
 }
 
 export default handler;
