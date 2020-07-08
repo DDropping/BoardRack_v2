@@ -25,7 +25,7 @@ async function handleGetRequest(req, res) {
     query: { id },
   } = req;
   try {
-    const post = await Post.find({}).populate("user", "username");
+    const post = await Post.find({}).limit(3).populate("user", "username");
 
     if (!post) {
       return res.status(400).json({ msg: "There is no post with this id" });
