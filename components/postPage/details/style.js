@@ -8,6 +8,12 @@ export const ContainerNoOutline = styled.div`
   padding: 5px;
 `;
 
+export const PostTitle = styled.div`
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+`;
+
 export const Title = styled.div`
   font-size: 18px;
   font-weight: bold;
