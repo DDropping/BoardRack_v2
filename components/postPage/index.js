@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-import { DataContainer } from "./style";
+import { DataContainer, Title } from "./style";
 import baseUrl from "../../utils/baseUrl";
 import Images from "./images";
 import UserBox from "./userBox";
@@ -41,7 +41,11 @@ const index = ({ quickData, postId }) => {
             views={postData.viewCount}
             favorites={postData.favorites}
           />
-          <Description description={postData.description} />
+          <Description
+            price={postData.price}
+            title={postData.title}
+            description={postData.description}
+          />
           <GeneralDetails post={postData} />
           <Dimensions post={postData} />
           <Opinion post={postData} />
