@@ -23,10 +23,12 @@ const index = ({ quickData, postId }) => {
       const res = await axios.get(url);
       setPostData(res.data);
     }
-    if (!quickData) {
-      fetchData();
+    if (!!router.query.postId) {
+      if (!postData || postId !== postData._id) {
+        fetchData();
+      }
     }
-  }, []);
+  }, [quickData]);
 
   console.log("quickData:", quickData);
   console.log("postData:", postData);
