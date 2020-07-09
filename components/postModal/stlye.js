@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const Container = styled.div`
+export const ToolbarContainer = styled.div`
   display: flex;
   z-index: 1;
   max-width: 100%;

@@ -10,7 +10,7 @@ import {
 } from "@ant-design/icons";
 
 import { addFavorite, removeFavorite } from "../../actions/counters";
-import { Container, ToolbarButton, ToolbarButtonClose } from "./stlye";
+import { ToolbarContainer, ToolbarButton, ToolbarButtonClose } from "./stlye";
 
 const Toolbar = ({ postId }) => {
   const [isFavorite, setFavorite] = useState(false);
@@ -31,7 +31,7 @@ const Toolbar = ({ postId }) => {
   }
 
   return (
-    <Container>
+    <ToolbarContainer>
       {isAuthenticated && !isFavorite && (
         <ToolbarButton
           onClick={() => {
@@ -63,7 +63,7 @@ const Toolbar = ({ postId }) => {
         <CloseCircleOutlined />
         {" Close"}
       </ToolbarButtonClose>
-    </Container>
+    </ToolbarContainer>
   );
 };
 
