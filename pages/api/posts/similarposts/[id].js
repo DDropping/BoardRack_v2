@@ -1,5 +1,6 @@
 import connectDb from "../../../../utils/ConnectDb";
 import Post from "../../../../models/Post";
+import "../../../../models/User";
 
 connectDb();
 
