@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-import { PostPageContainer, DataContainer, Flexbox } from "./style";
+import {
+  PostPageContainer,
+  ImagesContainer,
+  DataContainer,
+  Flexbox,
+} from "./style";
 import baseUrl from "../../utils/baseUrl";
 import Images from "./images";
 import UserBox from "./userBox";
@@ -35,7 +40,11 @@ const index = ({ quickData, postId }) => {
   console.log("postData:", postData);
   return (
     <PostPageContainer>
-      {postData && <Images images={postData.images} />}
+      {postData && (
+        <ImagesContainer>
+          <Images images={postData.images} />
+        </ImagesContainer>
+      )}
       {postData && (
         <DataContainer>
           <Flexbox>

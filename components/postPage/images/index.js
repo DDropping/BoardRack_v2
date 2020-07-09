@@ -1,10 +1,8 @@
 import React from "react";
 
-import { ImagesContainer } from "./style";
-
 const index = ({ images }) => {
   return (
-    <ImagesContainer>
+    <>
       {images[0] ? (
         images.map((image, index) => (
           <img
@@ -21,7 +19,7 @@ const index = ({ images }) => {
           src={"/images/br_default_post.png"}
         />
       )}
-    </ImagesContainer>
+    </>
   );
 };
 
