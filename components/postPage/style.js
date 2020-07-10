@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const PostPageContainer = styled.div`
   height: calc(100% - 60px);
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 export const ImagesContainer = styled.div`
