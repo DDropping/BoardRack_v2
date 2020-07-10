@@ -5,11 +5,16 @@ import { Container, Li } from "./style";
 import baseUrl from "../../utils/baseUrl";
 import PostCard from "../postCard";
 import PostModal from "../postModal";
-import LoadingScreen from "../loadingScreens/displayPosts";
+import LoadingScreenCard from "../loadingScreens/postCard";
 
 const index = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setLoading] = useState(true);
+
+  let loadingCards = [];
+  for (let i = 0; i < 20; ++i) {
+    loadingCards.push(<LoadingScreenCard key={i} />);
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -23,7 +28,7 @@ const index = () => {
 
   return (
     <Container>
-      {isLoading && <LoadingScreen />}
+      {isLoading && loadingCards}
       <PostModal quickData={posts} />
       {posts.map((post, index) => {
         return (

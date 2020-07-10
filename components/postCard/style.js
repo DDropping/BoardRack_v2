@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CardContainer = styled.div`
   position: relative;
@@ -36,6 +36,7 @@ export const ContentContainer = styled.div`
   padding: 10px;
   position: absolute;
   bottom: 0px;
+  overflow: hidden;
   background: ${({ theme }) => theme.primaryWhite};
 `;
 
