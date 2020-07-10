@@ -4,9 +4,16 @@ import axios from "axios";
 import { ContainerOutline, Title } from "./style";
 import baseUrl from "../../../utils/baseUrl";
 import PostCard from "./PostCard";
+import LoadingSimilarCard from "../../loadingScreens/similarPosts";
 
 const index = ({ postId }) => {
+  const [isLoading, setLoading] = useState(true);
   const [similarPosts, setSimilarPosts] = useState([]);
+
+  let loadingCards = [];
+  for (let i = 0; i < 6; ++i) {
+    loadingCards.push(<LoadingSimilarCard key={i} />);
+  }
 
   useEffect(() => {
     const fetchSimilarPosts = async () => {
@@ -18,11 +25,13 @@ const index = ({ postId }) => {
       }
     };
     fetchSimilarPosts();
+    setLoading(false);
   }, [postId]);
 
   return (
     <ContainerOutline>
       <Title>People also viewed</Title>
+      {isLoading && loadingCards}
       {similarPosts.map((post, index) => (
         <PostCard post={post} key={index} />
       ))}
