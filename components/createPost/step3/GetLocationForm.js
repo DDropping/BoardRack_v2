@@ -22,17 +22,19 @@ const GetLocationForm = () => {
   };
 
   return (
-    <Search
-      placeholder={
-        isLocated && !isLocatedWithIp
-          ? location.city + ", " + location.state + " " + location.postalCode
-          : "Address, City, State..."
-      }
-      enterButton="Locate"
-      loading={isImageLoading}
-      size="large"
-      onSearch={(value) => handleGetLocation(value)}
-    />
+    <div>
+      <Search
+        placeholder={
+          isLocated && !isLocatedWithIp
+            ? location.city + ", " + location.state + " " + location.postalCode
+            : "Address, City, State..."
+        }
+        enterButton="Locate"
+        loading={isImageLoading}
+        size="large"
+        onSearch={(value) => handleGetLocation(value)}
+      />
+    </div>
   );
 };
 

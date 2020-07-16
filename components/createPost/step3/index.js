@@ -1,16 +1,16 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { Row, Col, Divider } from 'antd';
+import React from "react";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+import { Row, Col, Divider } from "antd";
 
-import GetLocationButton from './GetLocationButton';
-import GetLocationForm from './GetLocationForm';
-import Map from './Map';
-import ValidationErrors from '../ValidationErrors';
+import GetLocationButton from "./GetLocationButton";
+import GetLocationForm from "./GetLocationForm";
+import Map from "./Map";
+import ValidationErrors from "../ValidationErrors";
 
 const H2 = styled.h2`
   font-weight: bold;
-  color: ${props => props.theme.secondaryBlue};
+  color: ${(props) => props.theme.secondaryBlue};
 `;
 
 const LocationContainer = styled.div`
@@ -39,11 +39,11 @@ const Disclaimer = styled.span`
 `;
 
 const Step3 = () => {
-  const isLocated = useSelector(state => state.currentLocation.isLocated);
+  const isLocated = useSelector((state) => state.currentLocation.isLocated);
   const isLocatedWithIp = useSelector(
-    state => state.currentLocation.isLocatedWithIp
+    (state) => state.currentLocation.isLocatedWithIp
   );
-  const location = useSelector(state => state.currentLocation.location);
+  const location = useSelector((state) => state.currentLocation.location);
 
   return (
     <div>
@@ -54,22 +54,23 @@ const Step3 = () => {
         <Col xs={24} sm={12} md={12}>
           <LocationContainer>
             <GetLocationButton />
-            <Divider>OR</Divider>
-
+            <Divider>or</Divider>
+            <br />
+            {/* br used to fix spacing issue, reason for issue unknown */}
             <GetLocationForm />
 
             <Disclaimer>*Your address will not be public</Disclaimer>
             <H3>
-              <span style={{ color: 'red' }}>* </span>
-              <span>Location:</span>{' '}
+              <span style={{ color: "red" }}>* </span>
+              <span>Location:</span>{" "}
               <span className="location">
                 {isLocated && !isLocatedWithIp
                   ? location.city +
-                    ', ' +
+                    ", " +
                     location.state +
-                    ' ' +
+                    " " +
                     location.postalCode
-                  : 'Not Selected'}
+                  : "Not Selected"}
               </span>
             </H3>
           </LocationContainer>
