@@ -27,7 +27,8 @@ const Map = () => {
     <MapWrapper>
       {(!currentLocation.isLocated ||
         (currentLocation.isLocated &&
-          !currentLocation.location.locationImage)) && (
+          !currentLocation.location.locationImage &&
+          !currentLocation.isMapLoading)) && (
         <img src="/images/br_default_map.png" alt="location map" />
       )}
 
