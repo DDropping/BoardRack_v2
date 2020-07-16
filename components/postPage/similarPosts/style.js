@@ -16,7 +16,7 @@ export const CardContainer = styled.div`
   vertical-align: top;
   cursor: pointer;
   margin: 5px;
-  width: 150px;
+  width: 148px; /* enough space to fit 3 cards at max page width of 1200px */
   height: 200px;
   transition: box-shadow 0.3s;
   box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);
@@ -30,7 +30,7 @@ export const ImageContainer = styled.div`
   text-align: center; /* needed to allow vertical centering */
   line-height: 150px; /* overall post card height - post header height | used to center photo in white space*/
   height: 150px; /* overall post card height - post header height | used to center photo in white space*/
-  width: 150px;
+  width: 148px;
   background-color: #f3f7f9;
   overflow: hidden;
 `;
