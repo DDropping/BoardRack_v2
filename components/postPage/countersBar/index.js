@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col } from "antd";
+import { Col, Row } from "antd";
 
 import { CountersContainer } from "./style";
 

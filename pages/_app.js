@@ -15,16 +15,19 @@ import "antd/lib/checkbox/style/index.js";
 import "antd/lib/col/style/index.js";
 import "antd/lib/divider/style/index.js";
 import "antd/lib/drawer/style/index.js";
+import "antd/lib/dropdown/style/index.js";
 import "antd/lib/form/style/index.js";
 import "antd/lib/grid/style/index.js";
 import "antd/lib/input/style/index.js";
 import "antd/lib/input-number/style/index.js";
+import "antd/lib/menu/style/index.js";
 import "antd/lib/modal/style/index.js";
 import "antd/lib/notification/style/index.js";
 import "antd/lib/progress/style/index.js";
 import "antd/lib/row/style/index.js";
 import "antd/lib/select/style/index.js";
 import "antd/lib/steps/style/index.js";
+import "antd/lib/tooltip/style/index.js";
 
 import "../components/postModal/react-modal-custom.less";
 
