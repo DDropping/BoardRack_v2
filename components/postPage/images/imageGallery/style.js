@@ -8,7 +8,7 @@ export const ImageContainer = styled.div`
   line-height: 700px; /* overall post card height| used to center photo in vertically*/
   background-color: #f3f7f9;
   overflow: hidden;
-  margin-top: 10px;
+  margin-bottom: 10px;
   @media (min-width: ${({ theme }) => theme.md1}) {
     display: none;
   }

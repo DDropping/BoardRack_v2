@@ -48,6 +48,7 @@ const index = ({ quickData, postId }) => {
       )}
       {postData && (
         <DataContainer>
+          <ImageGallery images={postData.images} />
           <Flexbox>
             <UserBox user={postData.user} location={postData.location} />
             <CountersBar
@@ -55,7 +56,6 @@ const index = ({ quickData, postId }) => {
               views={postData.viewCount}
               favorites={postData.favorites}
             />
-            <ImageGallery images={postData.images} />
             <Description
               price={postData.price}
               title={postData.title}
