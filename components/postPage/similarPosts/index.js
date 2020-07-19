@@ -11,7 +11,7 @@ const index = ({ postId }) => {
   const [similarPosts, setSimilarPosts] = useState([]);
 
   let loadingCards = [];
-  for (let i = 0; i < 6; ++i) {
+  for (let i = 0; i < 3; ++i) {
     loadingCards.push(<LoadingSimilarCard key={i} />);
   }
 
@@ -22,10 +22,10 @@ const index = ({ postId }) => {
       );
       if (result) {
         setSimilarPosts(result.data);
+        setLoading(false);
       }
     };
     fetchSimilarPosts();
-    setLoading(false);
   }, [postId]);
 
   return (
