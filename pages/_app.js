@@ -74,10 +74,16 @@ const theme = {
   backgroundRedMenu: "#ef40401f",
 
   //media sizes
+  xs: "375px", // extra small devices
+  xs1: "376px", // +1 for @media queries
   sm: "576px", // Small devices (landscape phones, 576px and up)
+  sm1: "577px", // +1 for @media queries
   md: "768px", // Medium devices (tablets, 768px and up)
+  md1: "769px", // +1 for @media queries
   lg: "992px", // Large devices (desktops, 992px and up)
+  lg1: "993px", // +1 for @media queries
   xl: "1200px", // Extra large devices (large desktops, 1200px and up)
+  xl1: "1201px", // +1 for @media queries
 };
 
 export default class MyApp extends App {
