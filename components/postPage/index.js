@@ -9,7 +9,8 @@ import {
   Flexbox,
 } from "./style";
 import baseUrl from "../../utils/baseUrl";
-import Images from "./images";
+import ImageList from "./images/imageList";
+import ImageGallery from "./images/imageGallery";
 import UserBox from "./userBox";
 import CountersBar from "./countersBar";
 import Description from "./details/description";
@@ -42,7 +43,7 @@ const index = ({ quickData, postId }) => {
     <PostPageContainer>
       {postData && (
         <ImagesContainer>
-          <Images images={postData.images} />
+          <ImageList images={postData.images} />
         </ImagesContainer>
       )}
       {postData && (
@@ -54,6 +55,7 @@ const index = ({ quickData, postId }) => {
               views={postData.viewCount}
               favorites={postData.favorites}
             />
+            <ImageGallery images={postData.images} />
             <Description
               price={postData.price}
               title={postData.title}

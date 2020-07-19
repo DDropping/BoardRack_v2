@@ -18,6 +18,9 @@ export const ImagesContainer = styled.div`
   ::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
   }
+  @media (max-width: ${({ theme }) => theme.md}) {
+    display: none;
+  }
 `;
 
 export const DataContainer = styled.div`
@@ -32,6 +35,9 @@ export const DataContainer = styled.div`
   scrollbar-width: none; /* Firefox */
   ::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
+  }
+  @media (max-width: ${({ theme }) => theme.md}) {
+    width: 100%;
   }
 `;
 
