@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import axios from "axios";
 
@@ -20,10 +21,15 @@ import Opinion from "./details/opinion";
 import Map from "./map";
 import SimilarPosts from "./similarPosts";
 import Footer from "./footer";
+import { ADD_VIEW } from "../../actions/types";
 
 const index = ({ quickData, postId }) => {
+  const dispatch = useDispatch();
+  const viewedPosts = useSelector((state) => state.util.viewedPosts);
   const router = useRouter();
   const [postData, setPostData] = useState(quickData);
+
+  //fetch post data if quickData is not given
   useEffect(() => {
     async function fetchData() {
       const url = `${baseUrl}/api/posts/postdetails/${router.query.postId}`;
@@ -36,6 +42,24 @@ const index = ({ quickData, postId }) => {
       }
     }
   }, [quickData]);
+
+  //increment view counter if user has not viewed post
+  useEffect(() => {
+    async function addView(postId) {
+      const url = `${baseUrl}/api/posts/addView/${postId}`;
+      await axios.put(url);
+      dispatch({ type: ADD_VIEW, payload: postId });
+    }
+
+    if (
+      router.query.postId &&
+      viewedPosts.filter(
+        (postId) => postId.toString() === router.query.postId.toString()
+      ).length === 0
+    ) {
+      addView(router.query.postId);
+    }
+  });
 
   console.log("quickData:", quickData);
   console.log("postData:", postData);
