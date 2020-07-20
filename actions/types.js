@@ -48,3 +48,6 @@ export const UPDATE_CONDITION = "UPDATE_CONDITION";
 export const UPDATE_BOARD_TYPE = "UPDATE_BOARD_TYPE";
 
 export const UPDATE_DISTANCE = "UPDATE_DISTANCE";
+
+//UTILS
+export const ADD_VIEW = "ADD_VIEW";

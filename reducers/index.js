@@ -6,6 +6,7 @@ import createPostForm from "./createPostForm";
 import imgUpload from "./imgUpload";
 import currentLocation from "./currentLocation";
 import filters from "./filters";
+import util from "./util";
 
 export default combineReducers({
   auth,
@@ -14,4 +15,5 @@ export default combineReducers({
   imgUpload,
   overlays,
   filters,
+  util,
 });
