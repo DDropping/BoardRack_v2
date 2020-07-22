@@ -13,8 +13,8 @@ const index = () => {
         {accountLinks.map((item, index) => {
           return (
             <Menu.Item key={index} style={{ padding: 0, margin: 0 }}>
-              <Link href={item.href}>
-                <A href="/" key={index}>
+              <Link href={item.href} shallow={true}>
+                <A href="" key={index}>
                   {item.icon} {item.title}
                 </A>
               </Link>
