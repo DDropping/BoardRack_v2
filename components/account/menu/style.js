@@ -33,3 +33,14 @@ export const Logout = styled.div`
     padding-left: 1rem;
   }
 `;
+
+export const Username = styled.div`
+  margin-left: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+`;
+
+export const Location = styled.div`
+  margin-left: 10px;
+  font-size: 1.1rem;
+`;

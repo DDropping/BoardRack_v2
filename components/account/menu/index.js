@@ -1,14 +1,21 @@
 import React from "react";
 import Link from "next/link";
 import { Menu } from "antd";
+import { useSelector } from "react-redux";
 
-import { Container, A, Logout } from "./style";
+import { Container, A, Logout, Username, Location } from "./style";
 import { LogoutOutlined } from "@ant-design/icons";
 import accountLinks from "../../../constants/accountLinks";
 
 const index = () => {
+  const username = useSelector((state) => state.auth.user.username);
+  const location = useSelector((state) => state.currentLocation.location);
+
   return (
     <Container>
+      <Username>{username}</Username>
+      <Location>{location.city + ", " + location.state}</Location>
+
       <Menu>
         {accountLinks.map((item, index) => {
           return (
