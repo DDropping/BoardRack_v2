@@ -2,6 +2,7 @@ import Head from "next/head";
 import styled from "styled-components";
 
 import Header from "../components/account/header";
+import Menu from "../components/account/menu";
 
 const Container = styled.div`
   max-width: 1200px;
@@ -15,6 +16,7 @@ const Account = () => (
     </Head>
     <Container>
       <Header />
+      <Menu />
     </Container>
   </div>
 );
