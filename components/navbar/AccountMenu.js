@@ -11,7 +11,7 @@ import logoutModal from "../logout";
 
 const Container = styled.div`
   .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background-color: ${({ theme }) => theme.backgroundBlueMenu};
+    background-color: transparent;
   }
 `;
 
