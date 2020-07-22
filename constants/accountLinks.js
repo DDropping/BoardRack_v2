@@ -1,14 +1,12 @@
 import React from "react";
 import {
   FormOutlined,
-  HomeOutlined,
   MailOutlined,
   StarOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 
 export default [
-  { title: "Home", href: "/", icon: <HomeOutlined /> },
   {
     title: "Account Overview",
     href: "/account",
