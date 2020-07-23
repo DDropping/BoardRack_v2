@@ -12,7 +12,7 @@ export default [
   { title: "Home", href: "/", icon: <HomeOutlined />, protected: true },
   {
     title: "My Account",
-    href: "/account",
+    href: "/account?view=overview",
     icon: <UserOutlined />,
     protected: true,
   },

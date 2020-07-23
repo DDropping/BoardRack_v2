@@ -50,7 +50,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const theme = {
+export const theme = {
   //colors
   primaryBlue: "#00458a",
   secondaryBlue: "#4878a9",
