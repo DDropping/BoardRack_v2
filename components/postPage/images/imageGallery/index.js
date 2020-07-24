@@ -43,7 +43,7 @@ const index = ({ images }) => {
       )}
       <ImageBackgroundWrapper
         style={
-          images && {
+          images[0] && {
             backgroundImage: "url(" + images[currentImage].standard + ")",
           }
         }
@@ -51,7 +51,9 @@ const index = ({ images }) => {
       <ImageWrapper
         alt=""
         src={
-          images ? images[currentImage].standard : "/images/br_default_post.png"
+          images[0]
+            ? images[currentImage].standard
+            : "/images/br_default_post.png"
         }
       />
     </ImageContainer>
