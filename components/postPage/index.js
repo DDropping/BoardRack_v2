@@ -88,11 +88,13 @@ const index = ({ quickData, postId }) => {
             <GeneralDetails post={postData} />
             <Dimensions post={postData} />
             <Opinion post={postData} />
-            <Map
-              map={postData.location.locationImage}
-              lat={postData.location.lat}
-              lng={postData.location.lng}
-            />
+            {postData.location.locationImage && (
+              <Map
+                map={postData.location.locationImage}
+                lat={postData.location.lat}
+                lng={postData.location.lng}
+              />
+            )}
             <SimilarPosts postId={postData._id} />
             <div style={{ flex: 1 }} />
             <Footer />
