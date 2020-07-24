@@ -18,10 +18,13 @@ export const loadUserByCookie = () => async (dispatch) => {
       const res = await axios.get(url);
       const user = res.data;
       dispatch({ type: USER_LOADED, payload: user });
+      if (user.location) {
+        dispatch({
+          type: LOAD_DEFAULT_LOCATION_TO_CURRENT,
+          payload: user.location,
+        });
+      }
     }
-    // if (res.data.location) {
-    //   dispatch({ type: USER_LOADED_SET_LOCATION, payload: res.data.location });
-    // }
   } catch (err) {
     console.log(err);
   }

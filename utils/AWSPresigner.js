@@ -1,10 +1,10 @@
-const AWS = require('aws-sdk'); // Requiring AWS SDK.
+const AWS = require("aws-sdk"); // Requiring AWS SDK.
 
 // Configuring AWS
 AWS.config = new AWS.Config({
   accessKeyId: process.env.S3_ACCESS_KEY_ID, // stored in the .env file
   secretAccessKey: process.env.S3_SECRET_ACCESS_KEY, // stored in the .env file
-  region: process.env.S3_REGION // This refers to your bucket configuration.
+  region: process.env.S3_REGION, // This refers to your bucket configuration.
 });
 
 // Creating a S3 instance
@@ -23,10 +23,10 @@ function generateGetUrl(Key) {
     const params = {
       Bucket,
       Key,
-      Expires: 120 // 2 minutes
+      Expires: 120, // 2 minutes
     };
     // Note operation in this case is getObject
-    s3.getSignedUrl('getObject', params, (err, url) => {
+    s3.getSignedUrl("getObject", params, (err, url) => {
       if (err) {
         reject(err);
       } else {
@@ -41,9 +41,9 @@ function generateGetUrl(Key) {
 function generatePutUrl(Key, ContentType) {
   return new Promise((resolve, reject) => {
     // Note Bucket is retrieved from the env variable above.
-    const params = { Bucket, Key, ContentType, ACL: 'public-read' };
+    const params = { Bucket, Key, ContentType, ACL: "public-read" };
     // Note operation in this case is putObject
-    s3.getSignedUrl('putObject', params, function(err, url) {
+    s3.getSignedUrl("putObject", params, function (err, url) {
       if (err) {
         reject(err);
       }

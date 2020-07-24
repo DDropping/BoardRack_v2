@@ -1,13 +1,13 @@
-import React from 'react';
-import { Col, Form, Input, Row, Tooltip } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { SET_INPUT } from '../../../actions/types';
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import React from "react";
+import { Col, Form, Input, Row, Tooltip } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_INPUT } from "../../../actions/types";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 
 const Opinion = () => {
   const dispatch = useDispatch();
   const { waveSize, driveSpeed, paddlePower, movability } = useSelector(
-    state => state.createPostForm
+    (state) => state.createPostForm
   );
 
   function handleInputChange(name, value) {
@@ -21,17 +21,17 @@ const Opinion = () => {
     const ascii = character.charCodeAt(0);
 
     /* if first character is not a number, set to empty string: (FIXES: first character entered was allowed) */
-    if (isNaN(value.charAt(0)) || value.charAt(0) === ' ') {
-      handleInputChange(name, '');
+    if (isNaN(value.charAt(0)) || value.charAt(0) === " ") {
+      handleInputChange(name, "");
     } else if (
       /* check if next character is "." "/" or 0-9 */
       (ascii > 44 && ascii < 58) ||
       /* allow empty value */
-      value === '' ||
+      value === "" ||
       /* prevent double space */
-      (character === ' ' && value.charAt(value.length - 2) !== ' ') ||
+      (character === " " && value.charAt(value.length - 2) !== " ") ||
       /* prevent double dot */
-      (character === '.' && value.charAt(value.length - 2) !== '.')
+      (character === "." && value.charAt(value.length - 2) !== ".")
     ) {
       handleInputChange(name, value);
     } else return;
@@ -40,7 +40,7 @@ const Opinion = () => {
   function handleNumber(name, value) {
     if (isNaN(value.charAt(0))) {
       /* check if first character is a number */
-      handleInputChange(name, '');
+      handleInputChange(name, "");
     } else if (!isNaN(value) && value <= 5 && value >= 0) {
       handleInputChange(name, value);
     } else return;
@@ -50,7 +50,7 @@ const Opinion = () => {
     <Form>
       <Row gutter={[16, 16]}>
         <Col xs={10} sm={10} md={10} lg={10}>
-          <h3 style={{ textAlign: 'right' }} style={{ textAlign: 'right' }}>
+          <h3 style={{ textAlign: "right" }} style={{ textAlign: "right" }}>
             Wave Size:
           </h3>
         </Col>
@@ -60,16 +60,16 @@ const Opinion = () => {
             size="default"
             suffix="ft."
             value={waveSize}
-            onChange={event => handleWaveSize('waveSize', event.target.value)}
+            onChange={(event) => handleWaveSize("waveSize", event.target.value)}
           />
         </Col>
         <Col xs={6} sm={7}>
           <Tooltip
             placement="topLeft"
-            title={'What size waves does your board perform well in?'}
+            title={"What size waves does your board perform well in?"}
           >
             <QuestionCircleOutlined
-              style={{ padding: '5px', color: '#4878a9' }}
+              style={{ padding: "5px", color: "#4878a9" }}
             />
           </Tooltip>
         </Col>
@@ -77,7 +77,7 @@ const Opinion = () => {
 
       <Row gutter={[16, 16]}>
         <Col xs={10} sm={10} md={10} lg={10}>
-          <h3 style={{ textAlign: 'right' }} style={{ textAlign: 'right' }}>
+          <h3 style={{ textAlign: "right" }} style={{ textAlign: "right" }}>
             Drive & Speed:
           </h3>
         </Col>
@@ -87,18 +87,18 @@ const Opinion = () => {
             size="default"
             suffix="/5"
             value={driveSpeed}
-            onChange={event => handleNumber('driveSpeed', event.target.value)}
+            onChange={(event) => handleNumber("drive", event.target.value)}
           />
         </Col>
         <Col xs={6} sm={7}>
           <Tooltip
             placement="topLeft"
             title={
-              'How well does your board accelerate and maintain speed through turns?'
+              "How well does your board accelerate and maintain speed through turns?"
             }
           >
             <QuestionCircleOutlined
-              style={{ padding: '5px', color: '#4878a9' }}
+              style={{ padding: "5px", color: "#4878a9" }}
             />
           </Tooltip>
         </Col>
@@ -106,7 +106,7 @@ const Opinion = () => {
 
       <Row gutter={[16, 16]}>
         <Col xs={10} sm={10} md={10} lg={10}>
-          <h3 style={{ textAlign: 'right' }} style={{ textAlign: 'right' }}>
+          <h3 style={{ textAlign: "right" }} style={{ textAlign: "right" }}>
             Paddle Power:
           </h3>
         </Col>
@@ -116,16 +116,18 @@ const Opinion = () => {
             size="default"
             suffix="/5"
             value={paddlePower}
-            onChange={event => handleNumber('paddlePower', event.target.value)}
+            onChange={(event) =>
+              handleNumber("paddlePower", event.target.value)
+            }
           />
         </Col>
         <Col xs={6} sm={7}>
           <Tooltip
             placement="topLeft"
-            title={'How easy is your board to paddle?'}
+            title={"How easy is your board to paddle?"}
           >
             <QuestionCircleOutlined
-              style={{ padding: '5px', color: '#4878a9' }}
+              style={{ padding: "5px", color: "#4878a9" }}
             />
           </Tooltip>
         </Col>
@@ -133,7 +135,7 @@ const Opinion = () => {
 
       <Row gutter={[16, 16]}>
         <Col xs={10} sm={10} md={10} lg={10}>
-          <h3 style={{ textAlign: 'right' }} style={{ textAlign: 'right' }}>
+          <h3 style={{ textAlign: "right" }} style={{ textAlign: "right" }}>
             Movability:
           </h3>
         </Col>
@@ -143,16 +145,16 @@ const Opinion = () => {
             size="default"
             suffix="/5"
             value={movability}
-            onChange={event => handleNumber('movability', event.target.value)}
+            onChange={(event) => handleNumber("movability", event.target.value)}
           />
         </Col>
         <Col xs={6} sm={7}>
           <Tooltip
             placement="topLeft"
-            title={'How easy does your board move in the water?'}
+            title={"How easy does your board move in the water?"}
           >
             <QuestionCircleOutlined
-              style={{ padding: '5px', color: '#4878a9' }}
+              style={{ padding: "5px", color: "#4878a9" }}
             />
           </Tooltip>
         </Col>

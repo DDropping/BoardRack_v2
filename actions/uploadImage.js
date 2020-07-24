@@ -1,8 +1,8 @@
-import axios from 'axios';
-import cookie from 'js-cookie';
-import imageCompression from 'browser-image-compression';
+import axios from "axios";
+import cookie from "js-cookie";
+import imageCompression from "browser-image-compression";
 
-import baseUrl from '../utils/baseUrl';
+import baseUrl from "../utils/baseUrl";
 import {
   SET_OBJECTURL_URL,
   SET_STANDARD_URL,
@@ -10,34 +10,34 @@ import {
   SET_IMG_KEY,
   SET_UPLOAD_PERCENTAGE,
   UPLOAD_ERROR,
-  DELETE_IMG_PREVIEW
-} from './types';
+  DELETE_IMG_PREVIEW,
+} from "./types";
 
-export const uploadImage = (imgKey, file) => async dispatch => {
+export const uploadImage = (imgKey, file) => async (dispatch) => {
   //image compression options
   const standardOptions = {
     maxSizeMB: 0.2,
     useWebWorker: true,
-    onProgress: handleProgress
+    onProgress: handleProgress,
   };
 
   const thumbnailOptions = {
     maxSizeMB: 0.05,
     useWebWorker: true,
-    onProgress: handleProgress2
+    onProgress: handleProgress2,
   };
 
   function handleProgress(percentage) {
     dispatch({
       type: SET_UPLOAD_PERCENTAGE,
-      payload: { imgKey: imgKey, percentage: Math.round(percentage / 2) }
+      payload: { imgKey: imgKey, percentage: Math.round(percentage / 2) },
     });
   }
 
   function handleProgress2(percentage) {
     dispatch({
       type: SET_UPLOAD_PERCENTAGE,
-      payload: { imgKey: imgKey, percentage: Math.round(percentage / 2 + 50) }
+      payload: { imgKey: imgKey, percentage: Math.round(percentage / 2 + 50) },
     });
   }
 
@@ -45,7 +45,7 @@ export const uploadImage = (imgKey, file) => async dispatch => {
     //create object url for img preview
     dispatch({
       type: SET_OBJECTURL_URL,
-      payload: { imgKey: imgKey, objectUrl: URL.createObjectURL(file) }
+      payload: { imgKey: imgKey, objectUrl: URL.createObjectURL(file) },
     });
 
     //increase image key
@@ -65,7 +65,7 @@ export const uploadImage = (imgKey, file) => async dispatch => {
     const contentType = file.type;
 
     //delete authorization header (s3 throws error with authorization header)
-    delete axios.defaults.headers.common['Authorization'];
+    delete axios.defaults.headers.common["Authorization"];
 
     //set axios arguments to get signed url for standard image
     const generatePutUrl = `${baseUrl}/api/util/generatePutUrl`;
@@ -73,17 +73,17 @@ export const uploadImage = (imgKey, file) => async dispatch => {
     const options = {
       params: {
         Key: key,
-        ContentType: contentType
+        ContentType: contentType,
       },
       headers: {
-        'Content-Type': contentType,
-        'x-amz-acl': 'public-read'
-      }
+        "Content-Type": contentType,
+        "x-amz-acl": "public-read",
+      },
     };
 
     //get signed url for standard image
     const {
-      data: { putURL }
+      data: { putURL },
     } = await axios.get(generatePutUrl, options);
 
     //send put request to upload standard image to s3 bucket
@@ -93,7 +93,7 @@ export const uploadImage = (imgKey, file) => async dispatch => {
     const standardUrl = `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${key}`;
     dispatch({
       type: SET_STANDARD_URL,
-      payload: { imgKey: imgKey, standardUrl: standardUrl }
+      payload: { imgKey: imgKey, standardUrl: standardUrl },
     });
 
     //set axios arguments to get signed url for thumbnail
@@ -101,12 +101,12 @@ export const uploadImage = (imgKey, file) => async dispatch => {
     const optionsThumbnail = {
       params: {
         Key: keyThumbnail,
-        ContentType: contentType
+        ContentType: contentType,
       },
       headers: {
-        'Content-Type': contentType,
-        'x-amz-acl': 'public-read'
-      }
+        "Content-Type": contentType,
+        "x-amz-acl": "public-read",
+      },
     };
 
     //get signed url for thumbanil
@@ -120,16 +120,16 @@ export const uploadImage = (imgKey, file) => async dispatch => {
     const thumbnailUrl = `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${keyThumbnail}`;
     dispatch({
       type: SET_THUMBNAIL_URL,
-      payload: { imgKey: imgKey, thumbnailUrl: thumbnailUrl }
+      payload: { imgKey: imgKey, thumbnailUrl: thumbnailUrl },
     });
 
     //re-add authorization header
-    const token = cookie.get('token');
-    axios.defaults.headers.common['Authorization'] = token;
+    const token = cookie.get("token");
+    axios.defaults.headers.common["Authorization"] = token;
   } catch (err) {
-    console.log('error message', err);
+    console.log("error message", err);
     dispatch({ type: UPLOAD_ERROR, payload: imgKey });
-    setTimeout(function() {
+    setTimeout(function () {
       dispatch({ type: DELETE_IMG_PREVIEW, payload: imgKey });
     }, 5000);
   }

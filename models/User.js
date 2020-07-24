@@ -1,31 +1,31 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const { String, Date, Number } = mongoose.Schema.Types;
 
 const UserSchema = new mongoose.Schema({
   role: {
     type: String,
-    default: 'user',
+    default: "user",
     required: true,
-    enum: ['user', 'shop', 'shaper', 'admin', 'root']
+    enum: ["user", "shop", "shaper", "admin", "root"],
   },
   username: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
     required: true,
-    select: false
+    select: false,
   },
   date: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   location: {
     lat: { type: Number },
@@ -35,58 +35,58 @@ const UserSchema = new mongoose.Schema({
     city: { type: String },
     address: { type: String },
     postalCode: { type: String },
-    locationImage: { type: String }
+    locationImage: { type: String },
   },
   messageThreads: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Message'
-    }
+      ref: "message",
+    },
   ],
   posts: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Post'
-    }
+      ref: "post",
+    },
   ],
   favorites: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Post'
-    }
+      ref: "post",
+    },
   ],
   operatingHours: {
     sunday: {
-      type: String
+      type: String,
     },
     monday: {
-      type: String
+      type: String,
     },
     tuesday: {
-      type: String
+      type: String,
     },
     wednesday: {
-      type: String
+      type: String,
     },
     thursday: {
-      type: String
+      type: String,
     },
     friday: {
-      type: String
+      type: String,
     },
     saturday: {
-      type: String
-    }
+      type: String,
+    },
   },
   website: {
-    type: String
+    type: String,
   },
   contactEmail: {
-    type: String
+    type: String,
   },
   contactPhone: {
-    type: String
-  }
+    type: String,
+  },
 });
 
-export default mongoose.models.User || mongoose.model('User', UserSchema);
+export default mongoose.models.user || mongoose.model("user", UserSchema);

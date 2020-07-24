@@ -50,6 +50,7 @@ async function handlePostRequest(req, res) {
 
   const postFields = {};
   postFields.user = req.user.id;
+  postFields.date = Date.now();
   if (title) postFields.title = title;
   if (price) postFields.price = price;
   if (boardType) postFields.boardType = boardType;
