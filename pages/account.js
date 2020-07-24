@@ -3,10 +3,15 @@ import styled from "styled-components";
 
 import Header from "../components/account/header";
 import Menu from "../components/account/menu";
+import DisplayData from "../components/account";
 
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+`;
+
+const Flexbox = styled.div`
+  display: flex;
 `;
 
 const Account = () => (
@@ -16,7 +21,10 @@ const Account = () => (
     </Head>
     <Container>
       <Header />
-      <Menu />
+      <Flexbox>
+        <Menu />
+        <DisplayData />
+      </Flexbox>
     </Container>
   </div>
 );
