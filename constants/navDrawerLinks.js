@@ -1,37 +1,37 @@
-import React from 'react';
+import React from "react";
 import {
   FormOutlined,
   HomeOutlined,
   MailOutlined,
   StarOutlined,
-  UserOutlined
-} from '@ant-design/icons';
+  UserOutlined,
+} from "@ant-design/icons";
 
 export default [
-  { title: 'Home', href: '/', icon: <HomeOutlined />, protected: false },
-  { title: 'Home', href: '/', icon: <HomeOutlined />, protected: true },
+  { title: "Home", href: "/", icon: <HomeOutlined />, protected: false },
+  { title: "Home", href: "/", icon: <HomeOutlined />, protected: true },
   {
-    title: 'My Account',
-    href: '/account',
+    title: "My Account",
+    href: "/account?view=overview",
     icon: <UserOutlined />,
-    protected: true
+    protected: true,
   },
   {
-    title: 'My Posts',
-    href: '/account/posts',
+    title: "My Boardrack",
+    href: "/account?view=posts",
     icon: <FormOutlined />,
-    protected: true
+    protected: true,
   },
   {
-    title: 'My Messages',
-    href: '/account/messages',
-    icon: <MailOutlined />,
-    protected: true
-  },
-  {
-    title: 'My Favorites',
-    href: '/account/favorites',
+    title: "My Favorites",
+    href: "/account?view=favorites",
     icon: <StarOutlined />,
-    protected: true
-  }
+    protected: true,
+  },
+  {
+    title: "My Messages",
+    href: "/account?view=messages",
+    icon: <MailOutlined />,
+    protected: true,
+  },
 ];

@@ -1,42 +1,42 @@
 //Message details model:
 //postID, messageThreads[{}]
 
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const { String, Date, Number } = mongoose.Schema.Types;
 
 const MessageSchema = new mongoose.Schema({
   postId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'post'
+    ref: "post",
   },
   authorId: {
-    type: String
+    type: String,
   },
   userId: {
-    type: String
+    type: String,
   },
   messageThread: [
     {
       mFrom: {
         type: String,
-        required: true
+        required: true,
       },
       message: {
         type: String,
-        required: true
+        required: true,
       },
       timeSent: {
         type: Date,
-        default: Date.now
-      }
-    }
+        default: Date.now,
+      },
+    },
   ],
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-export default mongoose.models.Message ||
-  mongoose.model('Message', MessageSchema);
+export default mongoose.models.message ||
+  mongoose.model("message", MessageSchema);
