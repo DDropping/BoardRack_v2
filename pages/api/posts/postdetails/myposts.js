@@ -1,6 +1,8 @@
 import connectDb from "../../../../utils/ConnectDb";
 import Post from "../../../../models/Post";
 import "../../../../models/User";
+import authenticate from "../../../../middleware/auth";
+import mongoose from "mongoose";
 
 connectDb();
 
@@ -15,13 +17,15 @@ const handler = async (req, res) => {
   }
 };
 
-// @route   GET api/posts/postdetails
+// @route   GET api/posts/postdetails/myposts
 // @desc    retrieve all posts from db
 // @res     posts: {... array of all posts}
 // @access  Public
 async function handleGetRequest(req, res) {
   try {
-    const posts = await Post.find({}).populate("user", "username");
+    const posts = await Post.find({
+      user: new mongoose.Types.ObjectId(req.user.id),
+    });
 
     if (!posts) {
       return res.status(400).json({ msg: "There is no posts" });
@@ -34,4 +38,4 @@ async function handleGetRequest(req, res) {
   }
 }
 
-export default handler;
+export default authenticate(handler);
