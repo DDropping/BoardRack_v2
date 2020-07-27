@@ -11,7 +11,9 @@ import { theme } from "../../../pages/_app";
 
 const index = () => {
   const router = useRouter();
-  const username = useSelector((state) => state.auth.user.username);
+  const username = useSelector((state) =>
+    state.auth.user ? state.auth.user.username : null
+  );
   const location = useSelector((state) => state.currentLocation.location);
 
   return (
