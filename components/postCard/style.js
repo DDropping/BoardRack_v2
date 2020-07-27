@@ -4,7 +4,6 @@ export const CardContainer = styled.div`
   position: relative;
   display: inline-block;
   width: 300px;
-  height: 400px; /* overall size of post card */
   margin-left: 10px;
   margin-top: 10px;
   background: ${({ theme }) => theme.primaryWhite};
@@ -34,8 +33,6 @@ export const ContentContainer = styled.div`
   height: 80px;
   width: 100%;
   padding: 10px;
-  position: absolute;
-  bottom: 0px;
   overflow: hidden;
   background: ${({ theme }) => theme.primaryWhite};
 `;
@@ -79,4 +76,9 @@ export const ImageWrapper = styled.img`
   position: relative;
   border: 1px solid rgb(255, 255, 255);
   margin-top: -3px; /* fix margin issue */
+`;
+
+//MANAGEMENT OPTIONS
+export const ManagementContainer = styled.div`
+  width: 100%;
 `;

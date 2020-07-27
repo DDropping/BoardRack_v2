@@ -5,6 +5,7 @@ import { CardContainer } from "./style";
 import Header from "./Header";
 import Images from "./Images";
 import Content from "./Content";
+import ManagementOptions from "./ManagementOptions";
 
 const index = ({ postData }) => {
   const headerData = {
@@ -37,6 +38,7 @@ const index = ({ postData }) => {
           <Content data={contentData} />
         </a>
       </Link>
+      <ManagementOptions />
     </CardContainer>
   );
 };
