@@ -37,7 +37,7 @@ const index = () => {
       {posts.map((post, index) => {
         return (
           <Li key={index}>
-            <PostCard key={index} postData={post} managementView={true} />
+            <PostCard key={index} postData={post} isManagementView={true} />
           </Li>
         );
       })}
