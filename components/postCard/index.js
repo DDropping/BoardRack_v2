@@ -7,7 +7,7 @@ import Images from "./Images";
 import Content from "./Content";
 import ManagementOptions from "./ManagementOptions";
 
-const index = ({ postData }) => {
+const index = ({ postData, managementView }) => {
   const headerData = {
     postId: postData._id,
     price: postData.price,
@@ -38,7 +38,7 @@ const index = ({ postData }) => {
           <Content data={contentData} />
         </a>
       </Link>
-      <ManagementOptions />
+      {managementView && <ManagementOptions />}
     </CardContainer>
   );
 };
