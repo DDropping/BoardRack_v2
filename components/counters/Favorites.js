@@ -34,7 +34,12 @@ const Favorites = ({ favorites, postId }) => {
           <StarOutlined />
         </Tooltip>
       )}
-      {user && isFavorite && (
+      {user && user.posts.includes(postId) && (
+        <Tooltip placement="top" title="Cannot Favorite Your Own Posts">
+          <StarOutlined />
+        </Tooltip>
+      )}
+      {user && !user.posts.includes(postId) && isFavorite && (
         <StarFilled
           onClick={() => {
             dispatch(removeFavorite(postId));
@@ -42,7 +47,7 @@ const Favorites = ({ favorites, postId }) => {
           }}
         />
       )}
-      {user && !isFavorite && (
+      {user && !user.posts.includes(postId) && !isFavorite && (
         <StarOutlined
           onClick={() => {
             dispatch(addFavorite(postId));
