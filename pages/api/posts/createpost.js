@@ -1,5 +1,6 @@
 import connectDb from "../../../utils/ConnectDb";
 import Post from "../../../models/Post";
+import User from "../../../models/User";
 
 import authenticate from "../../../middleware/auth";
 
@@ -97,8 +98,15 @@ async function handlePostRequest(req, res) {
     postFields.location.locationImage = location.locationImage;
 
   try {
+    //create and save post
     let post = new Post(postFields);
     await post.save();
+
+    //update and save post id in User.posts[]
+    const user = await User.findById(req.user.id);
+    user.posts.unshift(post._id);
+    await user.save();
+
     res.json(post);
   } catch (err) {
     console.error(err.message);
