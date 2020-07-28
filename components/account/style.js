@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  position: relative;
-  padding-bottom: 10px;
+  overflow: hidden;
   width: 100%;
-  white-space: nowrap;
 `;

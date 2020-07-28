@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 
-import baseUrl from "../../../utils/baseUrl";
-import { Container, CardsContainer } from "./style";
+import { Container } from "./style";
+import ViewAllButton from "../ViewAllButton";
 import MyPosts from "../../displayPosts/myPosts";
 
 const index = () => {
   return (
     <Container>
       <div>overview</div>
-      <CardsContainer>
-        <MyPosts />
-      </CardsContainer>
+      <ViewAllButton link="/account?view=posts" />
+      <MyPosts />
     </Container>
   );
 };

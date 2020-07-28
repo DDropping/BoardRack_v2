@@ -1,13 +1,11 @@
 import React from "react";
-import styled from "styled-components";
 import { useRouter } from "next/router";
 
 import Overview from "./overview";
 import Posts from "./posts";
 import Favorites from "./favorites";
 import Messages from "./messages";
-
-const Container = styled.div``;
+import { Container } from "./style";
 
 const index = () => {
   const router = useRouter();
