@@ -6,7 +6,7 @@ import Menu from "../components/account/menu";
 import DisplayData from "../components/account";
 
 const Container = styled.div`
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
 `;
 
