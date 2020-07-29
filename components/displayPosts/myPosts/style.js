@@ -16,4 +16,5 @@ export const Container = styled.div`
 
 export const Li = styled.li`
   display: inline-block;
+  vertical-align: top;
 `;

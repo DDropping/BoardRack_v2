@@ -5,6 +5,7 @@ import axios from "axios";
 import { Container, Li } from "./style";
 import baseUrl from "../../../utils/baseUrl";
 import PostCard from "../../postCard";
+import NewPostButton from "./NewPostButton";
 import PostModal from "../../postModal";
 import LoadingScreenCard from "../../loadingScreens/postCard";
 
@@ -34,6 +35,9 @@ const index = () => {
     <Container>
       {isLoading && loadingCards}
       <PostModal quickData={posts} />
+      <Li key="newpost">
+        <NewPostButton />
+      </Li>
       {posts.map((post, index) => {
         return (
           <Li key={index}>
