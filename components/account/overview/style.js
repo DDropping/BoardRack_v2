@@ -10,3 +10,7 @@ export const SectionContainer = styled.div`
   width: 100%;
   white-space: nowrap;
 `;
+
+export const Separator = styled.div`
+  margin-top: 2rem;
+`;
