@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  width: 100%;
+`;
+
+export const SectionContainer = styled.div`
   position: relative;
   padding-bottom: 10px;
   width: 100%;

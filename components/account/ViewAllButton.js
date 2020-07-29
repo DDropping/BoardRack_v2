@@ -9,17 +9,25 @@ const Container = styled.div`
   position: absolute;
   z-index: 1;
   right: 0;
-  height: 100%;
+  height: 462px;
   width: 200px;
   color: grey;
-  cursor: pointer;
-  text-align: right;
-  padding: 180px 10px;
   background: linear-gradient(
     270deg,
     rgba(255, 255, 255, 1) 60%,
     rgba(255, 255, 255, 0) 100%
   );
+  cursor: default;
+`;
+
+const Center = styled.div`
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
 `;
 
 const A = styled.div`
@@ -45,14 +53,16 @@ const TextWrapper = styled.div`
 const ViewAllButton = ({ link }) => {
   return (
     <Container>
-      <Link href={link} shallow={true}>
-        <A href="">
-          <IconWrapper>
-            <RightCircleOutlined />
-          </IconWrapper>
-          <TextWrapper>view all</TextWrapper>
-        </A>
-      </Link>
+      <Center>
+        <Link href={link} shallow={true}>
+          <A href="">
+            <IconWrapper>
+              <RightCircleOutlined />
+            </IconWrapper>
+            <TextWrapper>view all</TextWrapper>
+          </A>
+        </Link>
+      </Center>
     </Container>
   );
 };
