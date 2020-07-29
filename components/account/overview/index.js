@@ -5,6 +5,7 @@ import { Container, SectionContainer } from "./style";
 import { headerStyle } from "../style";
 import ViewAllButton from "../ViewAllButton";
 import MyPosts from "../../displayPosts/myPosts";
+import MyFavorites from "../../displayPosts/myFavorites";
 
 const index = () => {
   return (
@@ -22,7 +23,7 @@ const index = () => {
           My Favorites
         </Divider>
         <ViewAllButton link="/account?view=posts" />
-        <MyPosts />
+        <MyFavorites />
       </SectionContainer>
     </Container>
   );
