@@ -1,5 +1,6 @@
 import connectDb from "../../../../utils/ConnectDb";
 import Post from "../../../../models/Post";
+import User from "../../../../models/User";
 import "../../../../models/User";
 import authenticate from "../../../../middleware/auth";
 import mongoose from "mongoose";
@@ -17,14 +18,15 @@ const handler = async (req, res) => {
   }
 };
 
-// @route   GET api/posts/postdetails/myposts
-// @desc    retrieve all posts that user has created
+// @route   GET api/posts/postdetails/myfavorites
+// @desc    retrieve all posts that user has favorited
 // @res     posts: {... array of all posts}
 // @access  Public
 async function handleGetRequest(req, res) {
   try {
+    const userFavorites = await User.findById(req.user.id).select("favorites");
     const posts = await Post.find({
-      user: new mongoose.Types.ObjectId(req.user.id),
+      _id: { $in: userFavorites.favorites },
     });
 
     if (!posts) {
