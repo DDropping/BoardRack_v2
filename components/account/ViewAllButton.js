@@ -17,7 +17,6 @@ const Container = styled.div`
     rgba(255, 255, 255, 1) 60%,
     rgba(255, 255, 255, 0) 100%
   );
-  cursor: default;
 `;
 
 const Center = styled.div`
@@ -27,10 +26,11 @@ const Center = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  cursor: pointer;
+  cursor: default;
 `;
 
 const A = styled.div`
+  cursor: pointer;
   transition: all 0.2s ease-in-out;
   color: ${({ theme }) => theme.primaryDarkGrey};
   :hover {
