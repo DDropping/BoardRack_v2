@@ -5,10 +5,10 @@ import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 const Container = styled.div`
+  margin-left: 10px;
   display: inline-block;
   width: 300px;
   height: 442px;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
