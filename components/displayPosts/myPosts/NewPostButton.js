@@ -4,15 +4,27 @@ import Link from "next/link";
 import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
+import { theme } from "../../../pages/_app";
+
 const Container = styled.div`
-  margin-left: 10px;
+  margin: 10px 0 0 10px;
   display: inline-block;
   width: 300px;
   height: 442px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ theme }) => theme.primaryDarkGrey};
+  color: ${({ theme }) => theme.primaryBlue};
+`;
+
+const HoverShadow = styled.div`
+  height: 175px;
+  width: 175px;
+  box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);
+  border-radius: 50%;
+  :hover {
+    box-shadow: 0 0 11px rgba(83, 68, 68, 0.4);
+  }
 `;
 
 const buttonStyle = {
@@ -21,8 +33,8 @@ const buttonStyle = {
   fontSize: "1.75rem",
   lineHeight: "1.75rem",
   transition: "all 0.2s ease-in-out",
-  boxShadow: "0 0 11px rgba(83, 68, 68, 0.2)",
-  color: "grey",
+  color: theme.primaryBlue,
+  borderColor: theme.primaryBlue,
 };
 
 const iconStyle = {
@@ -33,18 +45,20 @@ const iconStyle = {
 const NewPostButton = () => {
   return (
     <Container>
-      <Link scroll={false} href={"/createpost"}>
-        <a>
-          <Button
-            style={buttonStyle}
-            shape="circle"
-            icon={<PlusOutlined style={iconStyle} />}
-          >
-            <br />
-            New Post
-          </Button>
-        </a>
-      </Link>
+      <HoverShadow>
+        <Link scroll={false} href={"/createpost"}>
+          <a>
+            <Button
+              style={buttonStyle}
+              shape="circle"
+              icon={<PlusOutlined style={iconStyle} />}
+            >
+              <br />
+              New Post
+            </Button>
+          </a>
+        </Link>
+      </HoverShadow>
     </Container>
   );
 };
