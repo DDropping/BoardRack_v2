@@ -7,6 +7,7 @@ import baseUrl from "../../../utils/baseUrl";
 import PostCard from "../../postCard";
 import PostModal from "../../postModal";
 import LoadingScreenCard from "../../loadingScreens/postCard";
+import NoFavoritesFoundMessage from "./NoFavoritesFoundMessage";
 
 const index = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -33,14 +34,19 @@ const index = () => {
   return (
     <Container>
       {isLoading && loadingCards}
-      <PostModal quickData={posts} />
-      {posts.map((post, index) => {
-        return (
-          <Li key={index}>
-            <PostCard key={index} postData={post} />
-          </Li>
-        );
-      })}
+      {!isLoading && posts.length > 0 && (
+        <>
+          <PostModal quickData={posts} />
+          {posts.map((post, index) => {
+            return (
+              <Li key={index}>
+                <PostCard key={index} postData={post} />
+              </Li>
+            );
+          })}
+        </>
+      )}
+      {!isLoading && posts.length === 0 && <NoFavoritesFoundMessage />}
     </Container>
   );
 };
