@@ -8,7 +8,6 @@ import { theme } from "../../../pages/_app";
 
 const Container = styled.div`
   margin: 10px 0 0 10px;
-  display: inline-block;
   width: 300px;
   height: 442px;
   display: flex;

@@ -8,6 +8,7 @@ import PostCard from "../../postCard";
 import NewPostButton from "./NewPostButton";
 import PostModal from "../../postModal";
 import LoadingScreenCard from "../../loadingScreens/postCard";
+import NoPostsFoundMessage from "./NoPostsFoundMessage";
 
 const index = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -34,17 +35,23 @@ const index = () => {
   return (
     <Container>
       {isLoading && loadingCards}
-      <PostModal quickData={posts} />
-      <Li key="newpost">
-        <NewPostButton />
-      </Li>
-      {posts.map((post, index) => {
-        return (
-          <Li key={index}>
-            <PostCard key={index} postData={post} isManagementView={true} />
+      {!isLoading && posts.length > 0 ? (
+        <>
+          <PostModal quickData={posts} />
+          <Li key="newpost">
+            <NewPostButton />
           </Li>
-        );
-      })}
+          {posts.map((post, index) => {
+            return (
+              <Li key={index}>
+                <PostCard key={index} postData={post} isManagementView={true} />
+              </Li>
+            );
+          })}{" "}
+        </>
+      ) : (
+        <NoPostsFoundMessage />
+      )}
     </Container>
   );
 };
