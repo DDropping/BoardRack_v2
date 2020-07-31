@@ -35,7 +35,7 @@ const index = () => {
   return (
     <Container>
       {isLoading && loadingCards}
-      {!isLoading && posts.length > 0 ? (
+      {!isLoading && posts.length > 0 && (
         <>
           <PostModal quickData={posts} />
           <Li key="newpost">
@@ -47,11 +47,10 @@ const index = () => {
                 <PostCard key={index} postData={post} isManagementView={true} />
               </Li>
             );
-          })}{" "}
+          })}
         </>
-      ) : (
-        <NoPostsFoundMessage />
       )}
+      {!isLoading && posts.length === 0 && <NoPostsFoundMessage />}
     </Container>
   );
 };
