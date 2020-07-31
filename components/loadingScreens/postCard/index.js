@@ -44,6 +44,7 @@ const index = () => {
           active={true}
           size={18}
         />
+        <br />
         <Skeleton.Input
           style={{ width: 250, margin: "5px" }}
           active={true}
