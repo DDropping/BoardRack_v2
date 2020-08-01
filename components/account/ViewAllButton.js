@@ -31,7 +31,7 @@ const Center = styled.div`
 
 const A = styled.div`
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: ${({ theme }) => theme.easeInOut};
   color: ${({ theme }) => theme.primaryDarkGrey};
   :hover {
     color: ${({ theme }) => theme.secondaryBlue};

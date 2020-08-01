@@ -21,6 +21,7 @@ const HoverShadow = styled.div`
   width: 175px;
   box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);
   border-radius: 50%;
+  transition: ${({ theme }) => theme.easeInOut};
   :hover {
     box-shadow: 0 0 11px rgba(83, 68, 68, 0.4);
   }
@@ -31,7 +32,7 @@ const buttonStyle = {
   width: "175px",
   fontSize: "1.75rem",
   lineHeight: "1.75rem",
-  transition: "all 0.2s ease-in-out",
+  transition: theme.easeInOut,
   color: theme.primaryBlue,
   borderColor: theme.primaryBlue,
 };

@@ -1,23 +1,23 @@
-import React from 'react';
-import Link from 'next/link';
-import { Drawer } from 'antd';
-import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import Link from "next/link";
+import { Drawer } from "antd";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
 import {
   PlusOutlined,
   UserOutlined,
   UserAddOutlined,
   LogoutOutlined,
-} from '@ant-design/icons';
-import styled from 'styled-components';
+} from "@ant-design/icons";
+import styled from "styled-components";
 
 import {
   TOGGLE_LOGIN,
   TOGGLE_REGISTER,
   DEAUTH_USER,
-} from '../../actions/types';
-import navDrawerLinks from '../../constants/navDrawerLinks';
-import logoutModal from '../logout';
+} from "../../actions/types";
+import navDrawerLinks from "../../constants/navDrawerLinks";
+import logoutModal from "../logout";
 
 const Img = styled.img`
   width: 80%;
@@ -26,7 +26,7 @@ const Img = styled.img`
 `;
 
 const Li = styled.li`
-  transition: all 0.2s ease-in-out;
+  transition: ${({ theme }) => theme.easeInOut};
   display: block;
   font-size: 1rem;
   padding: 1rem;
@@ -46,7 +46,7 @@ const Li = styled.li`
 `;
 
 const Logout = styled.div`
-  transition: all 0.2s ease-in-out;
+  transition: ${({ theme }) => theme.easeInOut};
   display: block;
   font-size: 1rem;
   padding: 1rem;
@@ -102,9 +102,9 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
       </Link>
       <ul>
         {isAuth && (
-          <Link href={'/createpost'}>
+          <Link href={"/createpost"}>
             <Li
-              active={isActive('/createpost') && !isLogin && !isRegister}
+              active={isActive("/createpost") && !isLogin && !isRegister}
               onClick={() => handleDrawer(false)}
             >
               <a className="create-post-link">
@@ -115,7 +115,7 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
         )}
         {!isAuth && (
           <Li
-            active={isActive('/createpost') && !isLogin && !isRegister}
+            active={isActive("/createpost") && !isLogin && !isRegister}
             onClick={() => {
               handleDrawer(false);
               dispatch({ type: TOGGLE_LOGIN, payload: true });

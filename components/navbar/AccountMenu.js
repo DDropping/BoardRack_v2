@@ -17,7 +17,7 @@ const Container = styled.div`
 
 const A = styled.a`
   padding: 0 0.5rem;
-  transition: all 0.2s ease-in-out;
+  transition: ${({ theme }) => theme.easeInOut};
   ${({ active, theme }) =>
     active &&
     `background-color: ${theme.backgroundBlueMenu}; 
@@ -33,7 +33,7 @@ const A = styled.a`
 
 const Logout = styled.div`
   padding: 0 0.5rem;
-  transition: all 0.2s ease-in-out;
+  transition: ${({ theme }) => theme.easeInOut};
   &:hover {
     background-color: ${({ theme }) => theme.backgroundRedMenu};
     border-left: 2px solid ${({ theme }) => theme.primaryRed};

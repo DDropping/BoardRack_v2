@@ -85,6 +85,10 @@ export const theme = {
   lg1: "993px", // +1 for @media queries
   xl: "1200px", // Extra large devices (large desktops, 1200px and up)
   xl1: "1201px", // +1 for @media queries
+
+  //transitions
+  easeInOut: "all 0.2s ease-in-out",
+  boxShadow: "box-shadow 0.3s",
 };
 
 export default class MyApp extends App {

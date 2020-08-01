@@ -7,7 +7,7 @@ export const CardContainer = styled.div`
   margin-left: 10px;
   margin-top: 10px;
   background: ${({ theme }) => theme.primaryWhite};
-  transition: box-shadow 0.3s;
+  transition: ${({ theme }) => theme.boxShadow};
   box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);
   :hover {
     box-shadow: 0 0 11px rgba(33, 33, 33, 0.4);
