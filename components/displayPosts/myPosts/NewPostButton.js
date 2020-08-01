@@ -16,49 +16,37 @@ const Container = styled.div`
   color: ${({ theme }) => theme.primaryBlue};
 `;
 
-const HoverShadow = styled.div`
-  height: 175px;
-  width: 175px;
-  box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);
-  border-radius: 50%;
-  transition: ${({ theme }) => theme.easeInOut};
-  :hover {
-    box-shadow: 0 0 11px rgba(83, 68, 68, 0.4);
-  }
-`;
-
 const buttonStyle = {
-  height: "175px",
-  width: "175px",
-  fontSize: "1.75rem",
-  lineHeight: "1.75rem",
+  height: "125px",
+  width: "125px",
+  fontSize: "1.25rem",
+  lineHeight: "1.25rem",
   transition: theme.easeInOut,
-  color: theme.primaryBlue,
+  color: theme.primaryWhite,
   borderColor: theme.primaryBlue,
 };
 
 const iconStyle = {
-  fontSize: "3rem",
-  lineHeight: "3rem",
+  fontSize: "2.5rem",
+  lineHeight: "2.5rem",
 };
 
 const NewPostButton = () => {
   return (
     <Container>
-      <HoverShadow>
-        <Link scroll={false} href={"/createpost"}>
-          <a>
-            <Button
-              style={buttonStyle}
-              shape="circle"
-              icon={<PlusOutlined style={iconStyle} />}
-            >
-              <br />
-              New Post
-            </Button>
-          </a>
-        </Link>
-      </HoverShadow>
+      <Link scroll={false} href={"/createpost"}>
+        <a>
+          <Button
+            style={buttonStyle}
+            type="primary"
+            shape="circle"
+            icon={<PlusOutlined style={iconStyle} />}
+          >
+            <br />
+            New Post
+          </Button>
+        </a>
+      </Link>
     </Container>
   );
 };
