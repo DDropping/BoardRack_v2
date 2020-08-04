@@ -1,11 +1,15 @@
 //Message details model:
-//users:[author, user], postId, date, messages: [{from, body, timeSent}]
+//type, users:[author, user], postId, date, messages: [{from, body, timeSent}]
 
 import mongoose from "mongoose";
 
-const { String, Date, Boolean } = mongoose.Schema.Types;
+const { String, Date } = mongoose.Schema.Types;
 
 const MessageSchema = new mongoose.Schema({
+  type: {
+    /* post: (message thread is about a post) | user: (message thread is just a chat between two users) */
+    type: String,
+  },
   users: [
     {
       type: mongoose.Schema.Types.ObjectId,
