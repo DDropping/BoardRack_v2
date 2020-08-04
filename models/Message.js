@@ -1,5 +1,5 @@
 //Message details model:
-//postID, messageThreads[{}]
+//users:[author, user], postId, date, messages: [{from, body, timeSent}]
 
 import mongoose from "mongoose";
 
