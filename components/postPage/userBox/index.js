@@ -10,13 +10,20 @@ import {
   ContactContainer,
   MessageContainer,
 } from "./style";
+import sendNewMessage from "../../../utils/sendNewMessage";
 
 const { TextArea } = Input;
 
-const index = ({ user, location }) => {
+const index = ({ user, location, postId }) => {
   const [isContact, setIsContact] = useState(false);
   const [message, setMessage] = useState("");
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  const sendMessage = () => {
+    if (message.length > 0) {
+      sendNewMessage("post", postId, user._id, message);
+    }
+  };
 
   return (
     <UserBoxContainer>
@@ -53,7 +60,7 @@ const index = ({ user, location }) => {
             style={{ marginBottom: "10px" }}
           />
           {isAuthenticated ? (
-            <Button type="primary" block>
+            <Button type="primary" block onClick={sendMessage}>
               Send Message
             </Button>
           ) : (

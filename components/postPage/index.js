@@ -74,7 +74,11 @@ const index = ({ quickData, postId }) => {
         <DataContainer>
           <ImageGallery images={postData.images} />
           <Flexbox>
-            <UserBox user={postData.user} location={postData.location} />
+            <UserBox
+              user={postData.user}
+              location={postData.location}
+              postId={postData._id}
+            />
             <CountersBar
               date={postData.date}
               views={postData.viewCount}
