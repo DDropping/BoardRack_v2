@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Avatar, Button, Input } from "antd";
 import { UserOutlined, PhoneOutlined, MailOutlined } from "@ant-design/icons";
 
@@ -15,6 +16,7 @@ const { TextArea } = Input;
 const index = ({ user, location }) => {
   const [isContact, setIsContact] = useState(false);
   const [message, setMessage] = useState("");
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   return (
     <UserBoxContainer>
@@ -50,9 +52,15 @@ const index = ({ user, location }) => {
             placeholder={"Send " + user.username + " a message..."}
             style={{ marginBottom: "10px" }}
           />
-          <Button type="primary" block>
-            Send Message
-          </Button>
+          {isAuthenticated ? (
+            <Button type="primary" block>
+              Send Message
+            </Button>
+          ) : (
+            <Button type="primary" block disabled>
+              Login to send messages
+            </Button>
+          )}
         </MessageContainer>
       )}
     </UserBoxContainer>
