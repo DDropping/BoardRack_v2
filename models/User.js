@@ -37,7 +37,7 @@ const UserSchema = new mongoose.Schema({
     postalCode: { type: String },
     locationImage: { type: String },
   },
-  messageThreads: [
+  messages: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "message",

@@ -7,8 +7,10 @@ const { String, Date } = mongoose.Schema.Types;
 
 const MessageSchema = new mongoose.Schema({
   type: {
-    /* post: (message thread is about a post) | user: (message thread is just a chat between two users) */
     type: String,
+    default: "post",
+    required: true,
+    enum: ["user", "post", "support"],
   },
   users: [
     {
@@ -20,7 +22,11 @@ const MessageSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "post",
   },
-  date: {
+  dateCreated: {
+    type: Date,
+    default: Date.now,
+  },
+  lastUpdated: {
     type: Date,
     default: Date.now,
   },
