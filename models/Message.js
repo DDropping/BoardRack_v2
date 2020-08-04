@@ -3,28 +3,31 @@
 
 import mongoose from "mongoose";
 
-const { String, Date, Number } = mongoose.Schema.Types;
+const { String, Date, Boolean } = mongoose.Schema.Types;
 
 const MessageSchema = new mongoose.Schema({
+  users: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
   postId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "post",
   },
-  authorId: {
-    type: String,
+  date: {
+    type: Date,
+    default: Date.now,
   },
-  userId: {
-    type: String,
-  },
-  messageThread: [
+  messages: [
     {
-      mFrom: {
-        type: String,
-        required: true,
+      from: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
       },
-      message: {
+      body: {
         type: String,
-        required: true,
       },
       timeSent: {
         type: Date,
@@ -32,10 +35,6 @@ const MessageSchema = new mongoose.Schema({
       },
     },
   ],
-  date: {
-    type: Date,
-    default: Date.now,
-  },
 });
 
 export default mongoose.models.message ||
