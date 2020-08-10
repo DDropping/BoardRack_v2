@@ -1,4 +1,4 @@
-![screenshot](https://github.com/DDropping/portfolio/blob/master/src/images/project-boardrack.png)
+![screenshot](https://github.com/DDropping/portfolio/blob/master/src/images/project-boardrackv2.png)
 
 # BoardRack (version 2)
 
