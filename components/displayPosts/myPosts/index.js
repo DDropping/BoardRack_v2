@@ -34,22 +34,23 @@ const index = () => {
 
   return (
     <Container>
-      {isLoading && loadingCards}
-      {!isLoading && posts.length > 0 && (
-        <>
-          <PostModal quickData={posts} />
-          <Li key="newpost">
-            <NewPostButton />
-          </Li>
-          {posts.map((post, index) => {
+      <ul>
+        <PostModal quickData={posts} />
+        <Li key="newpost">
+          <NewPostButton />
+        </Li>
+        {isLoading && loadingCards}
+        {!isLoading &&
+          posts.length > 0 &&
+          posts.map((post, index) => {
             return (
               <Li key={index}>
                 <PostCard key={index} postData={post} isManagementView={true} />
               </Li>
             );
           })}
-        </>
-      )}
+      </ul>
+
       {!isLoading && posts.length === 0 && <NoPostsFoundMessage />}
     </Container>
   );
