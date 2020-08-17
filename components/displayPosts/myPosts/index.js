@@ -16,7 +16,7 @@ const index = () => {
   const [isLoading, setLoading] = useState(true);
 
   let loadingCards = [];
-  for (let i = 0; i < 5; ++i) {
+  for (let i = 0; i < 20; ++i) {
     loadingCards.push(<LoadingScreenCard key={i} />);
   }
 
