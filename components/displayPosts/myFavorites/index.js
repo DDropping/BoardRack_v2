@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { Button } from "antd";
+import { PlusOutlined, AppstoreOutlined } from "@ant-design/icons";
+import Link from "next/link";
 
-import { Container, Li } from "./style";
+import { Container, ButtonContainer, Li } from "./style";
 import baseUrl from "../../../utils/baseUrl";
 import PostCard from "../../postCard";
 import PostModal from "../../postModal";
 import LoadingScreenCard from "../../loadingScreens/postCard";
 import NoFavoritesFoundMessage from "./NoFavoritesFoundMessage";
 
-const index = () => {
+const index = ({ preview }) => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [posts, setPosts] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -33,6 +36,17 @@ const index = () => {
 
   return (
     <Container>
+      {preview && posts.length > 0 && (
+        <ButtonContainer>
+          <div style={{ flex: 1 }} />
+          <Link href="/account?view=favorites" shallow={true}>
+            <Button style={{ marginRight: "10px" }}>
+              <AppstoreOutlined /> View All Favorites
+            </Button>
+          </Link>
+        </ButtonContainer>
+      )}
+
       {isLoading && loadingCards}
       {!isLoading && posts.length > 0 && (
         <>
