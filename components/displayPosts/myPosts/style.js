@@ -12,6 +12,17 @@ export const Container = styled.div`
   }
 `;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+export const Ul = styled.ul`
+  overflow: auto;
+  ${(props) => props.preview}
+  white-space: ${(props) => (props.preview ? "nowrap" : "noraml")};
+`;
+
 export const Li = styled.li`
   display: inline-block;
   vertical-align: top;

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { Button } from "antd";
+import { PlusOutlined, AppstoreOutlined } from "@ant-design/icons";
+import Link from "next/link";
 
-import { Container, Li } from "./style";
+import { Container, ButtonContainer, Ul, Li } from "./style";
 import baseUrl from "../../../utils/baseUrl";
 import PostCard from "../../postCard";
 import NewPostButton from "./NewPostButton";
@@ -10,7 +13,7 @@ import PostModal from "../../postModal";
 import LoadingScreenCard from "../../loadingScreens/postCard";
 import NoPostsFoundMessage from "./NoPostsFoundMessage";
 
-const index = () => {
+const index = ({ preview }) => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [posts, setPosts] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -34,11 +37,27 @@ const index = () => {
 
   return (
     <Container>
-      <ul>
+      {preview && posts.length > 0 && (
+        <ButtonContainer>
+          <Button type="primary" style={{ marginLeft: "10px" }}>
+            <PlusOutlined /> Create New Posts
+          </Button>
+          <div style={{ flex: 1 }} />
+          <Link href="/account?view=posts" shallow={true}>
+            <Button style={{ marginRight: "10px" }}>
+              <AppstoreOutlined /> View All Posts
+            </Button>
+          </Link>
+        </ButtonContainer>
+      )}
+
+      <Ul preview={preview}>
         <PostModal quickData={posts} />
-        <Li key="newpost">
-          <NewPostButton />
-        </Li>
+        {!preview && (
+          <Li>
+            <NewPostButton />
+          </Li>
+        )}
         {isLoading && loadingCards}
         {!isLoading &&
           posts.length > 0 &&
@@ -49,7 +68,7 @@ const index = () => {
               </Li>
             );
           })}
-      </ul>
+      </Ul>
 
       {!isLoading && posts.length === 0 && <NoPostsFoundMessage />}
     </Container>
