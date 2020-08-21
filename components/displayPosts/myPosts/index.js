@@ -27,7 +27,7 @@ const index = ({ preview }) => {
     async function fetchData() {
       const url = `${baseUrl}/api/posts/postdetails/myposts`;
       const res = await axios.get(url);
-      setPosts(res.data);
+      setPosts(preview ? res.data.slice(0, 5) : res.data);
       setLoading(false);
     }
     if (isAuthenticated) {
