@@ -12,6 +12,7 @@ import NewPostButton from "./NewPostButton";
 import PostModal from "../../postModal";
 import LoadingScreenCard from "../../loadingScreens/postCard";
 import NoPostsFoundMessage from "./NoPostsFoundMessage";
+import ViewAllButton from "../ViewAllButton";
 
 const index = ({ preview }) => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -53,12 +54,15 @@ const index = ({ preview }) => {
 
       <Ul preview={preview}>
         <PostModal quickData={posts} />
+
         {!preview && (
           <Li>
             <NewPostButton />
           </Li>
         )}
+
         {isLoading && loadingCards}
+
         {!isLoading &&
           posts.length > 0 &&
           posts.map((post, index) => {
@@ -68,6 +72,12 @@ const index = ({ preview }) => {
               </Li>
             );
           })}
+
+        {preview && posts.length > 0 && (
+          <Li>
+            <ViewAllButton />
+          </Li>
+        )}
       </Ul>
 
       {!isLoading && posts.length === 0 && <NoPostsFoundMessage />}
