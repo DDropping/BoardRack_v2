@@ -29,10 +29,10 @@ const iconStyle = {
   lineHeight: "2.5rem",
 };
 
-const ViewAllButton = () => {
+const ViewAllButton = ({ link }) => {
   return (
     <Container>
-      <Link scroll={false} href={"/createpost"}>
+      <Link href={link} shallow={true}>
         <a>
           <Button
             style={buttonStyle}

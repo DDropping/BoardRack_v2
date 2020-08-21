@@ -65,7 +65,7 @@ const index = ({ preview }) => {
 
       {preview && posts.length > 0 && (
         <Li>
-          <ViewAllButton />
+          <ViewAllButton link="/account?view=favorites" />
         </Li>
       )}
 
