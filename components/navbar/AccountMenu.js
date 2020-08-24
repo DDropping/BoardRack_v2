@@ -69,7 +69,7 @@ const AccountMenu = () => {
             paddingTop: "1rem",
           }}
         >
-          <Link href="/account">
+          <Link href="/account?view=overview">
             <Avatar
               size={150}
               style={{ backgroundColor: "#4878a9" }}
