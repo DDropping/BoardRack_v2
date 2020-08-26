@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Avatar, Card } from "antd";
 import { UserOutlined, FormOutlined } from "@ant-design/icons";
 
-import { A, Title, Body, TimeStamp } from "./style";
+import { Container, A, Title, Body, TimeStamp } from "./style";
 import timeAgo from "../../utils/timeAgo";
 
 const Index = ({ messageThread }) => {
@@ -15,30 +15,32 @@ const Index = ({ messageThread }) => {
   let time = timeAgo(messageThread.messages[0].timeSent);
 
   return (
-    <Card
-      size="small"
-      title={
-        <A href="#">
-          <Avatar icon={<UserOutlined />} /> {user2.username}
-        </A>
-      }
-      extra={
-        <a href="#">
-          <FormOutlined />
-          Reply
-        </a>
-      }
-      style={{ width: 400 }}
-    >
-      <Title>
-        {"RE: $" + messageThread.post.price + " " + messageThread.post.title}
-      </Title>
-      <Body>{messageThread.messages[0].body}</Body>
-      <TimeStamp>
-        {messageThread.messages[0].from === user1._id ? "Sent " : "Recieved "}
-        {time + " ago"}
-      </TimeStamp>
-    </Card>
+    <Container>
+      <Card
+        size="small"
+        title={
+          <A href="#">
+            <Avatar icon={<UserOutlined />} /> {user2.username}
+          </A>
+        }
+        extra={
+          <a href="#">
+            <FormOutlined />
+            Reply
+          </a>
+        }
+        style={{ width: 400 }}
+      >
+        <Title>
+          {"RE: $" + messageThread.post.price + " " + messageThread.post.title}
+        </Title>
+        <Body>{messageThread.messages[0].body}</Body>
+        <TimeStamp>
+          {messageThread.messages[0].from === user1._id ? "Sent " : "Recieved "}
+          {time + " ago"}
+        </TimeStamp>
+      </Card>
+    </Container>
   );
 };
 

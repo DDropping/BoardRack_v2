@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
+import { Container } from "./style";
 import baseUrl from "../../../utils/baseUrl";
 import MessageCard from "../../messageCard";
 
@@ -26,16 +27,15 @@ const index = () => {
       fetchData();
     }
   }, [isAuthenticated]);
-  console.log(messages);
 
   return (
-    <div>
+    <Container>
       {!isLoading &&
         messages.length > 0 &&
         messages.map((messageThread, index) => {
           return <MessageCard messageThread={messageThread} key={index} />;
         })}
-    </div>
+    </Container>
   );
 };
 
