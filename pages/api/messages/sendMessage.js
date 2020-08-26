@@ -44,7 +44,7 @@ async function handlePostRequest(req, res) {
     if (type === "post") {
       messageThread = await Message.findOne({
         users: { $all: [sendToUserId, sendFromUserId] },
-        postId: postId,
+        post: postId,
       });
     }
     //if thread exists, add new message to messages
@@ -57,7 +57,7 @@ async function handlePostRequest(req, res) {
       const newMessageThread = {
         type: type,
         users: [sendToUserId, sendFromUserId],
-        postId: postId,
+        post: postId,
         dateCreated: Date.now(),
         lastUpdated: Date.now(),
         messages: [message],

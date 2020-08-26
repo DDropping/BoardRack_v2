@@ -18,7 +18,7 @@ const MessageSchema = new mongoose.Schema({
       ref: "user",
     },
   ],
-  postId: {
+  post: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "post",
   },
