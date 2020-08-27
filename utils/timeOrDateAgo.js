@@ -1,11 +1,11 @@
-export default (date) => {
+export default (date, isFormatDate) => {
   let timeAgo = new Date() - new Date(date);
   let newDate = new Date(date).toString();
   let day = newDate.split(" ")[2];
   let month = newDate.split(" ")[1];
 
-  //if timeAgo is greater than 1 day
-  if (timeAgo > 8.64e7) {
+  //if timeAgo is greater than 1 day or if explicitly asked to return date (isFormatDate)
+  if (timeAgo > 8.64e7 || isFormatDate) {
     return day + " " + month;
   }
   //if timeAgo is < 1 hour  < 1 day
