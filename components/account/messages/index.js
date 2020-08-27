@@ -21,7 +21,7 @@ const index = () => {
       const url = `${baseUrl}/api/messages/mymessages`;
       const res = await axios.get(url);
 
-      //add from and timeago elements
+      //add from, timeago elements
       var messages = res.data.map((e) => {
         e.from = e.users.filter(
           (userDetails) => userDetails._id !== user._id

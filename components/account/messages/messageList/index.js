@@ -9,12 +9,24 @@ const Container = styled.div`
   border-right: 1px solid ${({ theme }) => theme.primaryGrey};
 `;
 
+const Ul = styled.ul`
+  list-style-type: none;
+`;
+
+const Li = styled.li``;
+
 const index = ({ messages }) => {
   return (
     <Container>
-      {messages.map((message, index) => {
-        return <MessageOverview key={index} message={message} />;
-      })}
+      <Ul>
+        {messages.map((message, index) => {
+          return (
+            <Li>
+              <MessageOverview key={index} messageDetails={message} />
+            </Li>
+          );
+        })}
+      </Ul>
     </Container>
   );
 };
