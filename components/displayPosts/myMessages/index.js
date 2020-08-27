@@ -8,9 +8,10 @@ import Link from "next/link";
 import { Container, ButtonContainer, MessagesContainer } from "./style";
 import baseUrl from "../../../utils/baseUrl";
 import MessageCard from "../../messageCard";
+import timeAgo from "../../../utils/timeAgo";
 
 const index = () => {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
   const [messages, setMessages] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
@@ -23,13 +24,23 @@ const index = () => {
     async function fetchData() {
       const url = `${baseUrl}/api/messages/mymessages`;
       const res = await axios.get(url);
-      setMessages(res.data.slice(0, 5));
+
+      //add from, timeago elements
+      var messages = res.data.slice(0, 5).map((e) => {
+        e.from = e.users.filter(
+          (userDetails) => userDetails._id !== user._id
+        )[0];
+        e.timeAgo = timeAgo(e.messages[0].timeSent);
+        return e;
+      });
+
+      setMessages(messages);
       setLoading(false);
     }
-    if (isAuthenticated) {
+    if (user) {
       fetchData();
     }
-  }, [isAuthenticated]);
+  }, [user]);
 
   return (
     <Container>
@@ -47,8 +58,8 @@ const index = () => {
       <MessagesContainer>
         {!isLoading &&
           messages.length > 0 &&
-          messages.map((messageThread, index) => {
-            return <MessageCard messageThread={messageThread} key={index} />;
+          messages.map((messageDetails, index) => {
+            return <MessageCard messageDetails={messageDetails} key={index} />;
           })}
       </MessagesContainer>
     </Container>
