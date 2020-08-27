@@ -8,11 +8,12 @@ const Container = styled.div`
 `;
 
 const Justify = styled.div`
-  ${(props) => props.recieved && "flex: 1"};
+  ${(props) => props.recieved && { flex: "1", minWidth: "20%" }};
 `;
 
 const MessageContainer = styled.div`
   padding: 10px;
+  ${(props) => !props.recieved && { maxWidth: "80%" }};
 `;
 
 const Body = styled.div`
