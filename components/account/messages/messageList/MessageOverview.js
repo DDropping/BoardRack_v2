@@ -5,6 +5,8 @@ import { UserOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import timeOrDateAgo from "../../../../utils/timeOrDateAgo";
+
 const Container = styled.div`
   display: flex;
   padding: 10px;
@@ -22,7 +24,17 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
+const Username = styled.div`
   font-weight: bold;
+`;
+
+const TimeAgo = styled.div`
+  font-style: italic;
+  color: ${({ theme }) => theme.primaryDarkGrey};
 `;
 
 const Description = styled.div`
@@ -30,21 +42,30 @@ const Description = styled.div`
   color: ${({ theme }) => theme.primaryDarkGrey};
 `;
 
-const MessageOverview = ({ message }) => {
+const MessageOverview = ({ messageDetails }) => {
   const router = useRouter();
 
+  const timeAgo = timeOrDateAgo(messageDetails.lastUpdated, true);
+
   return (
-    <Link href={`/account?view=messages&thread=${message._id}`} shallow={true}>
-      <Container active={router.query.thread === message._id}>
+    <Link
+      href={`/account?view=messages&thread=${messageDetails._id}`}
+      shallow={true}
+    >
+      <Container active={router.query.thread === messageDetails._id}>
         <Avatar
           icon={<UserOutlined />}
           size={40}
           style={{ marginRight: "5px" }}
         />
-        <div>
-          <Header>{message.from.username}</Header>
+        <div style={{ flex: 1 }}>
+          <Header>
+            <Username>{messageDetails.from.username}</Username>
+            <div style={{ flex: 1 }} />
+            <TimeAgo>{timeAgo}</TimeAgo>
+          </Header>
           <Description>
-            {"$" + message.post.price + " " + message.post.title}
+            {"$" + messageDetails.post.price + " " + messageDetails.post.title}
           </Description>
         </div>
       </Container>
