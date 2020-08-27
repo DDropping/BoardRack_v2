@@ -1,0 +1,17 @@
+export default (date) => {
+  let timeAgo = new Date() - new Date(date);
+  let newDate = new Date(date).toString();
+  let day = newDate.split(" ")[2];
+  let month = newDate.split(" ")[1];
+
+  //if timeAgo is greater than 1 day
+  if (timeAgo > 8.64e7) {
+    return day + " " + month;
+  }
+  //if timeAgo is < 1 hour  < 1 day
+  else if (timeAgo > 3.6e6) return Math.floor(timeAgo / 3.6e6) + " hour(s) ago";
+  //if timeAgo is < 1 min < 1 hour
+  else if (timeAgo > 60e3) return Math.floor(timeAgo / 60e3) + " minutes ago";
+  //else return 1 min
+  else return "1 minute";
+};
