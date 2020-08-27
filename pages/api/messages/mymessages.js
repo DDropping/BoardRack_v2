@@ -4,6 +4,7 @@ import "../../../models/User";
 import "../../../models/Post";
 import authenticate from "../../../middleware/auth";
 import mongoose from "mongoose";
+import User from "../../../models/User";
 
 connectDb();
 
@@ -24,11 +25,13 @@ const handler = async (req, res) => {
 // @access  Public
 async function handleGetRequest(req, res) {
   try {
+    // find results in one query
     const messages = await Message.find({
       users: { $in: new mongoose.Types.ObjectId(req.user.id) },
     })
       .populate("post", "title price")
-      .populate("users", "username");
+      .populate("users", "username")
+      .sort({ lastUpdated: -1 });
 
     if (!messages) {
       return res.status(400).json({ msg: "There are no Messages" });
