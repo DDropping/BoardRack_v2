@@ -1,5 +1,4 @@
 export default (date) => {
-  console.log(date);
   let timePostedAgo = new Date() - new Date(date);
 
   if (timePostedAgo > 8.64e7)
