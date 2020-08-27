@@ -9,7 +9,13 @@ export default (date) => {
     return day + " " + month;
   }
   //if timeAgo is < 1 hour  < 1 day
-  else if (timeAgo > 3.6e6) return Math.floor(timeAgo / 3.6e6) + " hour(s) ago";
+  else if (timeAgo > 3.6e6) {
+    if (Math.floor(timeAgo / 3.6e6) === 1) {
+      return "1 hour ago";
+    } else {
+      return Math.floor(timeAgo / 3.6e6) + " hours ago";
+    }
+  }
   //if timeAgo is < 1 min < 1 hour
   else if (timeAgo > 60e3) return Math.floor(timeAgo / 60e3) + " minutes ago";
   //else return 1 min
