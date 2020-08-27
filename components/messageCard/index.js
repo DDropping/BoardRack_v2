@@ -2,17 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Avatar, Card } from "antd";
 import { UserOutlined, FormOutlined } from "@ant-design/icons";
+import Link from "next/link";
 
 import { Container, A, Title, Body, TimeStamp } from "./style";
-import timeAgo from "../../utils/timeAgo";
 
-const Index = ({ messageThread }) => {
-  const user1 = useSelector((state) => state.auth.user);
-  const user2 = messageThread.users.filter(
-    (userDetails) => userDetails._id !== user1._id
-  )[0];
-  console.log(messageThread);
-  let time = timeAgo(messageThread.messages[0].timeSent);
+const Index = ({ messageDetails }) => {
+  const user = useSelector((state) => state.auth.user);
+  console.log(messageDetails);
 
   return (
     <Container>
@@ -20,25 +16,45 @@ const Index = ({ messageThread }) => {
         size="small"
         title={
           <A href="#">
-            <Avatar icon={<UserOutlined />} /> {user2.username}
+            <Avatar icon={<UserOutlined />} /> {messageDetails.from.username}
           </A>
         }
         extra={
-          <a href="#">
-            <FormOutlined />
-            Reply
-          </a>
+          <Link
+            href={`/account?view=messages&thread=${messageDetails._id}`}
+            shallow={true}
+          >
+            <a>
+              <FormOutlined />
+              Reply
+            </a>
+          </Link>
         }
         style={{ width: 400 }}
       >
-        <Title>
-          {"RE: $" + messageThread.post.price + " " + messageThread.post.title}
-        </Title>
-        <Body>{messageThread.messages[0].body}</Body>
-        <TimeStamp>
-          {messageThread.messages[0].from === user1._id ? "Sent " : "Recieved "}
-          {time + " ago"}
-        </TimeStamp>
+        <Link
+          href={`/account?view=messages&thread=${messageDetails._id}`}
+          shallow={true}
+        >
+          <a>
+            <Title>
+              {"RE: $" +
+                messageDetails.post.price +
+                " " +
+                messageDetails.post.title}
+            </Title>
+            <Body>
+              {messageDetails.messages[messageDetails.messages.length - 1].body}
+            </Body>
+            <TimeStamp>
+              {messageDetails.messages[messageDetails.messages.length - 1]
+                .from === user._id
+                ? "Sent "
+                : "Recieved "}
+              {messageDetails.timeAgo + " ago"}
+            </TimeStamp>
+          </a>
+        </Link>
       </Card>
     </Container>
   );
