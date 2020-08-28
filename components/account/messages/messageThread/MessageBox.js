@@ -17,7 +17,6 @@ const ButtonContainer = styled.div`
 
 const MessageBox = ({ messageData }) => {
   const [message, setMessage] = useState("");
-  console.log("messagebox: ", messageData);
 
   const sendMessage = () => {
     if (message.length > 0) {

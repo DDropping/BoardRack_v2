@@ -38,8 +38,6 @@ const index = () => {
     }
   }, [isAuthenticated]);
 
-  console.log(messages);
-
   return (
     <Container>
       <MessageList messages={messages} isLoading={isLoading} />

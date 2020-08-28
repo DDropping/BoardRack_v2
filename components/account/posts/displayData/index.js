@@ -6,13 +6,13 @@ import { PlusOutlined, AppstoreOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
 import { Container, ButtonContainer, Ul, Li } from "./style";
-import baseUrl from "../../../utils/baseUrl";
-import PostCard from "../../postCard";
+import baseUrl from "../../../../utils/baseUrl";
+import PostCard from "../../../postCard";
 import NewPostButton from "./NewPostButton";
-import PostModal from "../../postModal";
-import LoadingScreenCard from "../../loadingScreens/postCard";
+import PostModal from "../../../postModal";
+import LoadingScreenCard from "../../../loadingScreens/postCard";
 import NoPostsFoundMessage from "./NoPostsFoundMessage";
-import ViewAllButton from "../ViewAllButton";
+import ViewAllButton from "../../util/ViewAllButton";
 
 const index = ({ preview }) => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);

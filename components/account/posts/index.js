@@ -2,7 +2,7 @@ import React from "react";
 import { Divider } from "antd";
 
 import { headerStyle } from "../style";
-import MyPosts from "../../displayPosts/myPosts";
+import MyPosts from "./displayData";
 
 const index = () => {
   return (

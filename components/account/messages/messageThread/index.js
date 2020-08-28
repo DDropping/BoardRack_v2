@@ -10,7 +10,6 @@ const Container = styled.div`
 `;
 
 const index = ({ messageData }) => {
-  console.log("messageData: ", messageData);
   return (
     <Container>
       {messageData &&

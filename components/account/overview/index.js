@@ -3,9 +3,9 @@ import { Divider } from "antd";
 
 import { Container, SectionContainer, Separator } from "./style";
 import { headerStyle } from "../style";
-import MyMessages from "../../displayPosts/myMessages";
-import MyPosts from "../../displayPosts/myPosts";
-import MyFavorites from "../../displayPosts/myFavorites";
+import MyMessages from "../messages/displayData";
+import MyPosts from "../posts/displayData";
+import MyFavorites from "../favorites/displayData";
 
 const index = () => {
   return (

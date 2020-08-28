@@ -6,9 +6,9 @@ import { Button } from "antd";
 import Link from "next/link";
 
 import { Container, ButtonContainer, MessagesContainer } from "./style";
-import baseUrl from "../../../utils/baseUrl";
-import MessageCard from "../../messageCard";
-import timeAgo from "../../../utils/timeAgo";
+import baseUrl from "../../../../utils/baseUrl";
+import MessageCard from "../../../messageCard";
+import timeAgo from "../../../../utils/timeAgo";
 
 const index = () => {
   const user = useSelector((state) => state.auth.user);

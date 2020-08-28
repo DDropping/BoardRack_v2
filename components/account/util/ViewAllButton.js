@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { Button } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { ArrowRightOutlined } from "@ant-design/icons";
 
 import { theme } from "../../../pages/_app";
 
 const Container = styled.div`
   margin: 10px 0 0 10px;
-  width: 300px;
+  width: 175px;
   height: 442px;
   display: flex;
   align-items: center;
@@ -22,8 +22,6 @@ const buttonStyle = {
   fontSize: "1.25rem",
   lineHeight: "1.25rem",
   transition: theme.easeInOut,
-  color: theme.primaryWhite,
-  borderColor: theme.primaryBlue,
 };
 
 const iconStyle = {
@@ -31,19 +29,18 @@ const iconStyle = {
   lineHeight: "2.5rem",
 };
 
-const NewPostButton = () => {
+const ViewAllButton = ({ link }) => {
   return (
     <Container>
-      <Link scroll={false} href={"/createpost"}>
+      <Link href={link} shallow={true}>
         <a>
           <Button
             style={buttonStyle}
-            type="primary"
             shape="circle"
-            icon={<PlusOutlined style={iconStyle} />}
+            icon={<ArrowRightOutlined style={iconStyle} />}
           >
             <br />
-            New Post
+            View All
           </Button>
         </a>
       </Link>
@@ -51,4 +48,4 @@ const NewPostButton = () => {
   );
 };
 
-export default NewPostButton;
+export default ViewAllButton;

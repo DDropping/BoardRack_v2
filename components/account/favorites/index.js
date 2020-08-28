@@ -2,7 +2,7 @@ import React from "react";
 import { Divider } from "antd";
 
 import { headerStyle } from "../style";
-import MyFavorites from "../../displayPosts/myFavorites";
+import MyFavorites from "./displayData";
 
 const index = () => {
   return (
