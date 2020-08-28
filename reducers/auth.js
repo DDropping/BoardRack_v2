@@ -4,6 +4,7 @@ import {
   DEAUTH_USER,
   UPDATE_USER_FAVORITES_ADD,
   UPDATE_USER_FAVORITES_REMOVE,
+  UPDATE_USER_MESSAGES,
 } from "../actions/types";
 import cookie from "js-cookie";
 
@@ -55,6 +56,14 @@ export default function (state = initialState, action) {
           favorites: state.user.favorites.filter(
             (item) => item !== action.payload
           ),
+        },
+      };
+    case UPDATE_USER_MESSAGES:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          messages: action.payload,
         },
       };
     default:
