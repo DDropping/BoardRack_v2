@@ -16,6 +16,7 @@ import ViewAllButton from "../../util/ViewAllButton";
 
 const index = ({ preview }) => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
   const [posts, setPosts] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
@@ -25,16 +26,11 @@ const index = ({ preview }) => {
   }
 
   useEffect(() => {
-    async function fetchData() {
-      const url = `${baseUrl}/api/posts/postdetails/myposts`;
-      const res = await axios.get(url);
-      setPosts(preview ? res.data.slice(0, 5) : res.data);
+    if (isAuthenticated) {
+      setPosts(preview ? user.posts.slice(0, 5) : user.posts);
       setLoading(false);
     }
-    if (isAuthenticated) {
-      fetchData();
-    }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, user]);
 
   return (
     <Container>

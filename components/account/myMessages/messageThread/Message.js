@@ -23,6 +23,7 @@ const AvatarContainer = styled.div`
 `;
 
 const Body = styled.div`
+  display: inline-block;
   padding: 5px;
   border-radius: 10px;
   background-color: ${({ recieved, theme }) =>

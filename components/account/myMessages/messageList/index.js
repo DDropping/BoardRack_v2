@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import MessageOverview from "./MessageOverview";
@@ -15,17 +16,21 @@ const Ul = styled.ul`
 
 const Li = styled.li``;
 
-const index = ({ messages }) => {
+const index = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
+
   return (
     <Container>
       <Ul>
-        {messages.map((message, index) => {
-          return (
-            <Li key={index}>
-              <MessageOverview messageDetails={message} />
-            </Li>
-          );
-        })}
+        {isAuthenticated &&
+          user.messages.map((message, index) => {
+            return (
+              <Li key={index}>
+                <MessageOverview messageDetails={message} userId={user._id} />
+              </Li>
+            );
+          })}
       </Ul>
     </Container>
   );

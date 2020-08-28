@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { AppstoreOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import Link from "next/link";
 
+import { UPDATE_USER_MESSAGES } from "../../../../actions/types";
 import { Container, ButtonContainer, MessagesContainer } from "./style";
 import baseUrl from "../../../../utils/baseUrl";
 import MessageCard from "../../../messageCard";
 import timeAgo from "../../../../utils/timeAgo";
 
 const index = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
   const [messages, setMessages] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
@@ -21,30 +24,23 @@ const index = () => {
   // }
 
   useEffect(() => {
-    async function fetchData() {
+    async function checkIfMessagesAreUpToDate() {
       const url = `${baseUrl}/api/messages/mymessages`;
       const res = await axios.get(url);
 
-      //add from, timeago elements
-      var messages = res.data.slice(0, 5).map((e) => {
-        e.from = e.users.filter(
-          (userDetails) => userDetails._id !== user._id
-        )[0];
-        e.timeAgo = timeAgo(e.messages[0].timeSent);
-        return e;
-      });
-
-      setMessages(messages);
-      setLoading(false);
+      // update user messages in store if any changes were made to messages
+      if (JSON.stringify(res.data) !== JSON.stringify(user.messages)) {
+        dispatch({ type: UPDATE_USER_MESSAGES, payload: res.data });
+      }
     }
-    if (user) {
-      fetchData();
+    if (isAuthenticated) {
+      checkIfMessagesAreUpToDate();
     }
-  }, [user]);
+  }, [isAuthenticated, user]);
 
   return (
     <Container>
-      {messages.length > 0 && (
+      {isAuthenticated && user.messages.length > 0 && (
         <ButtonContainer>
           <div style={{ flex: 1 }} />
           <Link href="/account?view=messages" shallow={true}>
@@ -56,9 +52,9 @@ const index = () => {
       )}
 
       <MessagesContainer>
-        {!isLoading &&
-          messages.length > 0 &&
-          messages.map((messageDetails, index) => {
+        {isAuthenticated &&
+          user.messages.length > 0 &&
+          user.messages.map((messageDetails, index) => {
             return <MessageCard messageDetails={messageDetails} key={index} />;
           })}
       </MessagesContainer>

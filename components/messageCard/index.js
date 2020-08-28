@@ -5,10 +5,16 @@ import { UserOutlined, FormOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
 import { Container, A, Title, Body, TimeStamp } from "./style";
+import timeAgo from "../../utils/timeAgo";
 
 const Index = ({ messageDetails }) => {
   const user = useSelector((state) => state.auth.user);
-  console.log(messageDetails);
+  const from = messageDetails.users.filter(
+    (userDetails) => userDetails._id !== user._id
+  )[0];
+  const timeStamp = timeAgo(
+    messageDetails.messages[messageDetails.messages.length - 1].timeSent
+  );
 
   return (
     <Container>
@@ -16,7 +22,7 @@ const Index = ({ messageDetails }) => {
         size="small"
         title={
           <A href="#">
-            <Avatar icon={<UserOutlined />} /> {messageDetails.from.username}
+            <Avatar icon={<UserOutlined />} /> {from.username}
           </A>
         }
         extra={
@@ -49,9 +55,8 @@ const Index = ({ messageDetails }) => {
             <TimeStamp>
               {messageDetails.messages[messageDetails.messages.length - 1]
                 .from === user._id
-                ? "Sent "
-                : "Recieved "}
-              {messageDetails.timeAgo + " ago"}
+                ? `Sent ${timeStamp} ago`
+                : `Recieved ${timeStamp} ago`}
             </TimeStamp>
           </a>
         </Link>

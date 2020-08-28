@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 import { Button, Input } from "antd";
 import styled from "styled-components";
 
@@ -15,17 +17,17 @@ const ButtonContainer = styled.div`
   margin: 10px 0;
 `;
 
-const MessageBox = ({ messageData }) => {
+const MessageBox = ({ messageData, userId }) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  console.log("messagebox: ", messageData);
   const [message, setMessage] = useState("");
 
   const sendMessage = () => {
     if (message.length > 0) {
-      sendNewMessage(
-        "post",
-        messageData.post._id,
-        messageData.from._id,
-        message
-      );
+      sendNewMessage("post", messageData.post._id, from._id, message);
     }
   };
 
@@ -35,7 +37,12 @@ const MessageBox = ({ messageData }) => {
         rows={4}
         onChange={(e) => setMessage(e.target.value)}
         placeholder={
-          messageData && `Send ${messageData.from.username} a message...`
+          router.query.thread &&
+          `Send ${
+            messageData.users.filter(
+              (userDetails) => userDetails._id !== userId
+            )[0].username
+          } a message...`
         }
       />
       <ButtonContainer>

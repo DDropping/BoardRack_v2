@@ -1,51 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { useRouter } from "next/router";
 
-import timeAgo from "../../../utils/timeAgo";
+import { UPDATE_USER_MESSAGES } from "../../../actions/types";
 import { Container } from "./style";
 import baseUrl from "../../../utils/baseUrl";
 import MessageList from "./messageList";
 import MessageThread from "./messageThread";
+import { useRouter } from "next/router";
 
 const index = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
-  const [messages, setMessages] = useState([]);
-  const [isLoading, setLoading] = useState(true);
+
   const user = useSelector((state) => state.auth.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
-    async function fetchData() {
+    async function checkIfMessagesAreUpToDate() {
       const url = `${baseUrl}/api/messages/mymessages`;
       const res = await axios.get(url);
 
-      //add from, timeago elements
-      var messages = res.data.map((e) => {
-        e.from = e.users.filter(
-          (userDetails) => userDetails._id !== user._id
-        )[0];
-        e.timeAgo = timeAgo(e.messages[0].timeSent);
-        return e;
-      });
-
-      setMessages(messages);
-      setLoading(false);
+      // update user messages in store if any changes were made to messages
+      if (JSON.stringify(res.data) !== JSON.stringify(user.messages)) {
+        dispatch({ type: UPDATE_USER_MESSAGES, payload: res.data });
+      }
+    }
+    if (isAuthenticated && !router.query.thread) {
+      router.push(`/account?view=messages&thread=${user.messages[0]._id}`);
     }
     if (isAuthenticated) {
-      fetchData();
+      checkIfMessagesAreUpToDate();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, user]);
 
   return (
     <Container>
-      <MessageList messages={messages} isLoading={isLoading} />
-      <MessageThread
-        messageData={messages.find((messageDetails) => {
-          return messageDetails._id === router.query.thread;
-        })}
-      />
+      <MessageList />
+      <MessageThread />
     </Container>
   );
 };
