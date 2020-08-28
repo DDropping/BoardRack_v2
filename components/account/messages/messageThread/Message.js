@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Avatar } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 
 import timeOrDateAgo from "../../../../utils/timeOrDateAgo";
 
@@ -8,21 +10,23 @@ const Container = styled.div`
 `;
 
 const Justify = styled.div`
-  ${(props) => props.recieved && { flex: "1", minWidth: "20%" }};
+  ${({ recieved }) => recieved && { flex: "1", minWidth: "20%" }};
 `;
 
 const MessageContainer = styled.div`
   padding: 10px;
-  ${(props) => !props.recieved && { maxWidth: "80%" }};
+  ${({ recieved }) => !recieved && { maxWidth: "80%" }};
+`;
+
+const AvatarContainer = styled.div`
+  margin: ${({ recieved }) => (recieved ? "10px 10px 0 0" : "10px 0 0 10px")};
 `;
 
 const Body = styled.div`
   padding: 5px;
   border-radius: 10px;
-  background-color: ${(props) =>
-    props.recieved
-      ? props.theme.backgroundBlueMenu
-      : props.theme.backgroundGreyMenu};
+  background-color: ${({ recieved, theme }) =>
+    recieved ? theme.backgroundBlueMenu : theme.backgroundGreyMenu};
 `;
 
 const TimeStamp = styled.div`
@@ -37,6 +41,11 @@ const Message = ({ message, recieved }) => {
   return (
     <Container>
       <Justify recieved={recieved} />
+      {!recieved && (
+        <AvatarContainer recieved={recieved}>
+          <Avatar icon={<UserOutlined />} size={40} />
+        </AvatarContainer>
+      )}
       <MessageContainer>
         <Body recieved={recieved}>{message.body}</Body>
         <TimeStamp>
@@ -45,6 +54,11 @@ const Message = ({ message, recieved }) => {
           {timeOrDateAgo(message.timeSent)}
         </TimeStamp>
       </MessageContainer>
+      {recieved && (
+        <AvatarContainer recieved={recieved}>
+          <Avatar icon={<UserOutlined />} size={40} />
+        </AvatarContainer>
+      )}
     </Container>
   );
 };
