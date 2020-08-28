@@ -21,7 +21,10 @@ const handler = async (req, res) => {
 // @access  Protected
 async function handleGetRequest(req, res) {
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id)
+      .populate("messages")
+      .populate("favorites")
+      .populate("posts");
     if (user) {
       res.status(200).json(user);
     } else {
