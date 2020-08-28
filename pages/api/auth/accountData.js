@@ -1,4 +1,6 @@
 import User from "../../../models/User";
+import "../../../models/Message";
+import "../../../models/Post";
 import connectDb from "../../../utils/ConnectDb";
 import authenticate from "../../../middleware/auth";
 
@@ -21,10 +23,10 @@ const handler = async (req, res) => {
 // @access  Protected
 async function handleGetRequest(req, res) {
   try {
-    const user = await User.findById(req.user.id);
-    // .populate("messages")
-    // .populate("favorites")
-    // .populate("posts");
+    const user = await User.findById(req.user.id)
+      .populate("messages")
+      .populate("favorites")
+      .populate("posts");
     if (user) {
       res.status(200).json(user);
     } else {
