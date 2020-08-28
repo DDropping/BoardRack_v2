@@ -2,9 +2,9 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import Overview from "./overview";
-import Posts from "./posts";
-import Favorites from "./favorites";
-import Messages from "./messages";
+import Posts from "./myPosts";
+import Favorites from "./myFavorites";
+import Messages from "./myMessages";
 import { Container } from "./style";
 
 const index = () => {
