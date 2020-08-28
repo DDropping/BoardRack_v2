@@ -23,8 +23,8 @@ const index = () => {
       <Ul>
         {accountLinks.map((item, index) => {
           return (
-            <Link href={item.href} shallow={true}>
-              <Li active={router.query.view === item.view} key={index}>
+            <Link href={item.href} shallow={true} key={index}>
+              <Li active={router.query.view === item.view}>
                 {item.icon} {item.title}
               </Li>
             </Link>
