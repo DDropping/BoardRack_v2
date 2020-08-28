@@ -21,8 +21,8 @@ const index = ({ messages }) => {
       <Ul>
         {messages.map((message, index) => {
           return (
-            <Li>
-              <MessageOverview key={index} messageDetails={message} />
+            <Li key={index}>
+              <MessageOverview messageDetails={message} />
             </Li>
           );
         })}
