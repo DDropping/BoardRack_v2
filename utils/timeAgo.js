@@ -17,7 +17,7 @@ export default (date) => {
     if (Math.floor(timePostedAgo / 60e3) === 1) {
       return "1 minute";
     } else {
-      return Math.floor(timePostedAgo / 60e3) + " minutes";
+      return Math.ceil(timePostedAgo / 60e3) + " minutes";
     }
   } else return "1 minute";
 };

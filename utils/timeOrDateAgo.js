@@ -8,7 +8,7 @@ export default (date, isFormatDate) => {
   if (timeAgo > 8.64e7 || isFormatDate) {
     return day + " " + month;
   }
-  //if timeAgo is < 1 hour  < 1 day
+  //else if timeAgo is greater than 1 hour
   else if (timeAgo > 3.6e6) {
     if (Math.floor(timeAgo / 3.6e6) === 1) {
       return "1 hour ago";
@@ -16,8 +16,8 @@ export default (date, isFormatDate) => {
       return Math.floor(timeAgo / 3.6e6) + " hours ago";
     }
   }
-  //if timeAgo is < 1 min < 1 hour
-  else if (timeAgo > 60e3) return Math.floor(timeAgo / 60e3) + " minutes ago";
+  //else if timeAgo is greater than 1 hour
+  else if (timeAgo > 60e3) return Math.ceil(timeAgo / 60e3) + " minutes ago";
   //else return 1 min
-  else return "1 minute";
+  else return "1 minute ago";
 };
