@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import axios from "axios";
 import { Button } from "antd";
 import { AppstoreOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
-import { Container, ButtonContainer, Li } from "./style";
-import baseUrl from "../../../../utils/baseUrl";
+import { Container, ButtonContainer, Ul, Li } from "./style";
 import PostCard from "../../../postCard";
 import PostModal from "../../../postModal";
 import LoadingScreenCard from "../../../loadingScreens/postCard";
@@ -47,7 +45,7 @@ const index = ({ preview }) => {
       {isLoading && loadingCards}
 
       {!isLoading && posts.length > 0 && (
-        <>
+        <Ul preview={preview}>
           <PostModal quickData={posts} />
           {posts.map((post, index) => {
             return (
@@ -56,13 +54,12 @@ const index = ({ preview }) => {
               </Li>
             );
           })}
-        </>
-      )}
-
-      {preview && posts.length > 0 && (
-        <Li>
-          <ViewAllButton link="/account?view=favorites" />
-        </Li>
+          {preview && (
+            <Li>
+              <ViewAllButton link="/account?view=favorites" />
+            </Li>
+          )}
+        </Ul>
       )}
 
       {!isLoading && posts.length === 0 && <NoFavoritesFoundMessage />}

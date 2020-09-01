@@ -17,6 +17,13 @@ export const ButtonContainer = styled.div`
   width: 100%;
 `;
 
+export const Ul = styled.ul`
+  padding-bottom: 10px;
+  overflow: auto;
+  ${(props) => props.preview}
+  white-space: ${(props) => (props.preview ? "nowrap" : "noraml")};
+`;
+
 export const Li = styled.li`
   display: inline-block;
   vertical-align: top;
