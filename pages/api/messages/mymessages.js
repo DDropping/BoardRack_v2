@@ -29,8 +29,7 @@ async function handleGetRequest(req, res) {
     const messages = await Message.find({
       users: { $in: new mongoose.Types.ObjectId(req.user.id) },
     })
-      .populate("post", "title price")
-      .populate("users", "username")
+      .populate([{ path: "post" }, { path: "users", select: "username" }])
       .sort({ lastUpdated: -1 });
 
     if (!messages) {

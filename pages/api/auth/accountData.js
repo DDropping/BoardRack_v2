@@ -23,10 +23,16 @@ const handler = async (req, res) => {
 // @access  Protected
 async function handleGetRequest(req, res) {
   try {
-    const user = await User.findById(req.user.id)
-      .populate("messages")
-      .populate("favorites")
-      .populate("posts");
+    const populateQuery = [
+      {
+        path: "messages",
+        populate: [{ path: "post" }, { path: "users", select: "username" }],
+      },
+      { path: "favorites" },
+      { path: "posts" },
+    ];
+
+    const user = await User.findById(req.user.id).populate(populateQuery);
     if (user) {
       res.status(200).json(user);
     } else {
