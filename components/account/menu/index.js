@@ -1,19 +1,28 @@
 import React from "react";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { Divider } from "antd";
 import { useSelector } from "react-redux";
 
 import { Container, Ul, Li, Username, Location } from "./style";
+import { DEAUTH_USER } from "../../../actions/types";
 import { LogoutOutlined } from "@ant-design/icons";
 import accountLinks from "../../../constants/accountLinks";
+import logoutModal from "../../logout";
 
 const index = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const username = useSelector((state) =>
     state.auth.user ? state.auth.user.username : null
   );
   const location = useSelector((state) => state.currentLocation.location);
+
+  const handleLogout = () => {
+    dispatch({ type: DEAUTH_USER });
+    router.reload(window.location.pathname);
+  };
 
   return (
     <Container>
