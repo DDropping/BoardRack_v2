@@ -55,6 +55,7 @@ const AccountMenu = () => {
 
   const handleLogout = () => {
     dispatch({ type: DEAUTH_USER });
+    router.reload(window.location.pathname);
   };
 
   return (
