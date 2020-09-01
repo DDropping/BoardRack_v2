@@ -38,27 +38,31 @@ const Favorites = ({ favorites, postId }) => {
           <StarOutlined />
         </Tooltip>
       )}
-      {user && user.posts.includes(postId) && (
+      {user && user.posts.filter((post) => post._id === postId).length > 0 && (
         <Tooltip placement="top" title="Cannot Favorite Your Own Posts">
           <StarOutlined />
         </Tooltip>
       )}
-      {user && !user.posts.includes(postId) && isFavorite && (
-        <StarFilled
-          onClick={() => {
-            dispatch(removeFavorite(postId));
-            setFavorite(false);
-          }}
-        />
-      )}
-      {user && !user.posts.includes(postId) && !isFavorite && (
-        <StarOutlined
-          onClick={() => {
-            dispatch(addFavorite(postId));
-            setFavorite(true);
-          }}
-        />
-      )}
+      {user &&
+        !user.posts.filter((post) => post._id === postId).length &&
+        isFavorite && (
+          <StarFilled
+            onClick={() => {
+              dispatch(removeFavorite(postId));
+              setFavorite(false);
+            }}
+          />
+        )}
+      {user &&
+        !user.posts.filter((post) => post._id === postId).length &&
+        !isFavorite && (
+          <StarOutlined
+            onClick={() => {
+              dispatch(addFavorite(postId));
+              setFavorite(true);
+            }}
+          />
+        )}
     </FavoritesContainer>
   );
 };
