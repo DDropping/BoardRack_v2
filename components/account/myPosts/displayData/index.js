@@ -6,7 +6,6 @@ import { PlusOutlined, AppstoreOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
 import { Container, ButtonContainer, Ul, Li } from "./style";
-import baseUrl from "../../../../utils/baseUrl";
 import PostCard from "../../../postCard";
 import NewPostButton from "./NewPostButton";
 import PostModal from "../../../postModal";
@@ -51,7 +50,7 @@ const index = ({ preview }) => {
       <Ul preview={preview}>
         <PostModal quickData={posts} />
 
-        {!preview && (
+        {!preview && posts.length > 0 && (
           <Li>
             <NewPostButton />
           </Li>
