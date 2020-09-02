@@ -7,7 +7,12 @@ export const Container = styled.div`
   padding: 5px;
   min-height: 100%;
   width: 400px;
-  border: 1px solid ${({ theme }) => theme.primaryGrey};
+  border: 1px solid ${({ theme }) => theme.backgroundGreyMenu};
+  transition: ${({ theme }) => theme.boxShadow};
+  box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);
+  &:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.4);
+  }
 `;
 
 export const HeaderContainer = styled.div`
@@ -16,7 +21,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.primaryGrey};
+  border-top: 1px solid ${({ theme }) => theme.backgroundGreyMenu};
   padding: 5px 10px 10px 10px;
   flex: 1;
   display: flex;
