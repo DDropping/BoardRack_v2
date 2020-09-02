@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
+import PostListRow from "../../../postListRow";
 import Message from "./Message";
 import MessageBox from "./MessageBox";
 
@@ -17,31 +18,40 @@ const index = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   return (
-    <Container>
-      {isAuthenticated &&
-        router.query.thread &&
-        user.messages
-          .filter((messageData) => messageData._id === router.query.thread)[0]
-          .messages.map((message, index) => {
-            return (
-              <Message
-                key={index}
-                message={message}
-                recieved={user._id !== message.from}
-              />
-            );
-          })}
-      {isAuthenticated && router.query.thread && (
-        <MessageBox
-          userId={user._id}
-          messageData={
+    isAuthenticated &&
+    user.messages.length > 0 && (
+      <Container>
+        <PostListRow
+          postData={
             user.messages.filter(
               (messageData) => messageData._id === router.query.thread
-            )[0]
+            )[0].post
           }
         />
-      )}
-    </Container>
+        {router.query.thread &&
+          user.messages
+            .filter((messageData) => messageData._id === router.query.thread)[0]
+            .messages.map((message, index) => {
+              return (
+                <Message
+                  key={index}
+                  message={message}
+                  recieved={user._id !== message.from}
+                />
+              );
+            })}
+        {router.query.thread && (
+          <MessageBox
+            userId={user._id}
+            messageData={
+              user.messages.filter(
+                (messageData) => messageData._id === router.query.thread
+              )[0]
+            }
+          />
+        )}
+      </Container>
+    )
   );
 };
 

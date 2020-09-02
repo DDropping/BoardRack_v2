@@ -5,6 +5,7 @@ import { Button, Input } from "antd";
 import styled from "styled-components";
 
 import sendNewMessage from "../../../../utils/sendNewMessage";
+import { UPDATE_USER_MESSAGES } from "../../../../actions/types";
 
 const { TextArea } = Input;
 
@@ -25,37 +26,60 @@ const MessageBox = ({ messageData, userId }) => {
   console.log("messagebox: ", messageData);
   const [message, setMessage] = useState("");
 
+  const updateMessagesInStore = () => {
+    var payload = user.messages;
+    payload = payload.map((m) => {
+      if (m._id === messageData._id) {
+        m.messages.push({
+          from: userId,
+          body: message,
+          timeSent: Date.now(),
+        });
+      }
+      return m;
+    });
+    dispatch({ type: UPDATE_USER_MESSAGES, payload: payload });
+  };
+
   const sendMessage = () => {
     if (message.length > 0) {
       sendNewMessage("post", messageData.post._id, from._id, message);
+      updateMessagesInStore();
+      setMessage("");
     }
   };
 
+  const from = messageData.users.filter(
+    (userDetails) => userDetails._id !== userId
+  )[0];
+
+  user.messages.filter(
+    (messageData) => messageData._id === router.query.thread
+  )[0];
+
   return (
-    <Container>
-      <TextArea
-        rows={4}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder={
-          router.query.thread &&
-          `Send ${
-            messageData.users.filter(
-              (userDetails) => userDetails._id !== userId
-            )[0].username
-          } a message...`
-        }
-      />
-      <ButtonContainer>
-        <div style={{ flex: 1 }} />
-        <Button
-          type="primary"
-          onClick={messageData && sendMessage}
-          disabled={message.length < 1 || !messageData}
-        >
-          Send
-        </Button>
-      </ButtonContainer>
-    </Container>
+    isAuthenticated && (
+      <Container>
+        <TextArea
+          rows={4}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder={
+            router.query.thread && `Send ${from.username} a message...`
+          }
+        />
+        <ButtonContainer>
+          <div style={{ flex: 1 }} />
+          <Button
+            type="primary"
+            onClick={messageData && sendMessage}
+            disabled={message.length < 1 || !messageData}
+          >
+            Send
+          </Button>
+        </ButtonContainer>
+      </Container>
+    )
   );
 };
 

@@ -17,6 +17,7 @@ const index = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
+    console.log("use effect running");
     async function checkIfMessagesAreUpToDate() {
       const url = `${baseUrl}/api/messages/mymessages`;
       const res = await axios.get(url);
@@ -26,13 +27,13 @@ const index = () => {
         dispatch({ type: UPDATE_USER_MESSAGES, payload: res.data });
       }
     }
-    if (isAuthenticated && !router.query.thread) {
+    if (isAuthenticated && user.messages.length > 0 && !router.query.thread) {
       router.push(`/account?view=messages&thread=${user.messages[0]._id}`);
     }
     if (isAuthenticated) {
       checkIfMessagesAreUpToDate();
     }
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated]);
 
   return (
     <Container>

@@ -24,6 +24,7 @@ const index = () => {
     <Container>
       <Ul>
         {isAuthenticated &&
+          user &&
           user.messages.map((message, index) => {
             return (
               <Li key={index}>

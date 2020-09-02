@@ -16,6 +16,7 @@ const Justify = styled.div`
 const MessageContainer = styled.div`
   padding: 10px;
   ${({ recieved }) => !recieved && { maxWidth: "80%" }};
+  ${({ recieved }) => recieved && { textAlign: "right" }};
 `;
 
 const AvatarContainer = styled.div`
@@ -46,7 +47,7 @@ const Message = ({ message, recieved }) => {
           <Avatar icon={<UserOutlined />} size={40} />
         </AvatarContainer>
       )}
-      <MessageContainer>
+      <MessageContainer recieved={recieved}>
         <Body recieved={recieved}>{message.body}</Body>
         <TimeStamp>
           {recieved && <div style={{ flex: 1 }} />}
