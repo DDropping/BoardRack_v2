@@ -83,6 +83,7 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
 
   const handleLogout = () => {
     dispatch({ type: DEAUTH_USER });
+    router.reload(window.location.pathname);
   };
 
   return (
