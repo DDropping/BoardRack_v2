@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
@@ -17,7 +17,6 @@ const index = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
-    console.log("use effect running");
     async function checkIfMessagesAreUpToDate() {
       const url = `${baseUrl}/api/messages/mymessages`;
       const res = await axios.get(url);
