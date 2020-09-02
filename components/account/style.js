@@ -8,6 +8,7 @@ export const headerStyle = {
 };
 
 export const Container = styled.div`
+  padding-top: 10px;
   overflow: hidden;
   width: 100%;
 `;
