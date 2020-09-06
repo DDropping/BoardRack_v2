@@ -17,6 +17,7 @@ const index = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
+    console.log("running useEffect for messages");
     async function checkIfMessagesAreUpToDate() {
       const url = `${baseUrl}/api/messages/mymessages`;
       const res = await axios.get(url);

@@ -22,13 +22,14 @@ const Favorites = ({ favorites, postId }) => {
   useEffect(() => {
     //check if user has favorited post
     if (user) {
+      console.log("running favorites counter useEffect");
       setFavorite(
         user.favorites.filter((post) => post._id === postId).length > 0
           ? true
           : false
       );
     }
-  }, [user]);
+  }, []);
 
   return (
     <FavoritesContainer>
@@ -44,7 +45,7 @@ const Favorites = ({ favorites, postId }) => {
         </Tooltip>
       )}
       {user &&
-        !user.posts.filter((post) => post._id === postId).length &&
+        !user.posts.filter((post) => post._id === postId).length > 0 &&
         isFavorite && (
           <StarFilled
             onClick={() => {
@@ -54,7 +55,7 @@ const Favorites = ({ favorites, postId }) => {
           />
         )}
       {user &&
-        !user.posts.filter((post) => post._id === postId).length &&
+        !user.posts.filter((post) => post._id === postId).length > 0 &&
         !isFavorite && (
           <StarOutlined
             onClick={() => {

@@ -54,7 +54,7 @@ export default function (state = initialState, action) {
         user: {
           ...state.user,
           favorites: state.user.favorites.filter(
-            (item) => item !== action.payload
+            (item) => item._id !== action.payload
           ),
         },
       };

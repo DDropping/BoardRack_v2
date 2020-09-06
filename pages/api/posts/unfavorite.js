@@ -1,14 +1,14 @@
-import connectDb from '../../../utils/ConnectDb';
-import Post from '../../../models/Post';
-import User from '../../../models/User';
+import connectDb from "../../../utils/ConnectDb";
+import Post from "../../../models/Post";
+import User from "../../../models/User";
 
-import authenticate from '../../../middleware/auth';
+import authenticate from "../../../middleware/auth";
 
 connectDb();
 
 const handler = async (req, res) => {
   switch (req.method) {
-    case 'PUT':
+    case "PUT":
       await handlePutRequest(req, res);
       break;
     default:
@@ -29,7 +29,7 @@ async function handlePutRequest(req, res) {
       post.favorites.filter((favorite) => favorite.toString() === req.user.id)
         .length === 0
     ) {
-      return res.status(400).json({ msg: 'Post is not favorited' });
+      return res.status(400).json({ msg: "Post is not favorited" });
     }
 
     //remove favorite from post's favorites array
@@ -46,10 +46,10 @@ async function handlePutRequest(req, res) {
       .indexOf(req.body.postId);
     user.favorites.splice(removeUserIndex, 1);
     await user.save();
-    res.json(post.favorites);
+    res.json(post);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 }
 
