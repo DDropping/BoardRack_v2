@@ -9,7 +9,7 @@ import { theme } from "../../../pages/_app";
 const Container = styled.div`
   margin: 10px 0 0 10px;
   width: 175px;
-  height: 442px;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
