@@ -19,6 +19,7 @@ export const ButtonContainer = styled.div`
 
 export const Ul = styled.ul`
   padding-bottom: 10px;
+  margin-bottom: 0;
   overflow: auto;
   ${(props) => props.preview}
   white-space: ${(props) => (props.preview ? "nowrap" : "noraml")};

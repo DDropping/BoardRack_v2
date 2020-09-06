@@ -40,17 +40,6 @@ const index = () => {
 
   return (
     <Container>
-      {isAuthenticated && user.messages.length > 0 && (
-        <ButtonContainer>
-          <div style={{ flex: 1 }} />
-          <Link href="/account?view=messages" shallow={true}>
-            <Button style={{ marginRight: "10px" }}>
-              <AppstoreOutlined /> View All messages
-            </Button>
-          </Link>
-        </ButtonContainer>
-      )}
-
       <MessagesContainer>
         {isAuthenticated &&
           user.messages.length > 0 &&

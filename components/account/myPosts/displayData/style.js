@@ -18,6 +18,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const Ul = styled.ul`
+  margin-bottom: 0;
   padding-bottom: 10px;
   overflow: auto;
   ${(props) => props.preview}

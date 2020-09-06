@@ -33,20 +33,6 @@ const index = ({ preview }) => {
 
   return (
     <Container>
-      {preview && posts.length > 0 && (
-        <ButtonContainer>
-          <Button type="primary" style={{ marginLeft: "10px" }}>
-            <PlusOutlined /> Create New Posts
-          </Button>
-          <div style={{ flex: 1 }} />
-          <Link href="/account?view=posts" shallow={true}>
-            <Button style={{ marginRight: "10px" }}>
-              <AppstoreOutlined /> View All Posts
-            </Button>
-          </Link>
-        </ButtonContainer>
-      )}
-
       <Ul preview={preview}>
         <PostModal quickData={posts} />
 

@@ -26,6 +26,7 @@ const index = () => {
         dispatch({ type: UPDATE_USER_MESSAGES, payload: res.data });
       }
     }
+    // if user has messages, display the most recent message thread
     if (isAuthenticated && user.messages.length > 0 && !router.query.thread) {
       router.push(`/account?view=messages&thread=${user.messages[0]._id}`);
     }

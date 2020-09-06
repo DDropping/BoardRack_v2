@@ -31,17 +31,6 @@ const index = ({ preview }) => {
 
   return (
     <Container>
-      {preview && posts.length > 0 && (
-        <ButtonContainer>
-          <div style={{ flex: 1 }} />
-          <Link href="/account?view=favorites" shallow={true}>
-            <Button style={{ marginRight: "10px" }}>
-              <AppstoreOutlined /> View All Favorites
-            </Button>
-          </Link>
-        </ButtonContainer>
-      )}
-
       {isLoading && loadingCards}
 
       {!isLoading && posts.length > 0 && (

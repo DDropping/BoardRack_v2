@@ -71,6 +71,7 @@ export const theme = {
   primaryGreen: "#52c41a",
 
   backgroundBlueMenu: "#4878a91f",
+  backgroundLightBlueMenu: "#4878a905",
   backgroundGreyMenu: "#5858581f",
   backgroundRedMenu: "#ef40401f",
 

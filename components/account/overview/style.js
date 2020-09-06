@@ -5,12 +5,16 @@ export const Container = styled.div`
 `;
 
 export const SectionContainer = styled.div`
+  padding: 5px;
+  border: 2px solid ${({ theme }) => theme.backgroundGreyMenu};
+  border-radius: 5px;
+  margin: 0 10px;
+  background-color: ${({ theme }) => theme.backgroundLightBlueMenu};
+
   position: relative;
-  padding-bottom: 10px;
-  width: 100%;
   white-space: nowrap;
 `;
 
 export const Separator = styled.div`
-  margin-top: 2rem;
+  margin-top: 1rem;
 `;
