@@ -21,13 +21,15 @@ const index = () => {
     isAuthenticated &&
     user.messages.length > 0 && (
       <Container>
-        <PostListRow
-          postData={
-            user.messages.filter(
-              (messageData) => messageData._id === router.query.thread
-            )[0].post
-          }
-        />
+        {router.query.thread && (
+          <PostListRow
+            postData={
+              user.messages.filter(
+                (messageData) => messageData._id === router.query.thread
+              )[0].post
+            }
+          />
+        )}
         {router.query.thread &&
           user.messages
             .filter((messageData) => messageData._id === router.query.thread)[0]
