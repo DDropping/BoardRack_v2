@@ -18,11 +18,11 @@ export const ButtonContainer = styled.div`
 `;
 
 export const Ul = styled.ul`
-  padding-bottom: 10px;
   margin-bottom: 0;
+  padding-bottom: 10px;
   overflow: auto;
   ${(props) => props.preview}
-  white-space: ${(props) => (props.preview ? "nowrap" : "noraml")};
+  white-space: ${(props) => (props.preview ? "nowrap" : "normal")};
 `;
 
 export const Li = styled.li`

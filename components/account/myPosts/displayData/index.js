@@ -33,20 +33,19 @@ const index = ({ preview }) => {
 
   return (
     <Container>
-      <Ul preview={preview}>
-        <PostModal quickData={posts} />
+      {isLoading && loadingCards}
 
-        {!preview && posts.length > 0 && (
-          <Li>
-            <NewPostButton />
-          </Li>
-        )}
+      {!isLoading && posts.length > 0 && (
+        <Ul preview={preview}>
+          <PostModal quickData={posts} />
 
-        {isLoading && loadingCards}
+          {!preview && (
+            <Li>
+              <NewPostButton />
+            </Li>
+          )}
 
-        {!isLoading &&
-          posts.length > 0 &&
-          posts.map((post, index) => {
+          {posts.map((post, index) => {
             return (
               <Li key={index}>
                 <PostCard key={index} postData={post} isManagementView={true} />
@@ -54,12 +53,13 @@ const index = ({ preview }) => {
             );
           })}
 
-        {preview && posts.length > 0 && (
-          <Li>
-            <ViewAllButton link="/account?view=posts" />
-          </Li>
-        )}
-      </Ul>
+          {preview && (
+            <Li>
+              <ViewAllButton link="/account?view=posts" />
+            </Li>
+          )}
+        </Ul>
+      )}
 
       {!isLoading && posts.length === 0 && <NoPostsFoundMessage />}
     </Container>
