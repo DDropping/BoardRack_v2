@@ -11,12 +11,15 @@ const Container = styled.div`
 
 const Title = styled.div`
   font-size: 1.25rem;
+  cursor: pointer;
 `;
 
 const Header = ({ title, link, buttonText }) => {
   return (
     <Container>
-      <Title>{title}</Title>
+      <Link href={link} shallow={true}>
+        <Title>{title}</Title>
+      </Link>
       <div style={{ flex: 1 }} />
       <Link href={link} shallow={true}>
         <Button type="primary">
