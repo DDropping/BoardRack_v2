@@ -5,6 +5,7 @@ import Overview from "./overview";
 import Posts from "./myPosts";
 import Favorites from "./myFavorites";
 import Messages from "./myMessages";
+import Settings from "./settings";
 import { Container } from "./style";
 
 const index = () => {
@@ -15,6 +16,7 @@ const index = () => {
       {router.query.view === "posts" && <Posts />}
       {router.query.view === "favorites" && <Favorites />}
       {router.query.view === "messages" && <Messages />}
+      {router.query.view === "settings" && <Settings />}
     </Container>
   );
 };
