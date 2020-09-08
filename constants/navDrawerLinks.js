@@ -5,6 +5,7 @@ import {
   MailOutlined,
   StarOutlined,
   UserOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
 
 export default [
@@ -32,6 +33,12 @@ export default [
     title: "My Messages",
     href: "/account?view=messages",
     icon: <MailOutlined />,
+    protected: true,
+  },
+  {
+    title: "Account Settings",
+    href: "/account?view=settings",
+    icon: <SettingOutlined />,
     protected: true,
   },
 ];
