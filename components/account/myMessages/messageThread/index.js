@@ -9,10 +9,27 @@ import MessageBox from "./MessageBox";
 
 const Container = styled.div`
   flex: 1;
-  border-right: 1px solid ${({ theme }) => theme.primaryGrey};
+  flex-direction: column;
+  border-left: 1px solid ${({ theme }) => theme.primaryGrey};
+  ${({ isMessageListChild, theme }) =>
+    isMessageListChild && {
+      display: "none",
+      margin: "0 10px 10px 10px",
+      borderRight: `1px solid ${theme.primaryGrey}`,
+      borderBottom: `1px solid ${theme.primaryGrey}`,
+    }}
+  @media (max-width: ${({ theme }) => theme.sm}) {
+    ${({ isMessageListChild }) =>
+      isMessageListChild ? { display: "block" } : { display: "none" }}
+  }
 `;
 
-const index = () => {
+const MessagesContainer = styled.div`
+  max-height: calc(100vh - 600px);
+  overflow: auto;
+`;
+
+const index = ({ isMessageListChild }) => {
   const router = useRouter();
   const user = useSelector((state) => state.auth.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -20,7 +37,7 @@ const index = () => {
   return (
     isAuthenticated &&
     user.messages.length > 0 && (
-      <Container>
+      <Container isMessageListChild={isMessageListChild}>
         {router.query.thread && (
           <PostListRow
             postData={
@@ -30,18 +47,25 @@ const index = () => {
             }
           />
         )}
-        {router.query.thread &&
-          user.messages
-            .filter((messageData) => messageData._id === router.query.thread)[0]
-            .messages.map((message, index) => {
-              return (
-                <Message
-                  key={index}
-                  message={message}
-                  recieved={user._id !== message.from}
-                />
-              );
-            })}
+
+        {router.query.thread && (
+          <MessagesContainer>
+            {user.messages
+              .filter(
+                (messageData) => messageData._id === router.query.thread
+              )[0]
+              .messages.map((message, index) => {
+                return (
+                  <Message
+                    key={index}
+                    message={message}
+                    recieved={user._id !== message.from}
+                  />
+                );
+              })}
+          </MessagesContainer>
+        )}
+
         {router.query.thread && (
           <MessageBox
             userId={user._id}

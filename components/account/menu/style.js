@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 200px;
-  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background-color: ${({ theme }) => theme.backgroundBlueMenu};
+  @media (max-width: ${({ theme }) => theme.md}) {
+    display: none;
   }
 `;
 

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+//${({ isMessageThreadView }) => isMessageThreadView && { display: "none" }}
+
 export const Container = styled.div`
   position: relative;
   width: 100%;

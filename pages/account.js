@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Header from "../components/account/header";
 import Menu from "../components/account/menu";
+import AccordionMenu from "../components/account/menu/accordionMenu";
 import DisplayData from "../components/account";
 
 const Container = styled.div`
@@ -21,6 +22,7 @@ const Account = () => (
     </Head>
     <Container>
       <Header />
+      <AccordionMenu />
       <Flexbox>
         <Menu />
         <DisplayData />
