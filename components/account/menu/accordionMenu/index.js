@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
@@ -19,6 +19,10 @@ const index = () => {
     router.query.view ? router.query.view : "overview"
   );
 
+  useEffect(() => {
+    setMenuSelected(router.query.view);
+  }, [router.query.view]);
+
   const handleLogout = () => {
     dispatch({ type: DEAUTH_USER });
     router.reload(window.location.pathname);
@@ -38,7 +42,6 @@ const index = () => {
               <Li
                 active={router.query.view === item.view}
                 onClick={() => {
-                  setMenuSelected(item.view);
                   toggleIsOpen(!isOpen);
                 }}
               >
