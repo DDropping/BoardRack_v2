@@ -1,13 +1,9 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
-
-export const MessagesContainer = styled.div`
+export const Container = styled.div`
   display: flex;
   margin: 10px;
-`;
-
-export const ButtonContainer = styled.div`
-  display: flex;
-  width: 100%;
+  overflow: auto;
+  ${(props) => props.preview}
+  white-space: ${(props) => (props.preview ? "nowrap" : "normal")};
 `;

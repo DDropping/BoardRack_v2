@@ -6,6 +6,7 @@ export const Container = styled.div`
   margin: 0 10px 10px 0;
   padding: 5px;
   min-height: 100%;
+  min-width: 300px;
   width: 400px;
   background-color: ${({ theme }) => theme.primaryWhite};
   border: 1px solid ${({ theme }) => theme.backgroundGreyMenu};
