@@ -35,32 +35,34 @@ const index = () => {
         {accountLinks.filter((item) => item.view === menuSelected)[0].icon}{" "}
         {accountLinks.filter((item) => item.view === menuSelected)[0].title}
       </Header>
-      <Ul isOpen={isOpen}>
-        {accountLinks.map((item, index) => {
-          return (
-            <Link href={item.href} shallow={true} key={index}>
-              <Li
-                active={router.query.view === item.view}
-                onClick={() => {
-                  toggleIsOpen(!isOpen);
-                }}
-              >
-                {item.icon} {item.title}
-              </Li>
-            </Link>
-          );
-        })}
-        <Divider style={{ margin: "2px 0 0 0" }} />
-        <Li
-          key="logout"
-          isLogout={true}
-          onClick={() => {
-            logoutModal(handleLogout);
-          }}
-        >
-          <LogoutOutlined /> Logout
-        </Li>
-      </Ul>
+      {isOpen && (
+        <Ul>
+          {accountLinks.map((item, index) => {
+            return (
+              <Link href={item.href} shallow={true} key={index}>
+                <Li
+                  active={router.query.view === item.view}
+                  onClick={() => {
+                    toggleIsOpen(!isOpen);
+                  }}
+                >
+                  {item.icon} {item.title}
+                </Li>
+              </Link>
+            );
+          })}
+          <Divider style={{ margin: "2px 0 0 0" }} />
+          <Li
+            key="logout"
+            isLogout={true}
+            onClick={() => {
+              logoutModal(handleLogout);
+            }}
+          >
+            <LogoutOutlined /> Logout
+          </Li>
+        </Ul>
+      )}
     </Container>
   );
 };

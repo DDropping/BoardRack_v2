@@ -14,7 +14,6 @@ export const Header = styled.div`
 
 export const Ul = styled.ul`
   list-style-type: none;
-  ${({ isOpen }) => isOpen && { display: "none" }}
 `;
 
 export const Li = styled.li`
