@@ -1,9 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Divider } from "antd";
 
 import { Container, SectionContainer, Separator } from "./style";
-import { headerStyle } from "../style";
 import MyMessages from "../myMessages/displayData";
 import MyPosts from "../myPosts/displayData";
 import MyFavorites from "../myFavorites/displayData";
