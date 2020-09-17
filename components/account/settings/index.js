@@ -20,9 +20,6 @@ const index = () => {
   const user = useSelector((state) => state.auth.user);
   const [userData, setUserData] = useState(initialState);
 
-  console.log(userData);
-  console.log(initialState);
-
   return (
     <Container>
       <ButtonsContainer

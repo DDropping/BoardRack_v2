@@ -62,7 +62,7 @@ const Index = ({ messageDetails }) => {
           href={`/account?view=messages&thread=${messageDetails._id}`}
           shallow={true}
         >
-          Reply
+          <a>Reply</a>
         </Link>
       </FooterContainer>
     </Container>
