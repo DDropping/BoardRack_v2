@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "antd";
 
-import { Container, ButtonsContainer } from "./style";
+import { Container, ButtonsContainer, ButtonText } from "./style";
 import MyAccount from "./MyAccount";
 import Location from "./Location";
 import ManageAccount from "./ManageAccount";
@@ -20,10 +20,19 @@ const index = () => {
   const user = useSelector((state) => state.auth.user);
   const [userData, setUserData] = useState(initialState);
 
+  console.log(userData);
+  console.log(initialState);
+
   return (
     <Container>
-      <ButtonsContainer>
-        <div style={{ flex: 1 }} />
+      <ButtonsContainer
+        isNotSaved={JSON.stringify(userData) !== JSON.stringify(initialState)}
+      >
+        <ButtonText style={{ flex: 1 }}>
+          {JSON.stringify(userData) !== JSON.stringify(initialState)
+            ? "*Changes are not currently saved"
+            : "*Account Up to Date"}
+        </ButtonText>
         <Button type="primary">Save Changes</Button>
       </ButtonsContainer>
       <MyAccount user={user} userData={userData} setUserData={setUserData} />

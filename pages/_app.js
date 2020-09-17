@@ -68,7 +68,8 @@ export const theme = {
   primaryLightGrey: "#bbb",
   primaryDarkGrey: "#949494",
 
-  primaryGreen: "#52c41a",
+  primaryGreen: "#65e824",
+  primaryLightGreen: "#65e82445",
 
   backgroundBlueMenu: "#4878a91f",
   backgroundLightBlueMenu: "#4878a905",
