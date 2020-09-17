@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Button, Col, Input, Row } from "antd";
+import { Button } from "antd";
 
-import { Container } from "./style";
+import { Container, ButtonsContainer } from "./style";
 import MyAccount from "./MyAccount";
 import Location from "./Location";
 import ManageAccount from "./ManageAccount";
@@ -11,7 +11,9 @@ const index = () => {
   const initialState = {
     username: "",
     email: "",
-    password: "",
+    oldPassword: "",
+    newPassword: "",
+    newPasswordConfirm: "",
     defaultLocation: "",
   };
 
@@ -20,11 +22,13 @@ const index = () => {
 
   return (
     <Container>
+      <ButtonsContainer>
+        <div style={{ flex: 1 }} />
+        <Button type="primary">Save Changes</Button>
+      </ButtonsContainer>
       <MyAccount user={user} userData={userData} setUserData={setUserData} />
       <Location user={user} userData={userData} setUserData={setUserData} />
       <ManageAccount user={user} />
-
-      <Button type="primary">Save Changes</Button>
     </Container>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
-import { Col, Input, Row } from "antd";
+import { Button, Col, Input, Row } from "antd";
+import { EnvironmentOutlined } from "@ant-design/icons";
 
 import { Container, Title } from "./style";
 
@@ -19,7 +20,7 @@ const Location = ({ user, userData, setUserData }) => {
         <Title>Location</Title>
       </Row>
 
-      <Row gutter={[0, 8]}>
+      <Row gutter={[8, 8]}>
         <Col xs={2} sm={2} md={4} lg={6} />
         <Col xs={10} sm={10} md={8} lg={6}>
           Default Location:
@@ -32,6 +33,11 @@ const Location = ({ user, userData, setUserData }) => {
               setUserData({ ...userData, defaultLocation: e.target.value })
             }
           />
+        </Col>
+        <Col>
+          <Button>
+            <EnvironmentOutlined />
+          </Button>
         </Col>
       </Row>
     </Container>

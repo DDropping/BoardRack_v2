@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Col, Input, Row } from "antd";
-import { EditOutlined } from "@ant-design/icons";
+import { Avatar, Col, Input, Row } from "antd";
+import { EditOutlined, UserOutlined } from "@ant-design/icons";
 
 import { Container, Title } from "./style";
 
@@ -14,7 +14,21 @@ const MyAccount = ({ user, userData, setUserData }) => {
         <Title>My Account</Title>
       </Row>
 
-      <Row gutter={[0, 8]}>
+      <Row gutter={[8, 8]}>
+        <Col xs={2} sm={2} md={4} lg={6} />
+        <Col xs={10} sm={10} md={8} lg={6}>
+          Profile Image:
+        </Col>
+        <Col xs={10} sm={10} md={8} lg={6}>
+          <Avatar
+            size={150}
+            icon={<UserOutlined />}
+            style={{ border: "5px solid white" }}
+          />
+        </Col>
+      </Row>
+
+      <Row gutter={[8, 8]}>
         <Col xs={2} sm={2} md={4} lg={6} />
         <Col xs={10} sm={10} md={8} lg={6}>
           Username:
@@ -30,7 +44,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
         </Col>
       </Row>
 
-      <Row gutter={[0, 8]}>
+      <Row gutter={[8, 8]}>
         <Col xs={2} sm={2} md={4} lg={6} />
         <Col xs={10} sm={10} md={8} lg={6}>
           Email:
@@ -47,7 +61,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
       </Row>
 
       {!isEditPassword && (
-        <Row gutter={[0, 8]}>
+        <Row gutter={[8, 8]}>
           <Col xs={2} sm={2} md={4} lg={6} />
           <Col xs={10} sm={10} md={8} lg={6}>
             Password:
@@ -60,7 +74,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
       )}
 
       {isEditPassword && (
-        <Row gutter={[0, 8]}>
+        <Row gutter={[8, 8]}>
           <Col xs={2} sm={2} md={4} lg={6} />
           <Col xs={10} sm={10} md={8} lg={6}>
             Current Password:
@@ -70,7 +84,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
               value={userData.password}
               placeholder="**********"
               onChange={(e) =>
-                setUserData({ ...userData, password: e.target.value })
+                setUserData({ ...userData, oldPassword: e.target.value })
               }
             />
           </Col>
@@ -78,7 +92,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
       )}
 
       {isEditPassword && (
-        <Row gutter={[0, 8]}>
+        <Row gutter={[8, 8]}>
           <Col xs={2} sm={2} md={4} lg={6} />
           <Col xs={10} sm={10} md={8} lg={6}>
             New Password:
@@ -88,7 +102,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
               value={userData.password}
               placeholder="**********"
               onChange={(e) =>
-                setUserData({ ...userData, password: e.target.value })
+                setUserData({ ...userData, newPassword: e.target.value })
               }
             />
           </Col>
@@ -96,7 +110,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
       )}
 
       {isEditPassword && (
-        <Row gutter={[0, 8]}>
+        <Row gutter={[8, 8]}>
           <Col xs={2} sm={2} md={4} lg={6} />
           <Col xs={10} sm={10} md={8} lg={6}>
             Confirm New Password:
@@ -106,7 +120,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
               value={userData.password}
               placeholder="**********"
               onChange={(e) =>
-                setUserData({ ...userData, password: e.target.value })
+                setUserData({ ...userData, newPasswordConfirm: e.target.value })
               }
             />
           </Col>
