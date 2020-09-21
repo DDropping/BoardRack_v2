@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Avatar, Col, Input, Row } from "antd";
 import { EditOutlined, UserOutlined } from "@ant-design/icons";
 
-import { Container, Title } from "./style";
+import { Container, Title, Text } from "./style";
 
 const MyAccount = ({ user, userData, setUserData }) => {
   const [isEditPassword, toggleEditPassword] = useState(false);
+  const [isEditEmail, toggleEditEmail] = useState(false);
 
   return (
     <Container>
@@ -34,31 +35,40 @@ const MyAccount = ({ user, userData, setUserData }) => {
           Username:
         </Col>
         <Col xs={10} sm={10} md={8} lg={6}>
-          <Input
-            value={userData.username}
-            placeholder={user ? user.username : "username"}
-            onChange={(e) =>
-              setUserData({ ...userData, username: e.target.value })
-            }
-          />
+          <Text>{user.username}</Text>
         </Col>
       </Row>
 
-      <Row gutter={[8, 8]}>
-        <Col xs={2} sm={2} md={4} lg={6} />
-        <Col xs={10} sm={10} md={8} lg={6}>
-          Email:
-        </Col>
-        <Col xs={10} sm={10} md={8} lg={6}>
-          <Input
-            value={userData.email}
-            placeholder={user ? user.email : "email"}
-            onChange={(e) =>
-              setUserData({ ...userData, email: e.target.value })
-            }
-          />
-        </Col>
-      </Row>
+      {!isEditEmail && (
+        <Row gutter={[8, 8]}>
+          <Col xs={2} sm={2} md={4} lg={6} />
+          <Col xs={10} sm={10} md={8} lg={6}>
+            Email:
+          </Col>
+          <Col xs={10} sm={10} md={8} lg={6}>
+            <Text>{user.email}</Text>
+            <EditOutlined onClick={() => toggleEditPassword(true)} />
+          </Col>
+        </Row>
+      )}
+
+      {isEditEmail && (
+        <Row gutter={[8, 8]}>
+          <Col xs={2} sm={2} md={4} lg={6} />
+          <Col xs={10} sm={10} md={8} lg={6}>
+            Email:
+          </Col>
+          <Col xs={10} sm={10} md={8} lg={6}>
+            <Input
+              value={userData.email}
+              placeholder={user ? user.email : "email"}
+              onChange={(e) =>
+                setUserData({ ...userData, email: e.target.value })
+              }
+            />
+          </Col>
+        </Row>
+      )}
 
       {!isEditPassword && (
         <Row gutter={[8, 8]}>
@@ -67,7 +77,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
             Password:
           </Col>
           <Col xs={10} sm={10} md={8} lg={6}>
-            **********
+            <Text>**********</Text>
             <EditOutlined onClick={() => toggleEditPassword(true)} />
           </Col>
         </Row>

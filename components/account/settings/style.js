@@ -28,3 +28,9 @@ export const ButtonText = styled.div`
 `;
 
 export const Title = styled.h2``;
+
+export const Text = styled.span`
+  font-style: italic;
+  color: ${({ theme }) => theme.primaryDarkGrey};
+  padding-right: 1rem;
+`;
