@@ -26,7 +26,8 @@ const index = () => {
       <ButtonsContainer
         isNotSaved={JSON.stringify(userData) !== JSON.stringify(initialState)}
       >
-        <ButtonText style={{ flex: 1 }}>
+        <div style={{ flex: 1 }} />
+        <ButtonText>
           {JSON.stringify(userData) !== JSON.stringify(initialState)
             ? "*Changes are not currently saved"
             : "*Account Up to Date"}

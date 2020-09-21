@@ -19,12 +19,14 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const ButtonText = styled.div`
-  flex: 1;
   padding: 0 1rem;
   text-align: right;
   font-style: italic;
   color: ${({ theme }) => theme.primaryDarkGrey};
   line-height: 2rem;
+  @media (max-width: ${({ theme }) => theme.sm}) {
+    display: none;
+  }
 `;
 
 export const Title = styled.h2``;
@@ -32,5 +34,5 @@ export const Title = styled.h2``;
 export const Text = styled.span`
   font-style: italic;
   color: ${({ theme }) => theme.primaryDarkGrey};
-  padding-right: 1rem;
+  padding-right: 0.25rem;
 `;

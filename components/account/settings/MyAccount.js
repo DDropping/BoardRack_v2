@@ -17,10 +17,10 @@ const MyAccount = ({ user, userData, setUserData }) => {
 
       <Row gutter={[8, 8]}>
         <Col xs={2} sm={2} md={4} lg={6} />
-        <Col xs={10} sm={10} md={8} lg={6}>
+        <Col xs={8} sm={10} md={8} lg={6}>
           Profile Image:
         </Col>
-        <Col xs={10} sm={10} md={8} lg={6}>
+        <Col xs={12} sm={10} md={8} lg={6}>
           <Avatar
             size={150}
             icon={<UserOutlined />}
@@ -31,10 +31,10 @@ const MyAccount = ({ user, userData, setUserData }) => {
 
       <Row gutter={[8, 8]}>
         <Col xs={2} sm={2} md={4} lg={6} />
-        <Col xs={10} sm={10} md={8} lg={6}>
+        <Col xs={8} sm={10} md={8} lg={6}>
           Username:
         </Col>
-        <Col xs={10} sm={10} md={8} lg={6}>
+        <Col xs={12} sm={10} md={8} lg={6}>
           <Text>{user ? user.username : "loading..."}</Text>
         </Col>
       </Row>
@@ -42,10 +42,10 @@ const MyAccount = ({ user, userData, setUserData }) => {
       {!isEditEmail && (
         <Row gutter={[8, 8]}>
           <Col xs={2} sm={2} md={4} lg={6} />
-          <Col xs={10} sm={10} md={8} lg={6}>
+          <Col xs={8} sm={10} md={8} lg={6}>
             Email:
           </Col>
-          <Col xs={10} sm={10} md={8} lg={6}>
+          <Col xs={12} sm={10} md={8} lg={6}>
             <Text>{user ? user.email : "loading..."}</Text>
             <EditOutlined onClick={() => toggleEditPassword(true)} />
           </Col>
@@ -55,10 +55,10 @@ const MyAccount = ({ user, userData, setUserData }) => {
       {isEditEmail && (
         <Row gutter={[8, 8]}>
           <Col xs={2} sm={2} md={4} lg={6} />
-          <Col xs={10} sm={10} md={8} lg={6}>
+          <Col xs={8} sm={10} md={8} lg={6}>
             Email:
           </Col>
-          <Col xs={10} sm={10} md={8} lg={6}>
+          <Col xs={12} sm={10} md={8} lg={6}>
             <Input
               value={userData.email}
               placeholder={user ? user.email : "email"}
@@ -73,10 +73,10 @@ const MyAccount = ({ user, userData, setUserData }) => {
       {!isEditPassword && (
         <Row gutter={[8, 8]}>
           <Col xs={2} sm={2} md={4} lg={6} />
-          <Col xs={10} sm={10} md={8} lg={6}>
+          <Col xs={8} sm={10} md={8} lg={6}>
             Password:
           </Col>
-          <Col xs={10} sm={10} md={8} lg={6}>
+          <Col xs={12} sm={10} md={8} lg={6}>
             <Text>**********</Text>
             <EditOutlined onClick={() => toggleEditPassword(true)} />
           </Col>
@@ -92,7 +92,6 @@ const MyAccount = ({ user, userData, setUserData }) => {
           <Col xs={10} sm={10} md={8} lg={6}>
             <Input
               value={userData.password}
-              placeholder="**********"
               onChange={(e) =>
                 setUserData({ ...userData, oldPassword: e.target.value })
               }
@@ -110,7 +109,6 @@ const MyAccount = ({ user, userData, setUserData }) => {
           <Col xs={10} sm={10} md={8} lg={6}>
             <Input
               value={userData.password}
-              placeholder="**********"
               onChange={(e) =>
                 setUserData({ ...userData, newPassword: e.target.value })
               }
@@ -128,7 +126,6 @@ const MyAccount = ({ user, userData, setUserData }) => {
           <Col xs={10} sm={10} md={8} lg={6}>
             <Input
               value={userData.password}
-              placeholder="**********"
               onChange={(e) =>
                 setUserData({ ...userData, newPasswordConfirm: e.target.value })
               }

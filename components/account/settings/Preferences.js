@@ -17,10 +17,10 @@ const Preferences = ({ user }) => {
 
       <Row gutter={[8, 8]}>
         <Col xs={2} sm={2} md={4} lg={6} />
-        <Col xs={10} sm={10} md={8} lg={6}>
+        <Col xs={14} sm={10} md={8} lg={6}>
           Dark Mode:
         </Col>
-        <Col xs={10} sm={10} md={8} lg={6}>
+        <Col xs={6} sm={10} md={8} lg={6}>
           <Switch onChange={toggleDarkMode} />
         </Col>
       </Row>
