@@ -3,11 +3,10 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { Divider } from "antd";
-import { DownOutlined, RightOutlined } from "@ant-design/icons";
+import { DownOutlined, RightOutlined, LogoutOutlined } from "@ant-design/icons";
 
 import { Container, Header, Ul, Li } from "./style";
 import { DEAUTH_USER } from "../../../../actions/types";
-import { LogoutOutlined } from "@ant-design/icons";
 import accountLinks from "../../../../constants/accountLinks";
 import logoutModal from "../../../logout";
 
