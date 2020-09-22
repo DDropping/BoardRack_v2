@@ -47,7 +47,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
           </Col>
           <Col xs={12} sm={10} md={8} lg={6}>
             <Text>{user ? user.email : "loading..."}</Text>
-            <EditOutlined onClick={() => toggleEditPassword(true)} />
+            <EditOutlined onClick={() => toggleEditEmail(true)} />
           </Col>
         </Row>
       )}
