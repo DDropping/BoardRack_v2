@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 200px;
+  width: 250px;
   @media (max-width: ${({ theme }) => theme.md}) {
     display: none;
   }
