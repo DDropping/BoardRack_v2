@@ -25,7 +25,7 @@ const Container = styled.div`
 `;
 
 const MessagesContainer = styled.div`
-  max-height: calc(100vh - 600px);
+  max-height: 600px;
   overflow: auto;
 `;
 
