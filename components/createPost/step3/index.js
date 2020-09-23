@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { Row, Col, Divider } from "antd";
+import { Col, Divider, Row } from "antd";
 
 import GetLocationButton from "./GetLocationButton";
 import GetLocationForm from "./GetLocationForm";

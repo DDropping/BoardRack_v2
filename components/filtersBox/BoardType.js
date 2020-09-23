@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Checkbox, Row, Col } from "antd";
+import { Checkbox, Col, Row } from "antd";
 
 import { UPDATE_BOARD_TYPE } from "../../actions/types";
 

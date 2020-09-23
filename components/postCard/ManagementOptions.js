@@ -4,7 +4,6 @@ import {
   DeleteOutlined,
   EditOutlined,
   EyeInvisibleOutlined,
-  EyeOutlined,
 } from "@ant-design/icons";
 
 import { ManagementContainer } from "./style";

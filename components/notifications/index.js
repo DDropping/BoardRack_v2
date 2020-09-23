@@ -1,14 +1,14 @@
-import React from 'react';
-import { notification, Button } from 'antd';
+import React from "react";
+import { Button, notification } from "antd";
 import {
   ExclamationCircleTwoTone,
-  CheckCircleTwoTone
-} from '@ant-design/icons';
+  CheckCircleTwoTone,
+} from "@ant-design/icons";
 
-import { store } from '../../store';
-import { updateUserLocation } from '../../actions/location';
+import { store } from "../../store";
+import { updateUserLocation } from "../../actions/location";
 
-export const UpdateDefaultLocationNotification = body => {
+export const UpdateDefaultLocationNotification = (body) => {
   const key = `open${Date.now()}`;
   const btn = (
     <Button
@@ -24,11 +24,11 @@ export const UpdateDefaultLocationNotification = body => {
   );
   notification.open({
     top: 65,
-    message: 'Update Default Location',
-    description: 'Would you like to set this as your default location?',
+    message: "Update Default Location",
+    description: "Would you like to set this as your default location?",
     duration: 10,
     btn,
-    key
+    key,
   });
 };
 
@@ -38,7 +38,7 @@ export const successNotification = (message, description, duration) => {
     message: message,
     description: description,
     duration: duration,
-    icon: <CheckCircleTwoTone twoToneColor="#52c41a" />
+    icon: <CheckCircleTwoTone twoToneColor="#52c41a" />,
   });
 };
 
@@ -48,6 +48,6 @@ export const failNotification = (message, description, duration) => {
     message: message,
     description: description,
     duration: duration,
-    icon: <ExclamationCircleTwoTone twoToneColor="#ffdc17" />
+    icon: <ExclamationCircleTwoTone twoToneColor="#ffdc17" />,
   });
 };

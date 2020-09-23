@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { InputNumber, Icon } from "antd";
+import { InputNumber } from "antd";
 
 import { UPDATE_DISTANCE } from "../../actions/types";
 

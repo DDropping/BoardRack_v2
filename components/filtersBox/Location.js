@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Input, Button, Divider } from "antd";
+import { Button, Divider, Input } from "antd";
 import { CloseCircleOutlined, EnvironmentOutlined } from "@ant-design/icons";
 
 import { LocationTextWrapper } from "./style";
