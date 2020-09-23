@@ -7,6 +7,8 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   width: 100%;
+  padding-bottom: 5px;
+  border-bottom: 2px solid ${({ theme }) => theme.backgroundGreyMenu};
 `;
 
 const Title = styled.div`

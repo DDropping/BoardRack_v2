@@ -6,11 +6,8 @@ export const Container = styled.div`
 
 export const SectionContainer = styled.div`
   padding: 5px;
-  border: 2px solid ${({ theme }) => theme.backgroundGreyMenu};
   border-radius: 5px;
   margin: 0 10px;
-  background-color: ${({ theme }) => theme.backgroundLightBlueMenu};
-
   position: relative;
   white-space: nowrap;
 `;
