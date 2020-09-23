@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, Col, Input, Row } from "antd";
-import { EnvironmentOutlined } from "@ant-design/icons";
+import { Col, Row } from "antd";
 
 import { Container, Title } from "./style";
 import LocationSelector from "../../filtersBox/Location";
