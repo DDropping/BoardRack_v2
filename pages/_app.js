@@ -6,35 +6,35 @@ import { ThemeProvider } from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import { parseCookies, destroyCookie } from "nookies";
 
-//import 'antd/dist/antd.less' //import entire library styles
-import "antd/lib/avatar/style/index.js"; // import specific styles
-import "antd/lib/button/style/index.js";
-import "antd/lib/card/style/index.js";
-import "antd/lib/carousel/style/index.js";
-import "antd/lib/checkbox/style/index.js";
-import "antd/lib/col/style/index.js";
-import "antd/lib/divider/style/index.js";
-import "antd/lib/drawer/style/index.js";
-import "antd/lib/dropdown/style/index.js";
-import "antd/lib/form/style/index.js";
-import "antd/lib/grid/style/index.js";
-import "antd/lib/input/style/index.js";
-import "antd/lib/input-number/style/index.js";
-import "antd/lib/menu/style/index.js";
-import "antd/lib/modal/style/index.js";
-import "antd/lib/notification/style/index.js";
-import "antd/lib/progress/style/index.js";
-import "antd/lib/row/style/index.js";
-import "antd/lib/select/style/index.js";
-import "antd/lib/steps/style/index.js";
-import "antd/lib/tabs/style/index.js";
-import "antd/lib/tooltip/style/index.js";
-
-import "../components/postModal/react-modal-custom.less";
+//import 'antd/dist/antd.less' //import entire library styles // import specific styles
+import "antd/lib/avatar/style/index.less";
+import "antd/lib/button/style/index.less";
+import "antd/lib/card/style/index.less";
+import "antd/lib/carousel/style/index.less";
+import "antd/lib/checkbox/style/index.less";
+import "antd/lib/col/style";
+import "antd/lib/divider/style/index.less";
+import "antd/lib/drawer/style/index.less";
+import "antd/lib/dropdown/style/index.less";
+import "antd/lib/form/style/index.less";
+import "antd/lib/grid/style/index.less";
+import "antd/lib/input/style/index.less";
+import "antd/lib/input-number/style/index.less";
+import "antd/lib/menu/style/index.less";
+import "antd/lib/modal/style/index.less";
+import "antd/lib/notification/style/index.less";
+import "antd/lib/progress/style/index.less";
+import "antd/lib/row/style";
+import "antd/lib/select/style/index.less";
+import "antd/lib/slider/style/index.less";
+import "antd/lib/steps/style/index.less";
+import "antd/lib/tabs/style/index.less";
+import "antd/lib/tooltip/style/index.less";
 
 import Layout from "../components/layout";
 import { redirectUser } from "../utils/auth";
 import baseUrl from "../utils/baseUrl";
+import "../components/postModal/react-modal-custom.less";
 
 const GlobalStyle = createGlobalStyle`
 *{
