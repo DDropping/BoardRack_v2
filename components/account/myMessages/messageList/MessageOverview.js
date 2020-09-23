@@ -18,7 +18,11 @@ const MessageOverview = ({ messageDetails, userId }) => {
 
   return (
     <Link
-      href={`/account?view=messages&thread=${messageDetails._id}`}
+      href={
+        router.query.thread === messageDetails._id
+          ? "/account?view=messages"
+          : `/account?view=messages&thread=${messageDetails._id}`
+      }
       shallow={true}
     >
       <Container active={router.query.thread === messageDetails._id}>
