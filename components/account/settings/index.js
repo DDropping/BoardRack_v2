@@ -48,7 +48,14 @@ const index = () => {
             ? "*Changes are not currently saved"
             : "*Account Up to Date"}
         </ButtonText>
-        <Button type="primary" onClick={updateUserData}>
+        <Button
+          type="primary"
+          onClick={updateUserData}
+          disabled={
+            JSON.stringify(userData) === JSON.stringify(initialState) ||
+            userData.newPassword !== userData.newPasswordConfirm
+          }
+        >
           Save Changes
         </Button>
       </ButtonsContainer>

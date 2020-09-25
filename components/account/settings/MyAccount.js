@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Avatar, Col, Input, Row } from "antd";
-import { EditOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  UserOutlined,
+  CheckCircleTwoTone,
+  ExclamationCircleTwoTone,
+} from "@ant-design/icons";
 
 import { Container, Title, Text } from "./style";
 
@@ -91,6 +96,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
           </Col>
           <Col xs={10} sm={10} md={8} lg={6}>
             <Input
+              type="password"
               value={userData.password}
               onChange={(e) =>
                 setUserData({ ...userData, password: e.target.value })
@@ -108,6 +114,15 @@ const MyAccount = ({ user, userData, setUserData }) => {
           </Col>
           <Col xs={10} sm={10} md={8} lg={6}>
             <Input
+              type="password"
+              suffix={
+                userData.newPassword.length >= 6 ? (
+                  <CheckCircleTwoTone twoToneColor="#52c41a" />
+                ) : (
+                  <ExclamationCircleTwoTone twoToneColor="#fcbe03" />
+                )
+              }
+              placeholder="At least 6 characters"
               value={userData.newPassword}
               onChange={(e) =>
                 setUserData({ ...userData, newPassword: e.target.value })
@@ -125,7 +140,17 @@ const MyAccount = ({ user, userData, setUserData }) => {
           </Col>
           <Col xs={10} sm={10} md={8} lg={6}>
             <Input
+              type="password"
+              placeholder="At least 6 characters"
               value={userData.newPasswordConfirm}
+              suffix={
+                userData.newPassword === userData.newPasswordConfirm &&
+                userData.newPassword.length > 5 ? (
+                  <CheckCircleTwoTone twoToneColor="#52c41a" />
+                ) : (
+                  <ExclamationCircleTwoTone twoToneColor="#fcbe03" />
+                )
+              }
               onChange={(e) =>
                 setUserData({ ...userData, newPasswordConfirm: e.target.value })
               }
