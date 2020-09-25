@@ -116,7 +116,7 @@ const Location = () => {
   );
 
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <LocationTextWrapper>
         {isLocated || isLocatedWithIp
           ? location.city + ", " + location.state
