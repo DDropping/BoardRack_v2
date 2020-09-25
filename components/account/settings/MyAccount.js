@@ -93,7 +93,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
             <Input
               value={userData.password}
               onChange={(e) =>
-                setUserData({ ...userData, oldPassword: e.target.value })
+                setUserData({ ...userData, password: e.target.value })
               }
             />
           </Col>
@@ -108,7 +108,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
           </Col>
           <Col xs={10} sm={10} md={8} lg={6}>
             <Input
-              value={userData.password}
+              value={userData.newPassword}
               onChange={(e) =>
                 setUserData({ ...userData, newPassword: e.target.value })
               }
@@ -125,7 +125,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
           </Col>
           <Col xs={10} sm={10} md={8} lg={6}>
             <Input
-              value={userData.password}
+              value={userData.newPasswordConfirm}
               onChange={(e) =>
                 setUserData({ ...userData, newPasswordConfirm: e.target.value })
               }
