@@ -37,7 +37,11 @@ async function handlePatchRequest(req, res) {
     //check if user exists
     const user = await User.findById(userId).select("+password");
     if (!user) {
-      return res.status(404).send("User Not Found");
+      return res
+        .status(404)
+        .send(
+          "Uhh oh, something went wrong. We couldn't update your account at this time."
+        );
     }
 
     console.log("user found");
@@ -52,7 +56,9 @@ async function handlePatchRequest(req, res) {
       updates.password = await bcrypt.hash(newPassword, salt);
 
       if (!passwordsMatch) {
-        return res.status(401).send("Invalid Credentials");
+        return res
+          .status(401)
+          .send("Invalid password, please check password and try again.");
       }
     }
     console.log(passwordsMatch);
@@ -71,7 +77,9 @@ async function handlePatchRequest(req, res) {
     res.status(200).json(result);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server Error");
+    res
+      .status(500)
+      .send("Uhh oh, something went wrong. Your account was not updated.");
   }
 }
 

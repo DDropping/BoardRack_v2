@@ -21,8 +21,11 @@ const index = () => {
 
   const user = useSelector((state) => state.auth.user);
   const [userData, setUserData] = useState(initialState);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const updateUserData = async () => {
+    setErrorMessage(null);
+
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -33,20 +36,25 @@ const index = () => {
     const body = JSON.stringify(userData);
 
     const url = `${baseUrl}/api/auth/updateAccount`;
-    const res = await axios.patch(url, body, config);
+    const res = await axios.patch(url, body, config).catch((error) => {
+      setErrorMessage(error.response.data);
+    });
     console.log(res);
   };
 
   return (
     <Container>
       <ButtonsContainer
+        isError={!!errorMessage}
         isNotSaved={JSON.stringify(userData) !== JSON.stringify(initialState)}
       >
         <div style={{ flex: 1 }} />
         <ButtonText>
-          {JSON.stringify(userData) !== JSON.stringify(initialState)
-            ? "*Changes are not currently saved"
-            : "*Account Up to Date"}
+          {!errorMessage &&
+            (JSON.stringify(userData) !== JSON.stringify(initialState)
+              ? "*Changes are not currently saved"
+              : "*Account Up to Date")}
+          {errorMessage}
         </ButtonText>
         <Button
           type="primary"

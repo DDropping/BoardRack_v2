@@ -60,6 +60,7 @@ export const theme = {
   secondaryBlue: "#4878a9",
 
   primaryRed: "#ef4040",
+  primaryLightRed: "#ef404045",
   secondaryRed: "#ee7a7a",
 
   primaryBlack: "#222222",

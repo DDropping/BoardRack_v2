@@ -8,14 +8,15 @@ export const ButtonsContainer = styled.div`
   display: flex;
   padding: 0.25rem 3rem;
   margin: 0 2rem;
-
-  ${({ theme, isNotSaved }) =>
-    isNotSaved && {
-      background: theme.primaryLightGreen,
-      border: `1px solid ${theme.primaryGreen}`,
-    }};
-
   border-radius: 5px;
+
+  ${({ theme, isNotSaved, isError }) =>
+    isNotSaved && {
+      background: isError ? theme.primaryLightRed : theme.primaryLightGreen,
+      border: isError
+        ? `1px solid ${theme.primaryRed}`
+        : `1px solid ${theme.primaryGreen}`,
+    }};
 `;
 
 export const ButtonText = styled.div`
