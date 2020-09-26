@@ -60,7 +60,7 @@ export const theme = {
   secondaryBlue: "#4878a9",
 
   primaryRed: "#ef4040",
-  primaryLightRed: "#ef404045",
+  primaryLightRed: "#ef404017",
   secondaryRed: "#ee7a7a",
 
   primaryBlack: "#222222",
@@ -73,7 +73,7 @@ export const theme = {
   primaryDarkGrey: "#949494",
 
   primaryGreen: "#65e824",
-  primaryLightGreen: "#65e82445",
+  primaryLightGreen: "#65e82417",
 
   backgroundBlueMenu: "#4878a91f",
   backgroundLightBlueMenu: "#4878a905",
