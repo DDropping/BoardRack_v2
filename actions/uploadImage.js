@@ -1,8 +1,7 @@
-import axios from "axios";
-import cookie from "js-cookie";
 import imageCompression from "browser-image-compression";
 
-import baseUrl from "../utils/baseUrl";
+import uploadFileToBucket from "../utils/uploadFileToBucket";
+
 import {
   SET_OBJECTURL_URL,
   SET_STANDARD_URL,
@@ -13,46 +12,7 @@ import {
   DELETE_IMG_PREVIEW,
 } from "./types";
 
-//compress image
-const compressImage = async (file, options) => {
-  const compressedImage = await imageCompression(file, options);
-  return compressedImage;
-};
-
-//upload image to s3 bucket
-const uploadImageToBucket = async (contentType, compressedImage) => {
-  const key = Date.now();
-  const options = {
-    params: {
-      Key: key,
-      ContentType: contentType,
-    },
-    headers: {
-      "Content-Type": contentType,
-      "x-amz-acl": "public-read",
-    },
-  };
-
-  try {
-    //get signed url to upload image
-    const generatePutUrl = `${baseUrl}/api/util/generatePutUrl`;
-    const {
-      data: { putURL },
-    } = await axios.get(generatePutUrl, options);
-
-    //send put request to upload image to s3 bucket
-    await axios.put(putURL, compressedImage, options);
-
-    return `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${key}`;
-  } catch (err) {
-    console.log("error message", err);
-  }
-};
-
 export const uploadImage = (imgKey, file) => async (dispatch) => {
-  //get content type
-  const contentType = file.type;
-
   //image compression standard options
   const standardOptions = {
     maxSizeMB: 0.2,
@@ -91,21 +51,18 @@ export const uploadImage = (imgKey, file) => async (dispatch) => {
     dispatch({ type: SET_IMG_KEY, payload: imgKey + 1 });
 
     //Create compressed images
-    const compressedFileStandard = await compressImage(file, standardOptions);
-    const compressedFileThumbnail = await compressImage(file, thumbnailOptions);
-
-    //delete authorization header (s3 throws error with authorization header)
-    delete axios.defaults.headers.common["Authorization"];
+    const compressedFileStandard = await imageCompression(
+      file,
+      standardOptions
+    );
+    const compressedFileThumbnail = await imageCompression(
+      file,
+      thumbnailOptions
+    );
 
     //upload standard image and thumbnail to s3 bucket
-    const standardUrl = await uploadImageToBucket(
-      contentType,
-      compressedFileStandard
-    );
-    const thumbnailUrl = await uploadImageToBucket(
-      contentType,
-      compressedFileThumbnail
-    );
+    const standardUrl = await uploadFileToBucket(compressedFileStandard);
+    const thumbnailUrl = await uploadFileToBucket(compressedFileThumbnail);
 
     //update store
     dispatch({
@@ -117,10 +74,6 @@ export const uploadImage = (imgKey, file) => async (dispatch) => {
       type: SET_THUMBNAIL_URL,
       payload: { imgKey: imgKey, thumbnailUrl: thumbnailUrl },
     });
-
-    //re-add authorization header
-    const token = cookie.get("token");
-    axios.defaults.headers.common["Authorization"] = token;
   } catch (err) {
     console.log("error message", err);
     dispatch({ type: UPLOAD_ERROR, payload: imgKey });
