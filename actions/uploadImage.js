@@ -13,33 +13,72 @@ import {
   DELETE_IMG_PREVIEW,
 } from "./types";
 
+//compress image
+const compressImage = async (file, options) => {
+  const compressedImage = await imageCompression(file, options);
+  return compressedImage;
+};
+
+//upload image to s3 bucket
+const uploadImageToBucket = async (contentType, compressedImage) => {
+  const key = Date.now();
+  const options = {
+    params: {
+      Key: key,
+      ContentType: contentType,
+    },
+    headers: {
+      "Content-Type": contentType,
+      "x-amz-acl": "public-read",
+    },
+  };
+
+  try {
+    //get signed url to upload image
+    const generatePutUrl = `${baseUrl}/api/util/generatePutUrl`;
+    const {
+      data: { putURL },
+    } = await axios.get(generatePutUrl, options);
+
+    //send put request to upload image to s3 bucket
+    await axios.put(putURL, compressedImage, options);
+
+    return `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${key}`;
+  } catch (err) {
+    console.log("error message", err);
+  }
+};
+
 export const uploadImage = (imgKey, file) => async (dispatch) => {
-  //image compression options
+  //get content type
+  const contentType = file.type;
+
+  //image compression standard options
   const standardOptions = {
     maxSizeMB: 0.2,
     useWebWorker: true,
-    onProgress: handleProgress,
+    onProgress: (percentage) => {
+      dispatch({
+        type: SET_UPLOAD_PERCENTAGE,
+        payload: { imgKey: imgKey, percentage: Math.round(percentage / 2) },
+      });
+    },
   };
 
+  //image compression thumbnail options
   const thumbnailOptions = {
     maxSizeMB: 0.05,
     useWebWorker: true,
-    onProgress: handleProgress2,
+    onProgress: (percentage) => {
+      dispatch({
+        type: SET_UPLOAD_PERCENTAGE,
+        payload: {
+          imgKey: imgKey,
+          percentage: Math.round(percentage / 2 + 50),
+        },
+      });
+    },
   };
-
-  function handleProgress(percentage) {
-    dispatch({
-      type: SET_UPLOAD_PERCENTAGE,
-      payload: { imgKey: imgKey, percentage: Math.round(percentage / 2) },
-    });
-  }
-
-  function handleProgress2(percentage) {
-    dispatch({
-      type: SET_UPLOAD_PERCENTAGE,
-      payload: { imgKey: imgKey, percentage: Math.round(percentage / 2 + 50) },
-    });
-  }
 
   try {
     //create object url for img preview
@@ -52,72 +91,28 @@ export const uploadImage = (imgKey, file) => async (dispatch) => {
     dispatch({ type: SET_IMG_KEY, payload: imgKey + 1 });
 
     //Create compressed images
-    const compressedFileStandard = await imageCompression(
-      file,
-      standardOptions
-    );
-    const compressedFileThumbnail = await imageCompression(
-      compressedFileStandard,
-      thumbnailOptions
-    );
-
-    //set content type
-    const contentType = file.type;
+    const compressedFileStandard = await compressImage(file, standardOptions);
+    const compressedFileThumbnail = await compressImage(file, thumbnailOptions);
 
     //delete authorization header (s3 throws error with authorization header)
     delete axios.defaults.headers.common["Authorization"];
 
-    //set axios arguments to get signed url for standard image
-    const generatePutUrl = `${baseUrl}/api/util/generatePutUrl`;
-    const key = Date.now();
-    const options = {
-      params: {
-        Key: key,
-        ContentType: contentType,
-      },
-      headers: {
-        "Content-Type": contentType,
-        "x-amz-acl": "public-read",
-      },
-    };
+    //upload standard image and thumbnail to s3 bucket
+    const standardUrl = await uploadImageToBucket(
+      contentType,
+      compressedFileStandard
+    );
+    const thumbnailUrl = await uploadImageToBucket(
+      contentType,
+      compressedFileThumbnail
+    );
 
-    //get signed url for standard image
-    const {
-      data: { putURL },
-    } = await axios.get(generatePutUrl, options);
-
-    //send put request to upload standard image to s3 bucket
-    await axios.put(putURL, compressedFileStandard, options);
-
-    //add to state
-    const standardUrl = `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${key}`;
+    //update store
     dispatch({
       type: SET_STANDARD_URL,
       payload: { imgKey: imgKey, standardUrl: standardUrl },
     });
 
-    //set axios arguments to get signed url for thumbnail
-    const keyThumbnail = Date.now();
-    const optionsThumbnail = {
-      params: {
-        Key: keyThumbnail,
-        ContentType: contentType,
-      },
-      headers: {
-        "Content-Type": contentType,
-        "x-amz-acl": "public-read",
-      },
-    };
-
-    //get signed url for thumbanil
-    const res = await axios.get(generatePutUrl, optionsThumbnail);
-    const putURLThumbnail = res.data.putURL;
-
-    //send put request to upload thumbnail to s3 bucket
-    await axios.put(putURLThumbnail, compressedFileThumbnail, options);
-
-    //add to state
-    const thumbnailUrl = `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${keyThumbnail}`;
     dispatch({
       type: SET_THUMBNAIL_URL,
       payload: { imgKey: imgKey, thumbnailUrl: thumbnailUrl },
