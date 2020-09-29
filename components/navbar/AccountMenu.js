@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { DEAUTH_USER } from "../../actions/types";
 import navDrawerLinks from "../../constants/navDrawerLinks";
 import logoutModal from "../logout";
+import CustomAvatar from "../avatar";
 
 const Container = styled.div`
   .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
@@ -45,6 +46,7 @@ const Logout = styled.div`
 const AccountMenu = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
   const isLogout = useSelector((state) => state.overlays.isLogout);
   const router = useRouter();
 
@@ -71,11 +73,19 @@ const AccountMenu = () => {
           }}
         >
           <Link href="/account?view=overview">
-            <Avatar
-              size={150}
-              style={{ backgroundColor: "#4878a9" }}
-              icon={<UserOutlined style={{ fontSize: "6rem" }} />}
-            />
+            {user ? (
+              <CustomAvatar
+                userId={user._id}
+                username={user.username}
+                size={150}
+              />
+            ) : (
+              <Avatar
+                size={150}
+                style={{ backgroundColor: "#4878a9" }}
+                icon={<UserOutlined style={{ fontSize: "6rem" }} />}
+              />
+            )}
           </Link>
         </Menu.Item>
 
