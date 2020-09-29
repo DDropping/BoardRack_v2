@@ -80,6 +80,8 @@ export const theme = {
   backgroundGreyMenu: "#5858581f",
   backgroundRedMenu: "#ef40401f",
 
+  primaryTransparentWhite: "#ffffffd9",
+
   //media sizes
   xs: "375px", // extra small devices
   xs1: "376px", // +1 for @media queries
