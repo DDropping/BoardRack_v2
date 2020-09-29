@@ -15,6 +15,7 @@ export const Container = styled.div`
 
   :hover {
     ${({ isEditable }) => isEditable && {}}
+    cursor: pointer;
   }
 `;
 
