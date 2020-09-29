@@ -13,8 +13,6 @@ const MyAccount = ({ user, userData, setUserData }) => {
   const [isEditPassword, toggleEditPassword] = useState(false);
   const [isEditEmail, toggleEditEmail] = useState(false);
 
-  const handleAvatarPicker = () => {};
-
   return (
     <Container>
       <Row>
@@ -34,7 +32,6 @@ const MyAccount = ({ user, userData, setUserData }) => {
               username={user.username}
               size={150}
               isEditable={true}
-              onClick={handleAvatarPicker}
             />
           )}
         </Col>
