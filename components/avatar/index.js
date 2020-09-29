@@ -16,13 +16,14 @@ const handleUpload = (file) => {
   console.log("uploading image");
 };
 
-const index = ({ userId, username, size, isEditable }) => {
+const index = ({ userId, username, size, isEditable, isOutlined }) => {
   const colorInt = userId.charCodeAt(userId.length - 1) % 20;
 
   return (
     <Container
       primary={colorCodes[colorInt].primary}
       secondary={colorCodes[colorInt].secondary}
+      isOutlined={isOutlined}
       size={size}
     >
       {isEditable && (

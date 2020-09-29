@@ -12,10 +12,9 @@ export const Container = styled.div`
   font-size: ${({ size }) => size * 0.8}px;
   color: ${({ primary }) => primary};
   background-color: ${({ secondary }) => secondary};
-
-  :hover {
-    ${({ isEditable }) => isEditable && {}}
-  }
+  border: 5px solid white;
+  cursor: pointer;
+  ${({ isOutlined }) => isOutlined && { border: "5px solid white" }}
 `;
 
 export const EditButton = styled.div`
