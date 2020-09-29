@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { UserOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router";
 
 import { Container, Banner, AvatarWrapper } from "./style";
