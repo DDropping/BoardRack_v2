@@ -18,10 +18,4 @@ export const AvatarWrapper = styled.div`
   position: absolute;
   top: 100px;
   margin-left: 25px;
-  border-radius: 50%;
-  transition: ${({ theme }) => theme.easeInOut};
-  box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);
-  :hover {
-    box-shadow: 0 0 11px rgba(33, 33, 33, 0.4);
-  }
 `;
