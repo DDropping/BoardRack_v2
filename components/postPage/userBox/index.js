@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Avatar, Button, Input } from "antd";
-import { UserOutlined, PhoneOutlined, MailOutlined } from "@ant-design/icons";
+import { Button, Input } from "antd";
+import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
 
 import {
   UserBoxContainer,
@@ -11,6 +11,7 @@ import {
   MessageContainer,
 } from "./style";
 import sendNewMessage from "../../../utils/sendNewMessage";
+import Avatar from "../../avatar";
 
 const { TextArea } = Input;
 
@@ -28,7 +29,7 @@ const index = ({ user, location, postId }) => {
   return (
     <UserBoxContainer>
       <AvatarContainer>
-        <Avatar size={45} icon={<UserOutlined />} />
+        <Avatar userId={user._id} username={user.username} size={45} />
       </AvatarContainer>
       <DetailsContainer>
         <strong style={{ fontSize: "20px", lineHeight: "20px" }}>
