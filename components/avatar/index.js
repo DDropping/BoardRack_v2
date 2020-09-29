@@ -9,8 +9,12 @@ Avatar component
 import React from "react";
 import { PlusOutlined } from "@ant-design/icons";
 
-import { Container, EditButton } from "./style";
+import { Container, EditButton, UploadImageButton } from "./style";
 import colorCodes from "../../constants/colorCodes";
+
+const handleUpload = (file) => {
+  console.log("uploading image");
+};
 
 const index = ({ userId, username, size, isEditable }) => {
   const colorInt = userId.charCodeAt(userId.length - 1) % 20;
@@ -24,6 +28,12 @@ const index = ({ userId, username, size, isEditable }) => {
       {isEditable && (
         <EditButton size={size}>
           <PlusOutlined />
+          <UploadImageButton
+            id="upload-image"
+            type="file"
+            accept="image/*"
+            onChange={(event) => handleUpload(event.target.files[0])}
+          />
         </EditButton>
       )}
       {username.charAt(0)}

@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import { Avatar, Col, Input, Row } from "antd";
+import { Col, Input, Row } from "antd";
 import {
   EditOutlined,
-  UserOutlined,
   CheckCircleTwoTone,
   ExclamationCircleTwoTone,
 } from "@ant-design/icons";
 
 import { Container, Title, Text } from "./style";
+import Avatar from "../../avatar";
 
 const MyAccount = ({ user, userData, setUserData }) => {
   const [isEditPassword, toggleEditPassword] = useState(false);
   const [isEditEmail, toggleEditEmail] = useState(false);
+
+  const handleAvatarPicker = () => {};
 
   return (
     <Container>
@@ -26,11 +28,15 @@ const MyAccount = ({ user, userData, setUserData }) => {
           Profile Image:
         </Col>
         <Col xs={12} sm={10} md={8} lg={6}>
-          <Avatar
-            size={150}
-            icon={<UserOutlined />}
-            style={{ border: "5px solid white" }}
-          />
+          {user && (
+            <Avatar
+              userId={user._id}
+              username={user.username}
+              size={150}
+              isEditable={true}
+              onClick={handleAvatarPicker}
+            />
+          )}
         </Col>
       </Row>
 

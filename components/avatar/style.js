@@ -15,7 +15,6 @@ export const Container = styled.div`
 
   :hover {
     ${({ isEditable }) => isEditable && {}}
-    cursor: pointer;
   }
 `;
 
@@ -33,5 +32,18 @@ export const EditButton = styled.div`
   transition: ${({ theme }) => theme.easeInOut};
   :hover {
     opacity: 1;
+  }
+`;
+
+export const UploadImageButton = styled.input`
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  ::-webkit-file-upload-button {
+    cursor: pointer;
   }
 `;
