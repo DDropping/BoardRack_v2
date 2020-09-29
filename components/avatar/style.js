@@ -9,10 +9,9 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  font-size: ${({ size }) => size * 0.8}px;
+  font-size: ${({ size }) => size * 0.7}px;
   color: ${({ primary }) => primary};
   background-color: ${({ secondary }) => secondary};
-  border: 5px solid white;
   cursor: pointer;
   ${({ isOutlined }) => isOutlined && { border: "5px solid white" }}
 `;
