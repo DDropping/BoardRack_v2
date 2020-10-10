@@ -19,6 +19,19 @@ $ npm install
 $ npm run dev
 ```
 
+- Create `env.config.js` file that contains the following access keys:
+
+```
+module.exports = {
+     JWT_SECRET: <enter a random jwt secret>,
+     MONGO_SRV: <enter mongodb connection string>,
+     S3_ACCESS_KEY_ID: <enter access key for aws s3 bucket>,
+     S3_SECRET_ACCESS_KEY: <enter secrect for aws s3 bucket>,
+     S3_REGION: <enter aws s3 buckets region>,
+     S3_BUCKET: <enter aws s3 bucket name>,
+     HERE_API_KEY: <enter developer.here api key>,
+     IPSTACK_ACCESS_KEY: <enter IPStack api key>,
+}
 ---
 
 ## Technologies
@@ -53,9 +66,9 @@ Built Using CRA, React, Redux, MongoDB, Express.js, Node.js with Ant design UI f
 
 ## Developer Notes
 
-global theme: /pages/\_app.js  
-theme provider: /pages/\_app.js  
-antd theme: /public/antd-custom.less  
+global theme: /pages/\_app.js
+theme provider: /pages/\_app.js
+antd theme: /public/antd-custom.less
 protected routes: /pages/\_app.js
 
 ## Production Notes
@@ -91,3 +104,4 @@ Reach out to me at one of the following places!
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
 - Copyright 2020 © <a href="http://ddropping.com" target="_blank">David Dropping</a>
+```
