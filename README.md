@@ -32,6 +32,8 @@ module.exports = {
      HERE_API_KEY: <enter developer.here api key>,
      IPSTACK_ACCESS_KEY: <enter IPStack api key>,
 }
+```
+
 ---
 
 ## Technologies
@@ -104,4 +106,7 @@ Reach out to me at one of the following places!
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
 - Copyright 2020 © <a href="http://ddropping.com" target="_blank">David Dropping</a>
+
+```
+
 ```
