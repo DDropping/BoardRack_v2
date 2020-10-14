@@ -16,7 +16,7 @@ import {
   TOGGLE_REGISTER,
   DEAUTH_USER,
 } from "../../actions/types";
-import navDrawerLinks from "../../constants/navDrawerLinks";
+import navLinks from "../../constants/navLinks";
 import logoutModal from "../logout";
 
 const Img = styled.img`
@@ -29,7 +29,7 @@ const Li = styled.li`
   transition: ${({ theme }) => theme.easeInOut};
   display: block;
   font-size: 1rem;
-  padding: 1rem;
+  padding: 10px;
   margin-bottom: 0.25rem;
   ${({ active, theme }) =>
     active &&
@@ -70,9 +70,7 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
   const router = useRouter();
 
   //sort nav items depending on if user is authenticated
-  const navItems = navDrawerLinks.filter(
-    (navitem) => navitem.protected === isAuth
-  );
+  const navItems = navLinks.filter((navitem) => navitem.protected === isAuth);
 
   function isActive(route) {
     if (!router) {
