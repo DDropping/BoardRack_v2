@@ -30,9 +30,6 @@ async function handlePatchRequest(req, res) {
 
   var passwordsMatch = false;
 
-  console.log("req body: ");
-  console.log(req.body);
-
   try {
     //check if user exists
     const user = await User.findById(userId).select("+password");
@@ -43,9 +40,6 @@ async function handlePatchRequest(req, res) {
           "Uhh oh, something went wrong. We couldn't update your account at this time."
         );
     }
-
-    console.log("user found");
-    console.log(user);
 
     // if password change request, verify credentials
     if (password && newPassword) {
@@ -61,19 +55,14 @@ async function handlePatchRequest(req, res) {
           .send("Invalid password, please check password and try again.");
       }
     }
-    console.log(passwordsMatch);
-    console.log("passwords match");
 
     //Create updates object
-    if (isEmail(req.body.email)) updates.email = req.body.email;
+    if (req.body.email && isEmail(req.body.email))
+      updates.email = req.body.email;
     if (req.body.profileImage) updates.profileImage = req.body.profileImage;
-
-    console.log("update object");
-    console.log(updates);
 
     //update user data
     const result = await User.findByIdAndUpdate(userId, updates, options);
-    console.log("success");
     res.status(200).json(result);
   } catch (err) {
     console.error(err.message);
