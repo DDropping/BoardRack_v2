@@ -10,7 +10,7 @@ Avatar component
 
 import React, { useState } from "react";
 
-import { PlusOutlined } from "@ant-design/icons";
+import { EditOutlined } from "@ant-design/icons";
 
 import {
   Container,
@@ -39,8 +39,10 @@ const index = ({
   };
 
   const handleUpload = (file) => {
-    setImageFile(URL.createObjectURL(file));
-    toggleCropModal(true);
+    if (file) {
+      setImageFile(URL.createObjectURL(file));
+      toggleCropModal(true);
+    }
   };
 
   return (
@@ -52,7 +54,7 @@ const index = ({
     >
       {isEditable && (
         <EditButton size={size}>
-          <PlusOutlined />
+          <EditOutlined />
           <UploadImageButton
             id="upload-image"
             type="file"

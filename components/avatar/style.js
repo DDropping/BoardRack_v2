@@ -23,10 +23,11 @@ export const EditButton = styled.div`
   height: ${({ size }) => size}px;
   width: ${({ size }) => size}px;
   border-radius: 50%;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: ${({ size }) => size * 0.5}px;
+  font-size: ${({ size }) => size * 0.25}px;
   background-color: ${({ theme }) => theme.primaryTransparentWhite};
   transition: ${({ theme }) => theme.easeInOut};
   :hover {
