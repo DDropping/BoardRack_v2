@@ -53,6 +53,7 @@ const index = ({ file, isOpen, closeModal }) => {
       setMessage("Profile Image Updated!");
       setTimeout(() => {
         closeModal();
+        setMessage(null);
       }, 2000);
     } catch (err) {
       console.log(err);
@@ -88,11 +89,11 @@ const index = ({ file, isOpen, closeModal }) => {
     <Modal isOpen={isOpen} onRequestClose={closeModal} style={customStyles}>
       <Options>
         <Button danger onClick={closeModal}>
-          Cancel Upload
+          Cancel
         </Button>
         <Title>{message ? message : "Edit Profile Image"}</Title>
         <Button type="primary" onClick={uploadCroppedImage} loading={isLoading}>
-          Save Changes
+          Save
         </Button>
       </Options>
       {isOpen && (

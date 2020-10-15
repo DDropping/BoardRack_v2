@@ -20,4 +20,7 @@ export const Title = styled.div`
   flex: 1;
   text-align: center;
   font-size: 1.5rem;
+  @media (max-width: ${({ theme }) => theme.md}) {
+    display: none;
+  }
 `;
