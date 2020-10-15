@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   height: ${({ size }) => size}px;
   width: ${({ size }) => size}px;
+  overflow: hidden;
   border-radius: 50%;
 
   display: flex;
@@ -44,4 +45,9 @@ export const UploadImageButton = styled.input`
   ::-webkit-file-upload-button {
     cursor: pointer;
   }
+`;
+
+export const ProfileImageWrapper = styled.img`
+  max-height: 100%;
+  max-width: 100%;
 `;
