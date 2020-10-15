@@ -16,6 +16,7 @@ const index = () => {
       <AvatarWrapper>
         {user ? (
           <CustomAvatar
+            profileImage={user.profileImage}
             userId={user._id}
             username={user.username}
             size={150}

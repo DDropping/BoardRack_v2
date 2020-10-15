@@ -28,6 +28,7 @@ const MyAccount = ({ user, userData, setUserData }) => {
         <Col xs={12} sm={10} md={8} lg={6}>
           {user && (
             <Avatar
+              profileImage={user.profileImage}
               userId={user._id}
               username={user.username}
               size={150}
