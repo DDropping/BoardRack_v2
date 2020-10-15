@@ -18,6 +18,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  emailConfirmed: {
+    type: Boolean,
+    default: false,
+  },
   password: {
     type: String,
     required: true,
@@ -26,6 +30,10 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now,
+  },
+  profileImage: {
+    type: String,
+    default: null,
   },
   location: {
     lat: { type: Number },
