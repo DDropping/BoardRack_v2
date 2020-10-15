@@ -31,7 +31,7 @@ const index = ({ file, isOpen, closeModal }) => {
   const [message, setMessage] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
-  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+  const onCropComplete = useCallback((croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
