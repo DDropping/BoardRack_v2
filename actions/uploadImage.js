@@ -13,6 +13,7 @@ import {
 } from "./types";
 
 export const uploadImage = (imgKey, file) => async (dispatch) => {
+  console.log("before: ", file);
   //image compression standard options
   const standardOptions = {
     maxSizeMB: 0.2,
@@ -61,8 +62,10 @@ export const uploadImage = (imgKey, file) => async (dispatch) => {
     );
 
     //upload standard image and thumbnail to s3 bucket
+    console.log("after: ", file);
     const standardUrl = await uploadFileToBucket(compressedFileStandard);
     const thumbnailUrl = await uploadFileToBucket(compressedFileThumbnail);
+    console.log("compressed: ", compressedFileStandard);
 
     //update store
     dispatch({
