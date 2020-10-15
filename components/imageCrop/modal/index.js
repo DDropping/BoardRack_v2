@@ -28,7 +28,8 @@ const index = ({ file, isOpen, closeModal }) => {
   const [zoom, setZoom] = useState(1);
   const [rotation, setRotation] = useState(0);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -37,7 +38,8 @@ const index = ({ file, isOpen, closeModal }) => {
   //upload cropped image to S3 bucket and update store
   const uploadCroppedImage = async () => {
     try {
-      setError(null);
+      setMessage(null);
+      setLoading(true);
 
       const croppedImage = await getCroppedImg(
         file,
@@ -47,10 +49,16 @@ const index = ({ file, isOpen, closeModal }) => {
 
       const fileUrl = await uploadFiletoBucket(croppedImage);
       await updateUserData(fileUrl);
-      dispatch({ type: UPDATE_USER_PROFILE_IMAGE, payload: fileUrl });
+      await dispatch({ type: UPDATE_USER_PROFILE_IMAGE, payload: fileUrl });
+      setMessage("Profile Image Updated!");
+      setTimeout(() => {
+        closeModal();
+      }, 2000);
     } catch (err) {
       console.log(err);
-      setError("Image Upload Failed");
+      setMessage("Image Upload Failed");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -70,7 +78,7 @@ const index = ({ file, isOpen, closeModal }) => {
 
     const url = `${baseUrl}/api/auth/updateAccount`;
     const res = await axios.patch(url, body, config).catch(() => {
-      setError("Could not update profile image at this time");
+      setMessage("Could not update profile image at this time");
     });
 
     console.log(res);
@@ -82,8 +90,8 @@ const index = ({ file, isOpen, closeModal }) => {
         <Button danger onClick={closeModal}>
           Cancel Upload
         </Button>
-        <Title>{error ? error : "Edit Profile Image"}</Title>
-        <Button type="primary" onClick={uploadCroppedImage}>
+        <Title>{message ? message : "Edit Profile Image"}</Title>
+        <Button type="primary" onClick={uploadCroppedImage} loading={isLoading}>
           Save Changes
         </Button>
       </Options>
