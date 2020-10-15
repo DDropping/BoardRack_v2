@@ -5,6 +5,7 @@ import {
   UPDATE_USER_FAVORITES_ADD,
   UPDATE_USER_FAVORITES_REMOVE,
   UPDATE_USER_MESSAGES,
+  UPDATE_USER_PROFILE_IMAGE,
 } from "../actions/types";
 import cookie from "js-cookie";
 
@@ -64,6 +65,14 @@ export default function (state = initialState, action) {
         user: {
           ...state.user,
           messages: action.payload,
+        },
+      };
+    case UPDATE_USER_PROFILE_IMAGE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          profileImage: action.payload,
         },
       };
     default:
