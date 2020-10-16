@@ -71,12 +71,14 @@ const AccountMenu = () => {
         >
           <Link href="/account?view=overview">
             {user ? (
-              <CustomAvatar
-                profileImage={user.profileImage}
-                userId={user._id}
-                username={user.username}
-                size={150}
-              />
+              <div>
+                <CustomAvatar
+                  profileImage={user.profileImage}
+                  userId={user._id}
+                  username={user.username}
+                  size={150}
+                />
+              </div>
             ) : (
               <Avatar
                 size={150}
@@ -89,13 +91,13 @@ const AccountMenu = () => {
 
         {navItems.map((item, index) => {
           return (
-            <Li key={index} active={router.query.view === item.view}>
-              <Link href={item.href}>
+            <Link href={item.href} key={index}>
+              <Li active={router.query.view === item.view}>
                 <a>
                   {item.icon} {item.title}
                 </a>
-              </Link>
-            </Li>
+              </Li>
+            </Link>
           );
         })}
         <Divider style={{ margin: 0 }} />
