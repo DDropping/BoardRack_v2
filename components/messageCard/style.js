@@ -19,6 +19,8 @@ export const Container = styled.div`
 export const HeaderContainer = styled.div`
   font-size: 20px;
   padding-bottom: 5px;
+  display: flex;
+  flex-direction: row;
 `;
 
 export const ContentContainer = styled.div`

@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
 
 import timeOrDateAgo from "../../../../utils/timeOrDateAgo";
 
@@ -54,12 +52,18 @@ const TimeStamp = styled.div`
 `;
 
 const Message = ({ message, recieved }) => {
+  console.log("message item: ", message);
   return (
     <Container>
       <Justify recieved={recieved} />
       {!recieved && (
         <AvatarContainer recieved={recieved}>
-          <Avatar icon={<UserOutlined />} size={40} />
+          {/* <Avatar
+            size={28}
+            profileImage={from.profileImage}
+            userId={from._id}
+            username={from.username}
+          /> */}
         </AvatarContainer>
       )}
       <MessageContainer recieved={recieved}>
@@ -72,7 +76,12 @@ const Message = ({ message, recieved }) => {
       </MessageContainer>
       {recieved && (
         <AvatarContainer recieved={recieved}>
-          <Avatar icon={<UserOutlined />} size={40} />
+          {/* <Avatar
+            size={28}
+            profileImage={from.profileImage}
+            userId={from._id}
+            username={from.username}
+          /> */}
         </AvatarContainer>
       )}
     </Container>

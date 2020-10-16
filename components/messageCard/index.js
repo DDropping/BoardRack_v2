@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
@@ -14,8 +13,10 @@ import {
   TimeStampWrapper,
 } from "./style";
 import timeAgo from "../../utils/timeAgo";
+import Avatar from "../avatar";
 
 const Index = ({ messageDetails }) => {
+  console.log("messageDetails: ", messageDetails);
   const user = useSelector((state) => state.auth.user);
   const from = messageDetails.users.filter(
     (userDetails) => userDetails._id !== user._id
@@ -26,13 +27,17 @@ const Index = ({ messageDetails }) => {
 
   return (
     <Container>
-      <HeaderContainer>
-        <Link href="#">
-          <a>
-            <Avatar icon={<UserOutlined />} /> {from.username}
-          </a>
-        </Link>
-      </HeaderContainer>
+      <Link href="#">
+        <HeaderContainer>
+          <Avatar
+            size={28}
+            profileImage={from.profileImage}
+            userId={from._id}
+            username={from.username}
+          />
+          <div style={{ marginLeft: "5px" }}>{from.username}</div>
+        </HeaderContainer>
+      </Link>
       <Link
         href={`/account?view=messages&thread=${messageDetails._id}`}
         shallow={true}

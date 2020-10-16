@@ -26,7 +26,10 @@ async function handleGetRequest(req, res) {
     const populateQuery = [
       {
         path: "messages",
-        populate: [{ path: "post" }, { path: "users", select: "username" }],
+        populate: [
+          { path: "post" },
+          { path: "users", select: "username profileImage" },
+        ],
       },
       { path: "favorites" },
       { path: "posts" },

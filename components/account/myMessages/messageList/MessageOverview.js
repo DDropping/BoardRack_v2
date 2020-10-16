@@ -1,12 +1,10 @@
 import React from "react";
-import styled from "styled-components";
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { Container, Header, Username, TimeAgo, Description } from "./style";
 import timeOrDateAgo from "../../../../utils/timeOrDateAgo";
+import Avatar from "../../../avatar";
 
 const MessageOverview = ({ messageDetails, userId }) => {
   const router = useRouter();
@@ -27,11 +25,12 @@ const MessageOverview = ({ messageDetails, userId }) => {
     >
       <Container active={router.query.thread === messageDetails._id}>
         <Avatar
-          icon={<UserOutlined />}
-          size={40}
-          style={{ marginRight: "5px" }}
+          size={42}
+          profileImage={from.profileImage}
+          userId={from._id}
+          username={from.username}
         />
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1, marginLeft: "10px" }}>
           <Header>
             <Username>{from.username}</Username>
             <div style={{ flex: 1 }} />

@@ -60,6 +60,7 @@ const index = ({ isMessageListChild }) => {
                     key={index}
                     message={message}
                     recieved={user._id !== message.from}
+                    users={user}
                   />
                 );
               })}
