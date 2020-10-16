@@ -12,6 +12,7 @@ import CustomAvatar from "../avatar";
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.primaryWhite};
+  box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);
 `;
 
 const Ul = styled.ul`
