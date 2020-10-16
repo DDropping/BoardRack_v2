@@ -39,6 +39,11 @@ const PostSchema = new mongoose.Schema({
   movability: { type: String },
   shaper: { type: String },
   model: { type: String },
+  contactMethods: {
+    message: { type: Boolean, default: true },
+    phone: { type: String, default: null },
+    email: { type: String, default: null },
+  },
   location: {
     lat: { type: Number, required: true },
     lng: { type: Number, required: true },
