@@ -24,7 +24,10 @@ async function handleGetRequest(req, res) {
   } = req;
 
   try {
-    const post = await Post.findById(id).populate("user", "username");
+    const post = await Post.findById(id).populate(
+      "user",
+      "username profileImage"
+    );
 
     if (!post) {
       return res.status(400).json({ msg: "There is no post with this id" });

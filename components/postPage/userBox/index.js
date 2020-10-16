@@ -29,7 +29,12 @@ const index = ({ user, location, postId }) => {
   return (
     <UserBoxContainer>
       <AvatarContainer>
-        <Avatar userId={user._id} username={user.username} size={45} />
+        <Avatar
+          profileImage={user.profileImage}
+          userId={user._id}
+          username={user.username}
+          size={45}
+        />
       </AvatarContainer>
       <DetailsContainer>
         <strong style={{ fontSize: "20px", lineHeight: "20px" }}>

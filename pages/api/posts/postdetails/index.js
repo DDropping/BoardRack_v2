@@ -21,7 +21,7 @@ const handler = async (req, res) => {
 // @access  Public
 async function handleGetRequest(req, res) {
   try {
-    const posts = await Post.find({}).populate("user", "username");
+    const posts = await Post.find({}).populate("user", "username profileImage");
 
     if (!posts) {
       return res.status(400).json({ msg: "There is no posts" });
