@@ -46,7 +46,7 @@ const index = () => {
     <Container>
       {isAuthenticated &&
         user.messages.length > 0 &&
-        !Loading &&
+        !isLoading &&
         user.messages.map((messageDetails, index) => {
           return <MessageCard messageDetails={messageDetails} key={index} />;
         })}
