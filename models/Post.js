@@ -3,18 +3,10 @@ import mongoose from "mongoose";
 const { String, Date, Number } = mongoose.Schema.Types;
 
 const PostSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
-  },
-  title: {
-    type: String,
-    required: true,
-  },
-  price: {
-    type: String,
-    required: true,
-  },
+  isVisible: { type: Boolean, default: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
+  title: { type: String, required: true },
+  price: { type: String, required: true },
   boardType: { type: String },
   condition: { type: String },
   description: { type: String },
@@ -65,14 +57,8 @@ const PostSchema = new mongoose.Schema({
       ref: "user",
     },
   ],
-  viewCount: {
-    type: Number,
-    default: 0,
-  },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
+  viewCount: { type: Number, default: 0 },
+  date: { type: Date, default: Date.now },
 });
 
 export default mongoose.models.post || mongoose.model("post", PostSchema);
