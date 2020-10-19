@@ -32,6 +32,10 @@ async function handlePostRequest(req, res) {
     timeSent: Date.now(),
   };
 
+  if (sendFromUserId === sendToUserId) {
+    return res.status(422).send("Cannot Send Message To Yourself");
+  }
+
   try {
     //user: check if message thread exists between the two users
     let messageThread;
@@ -80,7 +84,7 @@ async function handlePostRequest(req, res) {
     res.json(messageThread);
   } catch (err) {
     console.error(err.message);
-    re.status(500).send("Server Error");
+    res.status(500).send("Server Error");
   }
 }
 
