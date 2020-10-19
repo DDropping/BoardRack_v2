@@ -6,11 +6,14 @@ import { UPDATE_USER_MESSAGES } from "../../../../actions/types";
 import { Container } from "./style";
 import baseUrl from "../../../../utils/baseUrl";
 import MessageCard from "../../../messageCard";
+import NoDataFoundMessage from "../../NoDataFoundMessage";
 
 const index = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+  const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
 
   // let loadingCards = [];
   // for (let i = 0; i < 20; ++i) {
@@ -19,12 +22,19 @@ const index = () => {
 
   useEffect(() => {
     async function checkIfMessagesAreUpToDate() {
-      const url = `${baseUrl}/api/messages/mymessages`;
-      const res = await axios.get(url);
+      try {
+        const url = `${baseUrl}/api/messages/mymessages`;
+        const res = await axios.get(url);
 
-      // update user messages in store if any changes were made to messages
-      if (JSON.stringify(res.data) !== JSON.stringify(user.messages)) {
-        dispatch({ type: UPDATE_USER_MESSAGES, payload: res.data });
+        // update user messages in store if any changes were made to messages
+        if (JSON.stringify(res.data) !== JSON.stringify(user.messages)) {
+          dispatch({ type: UPDATE_USER_MESSAGES, payload: res.data });
+        }
+      } catch (err) {
+        setError(true);
+        console.log(err.message);
+      } finally {
+        setLoading(false);
       }
     }
     if (isAuthenticated) {
@@ -36,9 +46,19 @@ const index = () => {
     <Container>
       {isAuthenticated &&
         user.messages.length > 0 &&
+        !Loading &&
         user.messages.map((messageDetails, index) => {
           return <MessageCard messageDetails={messageDetails} key={index} />;
         })}
+
+      {isError && !isLoading && !(user.messages.length > 0) && (
+        <NoDataFoundMessage
+          title={"Uhh ohh, something went wrong on our end..."}
+          subtitle={
+            "We couldn't retrieve your messages, give us a moment then try again"
+          }
+        />
+      )}
     </Container>
   );
 };
