@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import axios from "axios";
-import { Button } from "antd";
-import { PlusOutlined, AppstoreOutlined } from "@ant-design/icons";
-import Link from "next/link";
 
-import { Container, ButtonContainer, Ul, Li } from "./style";
+import { Container, Ul, Li } from "./style";
 import PostCard from "../../../postCard";
 import NewPostButton from "./NewPostButton";
 import PostModal from "../../../postModal";
 import LoadingScreenCard from "../../../loadingScreens/postCard";
-import NoPostsFoundMessage from "./NoPostsFoundMessage";
+import NoDataFoundMessage from "../../NoDataFoundMessage";
 import ViewAllButton from "../../util/ViewAllButton";
 
 const index = ({ preview }) => {
@@ -61,7 +57,14 @@ const index = ({ preview }) => {
         </Ul>
       )}
 
-      {!isLoading && posts.length === 0 && <NoPostsFoundMessage />}
+      {!isLoading && posts.length === 0 && (
+        <NoDataFoundMessage
+          title={"Looks like you haven't created any posts yet."}
+          subtitle={"That's okay, click the button below to create a new post!"}
+          buttonText={"Create Post"}
+          link={"/createpost"}
+        />
+      )}
     </Container>
   );
 };

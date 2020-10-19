@@ -12,11 +12,6 @@ export const Container = styled.div`
   }
 `;
 
-export const ButtonContainer = styled.div`
-  display: flex;
-  width: 100%;
-`;
-
 export const Ul = styled.ul`
   margin-bottom: 0;
   padding-bottom: 10px;

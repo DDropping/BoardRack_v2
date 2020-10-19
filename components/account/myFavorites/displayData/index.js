@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Button } from "antd";
-import { AppstoreOutlined } from "@ant-design/icons";
-import Link from "next/link";
 
-import { Container, ButtonContainer, Ul, Li } from "./style";
+import { Container, Ul, Li } from "./style";
 import PostCard from "../../../postCard";
 import PostModal from "../../../postModal";
 import LoadingScreenCard from "../../../loadingScreens/postCard";
-import NoFavoritesFoundMessage from "./NoFavoritesFoundMessage";
+import NoDataFoundMessage from "../../NoDataFoundMessage";
 import ViewAllButton from "../../util/ViewAllButton";
 
 const index = ({ preview }) => {
@@ -51,7 +48,16 @@ const index = ({ preview }) => {
         </Ul>
       )}
 
-      {!isLoading && posts.length === 0 && <NoFavoritesFoundMessage />}
+      {!isLoading && posts.length === 0 && (
+        <NoDataFoundMessage
+          title={"Seems you haven't found any boards you like yet."}
+          subtitle={
+            "That's okay, click the button below to check out boards near you!"
+          }
+          buttonText={"View Boards"}
+          link={"/"}
+        />
+      )}
     </Container>
   );
 };
