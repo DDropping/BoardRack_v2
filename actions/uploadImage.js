@@ -13,7 +13,6 @@ import {
 } from "./types";
 
 export const uploadImage = (imgKey, file) => async (dispatch) => {
-  console.log("before: ", file);
   //image compression standard options
   const standardOptions = {
     maxSizeMB: 0.2,
