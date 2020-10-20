@@ -7,6 +7,7 @@ import { Container } from "./style";
 import baseUrl from "../../../../utils/baseUrl";
 import MessageCard from "../../../messageCard";
 import NoDataFoundMessage from "../../NoDataFoundMessage";
+import LoadingMessageCard from "../../../loadingScreens/messageCard";
 
 const index = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -15,10 +16,10 @@ const index = () => {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
 
-  // let loadingCards = [];
-  // for (let i = 0; i < 20; ++i) {
-  //   loadingCards.push(<LoadingScreenCard key={i} />);
-  // }
+  let loadingCards = [];
+  for (let i = 0; i < 3; ++i) {
+    loadingCards.push(<LoadingMessageCard key={i} />);
+  }
 
   useEffect(() => {
     async function checkIfMessagesAreUpToDate() {
@@ -44,6 +45,8 @@ const index = () => {
 
   return (
     <Container>
+      {isLoading && loadingCards}
+
       {isAuthenticated &&
         user.messages.length > 0 &&
         !isLoading &&
