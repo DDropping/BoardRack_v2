@@ -14,22 +14,14 @@ const index = () => {
     <Container isMessageThreadView={router.query.thread}>
       <Banner />
       <AvatarWrapper>
-        {user ? (
-          <CustomAvatar
-            profileImage={user.profileImage}
-            userId={user._id}
-            username={user.username}
-            size={150}
-            isEditable={true}
-            isOutlined={true}
-          />
-        ) : (
-          <Avatar
-            size={150}
-            icon={<UserOutlined />}
-            style={{ border: "5px solid white" }}
-          />
-        )}
+        <CustomAvatar
+          profileImage={user.profileImage ? user.profileImage : null}
+          userId={user._id ? user._id : null}
+          username={user.username ? user.username : null}
+          size={150}
+          isEditable={true}
+          isOutlined={true}
+        />
       </AvatarWrapper>
     </Container>
   );
