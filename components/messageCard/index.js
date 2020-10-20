@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { UserOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
 import {
