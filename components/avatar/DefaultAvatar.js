@@ -7,7 +7,7 @@ const DefaultAvatar = ({ isOutlined, size }) => {
   return (
     <Container
       primary="#ffffff"
-      secondary="#00458a"
+      secondary="#d2d2d2"
       isOutlined={isOutlined}
       size={size}
     >
