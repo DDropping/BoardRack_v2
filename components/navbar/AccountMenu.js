@@ -71,9 +71,9 @@ const AccountMenu = () => {
         >
           <Link href="/account?view=overview">
             <CustomAvatar
-              profileImage={user.profileImage ? user.profileImage : null}
-              userId={user._id ? user._id : null}
-              username={user.username ? user.username : null}
+              profileImage={user ? user.profileImage : null}
+              userId={user ? user._id : null}
+              username={user ? user.username : null}
               size={150}
             />
           </Link>

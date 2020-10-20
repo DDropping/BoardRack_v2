@@ -1,8 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
 
 import { Container, Banner, AvatarWrapper } from "./style";
 import CustomAvatar from "../../avatar";
@@ -15,9 +13,9 @@ const index = () => {
       <Banner />
       <AvatarWrapper>
         <CustomAvatar
-          profileImage={user.profileImage ? user.profileImage : null}
-          userId={user._id ? user._id : null}
-          username={user.username ? user.username : null}
+          profileImage={user ? user.profileImage : null}
+          userId={user ? user._id : null}
+          username={user ? user.username : null}
           size={150}
           isEditable={true}
           isOutlined={true}
