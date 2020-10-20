@@ -9,7 +9,6 @@ Avatar component
 */
 
 import React, { useState } from "react";
-
 import { EditOutlined } from "@ant-design/icons";
 
 import {
@@ -20,6 +19,7 @@ import {
 } from "./style";
 import colorCodes from "../../constants/colorCodes";
 import ImageCroper from "../imageCrop/modal";
+import DefaultAvatar from "./DefaultAvatar";
 
 const index = ({
   profileImage,
@@ -29,6 +29,10 @@ const index = ({
   isEditable,
   isOutlined,
 }) => {
+  if (!userId || !username) {
+    return <DefaultAvatar size={size} isOutlined={isOutlined} />;
+  }
+
   const colorInt = userId.charCodeAt(userId.length - 1) % 20;
   const [isCropModal, toggleCropModal] = useState(false);
   const [imageFile, setImageFile] = useState(null);
@@ -47,8 +51,8 @@ const index = ({
 
   return (
     <Container
-      primary={colorCodes[colorInt].primary}
-      secondary={colorCodes[colorInt].secondary}
+      primary={!profileImage ? colorCodes[colorInt].primary : null}
+      secondary={!profileImage ? colorCodes[colorInt].secondary : null}
       isOutlined={isOutlined}
       size={size}
     >
@@ -69,7 +73,7 @@ const index = ({
         closeModal={closeModal}
       />
       {profileImage ? (
-        <ProfileImageWrapper style={{ height: "100%" }} src={profileImage} />
+        <ProfileImageWrapper src={profileImage} />
       ) : (
         username.charAt(0)
       )}
