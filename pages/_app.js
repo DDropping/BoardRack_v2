@@ -9,7 +9,6 @@ import { parseCookies, destroyCookie } from "nookies";
 import "../components/postModal/react-modal-custom.less";
 
 //import "antd/dist/antd.less"; //import entire library styles // import specific styles
-import "antd/lib/avatar/style";
 import "antd/lib/button/style";
 import "antd/lib/card/style";
 import "antd/lib/carousel/style";
