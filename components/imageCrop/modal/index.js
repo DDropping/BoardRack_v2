@@ -4,7 +4,8 @@ import { UPDATE_USER_PROFILE_IMAGE } from "../../../actions/types";
 import Modal from "react-modal";
 import Cropper from "react-easy-crop";
 import axios from "axios";
-import { Button } from "antd";
+import { Button, Progress } from "antd";
+import imageCompression from "browser-image-compression";
 
 import { Container, Options, Title } from "./style";
 import baseUrl from "../../../utils/baseUrl";
@@ -30,6 +31,7 @@ const index = ({ file, isOpen, closeModal }) => {
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [message, setMessage] = useState(null);
   const [isLoading, setLoading] = useState(false);
+  const [uploadPercent, setUploadPercent] = useState(null);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -40,6 +42,7 @@ const index = ({ file, isOpen, closeModal }) => {
     try {
       setMessage(null);
       setLoading(true);
+      setUploadPercent(0);
 
       const croppedImage = await getCroppedImg(
         file,
@@ -47,7 +50,23 @@ const index = ({ file, isOpen, closeModal }) => {
         rotation
       );
 
-      const fileUrl = await uploadFiletoBucket(croppedImage);
+      //compress image
+      const options = {
+        maxSizeMB: 0.05,
+        useWebWorker: true,
+        onProgress: (percentage) => {
+          setUploadPercent(percentage);
+        },
+      };
+
+      const compressedCroppedImage = await imageCompression(
+        croppedImage,
+        options
+      );
+
+      //upload image to bucket
+      await uploadFiletoBucket(croppedImage);
+      const fileUrl = await uploadFiletoBucket(compressedCroppedImage);
       await updateUserData(fileUrl);
       await dispatch({ type: UPDATE_USER_PROFILE_IMAGE, payload: fileUrl });
       setMessage("Profile Image Updated!");
@@ -58,8 +77,10 @@ const index = ({ file, isOpen, closeModal }) => {
     } catch (err) {
       console.log(err);
       setMessage("Image Upload Failed");
+      console.log(err.message);
     } finally {
       setLoading(false);
+      setUploadPercent(null);
     }
   };
 
@@ -91,7 +112,17 @@ const index = ({ file, isOpen, closeModal }) => {
         <Button danger onClick={closeModal}>
           Cancel
         </Button>
-        <Title>{message ? message : "Edit Profile Image"}</Title>
+        <Title>
+          {message ? message : "Edit Profile Image"}{" "}
+          {uploadPercent && (
+            <Progress
+              status="normal"
+              strokeColor="#4878a9"
+              trailColor="#4878a91f"
+              percent={uploadPercent}
+            />
+          )}
+        </Title>
         <Button type="primary" onClick={uploadCroppedImage} loading={isLoading}>
           Save
         </Button>
