@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
-import { Avatar, Divider } from "antd";
+import { LogoutOutlined } from "@ant-design/icons";
+import { Divider } from "antd";
 import styled from "styled-components";
 
 import { DEAUTH_USER } from "../../actions/types";
@@ -70,22 +70,12 @@ const AccountMenu = () => {
           }}
         >
           <Link href="/account?view=overview">
-            {user ? (
-              <div>
-                <CustomAvatar
-                  profileImage={user.profileImage}
-                  userId={user._id}
-                  username={user.username}
-                  size={150}
-                />
-              </div>
-            ) : (
-              <Avatar
-                size={150}
-                style={{ backgroundColor: "#4878a9" }}
-                icon={<UserOutlined style={{ fontSize: "6rem" }} />}
-              />
-            )}
+            <CustomAvatar
+              profileImage={user.profileImage ? user.profileImage : null}
+              userId={user._id ? user._id : null}
+              username={user.username ? user.username : null}
+              size={150}
+            />
           </Link>
         </AvatarContainer>
 
