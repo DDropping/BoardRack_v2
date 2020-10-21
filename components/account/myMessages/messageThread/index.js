@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 
 import PostListRow from "../../../postListRow";
-import Message from "./Message";
+import DisplayMessages from "./DisplayMessages";
 import MessageBox from "./MessageBox";
 
 const Container = styled.div`
@@ -22,11 +22,6 @@ const Container = styled.div`
     ${({ isMessageListChild }) =>
       isMessageListChild ? { display: "block" } : { display: "none" }}
   }
-`;
-
-const MessagesContainer = styled.div`
-  max-height: 600px;
-  overflow: auto;
 `;
 
 const index = ({ isMessageListChild }) => {
@@ -48,24 +43,7 @@ const index = ({ isMessageListChild }) => {
           />
         )}
 
-        {router.query.thread && (
-          <MessagesContainer>
-            {user.messages
-              .filter(
-                (messageData) => messageData._id === router.query.thread
-              )[0]
-              .messages.map((message, index) => {
-                return (
-                  <Message
-                    key={index}
-                    message={message}
-                    recieved={user._id !== message.from}
-                    users={user}
-                  />
-                );
-              })}
-          </MessagesContainer>
-        )}
+        {router.query.thread && <DisplayMessages user={user} />}
 
         {router.query.thread && (
           <MessageBox
