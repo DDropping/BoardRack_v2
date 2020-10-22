@@ -6,6 +6,7 @@ import {
   UPDATE_USER_FAVORITES_REMOVE,
   UPDATE_USER_MESSAGES,
   UPDATE_USER_PROFILE_IMAGE,
+  DELETE_POST,
 } from "../actions/types";
 import cookie from "js-cookie";
 
@@ -73,6 +74,14 @@ export default function (state = initialState, action) {
         user: {
           ...state.user,
           profileImage: action.payload,
+        },
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          posts: state.user.posts.filter((item) => item._id !== action.payload),
         },
       };
     default:
