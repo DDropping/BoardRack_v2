@@ -20,7 +20,11 @@ export const addFavorite = (postId) => async (dispatch) => {
 
   //update post to DB
   try {
-    const res = await axios.put("/api/posts/favorite", body, config);
+    const res = await axios.put(
+      "/api/posts/favorite/addFavorite",
+      body,
+      config
+    );
     dispatch({ type: UPDATE_USER_FAVORITES_ADD, payload: res.data });
   } catch (err) {
     if (err) {
@@ -43,7 +47,7 @@ export const removeFavorite = (postId) => async (dispatch) => {
 
   //update post to DB
   try {
-    await axios.put("/api/posts/unfavorite", body, config);
+    await axios.put("/api/posts/favorite/removeFavorite", body, config);
     dispatch({ type: UPDATE_USER_FAVORITES_REMOVE, payload: postId });
   } catch (err) {
     if (err) {

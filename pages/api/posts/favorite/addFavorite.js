@@ -1,8 +1,8 @@
-import connectDb from "../../../utils/ConnectDb";
-import Post from "../../../models/Post";
-import User from "../../../models/User";
+import connectDb from "../../../../utils/ConnectDb";
+import Post from "../../../../models/Post";
+import User from "../../../../models/User";
 
-import authenticate from "../../../middleware/auth";
+import authenticate from "../../../../middleware/auth";
 
 connectDb();
 
@@ -17,7 +17,7 @@ const handler = async (req, res) => {
   }
 };
 
-// @route   PUT api/posts/favorite
+// @route   PUT api/posts/favorite/addFavorite
 // @desc    Favorite a specific post | add userId to post favorite[], add postId to user favoritedPosts[]
 // @access  Private
 async function handlePutRequest(req, res) {
