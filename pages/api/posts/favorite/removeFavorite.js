@@ -17,7 +17,7 @@ const handler = async (req, res) => {
   }
 };
 
-// @route   PUT api/posts/favorite/removeFavorite
+// @route   PUT api/posts/favorite/removefavorite
 // @desc    Favorite a specific post | add userId to post favorite[], add postId to user favoritedPosts[]
 // @access  Private
 async function handlePutRequest(req, res) {
