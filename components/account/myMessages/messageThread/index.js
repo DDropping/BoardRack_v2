@@ -33,15 +33,18 @@ const index = ({ isMessageListChild }) => {
     isAuthenticated &&
     user.messages.length > 0 && (
       <Container isMessageListChild={isMessageListChild}>
-        {router.query.thread && (
-          <PostListRow
-            postData={
-              user.messages.filter(
-                (messageData) => messageData._id === router.query.thread
-              )[0].post
-            }
-          />
-        )}
+        {router.query.thread &&
+          user.messages.find(
+            (messageData) => messageData._id === router.query.thread
+          ).post && (
+            <PostListRow
+              postData={
+                user.messages.find(
+                  (messageData) => messageData._id === router.query.thread
+                ).post
+              }
+            />
+          )}
 
         {router.query.thread && <DisplayMessages user={user} />}
 

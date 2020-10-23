@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { ExclamationCircleTwoTone } from "@ant-design/icons";
 
 import { Container, Header, Username, TimeAgo, Description } from "./style";
 import timeOrDateAgo from "../../../../utils/timeOrDateAgo";
@@ -37,7 +38,14 @@ const MessageOverview = ({ messageDetails, userId }) => {
             <TimeAgo>{timeAgo}</TimeAgo>
           </Header>
           <Description>
-            {"$" + messageDetails.post.price + " " + messageDetails.post.title}
+            {messageDetails.post &&
+              "$" + messageDetails.post.price + " " + messageDetails.post.title}
+            {!messageDetails.post && (
+              <div>
+                <ExclamationCircleTwoTone twoToneColor="#ffa501" />
+                {" This Post No Longer Exists"}
+              </div>
+            )}
           </Description>
         </div>
       </Container>

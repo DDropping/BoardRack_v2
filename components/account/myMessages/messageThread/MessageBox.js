@@ -43,7 +43,12 @@ const MessageBox = ({ messageData, userId }) => {
 
   const sendMessage = () => {
     if (message.length > 0) {
-      sendNewMessage("post", messageData.post._id, from._id, message);
+      sendNewMessage(
+        "post",
+        messageData.post ? messageData.post._id : null,
+        from._id,
+        message
+      );
       updateMessagesInStore();
       setMessage("");
     }
