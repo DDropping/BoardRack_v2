@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import { ExclamationCircleTwoTone } from "@ant-design/icons";
 
 import {
   Container,
@@ -43,10 +44,17 @@ const Index = ({ messageDetails }) => {
       >
         <ContentContainer>
           <TitleWrapper>
-            {"RE: $" +
-              messageDetails.post.price +
-              " " +
-              messageDetails.post.title}
+            {messageDetails.post &&
+              "RE: $" +
+                messageDetails.post.price +
+                " " +
+                messageDetails.post.title}
+            {!messageDetails.post && (
+              <div>
+                <ExclamationCircleTwoTone twoToneColor="#ffa501" />
+                {" This Post No Longer Exists"}
+              </div>
+            )}
           </TitleWrapper>
           <MessageBodyWrapper>
             {messageDetails.messages[messageDetails.messages.length - 1].body}
