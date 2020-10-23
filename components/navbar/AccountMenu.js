@@ -70,12 +70,14 @@ const AccountMenu = () => {
           }}
         >
           <Link href="/account?view=overview">
-            <CustomAvatar
-              profileImage={user ? user.profileImage : null}
-              userId={user ? user._id : null}
-              username={user ? user.username : null}
-              size={150}
-            />
+            <div>
+              <CustomAvatar
+                profileImage={user ? user.profileImage : null}
+                userId={user ? user._id : null}
+                username={user ? user.username : null}
+                size={150}
+              />
+            </div>
           </Link>
         </AvatarContainer>
 
