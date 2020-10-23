@@ -19,6 +19,10 @@ const A = styled.a`
   color: ${({ theme }) => theme.secondaryBlue};
 `;
 
+const ErrorMessage = styled.div`
+  color: ${({ theme }) => theme.primaryRed};
+`;
+
 const INITIAL_USER = {
   username: "",
   email: "",
@@ -33,9 +37,16 @@ const RegisterForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const emailVaidate = /\S+@\S+\.\S+/;
+
   //disable register button if fields are empty
   useEffect(() => {
-    const isUser = Object.values(user).every((el) => Boolean(el));
+    const isUser =
+      Object.values(user).every((el) => Boolean(el)) &&
+      user.password === user.confirmPassword &&
+      user.username.length >= 5 &&
+      user.password.length >= 6 &&
+      emailVaidate.test(user.email);
     isUser ? setDisabled(false) : setDisabled(true);
   }, [user]);
 
@@ -113,10 +124,21 @@ const RegisterForm = () => {
           type="password"
         />
       </InputWrapper>
-      <Checkbox>Remember me</Checkbox>
-      <Link href="/">
-        <A style={{ float: "right" }}>Forgot password</A>
-      </Link>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Checkbox>Remember me</Checkbox>
+        {(user.password !== user.confirmPassword && (
+          <ErrorMessage>Passwords do not match</ErrorMessage>
+        )) ||
+          (user.username.length < 5 && (
+            <ErrorMessage>Username requires at least 5 characters</ErrorMessage>
+          )) ||
+          (user.password.length < 6 && (
+            <ErrorMessage>Password requires at least 6 characters</ErrorMessage>
+          )) ||
+          (!emailVaidate.test(user.email) && (
+            <ErrorMessage>Invalid email address</ErrorMessage>
+          ))}
+      </div>
       <Form.Item>
         <Button
           type="primary"
@@ -130,7 +152,7 @@ const RegisterForm = () => {
           Register
         </Button>
       </Form.Item>
-      <div style={{ marginTop: "1rem" }}>
+      <div>
         Already have an account?{" "}
         <Link href="/">
           <A
@@ -139,7 +161,7 @@ const RegisterForm = () => {
               dispatch({ type: TOGGLE_REGISTER, payload: false });
             }}
           >
-            Login
+            Click here to Login
           </A>
         </Link>
       </div>
