@@ -131,13 +131,13 @@ const RegisterForm = () => {
         {(user.password !== user.confirmPassword && (
           <ErrorMessage>Passwords do not match</ErrorMessage>
         )) ||
-          (user.username.length < 5 && (
+          (user.username.length < 5 && user.username.length > 0 && (
             <ErrorMessage>Username requires at least 5 characters</ErrorMessage>
           )) ||
-          (user.password.length < 6 && (
+          (user.password.length < 6 && user.password.length > 0 && (
             <ErrorMessage>Password requires at least 6 characters</ErrorMessage>
           )) ||
-          (!emailVaidate.test(user.email) && (
+          (!emailVaidate.test(user.email) && user.email.length > 0 && (
             <ErrorMessage>Invalid email address</ErrorMessage>
           ))}
       </div>
