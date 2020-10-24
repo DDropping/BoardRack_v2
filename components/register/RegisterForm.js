@@ -10,6 +10,7 @@ import { TOGGLE_REGISTER, TOGGLE_LOGIN, AUTH_USER } from "../../actions/types";
 import catchErrors from "../../utils/catchErrors";
 import baseUrl from "../../utils/baseUrl";
 import { loadUserByCookie } from "../../actions/auth";
+import PasswordStrength from "../passwordStrength";
 
 const InputWrapper = styled.div`
   margin-bottom: 1rem;
@@ -123,6 +124,7 @@ const RegisterForm = () => {
           onChange={handleChange}
           type="password"
         />
+        <PasswordStrength password={user.password} />
       </InputWrapper>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Checkbox>Remember me</Checkbox>
