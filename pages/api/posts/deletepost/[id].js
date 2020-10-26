@@ -32,8 +32,15 @@ async function handleDeleteRequest(req, res) {
 
     //compare post author id to user id
     if (postData.user.toString() === req.user.id.toString()) {
-      //delete post from db
       console.log("User Credentials Passed");
+
+      //remove postId from all user's favorites array
+      await User.updateMany(
+        { favorites: { $eq: id } },
+        { $pull: { favorites: id } }
+      );
+
+      //delete post from db
       await Post.findByIdAndDelete(id);
       res.status(200).send("Delete Successful");
     } else {
