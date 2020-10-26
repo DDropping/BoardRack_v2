@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+
+import { Container, StrengthBox, TextContainer } from "./style";
 
 const strengthLevels = [
   { text: "Password Strength", color: "#ef4040" },
@@ -9,24 +10,6 @@ const strengthLevels = [
   { text: "Strong Password", color: "#00cc29" },
   { text: "Very Strong Password", color: "#00ff1a" },
 ];
-
-const Container = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
-const StrengthBox = styled.div`
-  margin: auto 1px;
-  height: 6px;
-  width: 30px;
-  border: 1px solid ${({ theme }) => theme.primaryLightGrey};
-  background-color: ${({ color, isActive }) => isActive && color};
-`;
-
-const TextContainer = styled.div`
-  margin-right: 10px;
-  color: ${({ theme }) => theme.primaryLightGrey};
-`;
 
 const index = ({ password }) => {
   const [strength, setStrength] = useState(0);
