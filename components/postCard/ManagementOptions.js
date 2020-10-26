@@ -27,7 +27,9 @@ const ManagementOptions = ({ postId }) => {
         danger: true,
       },
       onOk() {
-        handleDeletePost(postId);
+        return (async function () {
+          await handleDeletePost(postId);
+        })();
       },
       onCancel() {},
     });

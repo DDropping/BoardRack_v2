@@ -35,6 +35,8 @@ async function handleDeleteRequest(req, res) {
       console.log("User Credentials Passed");
 
       //remove postId from all user's favorites array
+      // === WARNING === removing postId from all User favotires can be time consuming and result in long wait time.
+      // === WARNING === move to outside api call to reduce wait time on client.
       await User.updateMany(
         { favorites: { $eq: id } },
         { $pull: { favorites: id } }
