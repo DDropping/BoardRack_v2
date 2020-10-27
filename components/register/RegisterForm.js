@@ -81,7 +81,7 @@ const RegisterForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      {error}
+      <ErrorMessage>{error}</ErrorMessage>
       <InputWrapper>
         <Input
           placeholder="Username"
