@@ -42,7 +42,12 @@ const index = ({ postData, isManagementView }) => {
           <Content data={contentData} />
         </a>
       </Link>
-      {isManagementView && <ManagementOptions postId={postData._id} />}
+      {isManagementView && (
+        <ManagementOptions
+          postId={postData._id}
+          isVisible={postData.isVisible}
+        />
+      )}
     </CardContainer>
   );
 };

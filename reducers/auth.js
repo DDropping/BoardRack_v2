@@ -2,6 +2,7 @@ import {
   AUTH_USER,
   USER_LOADED,
   DEAUTH_USER,
+  UPDATE_USER_POSTS,
   UPDATE_USER_FAVORITES_ADD,
   UPDATE_USER_FAVORITES_REMOVE,
   UPDATE_USER_MESSAGES,
@@ -41,6 +42,16 @@ export default function (state = initialState, action) {
         token: null,
         isAuthenticated: false,
         user: null,
+      };
+    case UPDATE_USER_POSTS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          posts: state.user.posts.map((post) =>
+            post._id === action.payload._id ? action.payload : post
+          ),
+        },
       };
     case UPDATE_USER_FAVORITES_ADD:
       return {
