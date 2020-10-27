@@ -51,7 +51,7 @@ async function handleDeleteRequest(req, res) {
         .send("Invalid Request: User does not have delete permissions");
     }
   } catch (err) {
-    re.status(500).send("Server Error");
+    res.status(500).send("Server Error");
   }
 }
 

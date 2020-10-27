@@ -42,7 +42,7 @@ async function handlePatchRequest(req, res) {
       res.status(403).send("Invalid permissions");
     }
   } catch (err) {
-    re.status(500).send("Server Error");
+    res.status(500).send("Server Error");
   }
 }
 
