@@ -46,6 +46,8 @@ module.exports = {
 
 - Implementation of unit, integration, & snapshot testing with [Jest](https://github.com/facebook/jest) and [Enzyme](https://github.com/enzymejs/enzyme)
 
+- [AWS S3](https://aws.amazon.com/s3/)
+
 - [Here API](https://developer.here.com/) integration for location based services.
 
 - [IPStack API](https://ipstack.com/) integration for IP location based services.
