@@ -17,7 +17,7 @@ const handler = async (req, res) => {
   }
 };
 
-// @route   DELETE api/posts/createpost
+// @route   DELETE api/posts/deletepost/[id]
 // @desc    delete a post
 // @res
 // @access  Protected
