@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Button, Input } from "antd";
-import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
+import {
+  PhoneOutlined,
+  MailOutlined,
+  CheckCircleTwoTone,
+} from "@ant-design/icons";
 
 import {
   UserBoxContainer,
@@ -18,11 +22,22 @@ const { TextArea } = Input;
 const index = ({ user, location, postId }) => {
   const [isContact, setIsContact] = useState(false);
   const [message, setMessage] = useState("");
+  const [isSending, setSending] = useState(false);
+  const [sendButtonText, setSendButtonText] = useState("Send Message");
   const currentUser = useSelector((state) => state.auth.user);
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (message.length > 0) {
-      sendNewMessage("post", postId, user._id, message);
+      try {
+        setSending(true);
+        await sendNewMessage("post", postId, user._id, message);
+        setMessage("");
+        setSending(false);
+        setSendButtonText("Message Sent!");
+      } catch (err) {
+        setSending(false);
+        setSendButtonText("Couldn't Send Message");
+      }
     }
   };
 
@@ -61,7 +76,10 @@ const index = ({ user, location, postId }) => {
           <TextArea
             rows={4}
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => {
+              setMessage(e.target.value);
+              setSendButtonText("Send Message");
+            }}
             placeholder={"Send " + user.username + " a message..."}
             style={{ marginBottom: "10px" }}
           />
@@ -69,10 +87,14 @@ const index = ({ user, location, postId }) => {
             <Button
               type="primary"
               disabled={currentUser._id === user._id}
+              loading={isSending}
               block
               onClick={sendMessage}
             >
-              Send Message
+              {sendButtonText}
+              {sendButtonText === "Message Sent!" && (
+                <CheckCircleTwoTone twoToneColor="#52c41a" />
+              )}
             </Button>
           ) : (
             <Button type="primary" block disabled>
