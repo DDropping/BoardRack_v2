@@ -27,7 +27,7 @@ const Index = () => {
       <Separator />
 
       <SectionContainer>
-        {isAuthenticated && user.messages.length > 0 && (
+        {isAuthenticated && user.posts.length > 0 && (
           <Header
             title="My Boardrack"
             link="/account?view=posts"
@@ -40,7 +40,7 @@ const Index = () => {
       <Separator />
 
       <SectionContainer>
-        {isAuthenticated && user.messages.length > 0 && (
+        {isAuthenticated && user.favorites.length > 0 && (
           <Header
             title="My Favorites"
             link="/account?view=favorites"
