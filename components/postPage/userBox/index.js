@@ -18,7 +18,7 @@ const { TextArea } = Input;
 const index = ({ user, location, postId }) => {
   const [isContact, setIsContact] = useState(false);
   const [message, setMessage] = useState("");
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const currentUser = useSelector((state) => state.auth.user);
 
   const sendMessage = () => {
     if (message.length > 0) {
@@ -65,8 +65,13 @@ const index = ({ user, location, postId }) => {
             placeholder={"Send " + user.username + " a message..."}
             style={{ marginBottom: "10px" }}
           />
-          {isAuthenticated ? (
-            <Button type="primary" block onClick={sendMessage}>
+          {currentUser ? (
+            <Button
+              type="primary"
+              disabled={currentUser._id === user._id}
+              block
+              onClick={sendMessage}
+            >
               Send Message
             </Button>
           ) : (
