@@ -52,7 +52,6 @@ const TimeStamp = styled.div`
 `;
 
 const Message = ({ message, recieved }) => {
-  console.log("message item: ", message);
   return (
     <Container>
       <Justify recieved={recieved} />

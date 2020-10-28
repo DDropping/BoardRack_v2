@@ -6,7 +6,6 @@ import Content from "./Content";
 import Counters from "./Counters";
 
 const index = ({ postData }) => {
-  console.log("postListRow: ", postData);
   const countersData = {
     postId: postData._id,
     price: postData.price,

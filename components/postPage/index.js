@@ -61,8 +61,6 @@ const index = ({ quickData, postId }) => {
     }
   });
 
-  console.log("quickData:", quickData);
-  console.log("postData:", postData);
   return (
     <PostPageContainer>
       {postData && (

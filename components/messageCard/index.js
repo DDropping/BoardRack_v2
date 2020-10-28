@@ -16,7 +16,6 @@ import timeAgo from "../../utils/timeAgo";
 import Avatar from "../avatar";
 
 const Index = ({ messageDetails }) => {
-  console.log("messageDetails: ", messageDetails);
   const user = useSelector((state) => state.auth.user);
   const from = messageDetails.users.filter(
     (userDetails) => userDetails._id !== user._id

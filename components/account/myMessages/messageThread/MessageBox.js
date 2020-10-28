@@ -24,7 +24,6 @@ const MessageBox = ({ messageData, userId }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  console.log("messagebox: ", messageData);
   const [message, setMessage] = useState("");
 
   const updateMessagesInStore = () => {
