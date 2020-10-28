@@ -24,7 +24,7 @@ const DisplayMessages = ({ user }) => {
   return (
     <MessagesContainer>
       {user.messages
-        .filter((messageData) => messageData._id === router.query.thread)[0]
+        .find((messageData) => messageData._id === router.query.thread)
         .messages.map((message, index) => {
           return (
             <Message

@@ -6,6 +6,7 @@ import {
   UPDATE_USER_FAVORITES_ADD,
   UPDATE_USER_FAVORITES_REMOVE,
   UPDATE_USER_MESSAGES,
+  DELETE_MESSAGE_THREAD,
   UPDATE_USER_PROFILE_IMAGE,
   DELETE_POST,
 } from "../actions/types";
@@ -77,6 +78,16 @@ export default function (state = initialState, action) {
         user: {
           ...state.user,
           messages: action.payload,
+        },
+      };
+    case DELETE_MESSAGE_THREAD:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          messages: state.user.messages.filter(
+            (item) => item._id !== action.payload
+          ),
         },
       };
     case UPDATE_USER_PROFILE_IMAGE:

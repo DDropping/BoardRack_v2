@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 import sendNewMessage from "../../../../utils/sendNewMessage";
 import { UPDATE_USER_MESSAGES } from "../../../../actions/types";
+import DeleteMessageThreadButton from "./DeleteMessageThreadButton";
 
 const { TextArea } = Input;
 
@@ -74,6 +75,7 @@ const MessageBox = ({ messageData, userId }) => {
           }
         />
         <ButtonContainer>
+          <DeleteMessageThreadButton messageThreadId={messageData._id} />
           <div style={{ flex: 1 }} />
           <Button
             type="primary"

@@ -36,28 +36,31 @@ const index = ({ isMessageListChild }) => {
         {router.query.thread &&
           user.messages.find(
             (messageData) => messageData._id === router.query.thread
-          ).post && (
-            <PostListRow
-              postData={
-                user.messages.find(
-                  (messageData) => messageData._id === router.query.thread
-                ).post
-              }
-            />
-          )}
-
-        {router.query.thread && <DisplayMessages user={user} />}
-
-        {router.query.thread && (
-          <MessageBox
-            userId={user._id}
-            messageData={
-              user.messages.filter(
+          ) && (
+            <>
+              {user.messages.find(
                 (messageData) => messageData._id === router.query.thread
-              )[0]
-            }
-          />
-        )}
+              ).post && (
+                <PostListRow
+                  postData={
+                    user.messages.find(
+                      (messageData) => messageData._id === router.query.thread
+                    ).post
+                  }
+                />
+              )}
+              <DisplayMessages user={user} />
+
+              <MessageBox
+                userId={user._id}
+                messageData={
+                  user.messages.filter(
+                    (messageData) => messageData._id === router.query.thread
+                  )[0]
+                }
+              />
+            </>
+          )}
       </Container>
     )
   );
