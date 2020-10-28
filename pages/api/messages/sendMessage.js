@@ -51,11 +51,25 @@ async function handlePostRequest(req, res) {
         post: postId,
       });
     }
-    //if thread exists, add new message to messages
+    //if thread exists
     if (messageThread) {
+      //add new message to messages
       messageThread.messages.push(message);
       messageThread.lastUpdated = Date.now();
       await messageThread.save();
+      //make sure both users have the messageThread in their messages (in case a user deleted the message thread)
+      //save to users messages[]
+      let user1 = await User.findById(sendFromUserId);
+      if (!user1.messages.includes(messageThread._id)) {
+        user1.messages.unshift(messageThread._id);
+        user1.save();
+      }
+
+      let user2 = await User.findById(sendToUserId);
+      if (!user2.messages.includes(messageThread._id)) {
+        user2.messages.unshift(messageThread._id);
+        user2.save();
+      }
     } else {
       //else create new message thread && add message thread to both user's messages:[]
       const newMessageThread = {

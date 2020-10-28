@@ -26,14 +26,29 @@ const handler = async (req, res) => {
 async function handleGetRequest(req, res) {
   try {
     // find results in one query
-    const messages = await Message.find({
-      users: { $in: new mongoose.Types.ObjectId(req.user.id) },
-    })
-      .populate([
-        { path: "post" },
-        { path: "users", select: "username profileImage" },
-      ])
-      .sort({ lastUpdated: -1 });
+    // const messages = await Message.find({
+    //   users: { $in: new mongoose.Types.ObjectId(req.user.id) },
+    // })
+    //   .populate([
+    //     { path: "post" },
+    //     { path: "users", select: "username profileImage" },
+    //   ])
+    //   .sort({ lastUpdated: -1 });
+    const populateQuery = [
+      {
+        path: "messages",
+        populate: [
+          { path: "post" },
+          { path: "users", select: "username profileImage" },
+        ],
+      },
+    ];
+
+    const user = await User.findById(req.user.id)
+      .populate(populateQuery)
+      .select("messages");
+
+    const messages = user.messages;
 
     if (!messages) {
       return res.status(400).json({ msg: "There are no Messages" });
