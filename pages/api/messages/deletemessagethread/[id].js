@@ -17,7 +17,7 @@ const handler = async (req, res) => {
   }
 };
 
-// @route   PATCH api/messages/deletemessage/[id]
+// @route   PATCH api/messages/deletemessagethread/[id]
 // @desc    remove message _id from user's messages array
 // @res
 // @access  Protected
