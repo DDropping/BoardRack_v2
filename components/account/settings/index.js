@@ -8,7 +8,7 @@ import { Container, ButtonsContainer, ButtonText } from "./style";
 import MyAccount from "./MyAccount";
 import Location from "./Location";
 import Preferences from "./Preferences";
-import ManageAccount from "./ManageAccount";
+import Management from "./Management";
 
 const index = () => {
   const initialState = {
@@ -70,7 +70,7 @@ const index = () => {
       <MyAccount user={user} userData={userData} setUserData={setUserData} />
       <Location user={user} userData={userData} setUserData={setUserData} />
       <Preferences />
-      <ManageAccount user={user} />
+      <Management user={user} />
     </Container>
   );
 };

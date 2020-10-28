@@ -7,6 +7,7 @@ import {
   EditOutlined,
   EyeInvisibleOutlined,
   EyeOutlined,
+  ExclamationCircleOutlined,
 } from "@ant-design/icons";
 
 import baseURL from "../../utils/baseUrl";
@@ -22,6 +23,7 @@ const ManagementOptions = ({ postId, isVisible }) => {
   const deletePostConfirm = (postId) => {
     return confirm({
       title: "Delete Post",
+      icon: <ExclamationCircleOutlined />,
       content: "Are you sure you want to delete this post?",
       okText: "Delete",
       okButtonProps: {
@@ -39,6 +41,7 @@ const ManagementOptions = ({ postId, isVisible }) => {
   const hidePostConfirm = (postId, isVisible) => {
     return confirm({
       title: `${isVisible ? "Hide" : "Display"} post`,
+      icon: <ExclamationCircleOutlined />,
       content: `Are you sure you want to make this post ${
         isVisible ? "hidden" : "visible to everyone"
       }?`,
