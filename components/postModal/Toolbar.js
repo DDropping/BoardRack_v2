@@ -5,7 +5,7 @@ import { Tooltip } from "antd";
 import {
   StarOutlined,
   StarFilled,
-  MailOutlined,
+  FlagOutlined,
   CloseCircleOutlined,
 } from "@ant-design/icons";
 
@@ -55,8 +55,8 @@ const Toolbar = ({ postId, isModalView }) => {
         </ToolbarButton>
       )}
       <ToolbarButton>
-        <MailOutlined />
-        {" Contact"}
+        <FlagOutlined />
+        {" Report"}
       </ToolbarButton>
       <span style={{ flex: 1 }} />
       {isModalView && (
