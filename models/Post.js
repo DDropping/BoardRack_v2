@@ -4,6 +4,8 @@ const { String, Date, Number } = mongoose.Schema.Types;
 
 const PostSchema = new mongoose.Schema({
   isVisible: { type: Boolean, default: true },
+  isSold: { type: Boolean, default: false },
+  isNoLongerAvailable: { type: Boolean, default: false },
   user: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
   title: { type: String, required: true },
   price: { type: String, required: true },
@@ -59,6 +61,11 @@ const PostSchema = new mongoose.Schema({
   ],
   viewCount: { type: Number, default: 0 },
   date: { type: Date, default: Date.now },
+  reportLog: {
+    inappropriate: { type: Number, default: 0 },
+    insensitive: { type: Number, default: 0 },
+    scam: { type: Number, default: 0 },
+  },
 });
 
 export default mongoose.models.post || mongoose.model("post", PostSchema);
