@@ -8,6 +8,7 @@ import {
   EyeInvisibleOutlined,
   EyeOutlined,
   ExclamationCircleOutlined,
+  CheckCircleTwoTone,
 } from "@ant-design/icons";
 
 import baseURL from "../../utils/baseUrl";
@@ -20,7 +21,23 @@ const { confirm } = Modal;
 const ManagementOptions = ({ postId, isVisible }) => {
   const dispatch = useDispatch();
 
-  const deletePostConfirm = (postId) => {
+  const soldPostConfirm = (postId) => {
+    return confirm({
+      title: "Did you sell your item?",
+      icon: <CheckCircleTwoTone twoToneColor="#52c41a" />,
+      content: "This will notify other users that your item has been sold.",
+      okText: "Sold",
+      cancelText: "Not Sold",
+      onOk() {
+        deletePostConfirm(postId, true);
+      },
+      onCancel() {
+        deletePostConfirm(postId, false);
+      },
+    });
+  };
+
+  const deletePostConfirm = (postId, isSold) => {
     return confirm({
       title: "Delete Post",
       icon: <ExclamationCircleOutlined />,
@@ -31,7 +48,7 @@ const ManagementOptions = ({ postId, isVisible }) => {
       },
       onOk() {
         return (async function () {
-          await handleDeletePost(postId);
+          await handleDeletePost(postId, isSold);
         })();
       },
       onCancel() {},
@@ -55,10 +72,10 @@ const ManagementOptions = ({ postId, isVisible }) => {
     });
   };
 
-  const handleDeletePost = async (postId) => {
+  const handleDeletePost = async (postId, isSold) => {
     try {
-      const url = `${baseURL}/api/posts/deletepost/${postId}`;
-      await axios.delete(url);
+      const url = `${baseURL}/api/posts/deletepost/${postId}?isSold=${isSold}`;
+      await axios.patch(url);
       successNotification(
         "Post Deleted",
         "Your post has successfully been deleted",
@@ -106,7 +123,7 @@ const ManagementOptions = ({ postId, isVisible }) => {
 
       <div style={{ flex: 1 }} />
 
-      <Button danger onClick={() => deletePostConfirm(postId)}>
+      <Button danger onClick={() => soldPostConfirm(postId)}>
         <DeleteOutlined />
       </Button>
     </ManagementContainer>
