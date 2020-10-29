@@ -41,6 +41,7 @@ const index = ({ quickData }) => {
       <Toolbar postId={router.query.postId} />
       <PostPage
         postId={router.query.postId}
+        isModalView={true}
         quickData={quickData.find(
           (element) => element._id === router.query.postId
         )}

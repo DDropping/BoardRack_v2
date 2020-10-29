@@ -12,7 +12,7 @@ import {
 import { addFavorite, removeFavorite } from "../../actions/counters";
 import { ToolbarContainer, ToolbarButton, ToolbarButtonClose } from "./stlye";
 
-const Toolbar = ({ postId }) => {
+const Toolbar = ({ postId, isModalView }) => {
   const [isFavorite, setFavorite] = useState(false);
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -59,10 +59,12 @@ const Toolbar = ({ postId }) => {
         {" Contact"}
       </ToolbarButton>
       <span style={{ flex: 1 }} />
-      <ToolbarButtonClose onClick={() => closeModal()}>
-        <CloseCircleOutlined />
-        {" Close"}
-      </ToolbarButtonClose>
+      {isModalView && (
+        <ToolbarButtonClose onClick={() => closeModal()}>
+          <CloseCircleOutlined />
+          {" Close"}
+        </ToolbarButtonClose>
+      )}
     </ToolbarContainer>
   );
 };

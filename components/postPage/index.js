@@ -22,8 +22,9 @@ import Map from "./map";
 import SimilarPosts from "./similarPosts";
 import Footer from "./footer";
 import { ADD_VIEW } from "../../actions/types";
+import Toolbar from "../postModal/Toolbar";
 
-const index = ({ quickData, postId }) => {
+const index = ({ quickData, postId, isModalView }) => {
   const dispatch = useDispatch();
   const viewedPosts = useSelector((state) => state.util.viewedPosts);
   const router = useRouter();
@@ -63,6 +64,7 @@ const index = ({ quickData, postId }) => {
 
   return (
     <PostPageContainer>
+      {!isModalView && <Toolbar postId={router.query.postId} />}
       {postData && (
         <ImagesContainer>
           <ImageList images={postData.images} />
