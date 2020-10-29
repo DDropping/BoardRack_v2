@@ -8,8 +8,8 @@ connectDb();
 
 const handler = async (req, res) => {
   switch (req.method) {
-    case "DELETE":
-      await handleDeleteRequest(req, res);
+    case "PATCH":
+      await handlePatchRequest(req, res);
       break;
     default:
       res.status(405).send(`Method ${req.method} not allowed`);
@@ -17,13 +17,13 @@ const handler = async (req, res) => {
   }
 };
 
-// @route   DELETE api/posts/deletepost/[id]
+// @route   PATCH api/posts/deletepost/[id]
 // @desc    delete a post
 // @res
 // @access  Protected
-async function handleDeleteRequest(req, res) {
+async function handlePatchRequest(req, res) {
   const {
-    query: { id },
+    query: { id, isSold },
   } = req;
 
   try {
@@ -32,18 +32,14 @@ async function handleDeleteRequest(req, res) {
 
     //compare post author id to user id
     if (postData.user.toString() === req.user.id.toString()) {
-      console.log("User Credentials Passed");
+      //update post status flags
+      postData.isSold = isSold;
+      postData.isNoLongerAvailable = true;
+      await postData.save();
 
-      //remove postId from all user's favorites array
-      // === WARNING === removing postId from all User favotires can be time consuming and result in long wait time.
-      // === WARNING === move to outside api call to reduce wait time on client.
-      await User.updateMany(
-        { favorites: { $eq: id } },
-        { $pull: { favorites: id } }
-      );
+      //remove post from user's posts
+      await User.findByIdAndUpdate(req.user.id, { $pull: { posts: id } });
 
-      //delete post from db
-      await Post.findByIdAndDelete(id);
       res.status(200).send("Delete Successful");
     } else {
       res
