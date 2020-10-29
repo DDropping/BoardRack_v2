@@ -64,7 +64,9 @@ const index = ({ quickData, postId, isModalView }) => {
 
   return (
     <PostPageContainer>
-      {!isModalView && <Toolbar postId={router.query.postId} />}
+      {!isModalView && (
+        <Toolbar postId={router.query.postId} isModalView={isModalView} />
+      )}
       {postData && (
         <ImagesContainer>
           <ImageList images={postData.images} />
