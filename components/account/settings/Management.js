@@ -1,16 +1,22 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 import { Button, Col, Modal, Row } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 import { Container, Title } from "./style";
+import { DEAUTH_USER } from "../../../actions/types";
 import baseURL from "../../../utils/baseUrl";
 import { successNotification, failNotification } from "../../notifications";
 
 const { confirm } = Modal;
 
 const Management = ({ user }) => {
-  const deletePostConfirm = (userId) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const deletePostConfirm = () => {
     return confirm({
       title: "Deactivate Account",
       icon: <ExclamationCircleOutlined />,
@@ -22,18 +28,20 @@ const Management = ({ user }) => {
       },
       onOk() {
         return (async function () {
-          await handleDeleteAccount(userId);
-          //logout user
+          await handleDeleteAccount();
         })();
       },
       onCancel() {},
     });
   };
 
-  const handleDeleteAccount = async (userId) => {
+  const handleDeleteAccount = async () => {
     try {
-      const url = `${baseURL}/api/auth/deleteAccount/${userId}`;
+      const url = `${baseURL}/api/auth/deleteAccount`;
       await axios.delete(url);
+      //logout user
+      dispatch({ type: DEAUTH_USER });
+      router.push("/");
       successNotification(
         "Account Deactivated",
         "Your account has successfully been deleted",
@@ -70,7 +78,7 @@ const Management = ({ user }) => {
           Deactivate My Account:
         </Col>
         <Col xs={6} sm={10} md={8} lg={6}>
-          <Button type="danger" onClick={() => deletePostConfirm(user._id)}>
+          <Button type="danger" onClick={() => deletePostConfirm()}>
             Deactivate
           </Button>
         </Col>
