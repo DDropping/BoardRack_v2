@@ -12,6 +12,7 @@ import {
 import baseUrl from "../../utils/baseUrl";
 import ImageList from "./images/imageList";
 import ImageGallery from "./images/imageGallery";
+import StatusBox from "./statusBox";
 import UserBox from "./userBox";
 import CountersBar from "./countersBar";
 import Description from "./details/description";
@@ -76,11 +77,17 @@ const index = ({ quickData, postId, isModalView }) => {
         <DataContainer>
           <ImageGallery images={postData.images} />
           <Flexbox>
-            <UserBox
-              user={postData.user}
-              location={postData.location}
-              postId={postData._id}
-            />
+            {postData.isNoLongerAvailable && (
+              <StatusBox isSold={postData.isSold} />
+            )}
+            {postData.user && (
+              <UserBox
+                user={postData.user}
+                location={postData.location}
+                postId={postData._id}
+              />
+            )}
+
             <CountersBar
               date={postData.date}
               views={postData.viewCount}
