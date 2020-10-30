@@ -17,9 +17,9 @@ import Avatar from "../avatar";
 
 const Index = ({ messageDetails }) => {
   const user = useSelector((state) => state.auth.user);
-  const from = messageDetails.users.filter(
+  const from = messageDetails.users.find(
     (userDetails) => userDetails._id !== user._id
-  )[0];
+  );
   const timeStamp = timeAgo(
     messageDetails.messages[messageDetails.messages.length - 1].timeSent
   );
@@ -30,11 +30,13 @@ const Index = ({ messageDetails }) => {
         <HeaderContainer>
           <Avatar
             size={28}
-            profileImage={from.profileImage}
-            userId={from._id}
-            username={from.username}
+            profileImage={from ? from.profileImage : null}
+            userId={from ? from._id : null}
+            username={from ? from.username : null}
           />
-          <div style={{ marginLeft: "5px" }}>{from.username}</div>
+          <div style={{ marginLeft: "5px" }}>
+            {from ? from.username : "BoardRack User"}
+          </div>
         </HeaderContainer>
       </Link>
       <Link
