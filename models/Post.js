@@ -4,8 +4,8 @@ const { String, Date, Number } = mongoose.Schema.Types;
 
 const PostSchema = new mongoose.Schema({
   isVisible: { type: Boolean, default: true },
+  isAvailable: { type: Boolean, default: true },
   isSold: { type: Boolean, default: false },
-  isNoLongerAvailable: { type: Boolean, default: false },
   user: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
   title: { type: String, required: true },
   price: { type: String, required: true },

@@ -13,6 +13,9 @@ const OverlayText = styled.div`
   font-size: ${({ size }) => size}px;
   font-weight: bold;
   color: ${({ theme }) => theme.primaryBlue};
+  //color: white;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+    1px 1px 0 #fff;
   transform: rotate(-50deg);
   -ms-transform: rotate(-50deg); /* IE 9 */
   -webkit-transform: rotate(-50deg); /* Opera, Chrome, and Safari */

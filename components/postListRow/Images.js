@@ -6,7 +6,7 @@ import ImageStatusOverlay from "../images/ImageStatusOverlay";
 const Images = ({ data }) => {
   return (
     <ImageContainer>
-      {data.isNoLongerAvailable && (
+      {!data.isAvailable && (
         <ImageStatusOverlay isSold={data.isSold} size={16} />
       )}
       <ImageBackgroundWrapper

@@ -37,7 +37,7 @@ async function handleDeleteRequest(req, res) {
     //update all of user post's status flags
     await Post.updateMany(
       { _id: { $in: userAccount.posts } },
-      { $set: { isNoLongerAvailable: true } }
+      { $set: { isAvailable: false } }
     );
 
     //delete user from db

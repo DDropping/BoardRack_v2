@@ -34,7 +34,7 @@ async function handlePatchRequest(req, res) {
     if (postData.user.toString() === req.user.id.toString()) {
       //update post status flags
       postData.isSold = isSold;
-      postData.isNoLongerAvailable = true;
+      postData.isAvailable = false;
       await postData.save();
 
       //remove post from user's posts

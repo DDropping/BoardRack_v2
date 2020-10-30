@@ -77,9 +77,7 @@ const index = ({ quickData, postId, isModalView }) => {
         <DataContainer>
           <ImageGallery images={postData.images} />
           <Flexbox>
-            {postData.isNoLongerAvailable && (
-              <StatusBox isSold={postData.isSold} />
-            )}
+            {!postData.isAvailable && <StatusBox isSold={postData.isSold} />}
             {postData.user && (
               <UserBox
                 user={postData.user}

@@ -16,7 +16,7 @@ const index = ({ postData, isManagementView }) => {
   };
   const imageData = {
     image: postData.images[0],
-    isNoLongerAvailable: postData.isNoLongerAvailable,
+    isAvailable: postData.isAvailable,
     isSold: postData.isSold,
   };
   const contentData = {
