@@ -13,7 +13,9 @@ const OverlayText = styled.div`
   font-size: ${({ size }) => size}px;
   font-weight: bold;
   color: ${({ theme }) => theme.primaryBlue};
-  -webkit-transform: rotate(-50deg);
+  transform: rotate(-50deg);
+  -ms-transform: rotate(-50deg); /* IE 9 */
+  -webkit-transform: rotate(-50deg); /* Opera, Chrome, and Safari */
 `;
 
 const ImageStatusOverlay = ({ isSold, size }) => {
