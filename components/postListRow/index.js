@@ -14,6 +14,8 @@ const index = ({ postData }) => {
   };
   const imageData = {
     image: postData.images[0],
+    isNoLongerAvailable: postData.isNoLongerAvailable,
+    isSold: postData.isSold,
   };
   const contentData = {
     title: postData.title,

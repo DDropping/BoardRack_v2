@@ -1,9 +1,14 @@
 import React from "react";
 
 import { ImageContainer, ImageBackgroundWrapper, ImageWrapper } from "./style";
+import ImageStatusOverlay from "../images/ImageStatusOverlay";
+
 const Images = ({ data }) => {
   return (
     <ImageContainer>
+      {data.isNoLongerAvailable && (
+        <ImageStatusOverlay isSold={data.isSold} size={16} />
+      )}
       <ImageBackgroundWrapper
         style={
           data.image
