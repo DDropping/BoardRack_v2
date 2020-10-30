@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Button, Input } from "antd";
-import {
-  PhoneOutlined,
-  MailOutlined,
-  CheckCircleTwoTone,
-} from "@ant-design/icons";
+import { PhoneOutlined, MailOutlined, CheckOutlined } from "@ant-design/icons";
 
 import {
   UserBoxContainer,
@@ -91,10 +87,10 @@ const index = ({ user, location, postId }) => {
               block
               onClick={sendMessage}
             >
-              {sendButtonText}
               {sendButtonText === "Message Sent!" && (
-                <CheckCircleTwoTone twoToneColor="#52c41a" />
+                <CheckOutlined style={{ color: "white" }} />
               )}
+              {sendButtonText}
             </Button>
           ) : (
             <Button type="primary" block disabled>

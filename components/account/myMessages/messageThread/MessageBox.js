@@ -54,9 +54,9 @@ const MessageBox = ({ messageData, userId }) => {
     }
   };
 
-  const from = messageData.users.filter(
+  const from = messageData.users.find(
     (userDetails) => userDetails._id !== userId
-  )[0];
+  );
 
   user.messages.filter(
     (messageData) => messageData._id === router.query.thread
@@ -70,7 +70,9 @@ const MessageBox = ({ messageData, userId }) => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder={
-            router.query.thread && `Send ${from.username} a message...`
+            router.query.thread && from
+              ? `Send ${from.username} a message...`
+              : "User no longer exists"
           }
         />
         <ButtonContainer>
@@ -79,7 +81,7 @@ const MessageBox = ({ messageData, userId }) => {
           <Button
             type="primary"
             onClick={messageData && sendMessage}
-            disabled={message.length < 1 || !messageData}
+            disabled={message.length < 1 || !messageData || !from}
           >
             Send
           </Button>

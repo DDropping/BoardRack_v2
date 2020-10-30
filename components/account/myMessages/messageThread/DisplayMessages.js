@@ -6,7 +6,7 @@ import Message from "./Message";
 
 const MessagesContainer = styled.div`
   max-height: 600px;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 const DisplayMessages = ({ user }) => {

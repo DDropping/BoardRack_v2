@@ -11,9 +11,9 @@ const MessageOverview = ({ messageDetails, userId }) => {
   const router = useRouter();
 
   const timeAgo = timeOrDateAgo(messageDetails.lastUpdated, true);
-  const from = messageDetails.users.filter(
+  const from = messageDetails.users.find(
     (userDetails) => userDetails._id !== userId
-  )[0];
+  );
 
   return (
     <Link
@@ -27,13 +27,13 @@ const MessageOverview = ({ messageDetails, userId }) => {
       <Container active={router.query.thread === messageDetails._id}>
         <Avatar
           size={42}
-          profileImage={from.profileImage}
-          userId={from._id}
-          username={from.username}
+          profileImage={from ? from.profileImage : null}
+          userId={from ? from._id : null}
+          username={from ? from.username : null}
         />
         <div style={{ flex: 1, marginLeft: "10px" }}>
           <Header>
-            <Username>{from.username}</Username>
+            <Username>{from ? from.username : "BoardRack User"}</Username>
             <div style={{ flex: 1 }} />
             <TimeAgo>{timeAgo}</TimeAgo>
           </Header>
