@@ -98,16 +98,32 @@ async function handlePostRequest(req, res) {
     postFields.location.locationImage = location.locationImage;
 
   try {
-    //create and save post
-    let post = new Post(postFields);
-    await post.save();
+    //update exisiting post
+    if (req.body._id) {
+      let post = await Post.findById(req.body._id);
+      if (post.user.toString() === req.user.id.toString()) {
+        let updatedPost = await Post.findByIdAndUpdate(
+          req.body._id,
+          postFields
+        );
+        res.json(updatedPost);
+      } else {
+        return res.status(401).send("Not Authorized");
+      }
+    }
+    //create new post
+    else {
+      //create and save post
+      let post = new Post(postFields);
+      await post.save();
 
-    //update and save post id in User.posts[]
-    const user = await User.findById(req.user.id);
-    user.posts.unshift(post._id);
-    await user.save();
+      //update and save post id in User.posts[]
+      const user = await User.findById(req.user.id);
+      user.posts.unshift(post._id);
+      await user.save();
 
-    res.json(post);
+      res.json(post);
+    }
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

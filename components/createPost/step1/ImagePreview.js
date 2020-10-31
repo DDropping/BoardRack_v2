@@ -1,6 +1,6 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Modal, Progress, Tooltip } from 'antd';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Modal, Progress, Tooltip } from "antd";
 import {
   DeleteOutlined,
   StarOutlined,
@@ -9,9 +9,9 @@ import {
   CheckCircleOutlined,
   ExclamationCircleOutlined,
   CloseCircleOutlined,
-} from '@ant-design/icons';
+} from "@ant-design/icons";
 
-import { DELETE_IMG_PREVIEW, SET_DEFAULT_IMAGE } from '../../../actions/types';
+import { DELETE_IMG_PREVIEW, SET_DEFAULT_IMAGE } from "../../../actions/types";
 import {
   PreviewContainer,
   ImgContainer,
@@ -21,7 +21,7 @@ import {
   Options,
   Star,
   Delete,
-} from './style';
+} from "./style";
 
 const { confirm } = Modal;
 
@@ -35,7 +35,7 @@ const ImagePreview = () => {
 
   function showDelete(imgKey) {
     confirm({
-      title: 'Are you sure you want to delete this image?',
+      title: "Are you sure you want to delete this image?",
       icon: <ExclamationCircleOutlined />,
       onOk() {
         handleDelete(imgKey);
@@ -65,7 +65,7 @@ const ImagePreview = () => {
           <br />
           <Delete>
             {item.isLoading && !item.error && (
-              <DeleteOutlined style={{ color: '#5858581f' }} />
+              <DeleteOutlined style={{ color: "#5858581f" }} />
             )}
             {!item.isLoading && !item.error && (
               <Tooltip placement="right" title="Delete Image">
@@ -81,9 +81,16 @@ const ImagePreview = () => {
         </Options>
         <ImgContainer>
           <ImgBackground
-            style={{ backgroundImage: 'url(' + item.objectUrl + ')' }}
+            style={{
+              backgroundImage: item.objectUrl
+                ? "url(" + item.objectUrl + ")"
+                : item.thumbnailUrl,
+            }}
           />
-          <Img src={item.objectUrl} isLoading={item.isLoading} />
+          <Img
+            src={item.objectUrl ? item.objectUrl : item.thumbnailUrl}
+            isLoading={item.isLoading}
+          />
         </ImgContainer>
         <Status>
           {item.isLoading && !item.error && (
@@ -93,15 +100,15 @@ const ImagePreview = () => {
           )}
           {!item.isLoading && !item.error && (
             <div>
-              <CheckCircleOutlined style={{ color: '#52c41a' }} /> Complete
+              <CheckCircleOutlined style={{ color: "#52c41a" }} /> Complete
             </div>
           )}
           {item.error && (
             <div>
-              <CloseCircleOutlined style={{ color: '#ee7a7a' }} /> Upload Error
+              <CloseCircleOutlined style={{ color: "#ee7a7a" }} /> Upload Error
             </div>
           )}
-          <div style={{ maxWidth: '90%' }}>
+          <div style={{ maxWidth: "90%" }}>
             <Progress
               status="normal"
               strokeColor="#4878a9"

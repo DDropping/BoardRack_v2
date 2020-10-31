@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 import { Button, Modal } from "antd";
 import axios from "axios";
 import {
@@ -20,6 +21,7 @@ const { confirm } = Modal;
 
 const ManagementOptions = ({ postId, isVisible }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const soldPostConfirm = (postId) => {
     return confirm({
@@ -110,9 +112,13 @@ const ManagementOptions = ({ postId, isVisible }) => {
     }
   };
 
+  const handleEditPost = () => {
+    router.push(`/editpost/${postId}`);
+  };
+
   return (
     <ManagementContainer>
-      <Button style={{ marginRight: "5px" }}>
+      <Button style={{ marginRight: "5px" }} onClick={handleEditPost}>
         <EditOutlined />
         Edit
       </Button>

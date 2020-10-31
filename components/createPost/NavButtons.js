@@ -1,5 +1,5 @@
 import React from "react";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { CANCEL_POST } from "../../actions/types";
 import styled from "styled-components";
@@ -19,6 +19,7 @@ const Container = styled.section`
 `;
 
 const NavButtons = ({ step, handleStepChange }) => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const location = useSelector((state) => state.currentLocation.location);
   const imgList = useSelector((state) => state.imgUpload.imgList);
@@ -30,21 +31,34 @@ const NavButtons = ({ step, handleStepChange }) => {
 
   function handleCancelConfirm() {
     confirm({
-      title: "Cancel Post",
+      title:
+        router.pathname === "/createpost" ? "Cancel Post" : "Cancel Update",
       icon: <ExclamationCircleOutlined />,
-      content: "Are you sure you want to cancel this post?",
+      content: "Are you sure you want to cancel?",
       okText: "Yes",
       okType: "danger",
       cancelText: "No",
       onOk() {
         dispatch({ type: CANCEL_POST });
-        Router.push("/");
+        router.push("/");
       },
     });
   }
 
+  const redirectToAccount = () => {
+    router.push("/account?view=overview");
+  };
+
   const handlePublish = () => {
-    dispatch(publishPost(location, imgList, formData));
+    dispatch(
+      publishPost(
+        location,
+        imgList,
+        formData,
+        redirectToAccount,
+        router.query.postId
+      )
+    );
   };
 
   return (
@@ -101,7 +115,8 @@ const NavButtons = ({ step, handleStepChange }) => {
           }
           style={{ margin: "0.5rem" }}
         >
-          Publish
+          {router.pathname.includes("/editpost/") && "Update"}
+          {router.pathname === "/createpost" && "Publish"}
         </Button>
       )}
     </Container>
