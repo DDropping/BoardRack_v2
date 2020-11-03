@@ -18,7 +18,7 @@ export const CardContainer = styled.div`
   margin: 5px;
   width: 148px; /* enough space to fit 3 cards at max page width of 1200px */
   height: 200px;
-  transition: box-shadow 0.3s;
+  transition: ${({ theme }) => theme.boxShadow};
   box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);
   &:hover {
     box-shadow: 0 0 11px rgba(33, 33, 33, 0.4);

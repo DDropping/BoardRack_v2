@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { Row, Col, Divider } from "antd";
+import { Col, Divider, Row } from "antd";
 
 import GetLocationButton from "./GetLocationButton";
 import GetLocationForm from "./GetLocationForm";
@@ -44,6 +44,7 @@ const Step3 = () => {
     (state) => state.currentLocation.isLocatedWithIp
   );
   const location = useSelector((state) => state.currentLocation.location);
+  const isPublished = useSelector((state) => state.createPostForm.isPublished);
 
   return (
     <div>
@@ -79,9 +80,7 @@ const Step3 = () => {
           <Map />
         </Col>
       </Row>
-      <Row>
-        <ValidationErrors />
-      </Row>
+      <Row>{!isPublished && <ValidationErrors />}</Row>
     </div>
   );
 };

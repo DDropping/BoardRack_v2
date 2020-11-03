@@ -5,8 +5,9 @@ import { CardContainer } from "./style";
 import Header from "./Header";
 import Images from "./Images";
 import Content from "./Content";
+import ManagementOptions from "./ManagementOptions";
 
-const index = ({ postData }) => {
+const index = ({ postData, isManagementView }) => {
   const headerData = {
     postId: postData._id,
     price: postData.price,
@@ -15,6 +16,8 @@ const index = ({ postData }) => {
   };
   const imageData = {
     image: postData.images[0],
+    isAvailable: postData.isAvailable,
+    isSold: postData.isSold,
   };
   const contentData = {
     title: postData.title,
@@ -29,7 +32,11 @@ const index = ({ postData }) => {
       <Header data={headerData} />
       <Link
         scroll={false}
-        href={`/?postId=${postData._id}`}
+        href={
+          isManagementView
+            ? `/postdetails/${postData._id}`
+            : `/?postId=${postData._id}`
+        }
         as={`/postdetails/${postData._id}`}
       >
         <a>
@@ -37,6 +44,12 @@ const index = ({ postData }) => {
           <Content data={contentData} />
         </a>
       </Link>
+      {isManagementView && (
+        <ManagementOptions
+          postId={postData._id}
+          isVisible={postData.isVisible}
+        />
+      )}
     </CardContainer>
   );
 };

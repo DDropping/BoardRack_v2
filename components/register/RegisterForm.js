@@ -10,6 +10,7 @@ import { TOGGLE_REGISTER, TOGGLE_LOGIN, AUTH_USER } from "../../actions/types";
 import catchErrors from "../../utils/catchErrors";
 import baseUrl from "../../utils/baseUrl";
 import { loadUserByCookie } from "../../actions/auth";
+import PasswordStrength from "../passwordStrength";
 
 const InputWrapper = styled.div`
   margin-bottom: 1rem;
@@ -17,6 +18,10 @@ const InputWrapper = styled.div`
 
 const A = styled.a`
   color: ${({ theme }) => theme.secondaryBlue};
+`;
+
+const ErrorMessage = styled.div`
+  color: ${({ theme }) => theme.primaryRed};
 `;
 
 const INITIAL_USER = {
@@ -33,9 +38,16 @@ const RegisterForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const emailVaidate = /\S+@\S+\.\S+/;
+
   //disable register button if fields are empty
   useEffect(() => {
-    const isUser = Object.values(user).every((el) => Boolean(el));
+    const isUser =
+      Object.values(user).every((el) => Boolean(el)) &&
+      user.password === user.confirmPassword &&
+      user.username.length >= 5 &&
+      user.password.length >= 6 &&
+      emailVaidate.test(user.email);
     isUser ? setDisabled(false) : setDisabled(true);
   }, [user]);
 
@@ -69,7 +81,7 @@ const RegisterForm = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      {error}
+      <ErrorMessage>{error}</ErrorMessage>
       <InputWrapper>
         <Input
           placeholder="Username"
@@ -112,11 +124,23 @@ const RegisterForm = () => {
           onChange={handleChange}
           type="password"
         />
+        <PasswordStrength password={user.password} />
       </InputWrapper>
-      <Checkbox>Remember me</Checkbox>
-      <Link href="/">
-        <A style={{ float: "right" }}>Forgot password</A>
-      </Link>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Checkbox>Remember me</Checkbox>
+        {(user.password !== user.confirmPassword && (
+          <ErrorMessage>Passwords do not match</ErrorMessage>
+        )) ||
+          (user.username.length < 5 && user.username.length > 0 && (
+            <ErrorMessage>Username requires at least 5 characters</ErrorMessage>
+          )) ||
+          (user.password.length < 6 && user.password.length > 0 && (
+            <ErrorMessage>Password requires at least 6 characters</ErrorMessage>
+          )) ||
+          (!emailVaidate.test(user.email) && user.email.length > 0 && (
+            <ErrorMessage>Invalid email address</ErrorMessage>
+          ))}
+      </div>
       <Form.Item>
         <Button
           type="primary"
@@ -130,7 +154,7 @@ const RegisterForm = () => {
           Register
         </Button>
       </Form.Item>
-      <div style={{ marginTop: "1rem" }}>
+      <div>
         Already have an account?{" "}
         <Link href="/">
           <A
@@ -139,7 +163,7 @@ const RegisterForm = () => {
               dispatch({ type: TOGGLE_REGISTER, payload: false });
             }}
           >
-            Login
+            Click here to Login
           </A>
         </Link>
       </div>

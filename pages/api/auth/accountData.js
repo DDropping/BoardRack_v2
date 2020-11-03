@@ -1,4 +1,6 @@
 import User from "../../../models/User";
+import "../../../models/Message";
+import "../../../models/Post";
 import connectDb from "../../../utils/ConnectDb";
 import authenticate from "../../../middleware/auth";
 
@@ -21,12 +23,25 @@ const handler = async (req, res) => {
 // @access  Protected
 async function handleGetRequest(req, res) {
   try {
-    const user = await User.findById(req.user.id);
-    if (user) {
-      res.status(200).json(user);
-    } else {
-      res.status(404).send("user not found");
-    }
+    const populateQuery = [
+      {
+        path: "messages",
+        populate: [
+          { path: "post" },
+          { path: "users", select: "username profileImage" },
+        ],
+      },
+      { path: "favorites" },
+      { path: "posts" },
+    ];
+
+    await User.findById(req.user.id, function (err, result) {
+      if (err) {
+        res.status(404).send("user not found");
+      } else {
+        res.status(200).json(result);
+      }
+    }).populate(populateQuery);
   } catch (err) {
     res.status(403).send("Invalid Token");
   }

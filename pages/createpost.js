@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import Head from 'next/head';
+import React, { useState } from "react";
+import Head from "next/head";
 
-import Step3 from '../components/createPost/step3';
-import Step2 from '../components/createPost/step2';
-import Step1 from '../components/createPost/step1';
-import PostSteps from '../components/createPost/PostSteps';
-import NavButtons from '../components/createPost/NavButtons';
+import Step3 from "../components/createPost/step3";
+import Step2 from "../components/createPost/step2";
+import Step1 from "../components/createPost/step1";
+import PostSteps from "../components/createPost/PostSteps";
+import NavButtons from "../components/createPost/NavButtons";
 
 const CreatePost = () => {
   const [step, setStep] = useState(0);
 
-  const handleStepChange = current => {
+  const handleStepChange = (current) => {
     setStep(current);
   };
 
   return (
-    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+    <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
       <Head>
         <title>BoardRack | Create Post</title>
       </Head>

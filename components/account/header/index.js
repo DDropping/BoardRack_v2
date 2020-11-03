@@ -1,18 +1,24 @@
 import React from "react";
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 import { Container, Banner, AvatarWrapper } from "./style";
+import CustomAvatar from "../../avatar";
 
 const index = () => {
+  const user = useSelector((state) => state.auth.user);
+  const router = useRouter();
   return (
-    <Container>
+    <Container isMessageThreadView={router.query.thread}>
       <Banner />
       <AvatarWrapper>
-        <Avatar
+        <CustomAvatar
+          profileImage={user ? user.profileImage : null}
+          userId={user ? user._id : null}
+          username={user ? user.username : null}
           size={150}
-          icon={<UserOutlined />}
-          style={{ border: "5px solid white" }}
+          isEditable={true}
+          isOutlined={true}
         />
       </AvatarWrapper>
     </Container>

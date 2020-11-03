@@ -1,65 +1,55 @@
 import React from "react";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { Menu } from "antd";
+import { Divider } from "antd";
 import { useSelector } from "react-redux";
 
-import { Container, A, Logout, Username, Location } from "./style";
+import { Container, Ul, Li, Username, Location } from "./style";
+import { DEAUTH_USER } from "../../../actions/types";
 import { LogoutOutlined } from "@ant-design/icons";
 import accountLinks from "../../../constants/accountLinks";
-import { theme } from "../../../pages/_app";
+import logoutModal from "../../logout";
 
 const index = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
-  const username = useSelector((state) => state.auth.user.username);
+  const username = useSelector((state) =>
+    state.auth.user ? state.auth.user.username : null
+  );
   const location = useSelector((state) => state.currentLocation.location);
+
+  const handleLogout = () => {
+    dispatch({ type: DEAUTH_USER });
+    router.reload(window.location.pathname);
+  };
 
   return (
     <Container>
       {username && <Username>{username}</Username>}
       {location && <Location>{location.city + ", " + location.state}</Location>}
 
-      <Menu>
+      <Ul>
         {accountLinks.map((item, index) => {
           return (
-            <Menu.Item
-              key={index}
-              style={{
-                padding: 0,
-                margin: "0 0 5px 0",
-                backgroundColor:
-                  router.query.view === item.view
-                    ? theme.backgroundBlueMenu
-                    : "transparent",
-                borderRight:
-                  router.query.view === item.view
-                    ? `2px solid ${theme.primaryBlue}`
-                    : "none",
-                color:
-                  router.query.view === item.view ? theme.primaryBlue : "none",
-              }}
-            >
-              <Link href={item.href} shallow={true}>
-                <A href="" key={index}>
-                  {item.icon} {item.title}
-                </A>
-              </Link>
-            </Menu.Item>
+            <Link href={item.href} shallow={true} key={index}>
+              <Li active={router.query.view === item.view}>
+                {item.icon} {item.title}
+              </Li>
+            </Link>
           );
         })}
-        <Menu.Divider style={{ margin: "0 10px" }} />
-        <Menu.Item
+        <Divider style={{ margin: "2px 0 0 0" }} />
+        <Li
           key="logout"
+          isLogout={true}
           onClick={() => {
             logoutModal(handleLogout);
           }}
-          style={{ padding: 0, margin: " 5px 0 0 0" }}
         >
-          <Logout href="">
-            <LogoutOutlined /> Logout
-          </Logout>
-        </Menu.Item>
-      </Menu>
+          <LogoutOutlined /> Logout
+        </Li>
+      </Ul>
     </Container>
   );
 };

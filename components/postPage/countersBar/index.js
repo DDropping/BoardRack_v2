@@ -1,21 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Col, Row } from "antd";
 
 import { CountersContainer } from "./style";
+import timeAgo from "../../../utils/timeAgo";
 
 const index = ({ date, views, favorites }) => {
-  const [time, setTime] = useState("-");
-  useEffect(() => {
-    let timePostedAgo = new Date() - new Date(date);
-
-    if (timePostedAgo > 8.64e7)
-      setTime(Math.floor(timePostedAgo / 8.64e7) + " day(s)");
-    else if (timePostedAgo > 3.6e6)
-      setTime(Math.floor(timePostedAgo / 3.6e6) + " hour(s)");
-    else if (timePostedAgo > 60e3)
-      setTime(Math.floor(timePostedAgo / 60e3) + " minute(s)");
-    else setTime("1 minute");
-  }, []);
+  let time = timeAgo(date);
 
   return (
     <CountersContainer>

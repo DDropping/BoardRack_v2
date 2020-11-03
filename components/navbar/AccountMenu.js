@@ -1,66 +1,66 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
-import { Avatar, Menu } from "antd";
+import { LogoutOutlined } from "@ant-design/icons";
+import { Divider } from "antd";
 import styled from "styled-components";
 
 import { DEAUTH_USER } from "../../actions/types";
-import navDrawerLinks from "../../constants/navDrawerLinks";
+import navLinks from "../../constants/navLinks";
 import logoutModal from "../logout";
+import CustomAvatar from "../avatar";
 
 const Container = styled.div`
-  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background-color: transparent;
-  }
+  background-color: ${({ theme }) => theme.primaryWhite};
+  box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);
 `;
 
-const A = styled.a`
-  padding: 0 0.5rem;
-  transition: all 0.2s ease-in-out;
+const Ul = styled.ul`
+  list-style-type: none;
+`;
+
+const Li = styled.li`
+  cursor: pointer;
+  padding: 10px;
+  margin-bottom: 1px;
+  transition: ${({ theme }) => theme.easeInOut};
   ${({ active, theme }) =>
-    active &&
-    `background-color: ${theme.backgroundBlueMenu}; 
-    border-left: 2px solid ${theme.primaryBlue}; 
-    padding: 1rem;`}
+    active && {
+      backgroundColor: theme.backgroundBlueMenu,
+      borderLeft: `2px solid ${theme.primaryBlue}`,
+    }}
   &:hover {
-    background-color: ${({ theme }) => theme.backgroundBlueMenu};
-    border-left: 2px solid ${({ theme }) => theme.primaryBlue};
-    color: ${({ theme }) => theme.primaryBlue};
-    padding-left: 1rem;
+    background-color: ${({ theme, isLogout }) =>
+      isLogout ? theme.backgroundRedMenu : theme.backgroundBlueMenu};
+    color: ${({ theme, isLogout }) =>
+      isLogout ? theme.primaryRed : theme.primaryBlue};
+    padding-left: 20px;
   }
 `;
 
-const Logout = styled.div`
-  padding: 0 0.5rem;
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    background-color: ${({ theme }) => theme.backgroundRedMenu};
-    border-left: 2px solid ${({ theme }) => theme.primaryRed};
-    color: ${({ theme }) => theme.primaryRed};
-    padding-left: 1rem;
-  }
+const AvatarContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 const AccountMenu = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
-  const isLogout = useSelector((state) => state.overlays.isLogout);
+  const user = useSelector((state) => state.auth.user);
   const router = useRouter();
 
   //sort nav items depending on if user is authenticated
-  const navItems = navDrawerLinks.filter(
-    (navitem) => navitem.protected === isAuth
-  );
+  const navItems = navLinks.filter((navitem) => navitem.protected === isAuth);
 
   const handleLogout = () => {
     dispatch({ type: DEAUTH_USER });
+    router.reload(window.location.pathname);
   };
 
   return (
     <Container>
-      <Menu style={{ boxShadow: "0 0 11px rgba(83, 68, 68, 0.2)" }}>
-        <Menu.Item
+      <Ul>
+        <AvatarContainer
           key="account"
           style={{
             minHeight: "11rem",
@@ -69,39 +69,40 @@ const AccountMenu = () => {
             paddingTop: "1rem",
           }}
         >
-          <Link href="/account">
-            <Avatar
-              size={150}
-              style={{ backgroundColor: "#4878a9" }}
-              icon={<UserOutlined style={{ fontSize: "6rem" }} />}
-            />
+          <Link href="/account?view=overview">
+            <div>
+              <CustomAvatar
+                profileImage={user ? user.profileImage : null}
+                userId={user ? user._id : null}
+                username={user ? user.username : null}
+                size={150}
+              />
+            </div>
           </Link>
-        </Menu.Item>
+        </AvatarContainer>
 
         {navItems.map((item, index) => {
           return (
-            <Menu.Item key={index} style={{ padding: 0, margin: 0 }}>
-              <Link href={item.href}>
-                <A href="/" key={index}>
+            <Link href={item.href} key={index}>
+              <Li active={router.query.view === item.view}>
+                <a>
                   {item.icon} {item.title}
-                </A>
-              </Link>
-            </Menu.Item>
+                </a>
+              </Li>
+            </Link>
           );
         })}
-        <Menu.Divider />
-        <Menu.Item
+        <Divider style={{ margin: 0 }} />
+        <Li
+          isLogout={true}
           key="logout"
           onClick={() => {
             logoutModal(handleLogout);
           }}
-          style={{ padding: 0, margin: 0 }}
         >
-          <Logout href="">
-            <LogoutOutlined /> Logout
-          </Logout>
-        </Menu.Item>
-      </Menu>
+          <LogoutOutlined /> Logout
+        </Li>
+      </Ul>
     </Container>
   );
 };

@@ -1,30 +1,43 @@
 //Message details model:
-//postID, messageThreads[{}]
+//type, users:[author, user], postId, date, messages: [{from, body, timeSent}]
 
 import mongoose from "mongoose";
 
-const { String, Date, Number } = mongoose.Schema.Types;
+const { String, Date } = mongoose.Schema.Types;
 
 const MessageSchema = new mongoose.Schema({
-  postId: {
+  type: {
+    type: String,
+    default: "post",
+    required: true,
+    enum: ["user", "post", "support"],
+  },
+  users: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
+  post: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "post",
   },
-  authorId: {
-    type: String,
+  dateCreated: {
+    type: Date,
+    default: Date.now,
   },
-  userId: {
-    type: String,
+  lastUpdated: {
+    type: Date,
+    default: Date.now,
   },
-  messageThread: [
+  messages: [
     {
-      mFrom: {
-        type: String,
-        required: true,
+      from: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
       },
-      message: {
+      body: {
         type: String,
-        required: true,
       },
       timeSent: {
         type: Date,
@@ -32,10 +45,6 @@ const MessageSchema = new mongoose.Schema({
       },
     },
   ],
-  date: {
-    type: Date,
-    default: Date.now,
-  },
 });
 
 export default mongoose.models.message ||

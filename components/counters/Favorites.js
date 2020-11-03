@@ -22,9 +22,14 @@ const Favorites = ({ favorites, postId }) => {
   useEffect(() => {
     //check if user has favorited post
     if (user) {
-      setFavorite(user.favorites.includes(postId));
+      console.log("running favorites counter useEffect");
+      setFavorite(
+        user.favorites.filter((post) => post._id === postId).length > 0
+          ? true
+          : false
+      );
     }
-  }, [user]);
+  }, []);
 
   return (
     <FavoritesContainer>
@@ -34,22 +39,31 @@ const Favorites = ({ favorites, postId }) => {
           <StarOutlined />
         </Tooltip>
       )}
-      {user && isFavorite && (
-        <StarFilled
-          onClick={() => {
-            dispatch(removeFavorite(postId));
-            setFavorite(false);
-          }}
-        />
+      {user && user.posts.filter((post) => post._id === postId).length > 0 && (
+        <Tooltip placement="top" title="Cannot Favorite Your Own Posts">
+          <StarOutlined />
+        </Tooltip>
       )}
-      {user && !isFavorite && (
-        <StarOutlined
-          onClick={() => {
-            dispatch(addFavorite(postId));
-            setFavorite(true);
-          }}
-        />
-      )}
+      {user &&
+        !user.posts.filter((post) => post._id === postId).length > 0 &&
+        isFavorite && (
+          <StarFilled
+            onClick={() => {
+              dispatch(removeFavorite(postId));
+              setFavorite(false);
+            }}
+          />
+        )}
+      {user &&
+        !user.posts.filter((post) => post._id === postId).length > 0 &&
+        !isFavorite && (
+          <StarOutlined
+            onClick={() => {
+              dispatch(addFavorite(postId));
+              setFavorite(true);
+            }}
+          />
+        )}
     </FavoritesContainer>
   );
 };
