@@ -70,10 +70,10 @@ Built Using CRA, React, Redux, MongoDB, Express.js, Node.js with Ant design UI f
 
 ## Developer Notes
 
-global theme: /pages/\_app.js
-theme provider: /pages/\_app.js
-antd theme: /public/antd-custom.less
-protected routes: /pages/\_app.js
+global theme: /pages/\_app.js  
+theme provider: /pages/\_app.js  
+antd theme: /public/antd-custom.less  
+protected routes: /pages/\_app.js  
 
 ## Production Notes
 
