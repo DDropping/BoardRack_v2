@@ -1,19 +1,56 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import { useSelector } from "react-redux";
 
-import baseUrl from "../../../utils/baseUrl";
-import { Container, CardsContainer } from "./style";
-import MyPosts from "../../displayPosts/myPosts";
+import { Container, SectionContainer, Separator } from "./style";
+import MyMessages from "../myMessages/displayData";
+import MyPosts from "../myPosts/displayData";
+import MyFavorites from "../myFavorites/displayData";
+import Header from "./Header";
 
-const index = () => {
+const Index = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
+
   return (
     <Container>
-      <div>overview</div>
-      <CardsContainer>
-        <MyPosts />
-      </CardsContainer>
+      <SectionContainer>
+        {isAuthenticated && user.messages.length > 0 && (
+          <Header
+            title="My Messages"
+            link="/account?view=messages"
+            buttonText="View All"
+          />
+        )}
+        <MyMessages preview={true} />
+      </SectionContainer>
+
+      <Separator />
+
+      <SectionContainer>
+        {isAuthenticated && user.posts.length > 0 && (
+          <Header
+            title="My Boardrack"
+            link="/account?view=posts"
+            buttonText="View All"
+          />
+        )}
+        <MyPosts preview={true} />
+      </SectionContainer>
+
+      <Separator />
+
+      <SectionContainer>
+        {isAuthenticated && user.favorites.length > 0 && (
+          <Header
+            title="My Favorites"
+            link="/account?view=favorites"
+            buttonText="View All"
+          />
+        )}
+        <MyFavorites preview={true} />
+      </SectionContainer>
     </Container>
   );
 };
 
-export default index;
+export default Index;

@@ -1,13 +1,12 @@
 import React from "react";
-import styled from "styled-components";
 import { useRouter } from "next/router";
 
 import Overview from "./overview";
-import Posts from "./posts";
-import Favorites from "./favorites";
-import Messages from "./messages";
-
-const Container = styled.div``;
+import Posts from "./myPosts";
+import Favorites from "./myFavorites";
+import Messages from "./myMessages";
+import Settings from "./settings";
+import { Container } from "./style";
 
 const index = () => {
   const router = useRouter();
@@ -17,6 +16,7 @@ const index = () => {
       {router.query.view === "posts" && <Posts />}
       {router.query.view === "favorites" && <Favorites />}
       {router.query.view === "messages" && <Messages />}
+      {router.query.view === "settings" && <Settings />}
     </Container>
   );
 };

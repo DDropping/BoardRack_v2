@@ -38,9 +38,10 @@ const index = ({ quickData }) => {
       style={customStyles}
       bodyOpenClassName={"ReactModal__Body--open"}
     >
-      <Toolbar postId={router.query.postId} />
+      <Toolbar postId={router.query.postId} isModalView={true} />
       <PostPage
         postId={router.query.postId}
+        isModalView={true}
         quickData={quickData.find(
           (element) => element._id === router.query.postId
         )}

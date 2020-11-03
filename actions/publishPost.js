@@ -5,11 +5,18 @@ import {
   successNotification,
   failNotification,
 } from "../components/notifications";
-import { TOGGLE_CREATE_POST_LOADING } from "../actions/types";
+import {
+  TOGGLE_CREATE_POST_LOADING,
+  RESET_CREATE_POST_FORM_DATA,
+} from "../actions/types";
 
-export const publishPost = (location, imgList, formData) => async (
-  dispatch
-) => {
+export const publishPost = (
+  location,
+  imgList,
+  formData,
+  redirectToAccount,
+  updatePostId
+) => async (dispatch) => {
   try {
     dispatch({ type: TOGGLE_CREATE_POST_LOADING, payload: true });
     const postItems = formData;
@@ -40,22 +47,34 @@ export const publishPost = (location, imgList, formData) => async (
     //stringify the form items
     const body = JSON.stringify(postItems);
 
-    //post new account to DB
+    //post to DB
     const url = `${baseUrl}/api/posts/createpost`;
     await axios.post(url, body, config);
     dispatch({ type: TOGGLE_CREATE_POST_LOADING, payload: false });
-    successNotification(
-      "New Post Created!",
-      "Your Post Has Been Created And Is Live For The World To See",
-      4.5
-    );
+
+    //send success notification to ui
+    if (updatePostId) {
+      successNotification(
+        "Post Updated!",
+        "Your Post Has Successfully Been Updated!",
+        4.5
+      );
+    } else {
+      successNotification(
+        "New Post Created!",
+        "Your Post Has Been Created And Is Live For The World To See",
+        4.5
+      );
+    }
+    dispatch({ type: RESET_CREATE_POST_FORM_DATA });
+    redirectToAccount();
   } catch (err) {
     dispatch({ type: TOGGLE_CREATE_POST_LOADING, payload: false });
     if (err) {
       console.log(err);
       failNotification(
         "Uhh Ohh, Something Went Wrong",
-        "Sorry, Your Post Could Not Be Created At This Time",
+        "Sorry, Your Post Could Not Be Processed At This Time",
         4.5
       );
     }

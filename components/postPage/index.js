@@ -12,6 +12,7 @@ import {
 import baseUrl from "../../utils/baseUrl";
 import ImageList from "./images/imageList";
 import ImageGallery from "./images/imageGallery";
+import StatusBox from "./statusBox";
 import UserBox from "./userBox";
 import CountersBar from "./countersBar";
 import Description from "./details/description";
@@ -22,19 +23,29 @@ import Map from "./map";
 import SimilarPosts from "./similarPosts";
 import Footer from "./footer";
 import { ADD_VIEW } from "../../actions/types";
+import Toolbar from "../postModal/Toolbar";
+import PostNoLongerExists from "../404/PostNoLongerExists";
 
-const index = ({ quickData, postId }) => {
+const index = ({ quickData, postId, isModalView }) => {
   const dispatch = useDispatch();
   const viewedPosts = useSelector((state) => state.util.viewedPosts);
   const router = useRouter();
   const [postData, setPostData] = useState(quickData);
+  const [isLoading, setLoading] = useState(true);
 
   //fetch post data if quickData is not given
   useEffect(() => {
     async function fetchData() {
-      const url = `${baseUrl}/api/posts/postdetails/${router.query.postId}`;
-      const res = await axios.get(url);
-      setPostData(res.data);
+      setLoading(true);
+      try {
+        const url = `${baseUrl}/api/posts/postdetails/${router.query.postId}`;
+        const res = await axios.get(url);
+        setPostData(res.data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
     }
     if (!!router.query.postId) {
       if (!postData || postId !== postData._id) {
@@ -46,9 +57,11 @@ const index = ({ quickData, postId }) => {
   //increment view counter if user has not viewed post
   useEffect(() => {
     async function addView(postId) {
-      const url = `${baseUrl}/api/posts/addView/${postId}`;
-      await axios.put(url);
-      dispatch({ type: ADD_VIEW, payload: postId });
+      try {
+        const url = `${baseUrl}/api/posts/addView/${postId}`;
+        await axios.put(url);
+        dispatch({ type: ADD_VIEW, payload: postId });
+      } catch (err) {}
     }
 
     if (
@@ -61,10 +74,12 @@ const index = ({ quickData, postId }) => {
     }
   });
 
-  console.log("quickData:", quickData);
-  console.log("postData:", postData);
   return (
     <PostPageContainer>
+      {!isLoading && !postData && <PostNoLongerExists />}
+      {!isModalView && postData && (
+        <Toolbar postId={router.query.postId} isModalView={isModalView} />
+      )}
       {postData && (
         <ImagesContainer>
           <ImageList images={postData.images} />
@@ -74,7 +89,15 @@ const index = ({ quickData, postId }) => {
         <DataContainer>
           <ImageGallery images={postData.images} />
           <Flexbox>
-            <UserBox user={postData.user} location={postData.location} />
+            {!postData.isAvailable && <StatusBox isSold={postData.isSold} />}
+            {postData.user && (
+              <UserBox
+                user={postData.user}
+                location={postData.location}
+                postId={postData._id}
+              />
+            )}
+
             <CountersBar
               date={postData.date}
               views={postData.viewCount}

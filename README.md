@@ -1,27 +1,64 @@
+![screenshot](https://github.com/DDropping/portfolio/blob/master/src/images/project-boardrackv2.png)
+
 # BoardRack (version 2)
 
-### Classified Advertisement Website for New / Used / Custom Suftboards
+### Site Currently Not Live
 
-#### BoardRack (version 2) replaces the default Create React App framework and replaces it with the [Next.js](https://github.com/zeit/next.js/) framework. Aswell doing away with the need for Express.js replaced by Next.js' [pages/api](https://nextjs.org/docs/api-routes/introduction) routing. Version 2 also replaces the standard css styling convention with CSS in JS conventions using [Styled-Components](https://github.com/styled-components/styled-components) along with implementation of unit testing and overall code refactoring for readability and better code structure.
+Classified Advertisement Website for New / Used / Custom Suftboards
 
-## Change log:
+---
 
-### Major Changes
+### Clone
 
-- Migrate from Create-React-App => [Next.js](https://github.com/zeit/next.js/)
-- Migrate from Express.js => Next.js' [pages/api](https://nextjs.org/docs/api-routes/introduction)
-- Migrate from CSS style sheets => [Styled-Components](https://github.com/styled-components/styled-components) css in js
-- Move towards Server Side Rendering (SSR)
+- Clone this repo to your local machine using `https://github.com/DDropping/BoardRack_v2.git`
+
+### Setup
+
+```shell
+$ npm install
+$ npm run dev
+```
+
+- Create `env.config.js` file that contains the following access keys:
+
+```
+module.exports = {
+     JWT_SECRET: <enter a random jwt secret>,
+     MONGO_SRV: <enter mongodb connection string>,
+     S3_ACCESS_KEY_ID: <enter access key for aws s3 bucket>,
+     S3_SECRET_ACCESS_KEY: <enter secrect for aws s3 bucket>,
+     S3_REGION: <enter aws s3 buckets region>,
+     S3_BUCKET: <enter aws s3 bucket name>,
+     HERE_API_KEY: <enter developer.here api key>,
+     IPSTACK_ACCESS_KEY: <enter IPStack api key>,
+}
+```
+
+---
+
+## Technologies
+
+- [Next.js](https://github.com/zeit/next.js/) replced Create-React-App for improved Search Engine Optimization and Server Side Rendering.
+
+- Next.js' [pages/api](https://nextjs.org/docs/api-routes/introduction) replaced the custom Express server to allow for a serverless configuration
+
+- [Styled-Components](https://github.com/styled-components/styled-components) replaced CSS to keep the concerns of styling and element architecture separated while also increasing code readability.
+
 - Implementation of unit, integration, & snapshot testing with [Jest](https://github.com/facebook/jest) and [Enzyme](https://github.com/enzymejs/enzyme)
-- App-wide code optimization and refactoring
-- App-wide component style update
 
-### Minor Changes
+- [AWS S3](https://aws.amazon.com/s3/)
 
-- Implementation of global theme
-- Use of JWT stored in localstorage => cookie
-- Reduced bloat in redux store
-- Use of presigned urls for image uploads
+- [Here API](https://developer.here.com/) integration for location based services.
+
+- [IPStack API](https://ipstack.com/) integration for IP location based services.
+
+- [Ant Design](https://ant.design/components/overview/) component library used for rich ui elements.
+
+- [Redux](https://redux.js.org/) used for application state management.
+
+- [JWT](https://jwt.io/) used for authorization.
+
+---
 
 ## Version History
 
@@ -29,15 +66,13 @@
 
 Built Using CRA, React, Redux, MongoDB, Express.js, Node.js with Ant design UI framework and CSS
 
-### [BoardRack (version 2)](https://github.com/DDropping/BoardRack_v2)
-
-Built Using Next.js, React, Redux, MongoDB, Node.js with Ant design UI framework and Styled-Components
+---
 
 ## Developer Notes
 
-global theme: /pages/\_app.js  
-theme provider: /pages/\_app.js  
-antd theme: /public/antd-custom.less  
+global theme: /pages/\_app.js
+theme provider: /pages/\_app.js
+antd theme: /public/antd-custom.less
 protected routes: /pages/\_app.js
 
 ## Production Notes
@@ -46,11 +81,34 @@ change base url: utils/baseUrl
 
 ## Other Notes
 
-antd-less and next compatibility issue made some antd component styles fail to load on initial render
-
 - fix: pre-load antd library styles into \_app.js
 - note: any antd components used need to be pre-loaded into \_app.js
+
+---
+
+## Support
+
+Reach out to me at one of the following places!
+
+- Website at <a href="http://ddropping.com" target="_blank">`ddropping.com`</a>
+- LinkedIn at <a href="https://www.linkedin.com/in/ddropping/" target="_blank">`@ddropping`</a>
+- Email at <a href="mailto:ddropping@gmail.com" target="_blank">`ddropping@gmail.com`</a>
+
+---
 
 ## Authors
 
 - **David Dropping** - [ddropping](https://github.com/ddropping)
+
+---
+
+## License
+
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- Copyright 2020 © <a href="http://ddropping.com" target="_blank">David Dropping</a>
+
+```
+
+```

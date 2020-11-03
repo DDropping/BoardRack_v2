@@ -6,7 +6,7 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 
 const Opinion = () => {
   const dispatch = useDispatch();
-  const { waveSize, driveSpeed, paddlePower, movability } = useSelector(
+  const { waveSize, drive, paddlePower, movability } = useSelector(
     (state) => state.createPostForm
   );
 
@@ -86,7 +86,7 @@ const Opinion = () => {
             placeholder="4"
             size="default"
             suffix="/5"
-            value={driveSpeed}
+            value={drive}
             onChange={(event) => handleNumber("drive", event.target.value)}
           />
         </Col>

@@ -18,14 +18,21 @@ const handler = async (req, res) => {
 };
 
 // @route   GET api/posts/postdetails/myposts
-// @desc    retrieve all posts from db
+// @desc    retrieve all posts that user has created
 // @res     posts: {... array of all posts}
 // @access  Public
 async function handleGetRequest(req, res) {
   try {
-    const posts = await Post.find({
-      user: new mongoose.Types.ObjectId(req.user.id),
-    });
+    const posts = await Post.find(
+      {
+        user: new mongoose.Types.ObjectId(req.user.id),
+      },
+      function (err, result) {
+        if (err) {
+          res.status(404).send("Post not found");
+        }
+      }
+    );
 
     if (!posts) {
       return res.status(400).json({ msg: "There is no posts" });

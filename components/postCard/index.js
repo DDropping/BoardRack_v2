@@ -16,6 +16,8 @@ const index = ({ postData, isManagementView }) => {
   };
   const imageData = {
     image: postData.images[0],
+    isAvailable: postData.isAvailable,
+    isSold: postData.isSold,
   };
   const contentData = {
     title: postData.title,
@@ -42,7 +44,12 @@ const index = ({ postData, isManagementView }) => {
           <Content data={contentData} />
         </a>
       </Link>
-      {isManagementView && <ManagementOptions />}
+      {isManagementView && (
+        <ManagementOptions
+          postId={postData._id}
+          isVisible={postData.isVisible}
+        />
+      )}
     </CardContainer>
   );
 };

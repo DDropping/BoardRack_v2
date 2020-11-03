@@ -3,18 +3,12 @@ import mongoose from "mongoose";
 const { String, Date, Number } = mongoose.Schema.Types;
 
 const PostSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
-  },
-  title: {
-    type: String,
-    required: true,
-  },
-  price: {
-    type: String,
-    required: true,
-  },
+  isVisible: { type: Boolean, default: true },
+  isAvailable: { type: Boolean, default: true },
+  isSold: { type: Boolean, default: false },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
+  title: { type: String, required: true },
+  price: { type: String, required: true },
   boardType: { type: String },
   condition: { type: String },
   description: { type: String },
@@ -39,6 +33,11 @@ const PostSchema = new mongoose.Schema({
   movability: { type: String },
   shaper: { type: String },
   model: { type: String },
+  contactMethods: {
+    message: { type: Boolean, default: true },
+    phone: { type: String, default: null },
+    email: { type: String, default: null },
+  },
   location: {
     lat: { type: Number, required: true },
     lng: { type: Number, required: true },
@@ -60,13 +59,12 @@ const PostSchema = new mongoose.Schema({
       ref: "user",
     },
   ],
-  viewCount: {
-    type: Number,
-    default: 0,
-  },
-  date: {
-    type: Date,
-    default: Date.now,
+  viewCount: { type: Number, default: 0 },
+  date: { type: Date, default: Date.now },
+  reportLog: {
+    inappropriate: { type: Number, default: 0 },
+    insensitive: { type: Number, default: 0 },
+    scam: { type: Number, default: 0 },
   },
 });
 

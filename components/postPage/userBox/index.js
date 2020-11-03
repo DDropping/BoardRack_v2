@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Avatar, Button, Input } from "antd";
-import { UserOutlined, PhoneOutlined, MailOutlined } from "@ant-design/icons";
+import { useSelector } from "react-redux";
+import { Button, Input } from "antd";
+import { PhoneOutlined, MailOutlined, CheckOutlined } from "@ant-design/icons";
 
 import {
   UserBoxContainer,
@@ -9,17 +10,42 @@ import {
   ContactContainer,
   MessageContainer,
 } from "./style";
+import sendNewMessage from "../../../utils/sendNewMessage";
+import Avatar from "../../avatar";
 
 const { TextArea } = Input;
 
-const index = ({ user, location }) => {
+const index = ({ user, location, postId }) => {
   const [isContact, setIsContact] = useState(false);
   const [message, setMessage] = useState("");
+  const [isSending, setSending] = useState(false);
+  const [sendButtonText, setSendButtonText] = useState("Send Message");
+  const currentUser = useSelector((state) => state.auth.user);
+
+  const sendMessage = async () => {
+    if (message.length > 0) {
+      try {
+        setSending(true);
+        await sendNewMessage("post", postId, user._id, message);
+        setMessage("");
+        setSending(false);
+        setSendButtonText("Message Sent!");
+      } catch (err) {
+        setSending(false);
+        setSendButtonText("Couldn't Send Message");
+      }
+    }
+  };
 
   return (
     <UserBoxContainer>
       <AvatarContainer>
-        <Avatar size={45} icon={<UserOutlined />} />
+        <Avatar
+          profileImage={user.profileImage}
+          userId={user._id}
+          username={user.username}
+          size={45}
+        />
       </AvatarContainer>
       <DetailsContainer>
         <strong style={{ fontSize: "20px", lineHeight: "20px" }}>
@@ -46,13 +72,31 @@ const index = ({ user, location }) => {
           <TextArea
             rows={4}
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => {
+              setMessage(e.target.value);
+              setSendButtonText("Send Message");
+            }}
             placeholder={"Send " + user.username + " a message..."}
             style={{ marginBottom: "10px" }}
           />
-          <Button type="primary" block>
-            Send Message
-          </Button>
+          {currentUser ? (
+            <Button
+              type="primary"
+              disabled={currentUser._id === user._id}
+              loading={isSending}
+              block
+              onClick={sendMessage}
+            >
+              {sendButtonText === "Message Sent!" && (
+                <CheckOutlined style={{ color: "white" }} />
+              )}
+              {sendButtonText}
+            </Button>
+          ) : (
+            <Button type="primary" block disabled>
+              Login to send messages
+            </Button>
+          )}
         </MessageContainer>
       )}
     </UserBoxContainer>

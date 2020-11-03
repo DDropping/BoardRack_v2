@@ -1,13 +1,13 @@
-import React from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
-import { Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-import styled from 'styled-components';
+import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { Dropdown } from "antd";
+import { DownOutlined } from "@ant-design/icons";
+import styled from "styled-components";
 
-import { TOGGLE_LOGIN, TOGGLE_REGISTER } from '../../actions/types';
-import Menu from './AccountMenu';
+import { TOGGLE_LOGIN, TOGGLE_REGISTER } from "../../actions/types";
+import Menu from "./AccountMenu";
 
 const Ul = styled.ul`
   color: blue;
@@ -19,7 +19,7 @@ const Ul = styled.ul`
 `;
 
 const Li = styled.li`
-  transition: all 0.2s ease-in-out;
+  transition: ${({ theme }) => theme.easeInOut};
   padding: 1rem 0.5rem 0.5rem 0.5rem;
   margin: 0 0.1rem;
   display: inline-block;
@@ -54,8 +54,8 @@ const NavItems = () => {
   return (
     <Ul>
       {isAuth && (
-        <Link href={'/createpost'}>
-          <Li active={isActive('/createpost') && !isLogin && !isRegister}>
+        <Link href={"/createpost"}>
+          <Li active={isActive("/createpost") && !isLogin && !isRegister}>
             <a className="create-post-link">Create Post</a>
           </Li>
         </Link>
@@ -67,12 +67,12 @@ const NavItems = () => {
       )}
       {isAuth && (
         <Dropdown overlay={<Menu />} overlayStyle={{ zIndex: 1000 }}>
-          <Li active={isActive('/account') && !isLogin && !isRegister}>
+          <Li active={isActive("/account") && !isLogin && !isRegister}>
             <a
               className="ant-dropdown-link"
               onClick={(e) => e.preventDefault()}
             >
-              {user ? user.username : 'My Account'} <DownOutlined />
+              {user ? user.username : "My Account"} <DownOutlined />
             </a>
           </Li>
         </Dropdown>

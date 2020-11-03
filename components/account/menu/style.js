@@ -1,35 +1,32 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 200px;
-  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background-color: ${({ theme }) => theme.backgroundBlueMenu};
+  width: 250px;
+  @media (max-width: ${({ theme }) => theme.md}) {
+    display: none;
   }
 `;
 
-export const A = styled.a`
-  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    color: ${({ theme }) => theme.primaryBlack};
-  }
-  padding: 0 0.5rem;
-  transition: all 0.2s ease-in-out;
+export const Ul = styled.ul`
+  list-style-type: none;
+`;
+
+export const Li = styled.li`
+  cursor: pointer;
+  padding: 10px;
+  margin-bottom: 1px;
+  transition: ${({ theme }) => theme.easeInOut};
   ${({ active, theme }) =>
-    active &&
-    `background-color: ${theme.backgroundBlueMenu}; 
-  padding: 1rem;`}
+    active && {
+      backgroundColor: theme.backgroundBlueMenu,
+      borderRight: `2px solid ${theme.primaryBlue}`,
+    }}
   &:hover {
-    background-color: ${({ theme }) => theme.backgroundBlueMenu};
-    padding-left: 1rem;
-  }
-`;
-
-export const Logout = styled.div`
-  padding: 0 0.5rem;
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    background-color: ${({ theme }) => theme.backgroundRedMenu};
-    color: ${({ theme }) => theme.primaryRed};
-    padding-left: 1rem;
+    background-color: ${({ theme, isLogout }) =>
+      isLogout ? theme.backgroundRedMenu : theme.backgroundBlueMenu};
+    color: ${({ theme, isLogout }) =>
+      isLogout ? theme.primaryRed : theme.primaryBlue};
+    padding-left: 20px;
   }
 `;
 
