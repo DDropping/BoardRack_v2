@@ -24,19 +24,28 @@ import SimilarPosts from "./similarPosts";
 import Footer from "./footer";
 import { ADD_VIEW } from "../../actions/types";
 import Toolbar from "../postModal/Toolbar";
+import PostNoLongerExists from "../404/PostNoLongerExists";
 
 const index = ({ quickData, postId, isModalView }) => {
   const dispatch = useDispatch();
   const viewedPosts = useSelector((state) => state.util.viewedPosts);
   const router = useRouter();
   const [postData, setPostData] = useState(quickData);
+  const [isLoading, setLoading] = useState(true);
 
   //fetch post data if quickData is not given
   useEffect(() => {
     async function fetchData() {
-      const url = `${baseUrl}/api/posts/postdetails/${router.query.postId}`;
-      const res = await axios.get(url);
-      setPostData(res.data);
+      setLoading(true);
+      try {
+        const url = `${baseUrl}/api/posts/postdetails/${router.query.postId}`;
+        const res = await axios.get(url);
+        setPostData(res.data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
     }
     if (!!router.query.postId) {
       if (!postData || postId !== postData._id) {
@@ -48,9 +57,11 @@ const index = ({ quickData, postId, isModalView }) => {
   //increment view counter if user has not viewed post
   useEffect(() => {
     async function addView(postId) {
-      const url = `${baseUrl}/api/posts/addView/${postId}`;
-      await axios.put(url);
-      dispatch({ type: ADD_VIEW, payload: postId });
+      try {
+        const url = `${baseUrl}/api/posts/addView/${postId}`;
+        await axios.put(url);
+        dispatch({ type: ADD_VIEW, payload: postId });
+      } catch (err) {}
     }
 
     if (
@@ -65,7 +76,8 @@ const index = ({ quickData, postId, isModalView }) => {
 
   return (
     <PostPageContainer>
-      {!isModalView && (
+      {!isLoading && !postData && <PostNoLongerExists />}
+      {!isModalView && postData && (
         <Toolbar postId={router.query.postId} isModalView={isModalView} />
       )}
       {postData && (
