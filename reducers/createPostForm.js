@@ -8,6 +8,7 @@ import {
 
 const initialState = {
   isLoading: false,
+  isPublished: false,
 };
 
 export default function (state = initialState, action) {
@@ -21,6 +22,7 @@ export default function (state = initialState, action) {
     case SET_INPUT:
       return {
         ...state,
+        isPublished: false,
         [payload.name]: payload.value,
       };
     case CANCEL_POST:
@@ -35,6 +37,7 @@ export default function (state = initialState, action) {
     case RESET_CREATE_POST_FORM_DATA:
       return {
         ...initialState,
+        isPublished: true,
       };
     default:
       return state;

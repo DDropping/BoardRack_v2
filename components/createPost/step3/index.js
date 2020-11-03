@@ -44,6 +44,7 @@ const Step3 = () => {
     (state) => state.currentLocation.isLocatedWithIp
   );
   const location = useSelector((state) => state.currentLocation.location);
+  const isPublished = useSelector((state) => state.createPostForm.isPublished);
 
   return (
     <div>
@@ -79,9 +80,7 @@ const Step3 = () => {
           <Map />
         </Col>
       </Row>
-      <Row>
-        <ValidationErrors />
-      </Row>
+      <Row>{!isPublished && <ValidationErrors />}</Row>
     </div>
   );
 };
