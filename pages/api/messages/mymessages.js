@@ -44,7 +44,11 @@ async function handleGetRequest(req, res) {
       },
     ];
 
-    const user = await User.findById(req.user.id)
+    const user = await User.findById(req.user.id, function (err, result) {
+      if (err) {
+        res.status(404).send("user not found");
+      }
+    })
       .populate(populateQuery)
       .select("messages");
 

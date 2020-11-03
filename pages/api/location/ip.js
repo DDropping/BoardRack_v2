@@ -19,7 +19,7 @@ async function handleGetRequest(req, res) {
   var ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
   try {
     if (ip === "::1" || ip === "127.0.0.1") {
-      res.status(500).send("Localhost not supported");
+      res.status(400).send("Localhost not supported");
     } else {
       const approxLocation = await axios.get(
         `http://api.ipstack.com/${ip}?access_key=${process.env.IPSTACK_ACCESS_KEY}`

@@ -62,7 +62,16 @@ async function handlePatchRequest(req, res) {
     if (req.body.profileImage) updates.profileImage = req.body.profileImage;
 
     //update user data
-    const result = await User.findByIdAndUpdate(userId, updates, options);
+    const result = await User.findByIdAndUpdate(
+      userId,
+      updates,
+      options,
+      function (err, result) {
+        if (err) {
+          res.status(404).send("user not found");
+        }
+      }
+    );
     res.status(200).json(result);
   } catch (err) {
     console.error(err.message);

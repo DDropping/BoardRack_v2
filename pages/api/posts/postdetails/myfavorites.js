@@ -24,7 +24,14 @@ const handler = async (req, res) => {
 // @access  Public
 async function handleGetRequest(req, res) {
   try {
-    const userFavorites = await User.findById(req.user.id).select("favorites");
+    const userFavorites = await User.findById(req.user.id, function (
+      err,
+      result
+    ) {
+      if (err) {
+        res.status(404).send("User not found");
+      }
+    }).select("favorites");
     const posts = await Post.find({
       _id: { $in: userFavorites.favorites },
     });

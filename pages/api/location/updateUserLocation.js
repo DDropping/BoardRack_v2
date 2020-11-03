@@ -24,7 +24,11 @@ async function handlePutRequest(req, res) {
     //update account
     const id = req.user.id;
     const update = req.body;
-    await User.findByIdAndUpdate(id, update);
+    await User.findByIdAndUpdate(id, update, function (err, result) {
+      if (err) {
+        res.status(404).send("user not found");
+      }
+    });
     res.json({ msg: "Account Updated" });
   } catch (err) {
     console.error(err.message);

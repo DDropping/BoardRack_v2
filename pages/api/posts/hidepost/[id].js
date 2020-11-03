@@ -28,12 +28,14 @@ async function handlePatchRequest(req, res) {
 
   try {
     //get post
-    let postData = await Post.findById(id);
+    let postData = await Post.findById(id, function (err, result) {
+      if (err) {
+        res.status(404).send("Post not found");
+      }
+    });
 
     //compare post author id to user id
     if (postData.user.toString() === req.user.id.toString()) {
-      console.log("User Credentials Passed");
-
       //toggle post.isVisible
       postData.isVisible = !postData.isVisible;
       await postData.save();
