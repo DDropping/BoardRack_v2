@@ -65,6 +65,7 @@ const PostSchema = new mongoose.Schema({
     inappropriate: { type: Number, default: 0 },
     insensitive: { type: Number, default: 0 },
     scam: { type: Number, default: 0 },
+    messages: [{ type: String }],
   },
 });
 
