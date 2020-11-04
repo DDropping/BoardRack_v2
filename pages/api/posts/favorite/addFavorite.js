@@ -22,11 +22,9 @@ const handler = async (req, res) => {
 // @access  Private
 async function handlePutRequest(req, res) {
   try {
-    const post = await Post.findById(req.body.postId, function (err, result) {
-      if (err) {
-        res.status(404).send("Post not found");
-      }
-    });
+    const post = await Post.findById(req.body.postId);
+    if (!post) res.status.send("Post Not Found");
+
     //check if user has already favorited the post
     if (
       post.favorites.filter((favorite) => favorite.toString() === req.user.id)
@@ -40,11 +38,9 @@ async function handlePutRequest(req, res) {
     await post.save();
 
     //add favorite to user's favorites and save
-    const user = await User.findById(req.user.id, function (err, result) {
-      if (err) {
-        res.status(404).send("User not found");
-      }
-    });
+    const user = await User.findById(req.user.id);
+    if (!user) res.status(404).send("User Not Found");
+
     user.favorites.unshift(req.body.postId);
     await user.save();
     res.json(post);

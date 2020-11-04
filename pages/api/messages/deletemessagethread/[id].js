@@ -28,17 +28,10 @@ async function handlePatchRequest(req, res) {
 
   try {
     //update user model
-    let user = await User.findByIdAndUpdate(
-      req.user.id,
-      {
-        $pull: { messages: id },
-      },
-      function (err, result) {
-        if (err) {
-          res.status(404).send("user not found");
-        }
-      }
-    );
+    let user = await User.findByIdAndUpdate(req.user.id, {
+      $pull: { messages: id },
+    });
+    if (!user) res.status(404).send("User Not Found");
     res.send(user);
   } catch (err) {
     res.status(500).send("Server Error");

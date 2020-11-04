@@ -35,13 +35,12 @@ async function handleGetRequest(req, res) {
       { path: "posts" },
     ];
 
-    await User.findById(req.user.id, function (err, result) {
-      if (err) {
-        res.status(404).send("user not found");
-      } else {
-        res.status(200).json(result);
-      }
-    }).populate(populateQuery);
+    const user = await User.findById(req.user.id).populate(populateQuery);
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).send("user not found");
+    }
   } catch (err) {
     res.status(403).send("Invalid Token");
   }

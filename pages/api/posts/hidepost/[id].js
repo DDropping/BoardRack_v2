@@ -28,11 +28,8 @@ async function handlePatchRequest(req, res) {
 
   try {
     //get post
-    let postData = await Post.findById(id, function (err, result) {
-      if (err) {
-        res.status(404).send("Post not found");
-      }
-    });
+    let postData = await Post.findById(id);
+    if (!post) res.status(404).send("Post Not Found");
 
     //compare post author id to user id
     if (postData.user.toString() === req.user.id.toString()) {

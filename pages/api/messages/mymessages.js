@@ -44,13 +44,11 @@ async function handleGetRequest(req, res) {
       },
     ];
 
-    const user = await User.findById(req.user.id, function (err, result) {
-      if (err) {
-        res.status(404).send("user not found");
-      }
-    })
+    const user = await User.findById(req.user.id)
       .populate(populateQuery)
       .select("messages");
+
+    if (!user) res.status(404).send("User Not Found");
 
     const messages = user.messages;
 

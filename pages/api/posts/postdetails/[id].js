@@ -24,16 +24,12 @@ async function handleGetRequest(req, res) {
   } = req;
 
   try {
-    const post = await Post.findById(id, function (err, result) {
-      if (err) {
-        res.status(404).send("Post not found");
-      } else {
-        res.status(200).json(result);
-      }
-    }).populate("user", "username profileImage");
-
+    const post = await Post.findById(id).populate(
+      "user",
+      "username profileImage"
+    );
     if (!post) {
-      return res.status(404).json({ msg: "There is no post with this id" });
+      return res.status(404).send("Post Not Found");
     }
   } catch (err) {
     console.error(err.message);

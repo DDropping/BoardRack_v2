@@ -28,11 +28,8 @@ async function handlePatchRequest(req, res) {
 
   try {
     //get post
-    let postData = await Post.findById(id, function (err, result) {
-      if (err) {
-        res.status(404).send("Post not found");
-      }
-    });
+    let postData = await Post.findById(id);
+    if (!postData) res.status(404).send("Post Not Found");
 
     //compare post author id to user id
     if (postData.user.toString() === req.user.id.toString()) {
@@ -42,15 +39,10 @@ async function handlePatchRequest(req, res) {
       await postData.save();
 
       //remove post from user's posts
-      await User.findByIdAndUpdate(
-        req.user.id,
-        { $pull: { posts: id } },
-        function (err, result) {
-          if (err) {
-            res.status(404).send("User not found");
-          }
-        }
-      );
+      const user = await User.findByIdAndUpdate(req.user.id, {
+        $pull: { posts: id },
+      });
+      if (!user) res.status(404).send("User Not Found");
 
       res.status(200).send("Delete Successful");
     } else {
