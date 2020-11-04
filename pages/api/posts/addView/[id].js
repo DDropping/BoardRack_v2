@@ -22,14 +22,10 @@ async function handlePutRequest(req, res) {
     query: { id },
   } = req;
   try {
-    // const post = await Post.findById(id);
-    // if (!post) return res.status(404).send("Post not found");
-
-    // //increment post viewCount and save
-    // post.viewCount++;
-    // await post.save();
     const post = await Post.findByIdAndUpdate(id, { $inc: { viewCount: 1 } });
     if (!post) res.status(404).send("Post Not Found");
+
+    res.status(200).send("Post Viewed");
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

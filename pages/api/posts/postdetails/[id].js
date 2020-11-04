@@ -28,9 +28,12 @@ async function handleGetRequest(req, res) {
       "user",
       "username profileImage"
     );
+
     if (!post) {
       return res.status(404).send("Post Not Found");
     }
+
+    res.status(200).json(post);
   } catch (err) {
     console.error(err.message);
     if (err.kind === "ObjectId") {
