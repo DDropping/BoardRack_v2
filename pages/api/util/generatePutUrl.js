@@ -13,13 +13,14 @@ const handler = async (req, res) => {
 
 async function handleGetRequest(req, res) {
   const { Key, ContentType } = req.query;
-  generatePutUrl(Key, ContentType)
-    .then((putURL) => {
-      res.send({ putURL });
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+  try {
+    const putURL = await generatePutUrl(Key, ContentType);
+    if (!putURL) res.status(500).send("Server Error");
+
+    res.status(200).send({ putURL });
+  } catch (err) {
+    res.status(500).send("Server Error");
+  }
 }
 
 export default handler;

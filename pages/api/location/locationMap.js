@@ -36,7 +36,7 @@ async function handlePostRequest(req, res) {
         Body: buffer,
       })
         .promise()
-        .then((data) => res.send(data.Location));
+        .then((data) => res.status(200).send(data.Location));
     });
   } catch (err) {
     console.error(err.message);
