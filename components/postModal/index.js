@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import "./react-modal-custom.less";
 import PostPage from "../postPage";
-import Toolbar from "./Toolbar";
+import Toolbar from "../postPage/toolbar";
 
 Modal.setAppElement("#__next");
 

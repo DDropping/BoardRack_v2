@@ -23,7 +23,7 @@ import Map from "./map";
 import SimilarPosts from "./similarPosts";
 import Footer from "./footer";
 import { ADD_VIEW } from "../../actions/types";
-import Toolbar from "../postModal/Toolbar";
+import Toolbar from "./toolbar";
 import PostNoLongerExists from "../404/PostNoLongerExists";
 
 const index = ({ quickData, postId, isModalView }) => {
