@@ -12,13 +12,26 @@ import { addFavorite, removeFavorite } from "../../../actions/counters";
 import { ToolbarContainer, ToolbarButton, ToolbarButtonClose } from "./style";
 import ReportModal from "./ReportModal";
 
-const index = ({ postId, isModalView }) => {
+const index = ({ postId, isModalView, authorId }) => {
   const [isFavorite, setFavorite] = useState(false);
   const [isReportOpen, setReportOpen] = useState(false);
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
   const router = useRouter();
+
+  console.log("toolbar author id: ", authorId);
+
+  //disable favorite button for post owner
+  let isPostAuthor = false;
+  useEffect(() => {
+    console.log(user._id, authorId);
+    if (user) {
+      if (user._id === authorId) {
+        isPostAuthor = true;
+      }
+    }
+  }, [user]);
 
   useEffect(() => {
     //check if user has favorited post
@@ -33,7 +46,7 @@ const index = ({ postId, isModalView }) => {
 
   return (
     <ToolbarContainer>
-      {isAuthenticated && !isFavorite && (
+      {isAuthenticated && !isFavorite && !isPostAuthor && (
         <ToolbarButton
           onClick={() => {
             dispatch(addFavorite(postId));
@@ -44,7 +57,7 @@ const index = ({ postId, isModalView }) => {
           {" Favorite"}
         </ToolbarButton>
       )}
-      {isAuthenticated && isFavorite && (
+      {isAuthenticated && isFavorite && !isPostAuthor && (
         <ToolbarButton
           onClick={() => {
             dispatch(removeFavorite(postId));

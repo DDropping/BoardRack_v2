@@ -75,56 +75,58 @@ const index = ({ quickData, postId, isModalView }) => {
   });
 
   return (
-    <PostPageContainer>
-      {!isLoading && !postData && <PostNoLongerExists />}
-      {!isModalView && postData && (
+    <>
+      {postData && (
         <Toolbar postId={router.query.postId} isModalView={isModalView} />
       )}
-      {postData && (
-        <ImagesContainer>
-          <ImageList images={postData.images} />
-        </ImagesContainer>
-      )}
-      {postData && (
-        <DataContainer>
-          <ImageGallery images={postData.images} />
-          <Flexbox>
-            {!postData.isAvailable && <StatusBox isSold={postData.isSold} />}
-            {postData.user && (
-              <UserBox
-                user={postData.user}
-                location={postData.location}
-                postId={postData._id}
-              />
-            )}
+      <PostPageContainer>
+        {!isLoading && !postData && <PostNoLongerExists />}
+        {postData && (
+          <ImagesContainer>
+            <ImageList images={postData.images} />
+          </ImagesContainer>
+        )}
+        {postData && (
+          <DataContainer>
+            <ImageGallery images={postData.images} />
+            <Flexbox>
+              {!postData.isAvailable && <StatusBox isSold={postData.isSold} />}
+              {postData.user && (
+                <UserBox
+                  user={postData.user}
+                  location={postData.location}
+                  postId={postData._id}
+                />
+              )}
 
-            <CountersBar
-              date={postData.date}
-              views={postData.viewCount}
-              favorites={postData.favorites}
-            />
-            <Description
-              price={postData.price}
-              title={postData.title}
-              description={postData.description}
-            />
-            <GeneralDetails post={postData} />
-            <Dimensions post={postData} />
-            <Opinion post={postData} />
-            {postData.location.locationImage && (
-              <Map
-                map={postData.location.locationImage}
-                lat={postData.location.lat}
-                lng={postData.location.lng}
+              <CountersBar
+                date={postData.date}
+                views={postData.viewCount}
+                favorites={postData.favorites}
               />
-            )}
-            <SimilarPosts postId={postData._id} />
-            <div style={{ flex: 1 }} />
-            <Footer />
-          </Flexbox>
-        </DataContainer>
-      )}
-    </PostPageContainer>
+              <Description
+                price={postData.price}
+                title={postData.title}
+                description={postData.description}
+              />
+              <GeneralDetails post={postData} />
+              <Dimensions post={postData} />
+              <Opinion post={postData} />
+              {postData.location.locationImage && (
+                <Map
+                  map={postData.location.locationImage}
+                  lat={postData.location.lat}
+                  lng={postData.location.lng}
+                />
+              )}
+              <SimilarPosts postId={postData._id} />
+              <div style={{ flex: 1 }} />
+              <Footer />
+            </Flexbox>
+          </DataContainer>
+        )}
+      </PostPageContainer>
+    </>
   );
 };
 

@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 
 import "./react-modal-custom.less";
 import PostPage from "../postPage";
-import Toolbar from "../postPage/toolbar";
 
 Modal.setAppElement("#__next");
 
@@ -38,7 +37,6 @@ const index = ({ quickData }) => {
       style={customStyles}
       bodyOpenClassName={"ReactModal__Body--open"}
     >
-      <Toolbar postId={router.query.postId} isModalView={true} />
       <PostPage
         postId={router.query.postId}
         isModalView={true}
