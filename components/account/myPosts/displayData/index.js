@@ -44,7 +44,12 @@ const index = ({ preview }) => {
           {posts.map((post, index) => {
             return (
               <Li key={index}>
-                <PostCard key={index} postData={post} isManagementView={true} />
+                <PostCard
+                  key={index}
+                  postData={post}
+                  isManagementView={true}
+                  directToPostPage={true}
+                />
               </Li>
             );
           })}
