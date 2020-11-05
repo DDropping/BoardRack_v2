@@ -77,7 +77,11 @@ const index = ({ quickData, postId, isModalView }) => {
   return (
     <>
       {postData && (
-        <Toolbar postId={router.query.postId} isModalView={isModalView} />
+        <Toolbar
+          postId={router.query.postId}
+          isModalView={isModalView}
+          authorId={postData.user._id}
+        />
       )}
       <PostPageContainer>
         {!isLoading && !postData && <PostNoLongerExists />}
