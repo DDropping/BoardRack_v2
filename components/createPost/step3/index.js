@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Col, Divider, Row } from "antd";
 
+import ContactInfo from "./ContactInfo";
 import GetLocationButton from "./GetLocationButton";
 import GetLocationForm from "./GetLocationForm";
 import Map from "./Map";
@@ -80,6 +81,11 @@ const Step3 = () => {
           <Map />
         </Col>
       </Row>
+      <br />
+      <Divider>
+        <H2>Contact Method</H2>
+      </Divider>
+      <ContactInfo />
       <Row>{!isPublished && <ValidationErrors />}</Row>
     </div>
   );
