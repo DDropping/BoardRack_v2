@@ -47,6 +47,8 @@ async function handlePostRequest(req, res) {
     model,
     images,
     location,
+    phone,
+    email,
   } = req.body;
 
   const postFields = {};
@@ -96,6 +98,12 @@ async function handlePostRequest(req, res) {
   if (location.postalCode) postFields.location.postalCode = location.postalCode;
   if (location.locationImage)
     postFields.location.locationImage = location.locationImage;
+
+  //build contact object
+  postFields.contactMethods = {};
+  postFields.contactMethods.message = true;
+  if (phone) postFields.contactMethods.phone = phone;
+  if (email) postFields.contactMethods.email = email;
 
   try {
     //update exisiting post
