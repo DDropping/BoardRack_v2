@@ -26,7 +26,7 @@ import { ADD_VIEW } from "../../actions/types";
 import Toolbar from "./toolbar";
 import PostNoLongerExists from "../404/PostNoLongerExists";
 
-const index = ({ quickData, postId, isModalView }) => {
+const index = ({ quickData, postId, isModalView, isPreview }) => {
   const dispatch = useDispatch();
   const viewedPosts = useSelector((state) => state.util.viewedPosts);
   const router = useRouter();
@@ -47,7 +47,7 @@ const index = ({ quickData, postId, isModalView }) => {
         setLoading(false);
       }
     }
-    if (!!router.query.postId) {
+    if (!!router.query.postId && !isPreview) {
       if (!postData || postId !== postData._id) {
         fetchData();
       }
@@ -94,7 +94,9 @@ const index = ({ quickData, postId, isModalView }) => {
           <DataContainer>
             <ImageGallery images={postData.images} />
             <Flexbox>
-              {!postData.isAvailable && <StatusBox isSold={postData.isSold} />}
+              {!postData.isAvailable && !isPreview && (
+                <StatusBox isSold={postData.isSold} />
+              )}
               {postData.user && (
                 <UserBox
                   user={postData.user}
@@ -102,7 +104,6 @@ const index = ({ quickData, postId, isModalView }) => {
                   postId={postData._id}
                 />
               )}
-
               <CountersBar
                 date={postData.date}
                 views={postData.viewCount}

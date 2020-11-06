@@ -103,6 +103,25 @@ const NavButtons = ({ step, handleStepChange }) => {
 
       {step === 2 && (
         <Button
+          onClick={() => handleStepChange(3)}
+          type="primary"
+          disabled={step !== 2}
+          style={{ margin: "0.5rem" }}
+          disabled={
+            !formData.title ||
+            !formData.price ||
+            !location.lat ||
+            !location.lng ||
+            isMapLoading
+          }
+        >
+          Preview
+          <RightOutlined />
+        </Button>
+      )}
+
+      {step === 3 && (
+        <Button
           onClick={() => handlePublish()}
           loading={isLoading}
           type="primary"
