@@ -15,7 +15,7 @@ import Avatar from "../../avatar";
 
 const { TextArea } = Input;
 
-const index = ({ user, location, postId }) => {
+const index = ({ user, location, postId, phone, email }) => {
   const [isContact, setIsContact] = useState(false);
   const [message, setMessage] = useState("");
   const [isSending, setSending] = useState(false);
@@ -61,9 +61,9 @@ const index = ({ user, location, postId }) => {
         )}
         {isContact && (
           <div>
-            <PhoneOutlined /> (831) 535-3535
+            <PhoneOutlined /> {phone ? phone : "n/a"}
             <br />
-            <MailOutlined /> boards@boardrack.com
+            <MailOutlined /> {email ? email : "n/a"}
           </div>
         )}
       </ContactContainer>

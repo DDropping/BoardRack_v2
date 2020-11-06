@@ -102,6 +102,8 @@ const index = ({ quickData, postId, isModalView, isPreview }) => {
                   user={postData.user}
                   location={postData.location}
                   postId={postData._id}
+                  phone={postData.contactMethods.phone}
+                  email={postData.contactMethods.email}
                 />
               )}
               <CountersBar
