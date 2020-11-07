@@ -1,11 +1,13 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ExclamationCircleTwoTone } from "@ant-design/icons";
+import { Tooltip } from "antd";
+import { ExclamationCircleTwoTone, MailOutlined } from "@ant-design/icons";
 
 import { Container, Header, Username, TimeAgo, Description } from "./style";
 import timeOrDateAgo from "../../../../utils/timeOrDateAgo";
 import Avatar from "../../../avatar";
+import BadgeDot from "../../../badge/Dot";
 
 const MessageOverview = ({ messageDetails, userId }) => {
   const router = useRouter();
@@ -34,7 +36,6 @@ const MessageOverview = ({ messageDetails, userId }) => {
         <div style={{ flex: 1, marginLeft: "10px" }}>
           <Header>
             <Username>{from ? from.username : "BoardRack User"}</Username>
-            <div style={{ flex: 1 }} />
             <TimeAgo>{timeAgo}</TimeAgo>
           </Header>
           <Description>
@@ -46,6 +47,24 @@ const MessageOverview = ({ messageDetails, userId }) => {
                 {" This Post No Longer Exists"}
               </div>
             )}
+            {!messageDetails.isRead &&
+              messageDetails.messages[messageDetails.messages.length - 1]
+                .from === userId && (
+                <Tooltip
+                  placement="top"
+                  title={
+                    from
+                      ? `${from.username} hasn't read your message`
+                      : "User hasn't read your message"
+                  }
+                >
+                  <MailOutlined />
+                </Tooltip>
+              )}
+
+            {!messageDetails.isRead &&
+              messageDetails.messages[messageDetails.messages.length - 1]
+                .from !== userId && <BadgeDot size={10} centered green />}
           </Description>
         </div>
       </Container>

@@ -21,6 +21,7 @@ export const Container = styled.div`
 export const Header = styled.div`
   width: 100%;
   display: flex;
+  justify-content: space-between;
 `;
 
 export const Username = styled.div`
@@ -35,4 +36,6 @@ export const TimeAgo = styled.div`
 export const Description = styled.div`
   font-style: italic;
   color: ${({ theme }) => theme.primaryDarkGrey};
+  display: flex;
+  justify-content: space-between;
 `;

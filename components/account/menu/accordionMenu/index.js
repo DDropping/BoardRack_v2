@@ -31,8 +31,8 @@ const index = () => {
     <Container>
       <Header onClick={() => toggleIsOpen(!isOpen)}>
         {isOpen ? <RightOutlined /> : <DownOutlined />}{" "}
-        {accountLinks.filter((item) => item.view === menuSelected)[0].icon}{" "}
-        {accountLinks.filter((item) => item.view === menuSelected)[0].title}
+        {accountLinks.find((item) => item.view === menuSelected).icon}{" "}
+        {accountLinks.find((item) => item.view === menuSelected).title}
       </Header>
       {isOpen && (
         <Ul>

@@ -56,6 +56,7 @@ async function handlePostRequest(req, res) {
       //add new message to messages
       messageThread.messages.push(message);
       messageThread.lastUpdated = Date.now();
+      messageThread.isRead = false;
       await messageThread.save();
       //make sure both users have the messageThread in their messages (in case a user deleted the message thread)
       //save to users messages[]
@@ -78,6 +79,7 @@ async function handlePostRequest(req, res) {
         post: postId,
         dateCreated: Date.now(),
         lastUpdated: Date.now(),
+        isRead: false,
         messages: [message],
       };
 

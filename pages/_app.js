@@ -62,6 +62,8 @@ export const theme = {
   primaryLightRed: "#ef404017",
   secondaryRed: "#ee7a7a",
 
+  primaryOrange: "#ffb700",
+
   primaryBlack: "#222222",
 
   primaryWhite: "#ffffff",

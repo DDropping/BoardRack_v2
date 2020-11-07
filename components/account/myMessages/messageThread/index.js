@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import axios from "axios";
 
+import baseUrl from "../../../../utils/baseUrl";
 import PostListRow from "../../../postListRow";
 import DisplayMessages from "./DisplayMessages";
 import MessageBox from "./MessageBox";
@@ -28,6 +30,33 @@ const index = ({ isMessageListChild }) => {
   const router = useRouter();
   const user = useSelector((state) => state.auth.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  //flag message as read
+  useEffect(() => {
+    if (user) {
+      console.log("use effect now");
+      let message = user.messages.find(
+        (messageData) => messageData._id === router.query.thread
+      );
+      if (message) {
+        console.log(message);
+        console.log(
+          "from: ",
+          message.messages[message.messages.length - 1].from
+        );
+        console.log("me: ", user._id);
+        if (
+          message.messages[message.messages.length - 1].from !== user._id &&
+          !message.isRead
+        ) {
+          console.log("send the kraken");
+          //change this to !==
+          const url = `${baseUrl}/api/messages/flagMessageAsRead/${message._id}`;
+          axios.patch(url);
+        }
+      }
+    }
+  }, [user]);
 
   return (
     isAuthenticated &&
