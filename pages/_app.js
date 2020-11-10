@@ -83,6 +83,15 @@ export const theme = {
 
   primaryTransparentWhite: "#ffffffd9",
 
+  //dark mode colors
+  darkModePrimaryBlack: "#181818",
+  darkModeSecondaryBlack: "#212121",
+
+  darkModePrimaryGrey: "#303030",
+
+  darkModePrimaryTextWhite: "#ffffff",
+  darkModeSecondaryTextWhite: "#aaa",
+
   //media sizes
   xs: "375px", // extra small devices
   xs1: "376px", // +1 for @media queries
