@@ -28,7 +28,10 @@ const Index = ({ messageDetails }) => {
 
   return (
     <Container>
-      <Link href="#">
+      <Link
+        href={`/account?view=messages&thread=${messageDetails._id}`}
+        shallow={true}
+      >
         <HeaderContainer>
           <Avatar
             size={28}
