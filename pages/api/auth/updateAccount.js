@@ -22,7 +22,13 @@ const handler = async (req, res) => {
 // @res     jwt
 // @access  Public
 async function handlePatchRequest(req, res) {
-  const { password, newPassword } = req.body;
+  const {
+    password,
+    newPassword,
+    email,
+    profileImage,
+    profileBackground,
+  } = req.body;
 
   const userId = req.user.id;
   var updates = {};
@@ -57,9 +63,13 @@ async function handlePatchRequest(req, res) {
     }
 
     //Create updates object
-    if (req.body.email && isEmail(req.body.email))
-      updates.email = req.body.email;
-    if (req.body.profileImage) updates.profileImage = req.body.profileImage;
+    if (email && isEmail(req.body.email)) updates.email = req.body.email;
+    if (profileImage) updates.profileImage = profileImage;
+    if (profileBackground)
+      updates.profileBackground = {
+        color: profileBackground.color,
+        image: profileBackground.image,
+      };
 
     //update user data
     const result = await User.findByIdAndUpdate(userId, updates, options);

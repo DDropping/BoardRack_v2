@@ -43,6 +43,11 @@ export const MenuItem = styled.li`
   margin-right: 5px;
 `;
 
+export const MiniBackgroundImage = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+`;
+
 export const BackgroundImage = styled.img`
   max-width: 100%;
   max-height: 100%;

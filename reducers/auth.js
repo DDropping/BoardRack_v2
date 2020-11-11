@@ -2,6 +2,7 @@ import {
   AUTH_USER,
   USER_LOADED,
   DEAUTH_USER,
+  UPDATE_USER_PROFILEBACKGROUND,
   UPDATE_USER_NOTIFICATIONS,
   UPDATE_USER_POSTS,
   UPDATE_USER_FAVORITES_ADD,
@@ -114,6 +115,14 @@ export default function (state = initialState, action) {
         user: {
           ...state.user,
           posts: state.user.posts.filter((item) => item._id !== action.payload),
+        },
+      };
+    case UPDATE_USER_PROFILEBACKGROUND:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          profileBackground: action.payload,
         },
       };
     default:
