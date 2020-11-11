@@ -3,7 +3,11 @@ import cookie from "js-cookie";
 
 import { store } from "../store";
 import setTokenHeader from "../utils/setTokenHeader";
-import { USER_LOADED, LOAD_DEFAULT_LOCATION_TO_CURRENT } from "./types";
+import {
+  USER_LOADED,
+  LOAD_DEFAULT_LOCATION_TO_CURRENT,
+  UPDATE_USER_NOTIFICATIONS,
+} from "./types";
 import baseUrl from "../utils/baseUrl";
 
 /*********** LOAD USER ***********/
@@ -18,6 +22,7 @@ export const loadUserByCookie = () => async (dispatch) => {
       const res = await axios.get(url);
       const user = res.data;
       dispatch({ type: USER_LOADED, payload: user });
+      dispatch(checkUserNotifications(user));
       if (user.location) {
         dispatch({
           type: LOAD_DEFAULT_LOCATION_TO_CURRENT,
@@ -34,6 +39,7 @@ export const loadUserByCookie = () => async (dispatch) => {
 export const loadUserByProps = (user) => async (dispatch) => {
   try {
     await dispatch({ type: USER_LOADED, payload: user });
+    dispatch(checkUserNotifications(user));
     if (
       !store.getState().currentLocation.isLocated &&
       store.getState().auth.user.location
@@ -43,6 +49,30 @@ export const loadUserByProps = (user) => async (dispatch) => {
         payload: store.getState().auth.user.location,
       });
     }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+/*********** CHECK IF USER HAS ANY UNSEEN NOTIFICATIONS ***********/
+export const checkUserNotifications = (user) => async (dispatch) => {
+  try {
+    let messageNotifications = user.messages.filter(
+      (messageData) =>
+        messageData.isRead === false &&
+        messageData.messages[messageData.messages.length - 1].from !== user._id
+    );
+    //add more notification counters here
+
+    let totalNotifications = {
+      total: messageNotifications.length,
+      messages: messageNotifications.length,
+    };
+
+    await dispatch({
+      type: UPDATE_USER_NOTIFICATIONS,
+      payload: totalNotifications,
+    });
   } catch (err) {
     console.log(err);
   }

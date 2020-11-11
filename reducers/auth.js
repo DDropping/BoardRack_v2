@@ -2,6 +2,7 @@ import {
   AUTH_USER,
   USER_LOADED,
   DEAUTH_USER,
+  UPDATE_USER_NOTIFICATIONS,
   UPDATE_USER_POSTS,
   UPDATE_USER_FAVORITES_ADD,
   UPDATE_USER_FAVORITES_REMOVE,
@@ -15,6 +16,7 @@ import cookie from "js-cookie";
 const initialState = {
   token: cookie.get("token"),
   isAuthenticated: false,
+  notifications: 0,
   user: null,
 };
 
@@ -43,6 +45,11 @@ export default function (state = initialState, action) {
         token: null,
         isAuthenticated: false,
         user: null,
+      };
+    case UPDATE_USER_NOTIFICATIONS:
+      return {
+        ...state,
+        notifications: action.payload,
       };
     case UPDATE_USER_POSTS:
       return {
