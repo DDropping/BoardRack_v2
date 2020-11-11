@@ -1,15 +1,15 @@
 import React from "react";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { Divider } from "antd";
-import { useSelector } from "react-redux";
 
 import { Container, Ul, Li, Username, Location } from "./style";
 import { DEAUTH_USER } from "../../../actions/types";
 import { LogoutOutlined } from "@ant-design/icons";
 import accountLinks from "../../../constants/accountLinks";
 import logoutModal from "../../logout";
+import BadgeDot from "../../badge/Dot";
 
 const index = () => {
   const dispatch = useDispatch();
@@ -18,6 +18,7 @@ const index = () => {
     state.auth.user ? state.auth.user.username : null
   );
   const location = useSelector((state) => state.currentLocation.location);
+  const notifications = useSelector((state) => state.auth.notifications);
 
   const handleLogout = () => {
     dispatch({ type: DEAUTH_USER });
@@ -34,7 +35,15 @@ const index = () => {
           return (
             <Link href={item.href} shallow={true} key={index}>
               <Li active={router.query.view === item.view}>
-                {item.icon} {item.title}
+                {item.icon} {item.title + " "}
+                {item.view === "messages" &&
+                  notifications.messages.length > 0 && (
+                    <BadgeDot
+                      size={12}
+                      red
+                      content={notifications.messages.length}
+                    />
+                  )}
               </Li>
             </Link>
           );

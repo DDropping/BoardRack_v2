@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { Divider } from "antd";
 import { DownOutlined, RightOutlined, LogoutOutlined } from "@ant-design/icons";
@@ -9,6 +9,7 @@ import { Container, Header, Ul, Li } from "./style";
 import { DEAUTH_USER } from "../../../../actions/types";
 import accountLinks from "../../../../constants/accountLinks";
 import logoutModal from "../../../logout";
+import BadgeDot from "../../../badge/Dot";
 
 const index = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const index = () => {
   const [menuSelected, setMenuSelected] = useState(
     router.query.view ? router.query.view : "overview"
   );
+  const notifications = useSelector((state) => state.auth.notifications);
 
   useEffect(() => {
     setMenuSelected(router.query.view);
@@ -45,7 +47,15 @@ const index = () => {
                     toggleIsOpen(!isOpen);
                   }}
                 >
-                  {item.icon} {item.title}
+                  {item.icon} {item.title + " "}
+                  {item.view === "messages" &&
+                    notifications.messages.length > 0 && (
+                      <BadgeDot
+                        size={12}
+                        red
+                        content={notifications.messages.length}
+                      />
+                    )}
                 </Li>
               </Link>
             );
