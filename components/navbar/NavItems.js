@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 import { TOGGLE_LOGIN, TOGGLE_REGISTER } from "../../actions/types";
 import Menu from "./AccountMenu";
+import BadgeDot from "../badge/Dot";
 
 const Ul = styled.ul`
   color: blue;
@@ -39,6 +40,7 @@ const Li = styled.li`
 const NavItems = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  const notifications = useSelector((state) => state.auth.notifications);
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const isLogin = useSelector((state) => state.overlays.isLogin);
   const isRegister = useSelector((state) => state.overlays.isRegister);
@@ -72,6 +74,9 @@ const NavItems = () => {
               className="ant-dropdown-link"
               onClick={(e) => e.preventDefault()}
             >
+              {user && notifications.total > 0 && (
+                <BadgeDot size={12} red content={notifications.total} />
+              )}{" "}
               {user ? user.username : "My Account"} <DownOutlined />
             </a>
           </Li>
