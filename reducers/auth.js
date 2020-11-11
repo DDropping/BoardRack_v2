@@ -16,7 +16,10 @@ import cookie from "js-cookie";
 const initialState = {
   token: cookie.get("token"),
   isAuthenticated: false,
-  notifications: 0,
+  notifications: {
+    total: 0,
+    messages: 0,
+  },
   user: null,
 };
 
