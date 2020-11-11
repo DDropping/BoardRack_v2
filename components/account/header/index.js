@@ -12,6 +12,7 @@ import {
   EditButton,
   BackgroundMenu,
   MenuItem,
+  BackgroundImageWrapper,
   BackgroundImage,
   MiniBackgroundImage,
   MenuItemColor,
@@ -29,6 +30,10 @@ const index = () => {
   const dispatch = useDispatch();
 
   const updateUserData = async (image, color) => {
+    dispatch({
+      type: UPDATE_USER_PROFILEBACKGROUND,
+      payload: { color: color, image: image },
+    });
     try {
       const config = {
         headers: {
@@ -43,10 +48,6 @@ const index = () => {
 
       const url = `${baseUrl}/api/auth/updateAccount`;
       await axios.patch(url, body, config);
-      dispatch({
-        type: UPDATE_USER_PROFILEBACKGROUND,
-        payload: { color: color, image: image },
-      });
     } catch (err) {
       console.log(err);
     }
@@ -102,10 +103,12 @@ const index = () => {
             </Dropdown>
           </EditButton>
           {user.profileBackground.image && (
-            <BackgroundImage
-              alt="user account background image"
-              src={user.profileBackground.image}
-            />
+            <BackgroundImageWrapper>
+              <BackgroundImage
+                alt="user account background image"
+                src={user.profileBackground.image}
+              />
+            </BackgroundImageWrapper>
           )}
         </Banner>
       )}

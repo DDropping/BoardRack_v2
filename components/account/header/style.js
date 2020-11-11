@@ -12,6 +12,7 @@ export const Banner = styled.div`
   width: 100%;
   height: 200px;
   background-color: ${({ bgColor }) => bgColor};
+  overflow: hidden;
 `;
 
 export const AvatarWrapper = styled.div`
@@ -48,9 +49,14 @@ export const MiniBackgroundImage = styled.img`
   max-height: 100%;
 `;
 
+export const BackgroundImageWrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+`;
+
 export const BackgroundImage = styled.img`
-  max-width: 100%;
-  max-height: 100%;
+  height: 100%;
 `;
 
 export const MenuItemColor = styled.li`
