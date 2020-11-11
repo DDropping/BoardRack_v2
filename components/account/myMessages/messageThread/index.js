@@ -49,8 +49,6 @@ const index = ({ isMessageListChild }) => {
           message.messages[message.messages.length - 1].from !== user._id &&
           !message.isRead
         ) {
-          console.log("send the kraken");
-          //change this to !==
           const url = `${baseUrl}/api/messages/flagMessageAsRead/${message._id}`;
           axios.patch(url);
         }

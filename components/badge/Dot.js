@@ -32,7 +32,7 @@ const Dot = ({ centered, size, red, orange, green, color, content }) => {
       green={green}
       red={red}
       orange={orange}
-      content={!!content}
+      content={content}
     >
       {content && <ContentWrapper>{content}</ContentWrapper>}
     </Circle>
