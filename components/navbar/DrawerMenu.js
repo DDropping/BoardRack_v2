@@ -18,6 +18,7 @@ import {
 } from "../../actions/types";
 import navLinks from "../../constants/navLinks";
 import logoutModal from "../logout";
+import BadgeDot from "../badge/Dot";
 
 const Img = styled.img`
   width: 80%;
@@ -64,6 +65,7 @@ const Logout = styled.div`
 const DrawerMenu = ({ isDrawer, handleDrawer }) => {
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  const notifications = useSelector((state) => state.auth.notifications);
   const isLogin = useSelector((state) => state.overlays.isLogin);
   const isRegister = useSelector((state) => state.overlays.isRegister);
   const isLogout = useSelector((state) => state.overlays.isLogout);
@@ -133,7 +135,11 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
                 onClick={() => handleDrawer(false)}
               >
                 <a>
-                  {navItem.icon} {navItem.title}
+                  {navItem.icon} {navItem.title}{" "}
+                  {navItem.view === "messages" &&
+                    notifications.messages > 0 && (
+                      <BadgeDot size={12} red content={notifications.total} />
+                    )}
                 </a>
               </Li>
             </Link>
