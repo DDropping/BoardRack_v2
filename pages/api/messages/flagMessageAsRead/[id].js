@@ -1,7 +1,7 @@
 import connectDb from "../../../../utils/ConnectDb";
 import Message from "../../../../models/Message";
 
-import authenticate from "../../../middleware/auth";
+import authenticate from "../../../../middleware/auth";
 
 connectDb();
 
