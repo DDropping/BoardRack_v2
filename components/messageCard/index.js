@@ -63,7 +63,7 @@ const Index = ({ messageDetails }) => {
 
           {!messageDetails.isRead &&
             messageDetails.messages[messageDetails.messages.length - 1].from !==
-              user._id && <BadgeDot size={10} centered green />}
+              user._id && <BadgeDot size={10} centered red />}
         </HeaderContainer>
       </Link>
       <Link
