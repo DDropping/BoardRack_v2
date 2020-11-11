@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import axios from "axios";
 
+import {
+  DECREASE_MESSAGE_NOTIFICATION,
+  FLAG_MESSAGE_AS_READ,
+} from "../../../../actions/types";
 import baseUrl from "../../../../utils/baseUrl";
 import PostListRow from "../../../postListRow";
 import DisplayMessages from "./DisplayMessages";
@@ -30,31 +34,33 @@ const index = ({ isMessageListChild }) => {
   const router = useRouter();
   const user = useSelector((state) => state.auth.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
 
   //flag message as read
   useEffect(() => {
     if (user) {
-      console.log("use effect now");
       let message = user.messages.find(
         (messageData) => messageData._id === router.query.thread
       );
       if (message) {
-        console.log(message);
-        console.log(
-          "from: ",
-          message.messages[message.messages.length - 1].from
-        );
-        console.log("me: ", user._id);
         if (
           message.messages[message.messages.length - 1].from !== user._id &&
           !message.isRead
         ) {
           const url = `${baseUrl}/api/messages/flagMessageAsRead/${message._id}`;
           axios.patch(url);
+          dispatch({
+            type: DECREASE_MESSAGE_NOTIFICATION,
+            payload: message._id,
+          });
+          dispatch({
+            type: FLAG_MESSAGE_AS_READ,
+            payload: message._id,
+          });
         }
       }
     }
-  }, [user]);
+  }, [user, router.query.thread]);
 
   return (
     isAuthenticated &&

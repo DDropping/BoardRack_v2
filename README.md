@@ -78,6 +78,7 @@ protected routes: /pages/\_app.js
 ## Production Notes
 
 change base url: utils/baseUrl
+create default boardrack user and update welcome message Id: pages/api/auth/register
 
 ## Other Notes
 

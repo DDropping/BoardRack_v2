@@ -4,6 +4,8 @@ import {
   DEAUTH_USER,
   UPDATE_USER_PROFILEBACKGROUND,
   UPDATE_USER_NOTIFICATIONS,
+  DECREASE_MESSAGE_NOTIFICATION,
+  FLAG_MESSAGE_AS_READ,
   UPDATE_USER_POSTS,
   UPDATE_USER_FAVORITES_ADD,
   UPDATE_USER_FAVORITES_REMOVE,
@@ -18,8 +20,7 @@ const initialState = {
   token: cookie.get("token"),
   isAuthenticated: false,
   notifications: {
-    total: 0,
-    messages: 0,
+    messages: [],
   },
   user: null,
 };
@@ -54,6 +55,29 @@ export default function (state = initialState, action) {
       return {
         ...state,
         notifications: action.payload,
+      };
+    case DECREASE_MESSAGE_NOTIFICATION:
+      return {
+        ...state,
+        notifications: {
+          ...state.notifications,
+          messages: state.notifications.messages.filter(
+            (message) => message !== action.payload
+          ),
+        },
+      };
+    case FLAG_MESSAGE_AS_READ:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          messages: state.user.messages.map((message) => {
+            if (message._id === action.payload) {
+              message.isRead = true;
+            }
+            return message;
+          }),
+        },
       };
     case UPDATE_USER_POSTS:
       return {

@@ -71,19 +71,24 @@ const Index = ({ messageDetails }) => {
         shallow={true}
       >
         <ContentContainer>
-          <TitleWrapper>
-            {messageDetails.post &&
-              "RE: $" +
-                messageDetails.post.price +
-                " " +
-                messageDetails.post.title}
-            {!messageDetails.post && (
-              <div>
-                <ExclamationCircleTwoTone twoToneColor="#ffa501" />
-                {" This Post No Longer Exists"}
-              </div>
-            )}
-          </TitleWrapper>
+          {messageDetails.type === "post" && (
+            <TitleWrapper>
+              {messageDetails.post &&
+                "RE: $" +
+                  messageDetails.post.price +
+                  " " +
+                  messageDetails.post.title}
+              {!messageDetails.post && (
+                <div>
+                  <ExclamationCircleTwoTone twoToneColor="#ffa501" />
+                  {" This Post No Longer Exists"}
+                </div>
+              )}
+            </TitleWrapper>
+          )}
+          {messageDetails.type === "support" && (
+            <TitleWrapper>BoardRack Support</TitleWrapper>
+          )}
           <MessageBodyWrapper>
             {messageDetails.messages[messageDetails.messages.length - 1].body}
           </MessageBodyWrapper>

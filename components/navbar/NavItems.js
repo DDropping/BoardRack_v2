@@ -74,9 +74,15 @@ const NavItems = () => {
               className="ant-dropdown-link"
               onClick={(e) => e.preventDefault()}
             >
-              {user && notifications.total > 0 && (
-                <BadgeDot size={12} red content={notifications.total} />
-              )}{" "}
+              {user &&
+                notifications.messages.length >
+                  0 /* add more notification types here */ && (
+                  <BadgeDot
+                    size={12}
+                    red
+                    content={notifications.messages.length}
+                  /> /* add more notification types here */
+                )}{" "}
               {user ? user.username : "My Account"} <DownOutlined />
             </a>
           </Li>

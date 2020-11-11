@@ -76,7 +76,7 @@ async function handlePostRequest(req, res) {
     };
 
     const newMessageThread = {
-      type: "user",
+      type: "support",
       users: [user._id, "5fac56be274e5e1f5813c07d"],
       post: null,
       dateCreated: Date.now(),

@@ -39,14 +39,16 @@ const MessageOverview = ({ messageDetails, userId }) => {
             <TimeAgo>{timeAgo}</TimeAgo>
           </Header>
           <Description>
-            {messageDetails.post &&
+            {messageDetails.type === "post" &&
+              messageDetails.post &&
               "$" + messageDetails.post.price + " " + messageDetails.post.title}
-            {!messageDetails.post && (
+            {messageDetails.type === "post" && !messageDetails.post && (
               <div>
                 <ExclamationCircleTwoTone twoToneColor="#ffa501" />
                 {" This Post No Longer Exists"}
               </div>
             )}
+            {messageDetails.type === "support" && "BoardRack Support"}
             {!messageDetails.isRead &&
               messageDetails.messages[messageDetails.messages.length - 1]
                 .from === userId && (
@@ -64,7 +66,7 @@ const MessageOverview = ({ messageDetails, userId }) => {
 
             {!messageDetails.isRead &&
               messageDetails.messages[messageDetails.messages.length - 1]
-                .from !== userId && <BadgeDot size={10} centered green />}
+                .from !== userId && <BadgeDot size={10} centered red />}
           </Description>
         </div>
       </Container>

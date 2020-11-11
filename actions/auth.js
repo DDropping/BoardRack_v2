@@ -62,16 +62,16 @@ export const checkUserNotifications = (user) => async (dispatch) => {
         messageData.isRead === false &&
         messageData.messages[messageData.messages.length - 1].from !== user._id
     );
+    messageNotifications = messageNotifications.map((item) => item._id);
     //add more notification counters here
 
-    let totalNotifications = {
-      total: messageNotifications.length,
-      messages: messageNotifications.length,
+    let notifications = {
+      messages: messageNotifications,
     };
 
     await dispatch({
       type: UPDATE_USER_NOTIFICATIONS,
-      payload: totalNotifications,
+      payload: notifications,
     });
   } catch (err) {
     console.log(err);

@@ -137,8 +137,16 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
                 <a>
                   {navItem.icon} {navItem.title}{" "}
                   {navItem.view === "messages" &&
-                    notifications.messages > 0 && (
-                      <BadgeDot size={12} red content={notifications.total} />
+                    /* add more notification types here */
+                    notifications.messages.length > 0 && (
+                      <BadgeDot
+                        size={12}
+                        red
+                        content={
+                          /* add more notification types here */
+                          notifications.messages.length
+                        }
+                      />
                     )}
                 </a>
               </Li>

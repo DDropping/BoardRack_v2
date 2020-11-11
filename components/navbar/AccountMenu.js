@@ -89,9 +89,14 @@ const AccountMenu = () => {
               <Li active={router.query.view === item.view}>
                 <a>
                   {item.icon} {item.title}{" "}
-                  {item.view === "messages" && notifications.messages > 0 && (
-                    <BadgeDot size={12} red content={notifications.total} />
-                  )}
+                  {item.view === "messages" &&
+                    notifications.messages.length > 0 && (
+                      <BadgeDot
+                        size={12}
+                        red
+                        content={notifications.messages.length}
+                      />
+                    )}
                 </a>
               </Li>
             </Link>

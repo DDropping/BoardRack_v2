@@ -37,6 +37,7 @@ const AvatarContainer = styled.div`
 `;
 
 const Body = styled.div`
+  text-align: left;
   display: inline-block;
   padding: 5px;
   border-radius: 10px;
