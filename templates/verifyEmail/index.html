@@ -29,7 +29,7 @@
       .header {
         max-width: 600px;
         background-color: #00458a;
-        padding: 30px 0;
+        padding: 20px 0;
       }
       .header-logo {
         max-height: 65px;
@@ -55,7 +55,7 @@
         line-height: 18px;
       }
       .activateButton {
-        margin-top: 25px;
+        margin: 25px 0;
         font-size: 12px;
         font-family: "open sans semi", Helvetica, Arial, sans-serif;
         color: #ffffff;
@@ -85,6 +85,9 @@
         margin: 0 20px 10px 20px;
         cursor: pointer;
       }
+      .link-text {
+        color: #00458a;
+      }
     </style>
   </head>
   <body>
@@ -102,32 +105,38 @@
         <a class="activateButton" href="${verificationLink}" target="_blank">
           Activate Your Account
         </a>
+        <div>Or copy this link and paste in your web browser:</div>
+        <br />
+        <a href="${verificationLink}" class="link-text">
+          <div>${verificationLink}</div>
+        </a>
+        <br />
+        <div style>Cheers, The BoardRack Team</div>
       </div>
       <div class="footer">
         <div>
           <a href="https://facebook.com" target="_blank" class="social-logo">
             <img
-              src="https://ddimagelibrary.s3-us-west-1.amazonaws.com/facebook_logo.png"
+              src="https://ddimagelibrary.s3-us-west-1.amazonaws.com/facebook_logo_white.png"
             />
           </a>
           <a href="https://twitter.com" target="_blank" class="social-logo">
             <img
-              src="https://ddimagelibrary.s3-us-west-1.amazonaws.com/twitter_logo.png"
+              src="https://ddimagelibrary.s3-us-west-1.amazonaws.com/twitter_logo_white.png"
             />
           </a>
           <a href="https://instagram.com" target="_blank" class="social-logo">
             <img
-              src="https://ddimagelibrary.s3-us-west-1.amazonaws.com/instagram_logo.png"
+              src="https://ddimagelibrary.s3-us-west-1.amazonaws.com/instagram_logo_white.png"
             />
           </a>
           <a href="https://youtube.com" target="_blank" class="social-logo">
             <img
-              src="https://ddimagelibrary.s3-us-west-1.amazonaws.com/youtube_logo.png"
+              src="https://ddimagelibrary.s3-us-west-1.amazonaws.com/youtube_logo_white.png"
             />
           </a>
         </div>
-        <div class="footerContent">BoardRack Inc San Francisco, CA 94122</div>
-        <div class="footerContent">© BoardRack 2020</div>
+        <div class="footerContent">BoardRack • San Francisco, CA 94122</div>
       </div>
     </center>
   </body>
