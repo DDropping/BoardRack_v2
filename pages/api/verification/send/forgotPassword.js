@@ -28,8 +28,10 @@ async function handlePostRequest(req, res) {
 
   try {
     //verify user exists
-    const user = User.findOne({ email: userEmail });
-    if (!user) return res.status(400).send("Bad Request");
+    const user = await User.findOne({ email: userEmail });
+    if (!user) {
+      return res.status(400).send("Bad Request");
+    }
 
     //create JWT to store user id
     const payload = {
