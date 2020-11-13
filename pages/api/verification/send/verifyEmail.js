@@ -50,7 +50,7 @@ async function handlePostRequest(req, res) {
     });
 
     const mailOptions = {
-      from: `BoardRack Verify <${process.env.EMAIL_USER}>`,
+      from: `BoardRack <${process.env.EMAIL_USER}>`,
       to: userEmail,
       subject: "Verify your email",
       html: htmlBody,
