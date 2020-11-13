@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { Carousel } from 'antd';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import React, { useRef } from "react";
+import { Carousel } from "antd";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
 import {
   CarouselContainer,
@@ -10,7 +10,7 @@ import {
   ArrowWrapper,
   PreviousArrow,
   NextArrow,
-} from './style';
+} from "./style";
 
 const index = () => {
   const carouselRef = useRef();
@@ -32,26 +32,26 @@ const index = () => {
           ref={carouselRef}
           autoplay
           autoplaySpeed={7000}
-          dotPosition="top"
+          dotPosition='top'
         >
           <div>
             <ImgWrapper>
-              <Img src="/images/banner/buysell.png" alt="boardrack logo" />
+              <Img src='/images/banner/buysell.png' alt='boardrack logo' />
             </ImgWrapper>
           </div>
           <div>
             <ImgWrapper>
-              <Img src="/images/banner/findlove.png" alt="boardrack logo" />
+              <Img src='/images/banner/findlove.png' alt='boardrack logo' />
             </ImgWrapper>
           </div>
           <div>
             <ImgWrapper>
-              <Img src="/images/banner/calculator.png" alt="boardrack logo" />
+              <Img src='/images/banner/calculator.png' alt='boardrack logo' />
             </ImgWrapper>
           </div>
           <div>
             <ImgWrapper>
-              <Img src="/images/banner/supportlocal.png" alt="boardrack logo" />
+              <Img src='/images/banner/supportlocal.png' alt='boardrack logo' />
             </ImgWrapper>
           </div>
         </Carousel>
