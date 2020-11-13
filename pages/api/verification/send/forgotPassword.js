@@ -60,7 +60,7 @@ async function handlePostRequest(req, res) {
     var mailOptions = {
       from: `BoardRack <${process.env.EMAIL_USER}>`,
       to: userEmail,
-      subject: "New Message",
+      subject: "Password Reset",
       html: htmlBody,
     };
 
