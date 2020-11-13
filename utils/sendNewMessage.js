@@ -9,7 +9,6 @@ const sendNewMessage = async (
   sendToUserId,
   messageBody
 ) => {
-  console.log("send from user name: ", sendFromUsername);
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -24,7 +23,7 @@ const sendNewMessage = async (
   const emailBody = JSON.stringify({
     recieverUserId: sendToUserId,
     senderUsername: sendFromUsername,
-    messageUrl: `${baseUrl}/account?view=messages`,
+    messagesUrl: `${baseUrl}/account?view=messages`,
   });
 
   const emailUrl = `${baseUrl}/api/verification/send/newMessage`;
