@@ -23,6 +23,7 @@ const ForgotPasswordForm = ({ setForgotPasswordVisible }) => {
   const [email, setEmail] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [isSent, setSent] = useState(null);
 
   //disable login button if fields are empty
   useEffect(() => {
@@ -35,8 +36,31 @@ const ForgotPasswordForm = ({ setForgotPasswordVisible }) => {
   }, [email]);
 
   //handle submit
-  const handleSubmit = () => {
-    console.log("submit");
+  const handleSubmit = async () => {
+    //set headers for request
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    //stringify the form items
+    const data = { userEmail: email };
+    const body = JSON.stringify(data);
+
+    //update post to DB
+    try {
+      setSent(null);
+      const url = `${baseUrl}/api/verification/send/forgotPassword`;
+      const res = await axios.post(url, body, config);
+      if (res) {
+        setSent(true);
+      } else {
+        setSent(false);
+      }
+    } catch (err) {
+      setSent(false);
+    }
   };
 
   return (
