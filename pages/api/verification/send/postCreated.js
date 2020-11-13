@@ -1,9 +1,5 @@
-import connectDb from "../../../../utils/ConnectDb";
-
 const nodemailer = require("nodemailer");
 import generateInline from "../../../../templates/notifyPostCreated";
-
-connectDb();
 
 const handler = async (req, res) => {
   switch (req.method) {
