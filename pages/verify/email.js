@@ -34,7 +34,7 @@ const email = () => {
   return (
     <div>
       <Head>
-        <title>BoardRack | Home</title>
+        <title>BoardRack | Verify Email</title>
       </Head>
       <EmailConfirmation isLoading={isLoading} isSuccess={isSuccess} />
     </div>
