@@ -1,11 +1,7 @@
-import connectDb from "../../../../utils/ConnectDb";
-
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 import generateInline from "../../../../templates/verifyEmail";
 import baseUrl from "../../../../utils/baseUrl";
-
-connectDb();
 
 const handler = async (req, res) => {
   switch (req.method) {
