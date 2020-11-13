@@ -110,7 +110,6 @@ const generateInline = (passwordResetLink) => {
             </div>
             <div class="subtitle" style="margin-top: 20px;text-align: center;font-size: 18px;color: #1a1a1a;line-height: 18px;">
               This link will expire in 48 hours.
-              email.
             </div>
             <a class="activateButton" href=${passwordResetLink} target="_blank" style="margin: 25px 0;font-size: 12px;font-family: &quot;open sans semi&quot;, Helvetica, Arial, sans-serif;color: #ffffff;text-decoration: none;border-radius: 0px;padding: 12px 18px;border: 1px solid #1a1a1a;background-color: #00458a;display: inline-block;line-height: 26px;letter-spacing: 2px;text-transform: uppercase;cursor: pointer;">
               Reset Your Password
