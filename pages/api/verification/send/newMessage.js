@@ -25,9 +25,14 @@ const handler = async (req, res) => {
 async function handlePostRequest(req, res) {
   const { recieverUserId, senderUsername, messagesUrl } = req.body;
 
-  const { email } = await User.findById(recieverUserId);
-
   try {
+    const { email } = await User.findById(recieverUserId);
+    if (!email) return res.status(400).send("Bad Request");
+
+    //generate email html
+    let htmlBody = generateInline(senderUsername, messagesUrl);
+
+    //create nodemailer instance
     var transporter = nodemailer.createTransport({
       service: process.env.EMAIL_SERVICE,
       auth: {
@@ -36,10 +41,8 @@ async function handlePostRequest(req, res) {
       },
     });
 
-    let htmlBody = generateInline(senderUsername, messagesUrl);
-
     var mailOptions = {
-      from: process.env.EMAIL_USER,
+      from: `BoardRack <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "New Message",
       html: htmlBody,
@@ -47,7 +50,6 @@ async function handlePostRequest(req, res) {
 
     //send email
     let info = await transporter.sendMail(mailOptions);
-    console.log(info);
 
     if (!info) {
       res.status(500).send("Could Not Send Email");

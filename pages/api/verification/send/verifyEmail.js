@@ -26,9 +26,7 @@ async function handlePostRequest(req, res) {
     const payload = {
       verifyUserId: userId,
     };
-    const verificationToken = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "7d",
-    });
+    const verificationToken = jwt.sign(payload, process.env.JWT_SECRET);
 
     //create verification link with jwt
     const verificationLink = `${baseUrl}/verify/email?token=${verificationToken}`;

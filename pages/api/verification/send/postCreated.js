@@ -19,6 +19,10 @@ const handler = async (req, res) => {
 async function handlePostRequest(req, res) {
   const { userEmail, postUrl } = req.body;
 
+  //generate email html
+  let htmlBody = generateInline(postUrl);
+
+  //create nodemailer instance
   try {
     var transporter = nodemailer.createTransport({
       service: process.env.EMAIL_SERVICE,
@@ -28,10 +32,8 @@ async function handlePostRequest(req, res) {
       },
     });
 
-    let htmlBody = generateInline(postUrl);
-
     var mailOptions = {
-      from: process.env.EMAIL_USER,
+      from: `BoardRack <${process.env.EMAIL_USER}>`,
       to: userEmail,
       subject: "Post Created",
       html: htmlBody,
