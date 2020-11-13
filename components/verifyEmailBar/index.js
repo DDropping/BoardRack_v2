@@ -65,7 +65,12 @@ const index = () => {
     } catch (err) {}
   };
 
-  if (user && !cookie.get("verifyEmailRemindLater") && isVisible)
+  if (
+    user &&
+    !user.emailConfirmed &&
+    !cookie.get("verifyEmailRemindLater") &&
+    isVisible
+  )
     return (
       <Container>
         <Contenet>
