@@ -39,7 +39,7 @@ async function handlePostRequest(req, res) {
   try {
     //user: check if message thread exists between the two users
     let messageThread;
-    if (type === "user") {
+    if (type === "user" || type === "support") {
       messageThread = await Message.findOne({
         users: { $all: [sendToUserId, sendFromUserId] },
       });
