@@ -1,4 +1,4 @@
-const generateInline = (username, messagesUrl) => {
+const generateInline = (senderUsername, messagesUrl) => {
   return `
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
@@ -99,7 +99,7 @@ const generateInline = (username, messagesUrl) => {
           </div>
           <div class="content" style="max-width: 600px;background-color: #ffffff;margin-top: 0;padding: 40px 0;">
             <div class="title" style="text-align: center;font-weight: bold;font-size: 32px;color: #1a1a1a;line-height: 36px;">New Message!</div>
-            <div class="subtitle" style="margin-top: 20px;text-align: center;font-size: 18px;color: #1a1a1a;line-height: 18px;">${username} has sent you a message.</div>
+            <div class="subtitle" style="margin-top: 20px;text-align: center;font-size: 18px;color: #1a1a1a;line-height: 18px;">${senderUsername} has sent you a message.</div>
             <div class="subtitle" style="margin-top: 20px;text-align: center;font-size: 18px;color: #1a1a1a;line-height: 18px;">Click below to read your messages.</div>
             <a class="activateButton" href=${messagesUrl} target="_blank" style="margin: 25px 0;font-size: 12px;font-family: &quot;open sans semi&quot;, Helvetica, Arial, sans-serif;color: #ffffff;text-decoration: none;border-radius: 0px;padding: 12px 18px;border: 1px solid #1a1a1a;background-color: #00458a;display: inline-block;line-height: 26px;letter-spacing: 2px;text-transform: uppercase;cursor: pointer;">
               Go to messages

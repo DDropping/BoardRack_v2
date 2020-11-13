@@ -26,7 +26,13 @@ const index = ({ user, location, postId, phone, email }) => {
     if (message.length > 0) {
       try {
         setSending(true);
-        await sendNewMessage("post", postId, user._id, message);
+        await sendNewMessage(
+          "post",
+          postId,
+          currentUser.username,
+          user._id,
+          message
+        );
         setMessage("");
         setSending(false);
         setSendButtonText("Message Sent!");
@@ -55,7 +61,7 @@ const index = ({ user, location, postId, phone, email }) => {
       </DetailsContainer>
       <ContactContainer>
         {!isContact && (
-          <Button type="primary" onClick={() => setIsContact(!isContact)}>
+          <Button type='primary' onClick={() => setIsContact(!isContact)}>
             Contact
           </Button>
         )}
@@ -81,7 +87,7 @@ const index = ({ user, location, postId, phone, email }) => {
           />
           {currentUser ? (
             <Button
-              type="primary"
+              type='primary'
               disabled={currentUser._id === user._id}
               loading={isSending}
               block
@@ -93,7 +99,7 @@ const index = ({ user, location, postId, phone, email }) => {
               {sendButtonText}
             </Button>
           ) : (
-            <Button type="primary" block disabled>
+            <Button type='primary' block disabled>
               Login to send messages
             </Button>
           )}

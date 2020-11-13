@@ -1,7 +1,9 @@
-import connectDb from "../../../../utils/ConnectDb";
-
 const nodemailer = require("nodemailer");
+
 import generateInline from "../../../../templates/notifyNewMessage";
+import connectDb from "../../../../utils/ConnectDb";
+import User from "../../../../models/User";
+import Authenticate from "../../../../middleware/auth";
 
 connectDb();
 
@@ -21,7 +23,9 @@ const handler = async (req, res) => {
 // @res
 // @access  Public
 async function handlePostRequest(req, res) {
-  const { userEmail, username, messagesUrl } = req.body;
+  const { recieverUserId, senderUsername, messagesUrl } = req.body;
+
+  const { email } = await User.findById(recieverUserId);
 
   try {
     var transporter = nodemailer.createTransport({
@@ -32,17 +36,18 @@ async function handlePostRequest(req, res) {
       },
     });
 
-    let htmlBody = generateInline(username, messagesUrl);
+    let htmlBody = generateInline(senderUsername, messagesUrl);
 
     var mailOptions = {
       from: process.env.EMAIL_USER,
-      to: userEmail,
-      subject: "Post Created",
+      to: email,
+      subject: "New Message",
       html: htmlBody,
     };
 
     //send email
     let info = await transporter.sendMail(mailOptions);
+    console.log(info);
 
     if (!info) {
       res.status(500).send("Could Not Send Email");
@@ -54,4 +59,4 @@ async function handlePostRequest(req, res) {
   }
 }
 
-export default handler;
+export default Authenticate(handler);
