@@ -22,6 +22,7 @@ import baseUrl from "../../../utils/baseUrl";
 
 const index = () => {
   const [email, setEmail] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -31,12 +32,17 @@ const index = () => {
 
   //disable reset password button if passwords dont match criteria
   useEffect(() => {
-    if (password.length >= 6 && password === confirmPassword) {
+    if (
+      password.length >= 6 &&
+      password === confirmPassword &&
+      /\S+@\S+\.\S+/.test(email) &&
+      email === confirmEmail
+    ) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
-  }, [password, confirmPassword]);
+  }, [password, confirmPassword, email, confirmEmail]);
 
   //handle submit function
   const handleSubmit = async () => {
@@ -62,6 +68,9 @@ const index = () => {
       //send request
       const url = `${baseUrl}/api/verification/authenticate/recoverAccount`;
       await axios.patch(url, body, config);
+      setTimeout(() => {
+        router.push("/");
+      }, 3000);
       setSuccess(true);
     } catch (err) {
       setSuccess(false);
@@ -92,6 +101,26 @@ const index = () => {
         />
         <div style={{ fontSize: "1.5rem" }}>
           {/\S+@\S+\.\S+/.test(email) ? (
+            <CheckCircleTwoTone twoToneColor='#52c41a' />
+          ) : (
+            <ExclamationCircleTwoTone twoToneColor='#fcbe03' />
+          )}
+        </div>
+      </InputWrapper>
+      <TextTitle>Confirm Email:</TextTitle>
+      <InputWrapper>
+        <Input
+          placeholder='Email'
+          prefix={<MailOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+          size='large'
+          name='email'
+          value={confirmEmail}
+          onChange={(e) => setConfirmEmail(e.target.value)}
+          type='email'
+          style={{ marginRight: "1em" }}
+        />
+        <div style={{ fontSize: "1.5rem" }}>
+          {email === confirmEmail && /\S+@\S+\.\S+/.test(email) ? (
             <CheckCircleTwoTone twoToneColor='#52c41a' />
           ) : (
             <ExclamationCircleTwoTone twoToneColor='#fcbe03' />
