@@ -1,8 +1,11 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 import isEmail from "validator/lib/isEmail";
 import isLength from "validator/lib/isLength";
 
+import generateInline from "../../../templates/verifyEmail";
+import baseUrl from "../../../utils/baseUrl";
 import connectDb from "../../../utils/ConnectDb";
 import User from "../../../models/User";
 import Message from "../../../models/Message";
@@ -93,6 +96,41 @@ async function handlePostRequest(req, res) {
 
     //save user to db
     await user.save();
+
+    //send "verify your email" to user's email address
+    try {
+      const verifyEmailPayload = {
+        verifyUserId: user._id,
+      };
+      const verificationToken = jwt.sign(
+        verifyEmailPayload,
+        process.env.JWT_SECRET
+      );
+
+      const verificationLink = `${baseUrl}/verify/email?token=${verificationToken}`;
+
+      let htmlBody = generateInline(verificationLink);
+
+      const transporter = nodemailer.createTransport({
+        service: process.env.EMAIL_SERVICE,
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS,
+        },
+      });
+
+      const mailOptions = {
+        from: `BoardRack <${process.env.EMAIL_USER}>`,
+        to: user.email,
+        subject: "Verify your email",
+        html: htmlBody,
+      };
+
+      //send email
+      await transporter.sendMail(mailOptions);
+    } catch (err) {
+      console.log("Failed to send verification email");
+    }
 
     //create JWT
     const payload = {
