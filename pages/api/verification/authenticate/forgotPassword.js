@@ -17,7 +17,7 @@ const handler = async (req, res) => {
   }
 };
 
-// @route   PATCH api/verification/authenticate/forgotPassword/[token]
+// @route   PATCH api/verification/authenticate/forgotPassword
 // @desc    update user password given reset token and new password
 // @res
 // @access  Public
@@ -30,7 +30,6 @@ async function handlePatchRequest(req, res) {
 
     //verify token is of correct type
     if (basis !== "password_reset") {
-      console.log("basis: ", basis);
       return res.status(400).send("Password Change Request Failed");
     }
 
@@ -46,7 +45,6 @@ async function handlePatchRequest(req, res) {
     );
 
     if (!data) {
-      console.log("verifyUserId: ", verifyUserId, password, encryptedPassword);
       return res.status(400).send("Password Change Request Failed");
     }
     res.status(200).send("Password Successfully Reset");
