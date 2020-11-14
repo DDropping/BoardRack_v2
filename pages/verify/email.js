@@ -30,7 +30,7 @@ const email = () => {
 
           //send request
           const url = `${baseUrl}/api/verification/authenticate/verifyEmail`;
-          await axios.patch(url, body.config);
+          await axios.patch(url, body, config);
           setSuccess(true);
         } catch (err) {
           setSuccess(false);
