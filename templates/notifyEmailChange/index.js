@@ -101,12 +101,12 @@ const generateInline = (username, newEmail, recoverAccountUrl) => {
             <div class="title" style="text-align: center;font-weight: bold;font-size: 32px;color: #1a1a1a;line-height: 36px;">Email Updated!</div>
             <div class="subtitle" style="margin-top: 20px;text-align: center;font-size: 18px;color: #1a1a1a;line-height: 18px;">
               Hi ${username}, your account's email address has been updated to
-              ${newEmail}
+              ${newEmail}.
             </div>
             <div class="subtitle" style="margin-top: 20px;text-align: center;font-size: 18px;color: #1a1a1a;line-height: 18px;">No further action is required.</div>
             <div class="subtitle" style="margin-top: 20px;text-align: center;font-size: 18px;color: #1a1a1a;line-height: 18px;">
               If you didn't authorize this action, your account has likely been
-              compromised. Click the button below to recover your account
+              compromised. Click the button below to recover your account.
             </div>
             <a class="activateButton" href=${recoverAccountUrl} target="_blank" style="margin: 25px 0;font-size: 12px;font-family: &quot;open sans semi&quot;, Helvetica, Arial, sans-serif;color: #ffffff;text-decoration: none;border-radius: 0px;padding: 12px 18px;border: 1px solid #1a1a1a;background-color: #00458a;display: inline-block;line-height: 26px;letter-spacing: 2px;text-transform: uppercase;cursor: pointer;">
               Recover Account
