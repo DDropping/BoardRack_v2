@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { Button, Checkbox, Form, Input } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import styled from "styled-components";
-import { LeftOutlined } from "@ant-design/icons";
+import { LeftOutlined, CheckOutlined } from "@ant-design/icons";
 
 import { TOGGLE_REGISTER, TOGGLE_LOGIN } from "../../actions/types";
 import baseUrl from "../../utils/baseUrl";
@@ -37,6 +37,7 @@ const ForgotPasswordForm = ({ setForgotPasswordVisible }) => {
 
   //handle submit
   const handleSubmit = async () => {
+    setLoading(true);
     //set headers for request
     const config = {
       headers: {
@@ -60,6 +61,8 @@ const ForgotPasswordForm = ({ setForgotPasswordVisible }) => {
       }
     } catch (err) {
       setSent(false);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -89,7 +92,13 @@ const ForgotPasswordForm = ({ setForgotPasswordVisible }) => {
         disabled={disabled}
         onClick={handleSubmit}
       >
-        Send Recovery Link
+        {isSent ? (
+          <>
+            <CheckOutlined /> Sent
+          </>
+        ) : (
+          "Send Recovery Link"
+        )}
       </Button>
       <Button
         type='link'
