@@ -1,19 +1,18 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   max-width: 600px;
   margin: 50px auto;
 `;
 
 export const Title = styled.div`
+  text-align: center;
   font-size: 2rem;
   font-weight: bold;
 `;
 
 export const Subtitle = styled.div`
+  text-align: center;
   font-weight: bold;
   margin-bottom: 2em;
 `;
@@ -23,7 +22,7 @@ export const TextTitle = styled.div`
 `;
 
 export const InputWrapper = styled.div`
-  max-width: 400px;
+  align-items: center;
   display: flex;
   margin-bottom: 1em;
 `;
