@@ -1,12 +1,8 @@
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
-import connectDb from "../../../../utils/ConnectDb";
-import User from "../../../../models/User";
 import generateInline from "../../../../templates/notifyEmailChange";
 import baseUrl from "../../../../utils/baseUrl";
-
-connectDb();
 
 const handler = async (req, res) => {
   switch (req.method) {
@@ -52,7 +48,7 @@ async function handlePostRequest(req, res) {
     var mailOptions = {
       from: `BoardRack <${process.env.EMAIL_USER}>`,
       to: oldUserEmail,
-      subject: "Email Changed",
+      subject: "Email Updated",
       html: htmlBody,
     };
 
