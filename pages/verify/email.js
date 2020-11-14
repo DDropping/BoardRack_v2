@@ -32,6 +32,9 @@ const email = () => {
           const url = `${baseUrl}/api/verification/authenticate/verifyEmail`;
           await axios.patch(url, body, config);
           setSuccess(true);
+          setTimeout(() => {
+            router.push("/");
+          }, 3000);
         } catch (err) {
           setSuccess(false);
         }

@@ -57,6 +57,9 @@ const index = () => {
       const url = `${baseUrl}/api/verification/authenticate/forgotPassword`;
       await axios.patch(url, body, config);
       setSuccess(true);
+      setTimeout(() => {
+        router.push("/");
+      }, 3000);
     } catch (err) {
       setSuccess(false);
     } finally {
