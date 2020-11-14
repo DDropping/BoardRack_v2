@@ -15,8 +15,22 @@ const email = () => {
     try {
       const updateUser = async () => {
         try {
-          const url = `${baseUrl}/api/verification/authenticate/verifyEmail?token=${router.query.token}`;
-          await axios.patch(url);
+          //set headers for request
+          const config = {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+
+          //stringify the form items
+          const data = {
+            token: router.query.token,
+          };
+          const body = JSON.stringify(data);
+
+          //send request
+          const url = `${baseUrl}/api/verification/authenticate/verifyEmail`;
+          await axios.patch(url, body.config);
           setSuccess(true);
         } catch (err) {
           setSuccess(false);

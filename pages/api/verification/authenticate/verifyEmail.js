@@ -22,7 +22,9 @@ const handler = async (req, res) => {
 // @access  Public
 async function handlePatchRequest(req, res) {
   try {
-    const decoded = jwt.verify(req.query.token, process.env.JWT_SECRET);
+    const token = req.body.token;
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     let user = await User.findByIdAndUpdate(
       decoded.verifyUserId,
