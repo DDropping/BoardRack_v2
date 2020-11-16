@@ -9,6 +9,7 @@ import Footer from "../footer";
 import Login from "../login";
 import Register from "../register";
 import setTokenHeader from "../../utils/setTokenHeader";
+import VerifyEmailBar from "../verifyEmailBar";
 
 import { loadUserByProps } from "../../actions/auth";
 import { getLocationWithIp } from "../../actions/location";
@@ -43,9 +44,10 @@ function Layout({ children, user, token }) {
   return (
     <>
       <Head>
-        <link rel="stylesheet" href="nprogress.css" />
+        <link rel='stylesheet' href='nprogress.css' />
       </Head>
       <Container>
+        <VerifyEmailBar />
         <Navbar user />
         <Login />
         <Register />

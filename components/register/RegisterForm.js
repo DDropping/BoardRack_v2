@@ -84,45 +84,45 @@ const RegisterForm = () => {
       <ErrorMessage>{error}</ErrorMessage>
       <InputWrapper>
         <Input
-          placeholder="Username"
+          placeholder='Username'
           prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-          size="large"
-          name="username"
+          size='large'
+          name='username'
           value={user.username}
           onChange={handleChange}
         />
       </InputWrapper>
       <InputWrapper>
         <Input
-          placeholder="Email"
+          placeholder='Email'
           prefix={<MailOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-          size="large"
-          name="email"
+          size='large'
+          name='email'
           value={user.email}
           onChange={handleChange}
-          type="email"
+          type='email'
         />
       </InputWrapper>
       <InputWrapper>
         <Input.Password
-          placeholder="Password"
+          placeholder='Password'
           prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-          size="large"
-          name="password"
+          size='large'
+          name='password'
           value={user.password}
           onChange={handleChange}
-          type="password"
+          type='password'
         />
       </InputWrapper>
       <InputWrapper>
         <Input.Password
-          placeholder="Confirm Password"
+          placeholder='Confirm Password'
           prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-          size="large"
-          name="confirmPassword"
+          size='large'
+          name='confirmPassword'
           value={user.confirmPassword}
           onChange={handleChange}
-          type="password"
+          type='password'
         />
         <PasswordStrength password={user.password} />
       </InputWrapper>
@@ -143,10 +143,10 @@ const RegisterForm = () => {
       </div>
       <Form.Item>
         <Button
-          type="primary"
-          htmlType="submit"
+          type='primary'
+          htmlType='submit'
           loading={loading}
-          size="large"
+          size='large'
           style={{ width: "100%" }}
           disabled={disabled}
           onClick={handleSubmit}
@@ -156,7 +156,7 @@ const RegisterForm = () => {
       </Form.Item>
       <div>
         Already have an account?{" "}
-        <Link href="/">
+        <Link href='/'>
           <A
             onClick={() => {
               dispatch({ type: TOGGLE_LOGIN, payload: true });

@@ -1,22 +1,22 @@
-import React from 'react';
-import Head from 'next/head';
+import React from "react";
+import Head from "next/head";
 
-import Carousel from '../components/carousel';
-import FiltersBar from '../components/filtersBar';
-import FiltersBox from '../components/filtersBox';
-import PostList from '../components/displayPosts';
+import Carousel from "../components/carousel";
+import FiltersBar from "../components/filtersBar";
+import FiltersBox from "../components/filtersBox";
+import PostList from "../components/displayPosts";
 
 const Home = (props) => (
   <div>
     <Head>
       <title>BoardRack | Home</title>
     </Head>
-    <div style={{ zIndex: 1, position: 'relative' }}>
+    <div style={{ zIndex: 1, position: "relative" }}>
       <Carousel />
     </div>
-    <div style={{ zIndex: 2, position: 'relative' }}>
+    <div style={{ zIndex: 2, position: "relative" }}>
       <FiltersBar />
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: "flex" }}>
         <FiltersBox />
         <PostList />
       </div>

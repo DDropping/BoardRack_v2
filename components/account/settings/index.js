@@ -39,7 +39,46 @@ const index = () => {
     const res = await axios.patch(url, body, config).catch((error) => {
       setErrorMessage(error.response.data);
     });
-    console.log(res);
+
+    //send email notification if user's password was updated
+    if (
+      res &&
+      userData.password &&
+      userData.newPassword &&
+      userData.newPasswordConfirm
+    ) {
+      //stringify the body items
+      const passwordChangeBody = JSON.stringify({
+        userEmail: user.email,
+        username: user.username,
+        userId: user._id,
+      });
+
+      const passwordChangeUrl = `${baseUrl}/api/verification/send/passwordChange`;
+      await axios
+        .post(passwordChangeUrl, passwordChangeBody, config)
+        .catch((error) => {
+          console.log("Could not send email regarding password change");
+        });
+    }
+
+    //send email notification if user's email was updated
+    if (res && userData.email) {
+      //stringify the body items
+      const emailChangeBody = JSON.stringify({
+        oldUserEmail: user.email,
+        newUserEmail: userData.email,
+        username: user.username,
+        userId: user._id,
+      });
+
+      const emailChangeUrl = `${baseUrl}/api/verification/send/emailChange`;
+      await axios
+        .post(emailChangeUrl, emailChangeBody, config)
+        .catch((error) => {
+          console.log("Could not send email regarding email change");
+        });
+    }
   };
 
   return (
@@ -57,7 +96,7 @@ const index = () => {
           {errorMessage}
         </ButtonText>
         <Button
-          type="primary"
+          type='primary'
           onClick={updateUserData}
           disabled={
             JSON.stringify(userData) === JSON.stringify(initialState) ||

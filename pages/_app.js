@@ -164,7 +164,7 @@ export default class MyApp extends App {
       <ThemeProvider theme={theme}>
         <Layout {...pageProps}>
           <Head>
-            <link rel="shortcut icon" href="/images/br_favicon.ico" />
+            <link rel='shortcut icon' href='/images/br_favicon.ico' />
           </Head>
           <GlobalStyle />
           <Component {...pageProps} />
