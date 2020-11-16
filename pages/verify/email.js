@@ -4,7 +4,7 @@ import Head from "next/head";
 import axios from "axios";
 
 import baseUrl from "../../utils/baseUrl";
-import EmailConfirmation from "../../components/confirmations/emailConfirm";
+import EmailConfirmation from "../../components/emailConfirmations/emailConfirm";
 
 const email = () => {
   const router = useRouter();

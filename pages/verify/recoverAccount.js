@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-import RecoverAccountForm from "../../components/confirmations/recoverAccountForm";
+import RecoverAccountForm from "../../components/emailConfirmations/recoverAccountForm";
 
 const resetPassword = () => {
   return (

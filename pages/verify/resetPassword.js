@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-import ResetPasswordForm from "../../components/confirmations/resetPasswordForm";
+import ResetPasswordForm from "../../components/emailConfirmations/resetPasswordForm";
 
 const resetPassword = () => {
   return (
