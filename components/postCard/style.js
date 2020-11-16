@@ -12,6 +12,9 @@ export const CardContainer = styled.div`
   :hover {
     box-shadow: 0 0 11px rgba(33, 33, 33, 0.4);
   }
+  @media (max-width: ${({ theme }) => theme.sm}) {
+    margin-left: 0;
+  }
 `;
 
 //POST CARD HEADER
