@@ -70,6 +70,7 @@ async function handlePostRequest(req, res) {
       "This website is only demo since BoardRack is still in development. " +
       "Thus, any posts you view should not be considered real and are only for demonstrative purposes. " +
       "Also, filtering by location has been disabled as all demostrative posts will be located in the San Francisco Bay Area. " +
+      "And all posts flagged for deletion will not be removed after the designated 7 day wait. However, active posts will still remain editable. " +
       "Thank you for visiting the site and if you have any questions, encounter any bugs, or just want say hi, please respond here!";
 
     const message = {
