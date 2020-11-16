@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import { Button } from "antd";
 import baseUrl from "../../../utils/baseUrl";
 import axios from "axios";
@@ -22,6 +23,7 @@ const index = () => {
   const user = useSelector((state) => state.auth.user);
   const [userData, setUserData] = useState(initialState);
   const [errorMessage, setErrorMessage] = useState(null);
+  const router = useRouter();
 
   const updateUserData = async () => {
     setErrorMessage(null);
@@ -39,6 +41,11 @@ const index = () => {
     const res = await axios.patch(url, body, config).catch((error) => {
       setErrorMessage(error.response.data);
     });
+
+    //refresh page after account data update
+    if (res) {
+      router.reload(window.location.pathname);
+    }
 
     //send email notification if user's password was updated
     if (
@@ -60,6 +67,7 @@ const index = () => {
         .catch((error) => {
           console.log("Could not send email regarding password change");
         });
+      console.log("Password Updated: Email Sent!");
     }
 
     //send email notification if user's email was updated
@@ -78,6 +86,7 @@ const index = () => {
         .catch((error) => {
           console.log("Could not send email regarding email change");
         });
+      console.log("Email Updated: Email Sent!");
     }
   };
 
