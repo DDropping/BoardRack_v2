@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
   vertical-align: top;
   flex: 1;
   li {
@@ -12,8 +13,9 @@ export const Container = styled.div`
       }
     }
   }
+  @media (max-width: ${({ theme }) => theme.sm}) {
+    justify-content: center;
+  }
 `;
 
-export const Li = styled.li`
-  display: inline-block;
-`;
+export const Li = styled.li``;
