@@ -8,7 +8,7 @@ const PostSchema = new mongoose.Schema({
   isSold: { type: Boolean, default: false },
   user: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
   title: { type: String, required: true },
-  price: { type: String, required: true },
+  price: { type: Number, required: true },
   boardType: { type: String },
   condition: { type: String },
   description: { type: String },
