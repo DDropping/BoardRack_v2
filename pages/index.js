@@ -51,9 +51,14 @@ const Home = (props) => {
   };
 
   //automatically fetch list of post on render
-  useEffect(() => {
-    fetchPosts();
-  }, [filters]);
+  useEffect(
+    () => {
+      fetchPosts();
+    },
+    [
+      /* filters */
+    ]
+  );
 
   return (
     <div>

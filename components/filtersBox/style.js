@@ -22,7 +22,7 @@ export const LocationTextWrapper = styled.h2`
   white-space: nowrap;
 `;
 
-export const PriceRangeContainer = styled.div`
+export const InputRangeContainer = styled.div`
   .ant-input-number-disabled .ant-input-number-input {
     cursor: pointer;
   }

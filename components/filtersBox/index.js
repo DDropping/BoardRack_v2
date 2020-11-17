@@ -8,6 +8,10 @@ import Condition from "./Condition";
 import BoardType from "./BoardType";
 import Distance from "./Distance";
 import MoreFiltersButton from "./MoreFiltersButton";
+import Length from "./dimensions/Length";
+import Width from "./dimensions/Width";
+import Depth from "./dimensions/Depth";
+import Volume from "./dimensions/Volume";
 
 const index = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +34,11 @@ const index = () => {
           <Distance />
           <br />
           <MoreFiltersButton isOpen={isOpen} setIsOpen={setIsOpen} />
+          <br />
+          <Length />
+          <Width />
+          <Depth />
+          <Volume />
         </FiltersBoxContainer>
       )}
     </>
