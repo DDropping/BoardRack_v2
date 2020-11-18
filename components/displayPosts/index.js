@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container, Li } from "./style";
+import { Container, Ul, Li, CardWrapper } from "./style";
 import PostCard from "../postCard";
 import PostModal from "../postModal";
 import LoadingScreenCard from "../loadingScreens/postCard";
@@ -15,13 +15,15 @@ const index = ({ posts, isLoading }) => {
     <Container>
       {isLoading && loadingCards}
       <PostModal quickData={posts} />
-      {posts.map((post, index) => {
-        return (
-          <Li key={index}>
-            <PostCard key={index} postData={post} />
-          </Li>
-        );
-      })}
+      <Ul>
+        {posts.map((post, index) => {
+          return (
+            <Li key={index}>
+              <PostCard key={index} postData={post} />
+            </Li>
+          );
+        })}
+      </Ul>
     </Container>
   );
 };

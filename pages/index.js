@@ -71,7 +71,9 @@ const Home = (props) => {
       <div style={{ zIndex: 2, position: "relative" }}>
         <FiltersBar />
         <FiltersPostsContainer>
-          <FiltersBox />
+          <div>
+            <FiltersBox />
+          </div>
           <PostList posts={posts} isLoading={isLoading} />
         </FiltersPostsContainer>
       </div>
