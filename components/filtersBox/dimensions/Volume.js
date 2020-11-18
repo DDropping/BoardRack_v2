@@ -15,7 +15,7 @@ const VolumeRange = () => {
 
   return (
     <InputRangeContainer>
-      <strong>Vidth:</strong>
+      <strong>Volume:</strong>
       <div style={{ borderBottom: "1px solid #E9E9E9", marginBottom: "3px" }}>
         <Checkbox
           onChange={() =>

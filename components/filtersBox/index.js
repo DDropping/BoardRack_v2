@@ -33,12 +33,12 @@ const index = () => {
           <br />
           <Distance />
           <br />
+          {isOpen && <Length />}
+          {isOpen && <Width />}
+          {isOpen && <Depth />}
+          {isOpen && <Volume />}
+          {isOpen && <br />}
           <MoreFiltersButton isOpen={isOpen} setIsOpen={setIsOpen} />
-          <br />
-          <Length />
-          <Width />
-          <Depth />
-          <Volume />
         </FiltersBoxContainer>
       )}
     </>
