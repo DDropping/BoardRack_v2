@@ -21,7 +21,7 @@ const Home = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const filters = useSelector((state) => state.filters);
-  const { price, boardType, condition } = filters;
+  const { price, boardType, condition, length, width, depth, volume } = filters;
 
   //fetch lists of posts
   const fetchPosts = async () => {
@@ -36,7 +36,15 @@ const Home = (props) => {
       };
 
       //stringify the form items
-      const filtersData = { price, boardType, condition };
+      const filtersData = {
+        price,
+        boardType,
+        condition,
+        length,
+        width,
+        depth,
+        volume,
+      };
       const body = JSON.stringify(filtersData);
 
       //fetch posts
@@ -72,7 +80,7 @@ const Home = (props) => {
         <FiltersBar />
         <FiltersPostsContainer>
           <div>
-            <FiltersBox />
+            <FiltersBox fetchPosts={fetchPosts} />
           </div>
           <PostList posts={posts} isLoading={isLoading} />
         </FiltersPostsContainer>

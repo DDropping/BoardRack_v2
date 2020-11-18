@@ -8,8 +8,10 @@ import {
   UPDATE_BOARD_TYPE,
   UPDATE_DISTANCE,
   UPDATE_ANY_LENGTH,
-  UPDATE_DIMENSIONS_LENGTH_MIN,
-  UPDATE_DIMENSIONS_LENGTH_MAX,
+  UPDATE_DIMENSIONS_LENGTH_MIN_FT,
+  UPDATE_DIMENSIONS_LENGTH_MAX_FT,
+  UPDATE_DIMENSIONS_LENGTH_MIN_IN,
+  UPDATE_DIMENSIONS_LENGTH_MAX_IN,
   UPDATE_ANY_WIDTH,
   UPDATE_DIMENSIONS_WIDTH_MIN,
   UPDATE_DIMENSIONS_WIDTH_MAX,
@@ -19,9 +21,6 @@ import {
   UPDATE_ANY_VOLUME,
   UPDATE_DIMENSIONS_VOLUME_MIN,
   UPDATE_DIMENSIONS_VOLUME_MAX,
-  // UPDATE_ANY_RANGE,
-  // UPDATE_RANGE_MIN,
-  // UPDATE_RANGE_MAX,
 } from "../actions/types";
 
 const initialState = {
@@ -30,7 +29,7 @@ const initialState = {
   sort: "Newest",
   distance: 25,
   price: { any: true, min: null, max: null },
-  length: { any: true, min: null, max: null },
+  length: { any: true, min_ft: null, max_ft: null, min_in: null, max_in: null },
   width: { any: true, min: null, max: null },
   depth: { any: true, min: null, max: null },
   volume: { any: true, min: null, max: null },
@@ -40,31 +39,6 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    // case UPDATE_ANY_RANGE:
-    //   console.log("state: ", state[action.payload[name]]);
-    //   return {
-    //     ...state,
-    //     [action.payload.name]: {
-    //       any: action.payload.value,
-    //     },
-    //   };
-    // case UPDATE_RANGE_MIN:
-    //   return {
-    //     ...state,
-    //     [action.payload.name]: {
-    //       ...state[action.payload.name],
-    //       min: action.payload.value,
-    //     },
-    //   };
-    // case UPDATE_RANGE_MAX:
-    //   return {
-    //     ...state,
-    //     [action.payload.name]: {
-    //       ...state[action.payload.name],
-    //       max: action.payload.value,
-    //     },
-    //   };
-
     //toggle filter box
     case TOGGLE_FILTERS:
       return {
@@ -130,20 +104,36 @@ export default function (state = initialState, action) {
           any: action.payload,
         },
       };
-    case UPDATE_DIMENSIONS_LENGTH_MIN:
+    case UPDATE_DIMENSIONS_LENGTH_MIN_FT:
       return {
         ...state,
         length: {
           ...state.length,
-          min: action.payload,
+          min_ft: action.payload,
         },
       };
-    case UPDATE_DIMENSIONS_LENGTH_MAX:
+    case UPDATE_DIMENSIONS_LENGTH_MAX_FT:
       return {
         ...state,
         length: {
           ...state.length,
-          max: action.payload,
+          max_ft: action.payload,
+        },
+      };
+    case UPDATE_DIMENSIONS_LENGTH_MIN_IN:
+      return {
+        ...state,
+        length: {
+          ...state.length,
+          min_in: action.payload,
+        },
+      };
+    case UPDATE_DIMENSIONS_LENGTH_MAX_IN:
+      return {
+        ...state,
+        length: {
+          ...state.length,
+          max_in: action.payload,
         },
       };
     case UPDATE_ANY_WIDTH:
