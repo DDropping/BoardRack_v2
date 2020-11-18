@@ -5,8 +5,10 @@ import { Checkbox, InputNumber } from "antd";
 import { InputRangeContainer } from "../style";
 import {
   UPDATE_ANY_LENGTH,
-  UPDATE_DIMENSIONS_LENGTH_MIN,
-  UPDATE_DIMENSIONS_LENGTH_MAX,
+  UPDATE_DIMENSIONS_LENGTH_MIN_FT,
+  UPDATE_DIMENSIONS_LENGTH_MAX_FT,
+  UPDATE_DIMENSIONS_LENGTH_MIN_IN,
+  UPDATE_DIMENSIONS_LENGTH_MAX_IN,
 } from "../../../actions/types";
 
 const LengthRange = () => {
@@ -40,9 +42,28 @@ const LengthRange = () => {
             `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
           }
           parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+          min={0}
+          max={25}
           onChange={(value) =>
-            dispatch({ type: UPDATE_DIMENSIONS_LENGTH_MIN, payload: value })
+            dispatch({ type: UPDATE_DIMENSIONS_LENGTH_MIN_FT, payload: value })
           }
+          style={{ width: "50px" }}
+        />{" "}
+        ft.
+        <InputNumber
+          size='small'
+          disabled={anyLength}
+          style={{ cursor: "pointer" }}
+          formatter={(value) =>
+            `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+          }
+          parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+          min={0}
+          max={12}
+          onChange={(value) =>
+            dispatch({ type: UPDATE_DIMENSIONS_LENGTH_MIN_IN, payload: value })
+          }
+          style={{ width: "50px" }}
         />{" "}
         in.
       </div>
@@ -58,9 +79,27 @@ const LengthRange = () => {
             `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
           }
           parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+          min={0}
+          max={25}
           onChange={(value) => {
-            dispatch({ type: UPDATE_DIMENSIONS_LENGTH_MAX, payload: value });
+            dispatch({ type: UPDATE_DIMENSIONS_LENGTH_MAX_FT, payload: value });
           }}
+          style={{ width: "50px" }}
+        />{" "}
+        ft.
+        <InputNumber
+          size='small'
+          disabled={anyLength}
+          formatter={(value) =>
+            `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+          }
+          parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+          min={0}
+          max={12}
+          onChange={(value) => {
+            dispatch({ type: UPDATE_DIMENSIONS_LENGTH_MAX_IN, payload: value });
+          }}
+          style={{ width: "50px" }}
         />{" "}
         in.
       </div>

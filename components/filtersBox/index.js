@@ -8,12 +8,13 @@ import Condition from "./Condition";
 import BoardType from "./BoardType";
 import Distance from "./Distance";
 import MoreFiltersButton from "./MoreFiltersButton";
+import ApplyFiltersButton from "./ApplyFiltersButton";
 import Length from "./dimensions/Length";
 import Width from "./dimensions/Width";
 import Depth from "./dimensions/Depth";
 import Volume from "./dimensions/Volume";
 
-const index = () => {
+const index = ({ fetchPosts }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const isFiltersVisible = useSelector(
@@ -38,6 +39,7 @@ const index = () => {
           {isOpen && <Depth />}
           {isOpen && <Volume />}
           {isOpen && <br />}
+          <ApplyFiltersButton fetchPosts={fetchPosts} />
           <MoreFiltersButton isOpen={isOpen} setIsOpen={setIsOpen} />
         </FiltersBoxContainer>
       )}
