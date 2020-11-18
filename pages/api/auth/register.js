@@ -65,12 +65,13 @@ async function handlePostRequest(req, res) {
 
     //send welcome message to user from BoardRack
     const messageBody =
-      "Hello, welcome to BoardRack! " +
-      "Before you get started theres a few things you should know. " +
-      "This website is only demo since BoardRack is still in development. " +
-      "Thus, any posts you view should not be considered real and are only for demonstrative purposes. " +
-      "Also, filtering by location has been disabled as all demostrative posts will be located in the San Francisco Bay Area. " +
-      "And all posts flagged for deletion will not be removed after the designated 7 day wait. However, active posts will still remain editable. " +
+      "Hello, welcome to BoardRack! \n" +
+      "Before you get started theres a few things you should know. \n\n" +
+      " - This website is only demo since BoardRack is still in development. " +
+      "Thus, any posts you view should not be considered real and are only for demonstrative purposes. \n" +
+      " - Filtering by location has been disabled as all demostrative posts will be located in the San Francisco Bay Area. \n" +
+      " - All posts flagged for deletion will not be removed after the designated 7 day wait. Instead, deleted posts will remain visible, but marked as 'Sold' or 'Post Removed' \n" +
+      " - Email verification is enabled and all emails will be sent to your registered email address. \n\n " +
       "Thank you for visiting the site and if you have any questions, encounter any bugs, or just want say hi, please respond here!";
 
     const message = {
