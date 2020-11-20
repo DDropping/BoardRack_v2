@@ -79,6 +79,8 @@ async function handlePostRequest(req, res) {
     filterData.condition = { $in: condition };
   }
   //configure location query
+  /*
+  ========== DISABLED FOR DEMONSTRATIVE PURPOSES =============
   if (distance && lat && lng) {
     let maxLat = lat + distance * DEGREES_IN_ONE_MILE_LAT;
     let minLat = lat - distance * DEGREES_IN_ONE_MILE_LAT;
@@ -88,6 +90,7 @@ async function handlePostRequest(req, res) {
     filterData["location.lat"] = { $gte: minLat, $lte: maxLat };
     filterData["location.lng"] = { $gte: minLng, $lte: maxLng };
   }
+  */
   //configure length query
   length.min = length.min_ft * 12 + length.min_in;
   length.max = length.max_ft * 12 + length.max_in;

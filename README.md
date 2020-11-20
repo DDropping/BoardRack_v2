@@ -79,6 +79,7 @@ protected routes: /pages/\_app.js
 
 change base url: utils/baseUrl
 create default boardrack user and update welcome message Id: pages/api/auth/register
+enable location based filtering, code is currently commented out: pages/api/posts/postdetails/index
 
 ## Other Notes
 
