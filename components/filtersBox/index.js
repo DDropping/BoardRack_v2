@@ -27,7 +27,7 @@ const index = ({ fetchPosts }) => {
         <FiltersBoxContainer>
           <Location />
           <WarningMessage>
-            <ExclamationCircleTwoTone twoToneColor='#ffa501' /> Filtering By
+            <ExclamationCircleTwoTone twoToneColor='#ff9900' /> Filtering By
             Location Disabled For Demo
           </WarningMessage>
           <div
