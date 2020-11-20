@@ -27,6 +27,6 @@ export const InputRangeContainer = styled.div`
 `;
 
 export const WarningMessage = styled.div`
-  color: ${({ theme }) => theme.primaryOrange};
+  color: #ff9900;
   font-style: italic;
 `;
