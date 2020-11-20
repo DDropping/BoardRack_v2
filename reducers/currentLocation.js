@@ -14,14 +14,14 @@ const initialState = {
   isLocatedWithIp: false,
   isMapLoading: false,
   location: {
-    lat: null,
-    lng: null,
+    lat: 37.75288,
+    lng: -122.49028,
     country: null,
     state: "CA",
     county: null,
     city: "San Francisco",
     district: null,
-    postalCode: "94121",
+    postalCode: "94122",
     locationImage: null,
   },
 };
