@@ -25,3 +25,8 @@ export const InputRangeContainer = styled.div`
     cursor: pointer;
   }
 `;
+
+export const WarningMessage = styled.div`
+  color: ${({ theme }) => theme.primaryOrange};
+  font-style: italic;
+`;

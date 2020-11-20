@@ -77,9 +77,10 @@ protected routes: /pages/\_app.js
 
 ## Production Notes
 
-change base url: utils/baseUrl
-create default boardrack user and update welcome message Id: pages/api/auth/register
-enable location based filtering, code is currently commented out: pages/api/posts/postdetails/index
+- change base url: utils/baseUrl
+- create default boardrack user and update welcome message Id: pages/api/auth/register
+- enable location based filtering, code is currently commented out: pages/api/posts/postdetails/index
+- remove "filtering by location disabled for demo" notification on: components/filtersBox/index
 
 ## Other Notes
 

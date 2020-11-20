@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { ExclamationCircleTwoTone } from "@ant-design/icons";
 
-import { FiltersBoxContainer } from "./style";
+import { FiltersBoxContainer, WarningMessage } from "./style";
 import Location from "./Location";
 import PriceRange from "./PriceRange";
 import Condition from "./Condition";
@@ -25,7 +26,16 @@ const index = ({ fetchPosts }) => {
       {isFiltersVisible && (
         <FiltersBoxContainer>
           <Location />
-          <br />
+          <WarningMessage>
+            <ExclamationCircleTwoTone twoToneColor='#ffa501' /> Filtering By
+            Location Disabled For Demo
+          </WarningMessage>
+          <div
+            style={{
+              borderBottom: "1px solid #E9E9E9",
+              margin: "10px 0",
+            }}
+          ></div>
           <PriceRange />
           <br />
           <Condition />
