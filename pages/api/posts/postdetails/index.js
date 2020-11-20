@@ -4,6 +4,9 @@ import "../../../../models/User";
 
 connectDb();
 
+const DEGREES_IN_ONE_MILE_LAT = 0.014492;
+const DEGREES_IN_ONE_MILE_LNG = 0.018315;
+
 const handler = async (req, res) => {
   switch (req.method) {
     case "GET":
@@ -53,6 +56,9 @@ async function handlePostRequest(req, res) {
     width,
     depth,
     volume,
+    distance,
+    lat,
+    lng,
   } = req.body;
 
   let filterData = { isVisible: true };
@@ -71,6 +77,16 @@ async function handlePostRequest(req, res) {
   //configure condition query
   if (condition.length > 0) {
     filterData.condition = { $in: condition };
+  }
+  //configure location query
+  if (distance && lat && lng) {
+    let maxLat = lat + distance * DEGREES_IN_ONE_MILE_LAT;
+    let minLat = lat - distance * DEGREES_IN_ONE_MILE_LAT;
+    let maxLng = lng + distance * DEGREES_IN_ONE_MILE_LNG;
+    let minLng = lng - distance * DEGREES_IN_ONE_MILE_LNG;
+
+    filterData["location.lat"] = { $gte: minLat, $lte: maxLat };
+    filterData["location.lng"] = { $gte: minLng, $lte: maxLng };
   }
   //configure length query
   length.min = length.min_ft * 12 + length.min_in;

@@ -20,8 +20,18 @@ const Home = (props) => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const { lat, lng } = useSelector((state) => state.currentLocation.location);
   const filters = useSelector((state) => state.filters);
-  const { price, boardType, condition, length, width, depth, volume } = filters;
+  const {
+    price,
+    boardType,
+    condition,
+    length,
+    width,
+    depth,
+    volume,
+    distance,
+  } = filters;
 
   //fetch lists of posts
   const fetchPosts = async () => {
@@ -44,6 +54,9 @@ const Home = (props) => {
         width,
         depth,
         volume,
+        distance,
+        lat,
+        lng,
       };
       const body = JSON.stringify(filtersData);
 
