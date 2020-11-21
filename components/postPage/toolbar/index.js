@@ -25,7 +25,6 @@ const index = ({ postId, isModalView, authorId }) => {
 
   //disable favorite button for post owner
   useEffect(() => {
-    console.log(user._id, authorId);
     if (user) {
       if (user._id.toString() === authorId.toString()) {
         setPostAuthor(true);
