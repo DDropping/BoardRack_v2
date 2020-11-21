@@ -5,7 +5,7 @@ export const CardContainer = styled.div`
   display: inline-block;
   width: 300px;
   margin-left: 10px;
-  margin-top: 10px;
+  margin-bottom: 10px;
   background: ${({ theme }) => theme.primaryWhite};
   transition: ${({ theme }) => theme.boxShadow};
   box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);

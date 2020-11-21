@@ -39,10 +39,10 @@ const index = ({ postData, isManagementView, directToPostPage = false }) => {
         }
         as={`/postdetails/${postData._id}`}
       >
-        <a>
+        <div style={{ cursor: "pointer" }}>
           <Images data={imageData} />
           <Content data={contentData} />
-        </a>
+        </div>
       </Link>
       {isManagementView && (
         <ManagementOptions
