@@ -15,8 +15,8 @@ const LayoutMenu = () => {
   const dispatch = useDispatch();
   const layout = useSelector((state) => state.filters.layout);
 
-  const handleLayoutChange = (key) => {
-    dispatch({ type: CHANGE_LAYOUT, payload: key });
+  const handleLayoutChange = (value) => {
+    dispatch({ type: CHANGE_LAYOUT, payload: value });
   };
 
   return (
@@ -24,7 +24,7 @@ const LayoutMenu = () => {
       defaultValue={layout}
       style={{ width: 150 }}
       bordered={false}
-      onChange={(event) => handleLayoutChange(event.key)}
+      onChange={handleLayoutChange}
     >
       <Option value='Gallery'>
         <AppstoreOutlined /> Gallery

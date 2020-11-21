@@ -16,8 +16,8 @@ const Index = () => {
   const dispatch = useDispatch();
   const sortType = useSelector((state) => state.filters.sort);
 
-  const handleSortChange = (key) => {
-    dispatch({ type: UPDATE_SORT, payload: key });
+  const handleSortChange = (value) => {
+    dispatch({ type: UPDATE_SORT, payload: value });
   };
 
   return (
@@ -25,19 +25,19 @@ const Index = () => {
       defaultValue={sortType}
       style={{ width: 175 }}
       bordered={false}
-      onChange={(event) => handleSortChange(event.key)}
+      onChange={handleSortChange}
     >
       <Option value='Newest'>
-        <ClockCircleOutlined /> Time: New first
+        <ClockCircleOutlined /> Newest first
       </Option>
       <Option value='Oldest'>
-        <ClockCircleFilled /> Time: Oldest first
+        <ClockCircleFilled /> Oldest first
       </Option>
       <Option value='Lowest'>
-        <DollarCircleOutlined /> Price: Low first
+        <DollarCircleOutlined /> Price: lowest
       </Option>
       <Option value='Highest'>
-        <DollarCircleFilled /> Price: High first
+        <DollarCircleFilled /> Price: highest
       </Option>
     </Select>
   );

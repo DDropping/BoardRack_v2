@@ -35,6 +35,7 @@ const Home = (props) => {
   const { lat, lng } = useSelector((state) => state.currentLocation.location);
   const filters = useSelector((state) => state.filters);
   const {
+    sort,
     price,
     boardType,
     condition,
@@ -57,6 +58,7 @@ const Home = (props) => {
       };
       //stringify the form items
       const filtersData = {
+        sort,
         price,
         boardType,
         condition,
@@ -83,7 +85,7 @@ const Home = (props) => {
   //automatically fetch list of post on render
   useEffect(() => {
     fetchPosts();
-  }, [lat, lng]);
+  }, [lat, lng, sort]);
 
   return (
     <div>
