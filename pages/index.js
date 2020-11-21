@@ -106,7 +106,7 @@ const Home = (props) => {
               <PostCount>
                 {posts.length}/{posts.length} posts found
               </PostCount>
-              <SortSelect />
+              {posts.length > 0 && <SortSelect />}
             </PostCountAndSortSelect>
             <PostList posts={posts} isLoading={isLoading} />
           </div>
