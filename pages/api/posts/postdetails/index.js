@@ -49,6 +49,7 @@ async function handleGetRequest(req, res) {
 // @access  Public
 async function handlePostRequest(req, res) {
   const {
+    sort,
     price,
     boardType,
     condition,
@@ -126,11 +127,21 @@ async function handlePostRequest(req, res) {
     filterData.volumeValue = { $lte: volume.max };
   }
 
+  //configure sort param
+  let sortQuery = {};
+  if (sort === "Newest") {
+    sortQuery.date = 1;
+  } else if (sort === "Oldest") {
+    sortQuery.date = -1;
+  } else if (sort === "PriceLowest") {
+    sortQuery.price = 1;
+  } else if (sort === "PriceHighest") {
+    sortQuery.price = -1;
+  }
   try {
-    const posts = await Post.find(filterData).populate(
-      "user",
-      "username profileImage"
-    );
+    const posts = await Post.find(filterData)
+      .populate("user", "username profileImage")
+      .sort(sortQuery);
 
     if (!posts) {
       return res.status(400).json({ msg: "There is no posts" });

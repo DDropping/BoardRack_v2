@@ -33,10 +33,10 @@ const Index = () => {
       <Option value='Oldest'>
         <ClockCircleFilled /> Oldest first
       </Option>
-      <Option value='Lowest'>
+      <Option value='PriceLowest'>
         <DollarCircleOutlined /> Price: lowest
       </Option>
-      <Option value='Highest'>
+      <Option value='PriceHighest'>
         <DollarCircleFilled /> Price: highest
       </Option>
     </Select>
