@@ -27,16 +27,16 @@ const Index = () => {
       bordered={false}
       onChange={(event) => handleSortChange(event.key)}
     >
-      <Option value='New'>
+      <Option value='Newest'>
         <ClockCircleOutlined /> Time: New first
       </Option>
-      <Option value='Old'>
+      <Option value='Oldest'>
         <ClockCircleFilled /> Time: Oldest first
       </Option>
-      <Option value='Low'>
+      <Option value='Lowest'>
         <DollarCircleOutlined /> Price: Low first
       </Option>
-      <Option value='High'>
+      <Option value='Highest'>
         <DollarCircleFilled /> Price: High first
       </Option>
     </Select>
