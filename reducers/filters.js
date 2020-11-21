@@ -1,4 +1,5 @@
 import {
+  UPDATE_SORT,
   TOGGLE_FILTERS,
   CHANGE_LAYOUT,
   UPDATE_PRICE_MAX,
@@ -39,6 +40,12 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    //update sort type
+    case UPDATE_SORT:
+      return {
+        ...state,
+        sort: action.payload,
+      };
     //toggle filter box
     case TOGGLE_FILTERS:
       return {

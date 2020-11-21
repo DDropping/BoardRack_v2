@@ -9,11 +9,23 @@ import Carousel from "../components/carousel";
 import FiltersBar from "../components/filtersBar";
 import FiltersBox from "../components/filtersBox";
 import PostList from "../components/displayPosts";
+import SortSelect from "../components/sortSelect";
 
 const FiltersPostsContainer = styled.div`
   @media (min-width: ${({ theme }) => theme.sm}) {
     display: flex;
   }
+`;
+
+const PostCountAndSortSelect = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
+  font-weight: bold;
+`;
+
+const PostCount = styled.div`
+  margin: 5px 0;
 `;
 
 const Home = (props) => {
@@ -36,7 +48,6 @@ const Home = (props) => {
   //fetch lists of posts
   const fetchPosts = async () => {
     setLoading(true);
-
     try {
       //set headers for request
       const config = {
@@ -44,7 +55,6 @@ const Home = (props) => {
           "Content-Type": "application/json",
         },
       };
-
       //stringify the form items
       const filtersData = {
         price,
@@ -59,7 +69,6 @@ const Home = (props) => {
         lng,
       };
       const body = JSON.stringify(filtersData);
-
       //fetch posts
       const url = `${baseUrl}/api/posts/postdetails`;
       const res = await axios.post(url, body, config);
@@ -90,7 +99,15 @@ const Home = (props) => {
           <div>
             <FiltersBox fetchPosts={fetchPosts} />
           </div>
-          <PostList posts={posts} isLoading={isLoading} />
+          <div>
+            <PostCountAndSortSelect>
+              <PostCount>
+                {posts.length}/{posts.length} posts found
+              </PostCount>
+              <SortSelect />
+            </PostCountAndSortSelect>
+            <PostList posts={posts} isLoading={isLoading} />
+          </div>
         </FiltersPostsContainer>
       </div>
     </div>
