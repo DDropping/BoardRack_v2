@@ -130,9 +130,9 @@ async function handlePostRequest(req, res) {
   //configure sort param
   let sortQuery = {};
   if (sort === "Newest") {
-    sortQuery.date = 1;
-  } else if (sort === "Oldest") {
     sortQuery.date = -1;
+  } else if (sort === "Oldest") {
+    sortQuery.date = 1;
   } else if (sort === "PriceLowest") {
     sortQuery.price = 1;
   } else if (sort === "PriceHighest") {
