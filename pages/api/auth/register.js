@@ -67,22 +67,21 @@ async function handlePostRequest(req, res) {
     const messageBody =
       "Hello, welcome to BoardRack! \n" +
       "Before you get started theres a few things you should know. \n\n" +
-      " - This website is only demo since BoardRack is still in development. " +
-      "Thus, any posts you view should not be considered real and are only for demonstrative purposes. \n" +
+      " - This website is only demo! Thus, any posts you view should not be considered real and are only for demonstrative purposes. \n" +
       " - Filtering by location has been disabled as all demostrative posts will be located in the San Francisco Bay Area. \n" +
-      " - All posts flagged for deletion will not be removed after the designated 7 day wait. Instead, deleted posts will remain visible, but marked as 'Sold' or 'Post Removed' \n" +
+      " - All posts flagged for deletion will not be removed after the designated 7 day wait. Instead, deleted posts will remain visible, but marked as 'Sold' or 'Post Removed' (NOTE: all guest data is wiped on a bi-weekly basis.)\n" +
       " - Email verification is enabled and all emails will be sent to your registered email address. \n\n " +
-      "Thank you for visiting the site and if you have any questions, encounter any bugs, or just want say hi, please respond here!";
+      "Thank you for visiting the site! Feel free to create an account, create a new post, and interact with the site. If you have any questions, encounter any bugs, or just want say hi, please respond here!";
 
     const message = {
-      from: "5fac56be274e5e1f5813c07d",
+      from: "5fb86b4e6e10cf407c3dc204",
       body: messageBody,
       timeSent: Date.now(),
     };
 
     const newMessageThread = {
       type: "support",
-      users: [user._id, "5fac56be274e5e1f5813c07d"],
+      users: [user._id, "5fb86b4e6e10cf407c3dc204"],
       post: null,
       dateCreated: Date.now(),
       lastUpdated: Date.now(),
