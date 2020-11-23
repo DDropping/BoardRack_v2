@@ -63,3 +63,17 @@ export const DetailsContainer = styled.div`
   overflow: "hidden";
   text-overflow: "ellipsis";
 `;
+
+export const TitleWrapper = styled.div`
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const DimsWrapper = styled.div`
+  font-size: 0.7rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;

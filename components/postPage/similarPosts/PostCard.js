@@ -7,6 +7,8 @@ import {
   ImageBackgroundWrapper,
   ImageWrapper,
   DetailsContainer,
+  TitleWrapper,
+  DimsWrapper,
 } from "./style";
 
 const PostCard = ({ post }) => {
@@ -28,7 +30,7 @@ const PostCard = ({ post }) => {
               }
             />
             <ImageWrapper
-              alt=""
+              alt=''
               src={
                 post.images[0]
                   ? post.images[0].thumbnail
@@ -37,13 +39,21 @@ const PostCard = ({ post }) => {
             />
           </ImageContainer>
           <DetailsContainer>
-            <strong>{title}</strong>
-            <br />
-            {lengthFt &&
-              lengthIn &&
-              width &&
-              depth &&
-              lengthFt + "'" + lengthIn + '" x ' + width + '" x ' + depth + '"'}
+            <TitleWrapper>{title}</TitleWrapper>
+            <DimsWrapper>
+              {lengthFt &&
+                lengthIn &&
+                width &&
+                depth &&
+                lengthFt +
+                  "'" +
+                  lengthIn +
+                  '" x ' +
+                  width +
+                  '" x ' +
+                  depth +
+                  '"'}
+            </DimsWrapper>
           </DetailsContainer>
         </CardContainer>
       </a>
