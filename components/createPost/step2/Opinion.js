@@ -38,7 +38,7 @@ const Opinion = () => {
   }
 
   function handleNumber(name, value) {
-    if (isNaN(value.charAt(0))) {
+    if (isNaN(value.charAt(0)) || value > 5) {
       /* check if first character is a number */
       handleInputChange(name, "");
     } else if (!isNaN(value) && value <= 5 && value >= 0) {
@@ -56,16 +56,16 @@ const Opinion = () => {
         </Col>
         <Col xs={8} sm={7} md={6}>
           <Input
-            placeholder="4-7"
-            size="default"
-            suffix="ft."
+            placeholder='4-7'
+            size='default'
+            suffix='ft.'
             value={waveSize}
             onChange={(event) => handleWaveSize("waveSize", event.target.value)}
           />
         </Col>
         <Col xs={6} sm={7}>
           <Tooltip
-            placement="topLeft"
+            placement='topLeft'
             title={"What size waves does your board perform well in?"}
           >
             <QuestionCircleOutlined
@@ -83,16 +83,16 @@ const Opinion = () => {
         </Col>
         <Col xs={8} sm={7} md={6}>
           <Input
-            placeholder="4"
-            size="default"
-            suffix="/5"
+            placeholder='4'
+            size='default'
+            suffix='/5'
             value={drive}
             onChange={(event) => handleNumber("drive", event.target.value)}
           />
         </Col>
         <Col xs={6} sm={7}>
           <Tooltip
-            placement="topLeft"
+            placement='topLeft'
             title={
               "How well does your board accelerate and maintain speed through turns?"
             }
@@ -112,9 +112,9 @@ const Opinion = () => {
         </Col>
         <Col xs={8} sm={7} md={6}>
           <Input
-            placeholder="5"
-            size="default"
-            suffix="/5"
+            placeholder='5'
+            size='default'
+            suffix='/5'
             value={paddlePower}
             onChange={(event) =>
               handleNumber("paddlePower", event.target.value)
@@ -123,7 +123,7 @@ const Opinion = () => {
         </Col>
         <Col xs={6} sm={7}>
           <Tooltip
-            placement="topLeft"
+            placement='topLeft'
             title={"How easy is your board to paddle?"}
           >
             <QuestionCircleOutlined
@@ -141,16 +141,16 @@ const Opinion = () => {
         </Col>
         <Col xs={8} sm={7} md={6}>
           <Input
-            placeholder="3"
-            size="default"
-            suffix="/5"
+            placeholder='3'
+            size='default'
+            suffix='/5'
             value={movability}
             onChange={(event) => handleNumber("movability", event.target.value)}
           />
         </Col>
         <Col xs={6} sm={7}>
           <Tooltip
-            placement="topLeft"
+            placement='topLeft'
             title={"How easy does your board move in the water?"}
           >
             <QuestionCircleOutlined
