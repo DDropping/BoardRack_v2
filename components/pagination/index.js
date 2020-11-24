@@ -62,7 +62,7 @@ const index = ({
     <Container>
       <ButtonsContainer>
         <Select
-          defaultValue={25}
+          defaultValue={resultsPerPage}
           style={{ width: 120 }}
           bordered={false}
           onChange={(event) => setResultsPerPage(event)}

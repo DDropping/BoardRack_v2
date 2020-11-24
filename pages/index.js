@@ -35,7 +35,7 @@ const Home = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [resultsPerPage, setResultsPerPage] = useState(25);
+  const [resultsPerPage, setResultsPerPage] = useState(50);
   const { lat, lng } = useSelector((state) => state.currentLocation.location);
   const filters = useSelector((state) => state.filters);
   const {
