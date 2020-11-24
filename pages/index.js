@@ -10,6 +10,7 @@ import FiltersBar from "../components/filtersBar";
 import FiltersBox from "../components/filtersBox";
 import PostList from "../components/displayPosts";
 import SortSelect from "../components/sortSelect";
+import Pagination from "../components/pagination";
 
 const FiltersPostsContainer = styled.div`
   @media (min-width: ${({ theme }) => theme.sm}) {
@@ -30,8 +31,11 @@ const PostCount = styled.div`
 
 const Home = (props) => {
   const [posts, setPosts] = useState([]);
+  const [totalNumberOfResults, setTotalNumberOfResults] = useState(0);
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [resultsPerPage, setResultsPerPage] = useState(25);
   const { lat, lng } = useSelector((state) => state.currentLocation.location);
   const filters = useSelector((state) => state.filters);
   const {
@@ -48,6 +52,7 @@ const Home = (props) => {
 
   //fetch lists of posts
   const fetchPosts = async () => {
+    setPosts([]);
     setLoading(true);
     try {
       //set headers for request
@@ -59,6 +64,8 @@ const Home = (props) => {
       //stringify the form items
       const filtersData = {
         sort,
+        resultsPerPage,
+        currentPage,
         price,
         boardType,
         condition,
@@ -74,7 +81,8 @@ const Home = (props) => {
       //fetch posts
       const url = `${baseUrl}/api/posts/postdetails`;
       const res = await axios.post(url, body, config);
-      setPosts(res.data);
+      setPosts(res.data.posts);
+      setTotalNumberOfResults(parseInt(res.data.totalNumberOfResults));
     } catch (err) {
       setError(true);
     } finally {
@@ -85,7 +93,7 @@ const Home = (props) => {
   //automatically fetch list of post on render
   useEffect(() => {
     fetchPosts();
-  }, [lat, lng, sort]);
+  }, [lat, lng, sort, resultsPerPage, currentPage]);
 
   return (
     <div>
@@ -101,16 +109,34 @@ const Home = (props) => {
           <div>
             <FiltersBox fetchPosts={fetchPosts} />
           </div>
-          <div>
+          <div style={{ flex: 1 }}>
             <PostCountAndSortSelect>
               <PostCount>
-                {posts.length}/{posts.length} posts found
+                {totalNumberOfResults > resultsPerPage ? (
+                  <>
+                    {(currentPage - 1) * resultsPerPage + 1}-
+                    {currentPage * resultsPerPage > totalNumberOfResults
+                      ? totalNumberOfResults
+                      : currentPage * resultsPerPage}
+                    {" / "}
+                    {totalNumberOfResults} posts found
+                  </>
+                ) : (
+                  <>{posts.length} posts found</>
+                )}
               </PostCount>
               {posts.length > 0 && <SortSelect />}
             </PostCountAndSortSelect>
             <PostList posts={posts} isLoading={isLoading} />
           </div>
         </FiltersPostsContainer>
+        <Pagination
+          totalResults={totalNumberOfResults}
+          resultsPerPage={resultsPerPage}
+          currentPage={currentPage}
+          setResultsPerPage={setResultsPerPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </div>
   );
