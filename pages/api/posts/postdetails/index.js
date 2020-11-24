@@ -50,6 +50,8 @@ async function handleGetRequest(req, res) {
 async function handlePostRequest(req, res) {
   const {
     sort,
+    resultsPerPage,
+    currentPage,
     price,
     boardType,
     condition,
@@ -141,13 +143,19 @@ async function handlePostRequest(req, res) {
   try {
     const posts = await Post.find(filterData)
       .populate("user", "username profileImage")
-      .sort(sortQuery);
+      .sort(sortQuery)
+      .limit(resultsPerPage)
+      .skip((currentPage - 1) * resultsPerPage);
+
+    const numberOfPosts = await Post.find(filterData)
+      .populate("user", "username profileImage")
+      .count();
 
     if (!posts) {
       return res.status(400).json({ msg: "There is no posts" });
     }
 
-    res.status(200).json(posts);
+    res.status(200).json({ posts: posts, totalNumberOfResults: numberOfPosts });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
