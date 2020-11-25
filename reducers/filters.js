@@ -1,7 +1,14 @@
 import {
+  UPDATE_POSTS,
   UPDATE_SORT,
   TOGGLE_FILTERS,
   CHANGE_LAYOUT,
+  UPDATE_TEXT_SEARCH,
+  UPDATE_CURRENT_PAGE,
+  UPDATE_NUMBER_OF_RESULTS_FOUND,
+  UPDATE_RESULTS_PER_PAGE,
+  UPDATE_IS_SEARCH_LOADING,
+  UPDATE_IS_SEARCH_ERROR,
   UPDATE_PRICE_MAX,
   UPDATE_PRICE_MIN,
   UPDATE_ANY_PRICE,
@@ -25,9 +32,16 @@ import {
 } from "../actions/types";
 
 const initialState = {
+  posts: [],
   isFiltersVisible: true,
   layout: "Gallery",
   sort: "Newest",
+  currentPage: 1,
+  resultsPerPage: 50,
+  numberOfResultsFound: 0,
+  isLoading: false,
+  isError: true,
+  textSearch: "",
   distance: 25,
   price: { any: true, min: null, max: null },
   length: { any: true, min_ft: null, max_ft: null, min_in: null, max_in: null },
@@ -40,6 +54,12 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    //update fetched posts
+    case UPDATE_POSTS:
+      return {
+        ...state,
+        posts: action.payload,
+      };
     //update sort type
     case UPDATE_SORT:
       return {
@@ -57,6 +77,37 @@ export default function (state = initialState, action) {
       return {
         ...state,
         layout: action.payload,
+      };
+    //text search bar
+    case UPDATE_TEXT_SEARCH:
+      return {
+        ...state,
+        textSearch: action.payload,
+      };
+    case UPDATE_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
+    case UPDATE_NUMBER_OF_RESULTS_FOUND:
+      return {
+        ...state,
+        numberOfResultsFound: action.payload,
+      };
+    case UPDATE_RESULTS_PER_PAGE:
+      return {
+        ...state,
+        resultsPerPage: action.payload,
+      };
+    case UPDATE_IS_SEARCH_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload,
+      };
+    case UPDATE_IS_SEARCH_ERROR:
+      return {
+        ...state,
+        isError: action.payload,
       };
     //price range
     case UPDATE_PRICE_MAX:

@@ -52,6 +52,7 @@ async function handlePostRequest(req, res) {
     sort,
     resultsPerPage,
     currentPage,
+    textSearch,
     price,
     boardType,
     condition,
@@ -83,7 +84,7 @@ async function handlePostRequest(req, res) {
   }
   //configure location query
   /*
-  ========== DISABLED FOR DEMONSTRATIVE PURPOSES =============
+  //========== DISABLED FOR DEMONSTRATIVE PURPOSES =============
   if (distance && lat && lng) {
     let maxLat = lat + distance * DEGREES_IN_ONE_MILE_LAT;
     let minLat = lat - distance * DEGREES_IN_ONE_MILE_LAT;
@@ -141,15 +142,94 @@ async function handlePostRequest(req, res) {
     sortQuery.price = -1;
   }
   try {
-    const posts = await Post.find(filterData)
-      .populate("user", "username profileImage")
-      .sort(sortQuery)
-      .limit(resultsPerPage)
-      .skip((currentPage - 1) * resultsPerPage);
+    let posts, numberOfPosts;
+    //find post with search filters
+    if (textSearch && textSearch.length > 0) {
+      console.log("inside seach ");
+      //find posts with text search and filters
+      posts = await Post.aggregate([
+        {
+          $search: {
+            compound: {
+              should: [
+                {
+                  text: {
+                    query: textSearch.split(" "),
+                    path: ["title", "shaper", "model"],
+                    score: { boost: { value: 3 } },
+                    fuzzy: {
+                      maxEdits: 2,
+                    },
+                  },
+                },
+                {
+                  text: {
+                    query: textSearch.split(" "),
+                    path: ["description"],
+                  },
+                },
+              ],
+            },
+          },
+        },
+        {
+          $match: filterData,
+        },
+        {
+          $skip: (currentPage - 1) * resultsPerPage,
+        },
+        {
+          $limit: resultsPerPage,
+        },
+      ]);
+      console.log("posts: ", posts);
 
-    const numberOfPosts = await Post.find(filterData)
-      .populate("user", "username profileImage")
-      .count();
+      let getCount = await Post.aggregate([
+        {
+          $search: {
+            compound: {
+              should: [
+                {
+                  text: {
+                    query: textSearch.split(" "),
+                    path: ["title", "shaper", "model"],
+                    score: { boost: { value: 3 } },
+                    fuzzy: {
+                      maxEdits: 2,
+                    },
+                  },
+                },
+                {
+                  text: {
+                    query: textSearch.split(" "),
+                    path: ["description"],
+                  },
+                },
+              ],
+            },
+          },
+        },
+        {
+          $match: filterData,
+        },
+        {
+          $count: "count",
+        },
+      ]);
+
+      numberOfPosts = getCount[0].count;
+    } else {
+      console.log("inside filter ");
+
+      //find posts with only filters
+      posts = await Post.find(filterData)
+        .populate("user", "username profileImage")
+        .sort(sortQuery)
+        .limit(resultsPerPage)
+        .skip((currentPage - 1) * resultsPerPage);
+
+      numberOfPosts = await Post.find(filterData).count();
+    }
 
     if (!posts) {
       return res.status(400).json({ msg: "There is no posts" });

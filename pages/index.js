@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Head from "next/head";
 import styled from "styled-components";
-import axios from "axios";
 
-import baseUrl from "../utils/baseUrl";
 import Carousel from "../components/carousel";
 import FiltersBar from "../components/filtersBar";
 import FiltersBox from "../components/filtersBox";
 import PostList from "../components/displayPosts";
 import SortSelect from "../components/sortSelect";
 import Pagination from "../components/pagination";
+import { fetchPosts } from "../actions/fetchPosts";
+import { UPDATE_RESULTS_PER_PAGE, UPDATE_CURRENT_PAGE } from "../actions/types";
 
 const FiltersPostsContainer = styled.div`
   @media (min-width: ${({ theme }) => theme.sm}) {
@@ -30,69 +30,21 @@ const PostCount = styled.div`
 `;
 
 const Home = (props) => {
-  const [posts, setPosts] = useState([]);
-  const [totalNumberOfResults, setTotalNumberOfResults] = useState(0);
-  const [isLoading, setLoading] = useState(true);
-  const [isError, setError] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [resultsPerPage, setResultsPerPage] = useState(50);
+  const dispatch = useDispatch();
   const { lat, lng } = useSelector((state) => state.currentLocation.location);
-  const filters = useSelector((state) => state.filters);
   const {
+    posts,
     sort,
-    price,
-    boardType,
-    condition,
-    length,
-    width,
-    depth,
-    volume,
-    distance,
-  } = filters;
-
-  //fetch lists of posts
-  const fetchPosts = async () => {
-    setPosts([]);
-    setLoading(true);
-    try {
-      //set headers for request
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      //stringify the form items
-      const filtersData = {
-        sort,
-        resultsPerPage,
-        currentPage,
-        price,
-        boardType,
-        condition,
-        length,
-        width,
-        depth,
-        volume,
-        distance,
-        lat,
-        lng,
-      };
-      const body = JSON.stringify(filtersData);
-      //fetch posts
-      const url = `${baseUrl}/api/posts/postdetails`;
-      const res = await axios.post(url, body, config);
-      setPosts(res.data.posts);
-      setTotalNumberOfResults(parseInt(res.data.totalNumberOfResults));
-    } catch (err) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
+    currentPage,
+    resultsPerPage,
+    numberOfResultsFound,
+    isLoading,
+    isError,
+  } = useSelector((state) => state.filters);
 
   //automatically fetch list of post on render
   useEffect(() => {
-    fetchPosts();
+    dispatch(fetchPosts());
   }, [lat, lng, sort, resultsPerPage, currentPage]);
 
   return (
@@ -107,19 +59,19 @@ const Home = (props) => {
         <FiltersBar />
         <FiltersPostsContainer>
           <div>
-            <FiltersBox fetchPosts={fetchPosts} />
+            <FiltersBox fetchPosts={() => dispatch(fetchPosts())} />
           </div>
           <div style={{ flex: 1 }}>
             <PostCountAndSortSelect>
               <PostCount>
-                {totalNumberOfResults > resultsPerPage ? (
+                {numberOfResultsFound > resultsPerPage ? (
                   <>
                     {(currentPage - 1) * resultsPerPage + 1}-
-                    {currentPage * resultsPerPage > totalNumberOfResults
-                      ? totalNumberOfResults
+                    {currentPage * resultsPerPage > numberOfResultsFound
+                      ? numberOfResultsFound
                       : currentPage * resultsPerPage}
                     {" / "}
-                    {totalNumberOfResults} posts found
+                    {numberOfResultsFound} posts found
                   </>
                 ) : (
                   <>{posts.length} posts found</>
@@ -131,26 +83,19 @@ const Home = (props) => {
           </div>
         </FiltersPostsContainer>
         <Pagination
-          totalResults={totalNumberOfResults}
+          totalResults={numberOfResultsFound}
           resultsPerPage={resultsPerPage}
           currentPage={currentPage}
-          setResultsPerPage={setResultsPerPage}
-          setCurrentPage={setCurrentPage}
+          setResultsPerPage={(value) =>
+            dispatch({ type: UPDATE_RESULTS_PER_PAGE, payload: value })
+          }
+          setCurrentPage={(value) =>
+            dispatch({ type: UPDATE_CURRENT_PAGE, payload: value })
+          }
         />
       </div>
     </div>
   );
 };
-
-// Home.getInitialProps = async function() {
-//   const res = await fetch('https://api.tvmaze.com/search/shows?q=batman');
-//   const data = await res.json();
-
-//   console.log(`Show data fetched. Count: ${data.length}`);
-
-//   return {
-//     shows: data.map(entry => entry.show)
-//   };
-// };
 
 export default Home;
