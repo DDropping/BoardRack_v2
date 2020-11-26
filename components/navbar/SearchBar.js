@@ -1,5 +1,6 @@
 import React from "react";
 import { Input } from "antd";
+import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { fetchPosts } from "../../actions/fetchPosts";
@@ -12,6 +13,7 @@ const SearchWrapper = styled.section`
 
 const SearchBar = () => {
   const { Search } = Input;
+  const router = useRouter();
   const dispatch = useDispatch();
   const searchValue = useSelector((state) => {
     state.filters.textSearch;
@@ -22,6 +24,7 @@ const SearchBar = () => {
   };
 
   const handleSearch = () => {
+    router.push("/");
     dispatch({ type: UPDATE_CURRENT_PAGE, payload: 1 });
     dispatch(fetchPosts());
   };
