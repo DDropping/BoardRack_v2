@@ -45,7 +45,7 @@ const Home = (props) => {
   //automatically fetch list of post on render
   useEffect(() => {
     dispatch(fetchPosts());
-  }, [lat, lng, sort, resultsPerPage, currentPage]);
+  }, [lat, lng, sort, resultsPerPage]);
 
   return (
     <div>
@@ -89,9 +89,10 @@ const Home = (props) => {
           setResultsPerPage={(value) =>
             dispatch({ type: UPDATE_RESULTS_PER_PAGE, payload: value })
           }
-          setCurrentPage={(value) =>
-            dispatch({ type: UPDATE_CURRENT_PAGE, payload: value })
-          }
+          setCurrentPage={(value) => {
+            dispatch({ type: UPDATE_CURRENT_PAGE, payload: value });
+            dispatch(fetchPosts());
+          }}
         />
       </div>
     </div>

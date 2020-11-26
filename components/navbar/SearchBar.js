@@ -3,7 +3,7 @@ import { Input } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { fetchPosts } from "../../actions/fetchPosts";
-import { UPDATE_TEXT_SEARCH } from "../../actions/types";
+import { UPDATE_TEXT_SEARCH, UPDATE_CURRENT_PAGE } from "../../actions/types";
 
 const SearchWrapper = styled.section`
   padding: 0.5rem;
@@ -22,6 +22,7 @@ const SearchBar = () => {
   };
 
   const handleSearch = () => {
+    dispatch({ type: UPDATE_CURRENT_PAGE, payload: 1 });
     dispatch(fetchPosts());
   };
 
