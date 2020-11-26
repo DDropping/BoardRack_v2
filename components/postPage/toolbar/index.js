@@ -21,11 +21,9 @@ const index = ({ postId, isModalView, authorId }) => {
   const user = useSelector((state) => state.auth.user);
   const router = useRouter();
 
-  console.log("toolbar author id: ", authorId);
-
   //disable favorite button for post owner
   useEffect(() => {
-    if (user) {
+    if (user && authorId) {
       if (user._id.toString() === authorId.toString()) {
         setPostAuthor(true);
       }
@@ -42,8 +40,6 @@ const index = ({ postId, isModalView, authorId }) => {
   function closeModal() {
     router.push("/");
   }
-
-  console.log("isPostAuthor: ", isPostAuthor);
 
   return (
     <ToolbarContainer>
@@ -69,10 +65,12 @@ const index = ({ postId, isModalView, authorId }) => {
           {" Unfavorite"}
         </ToolbarButton>
       )}
-      <ToolbarButton onClick={() => setReportOpen(!isReportOpen)}>
-        <FlagOutlined />
-        {" Report"}
-      </ToolbarButton>
+      {!isPostAuthor && (
+        <ToolbarButton onClick={() => setReportOpen(!isReportOpen)}>
+          <FlagOutlined />
+          {" Report"}
+        </ToolbarButton>
+      )}
       <span style={{ flex: 1 }} />
       {isModalView && (
         <ToolbarButtonClose onClick={() => closeModal()}>
