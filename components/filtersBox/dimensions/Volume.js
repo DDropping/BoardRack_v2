@@ -41,7 +41,6 @@ const VolumeRange = () => {
           }
           parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
           onChange={(value) => {
-            console.log("UPDATEING DIMENSIONS VOLUME MIN");
             dispatch({ type: UPDATE_DIMENSIONS_VOLUME_MIN, payload: value });
           }}
         />{" "}

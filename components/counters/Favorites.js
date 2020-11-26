@@ -22,7 +22,6 @@ const Favorites = ({ favorites, postId }) => {
   useEffect(() => {
     //check if user has favorited post
     if (user) {
-      console.log("running favorites counter useEffect");
       setFavorite(
         user.favorites.filter((post) => post._id === postId).length > 0
           ? true
@@ -35,12 +34,12 @@ const Favorites = ({ favorites, postId }) => {
     <FavoritesContainer>
       {favorites.length}
       {!user && (
-        <Tooltip placement="top" title="Login to favorite">
+        <Tooltip placement='top' title='Login to favorite'>
           <StarOutlined />
         </Tooltip>
       )}
       {user && user.posts.filter((post) => post._id === postId).length > 0 && (
-        <Tooltip placement="top" title="Cannot Favorite Your Own Posts">
+        <Tooltip placement='top' title='Cannot Favorite Your Own Posts'>
           <StarOutlined />
         </Tooltip>
       )}

@@ -46,7 +46,6 @@ const Location = () => {
   };
 
   const handleGetLocationForm = () => {
-    console.log(locationValue);
     dispatch(handleLocationForm(locationValue));
   };
 
@@ -56,7 +55,7 @@ const Location = () => {
         onClick={() => {
           toggleLocationForm(true);
         }}
-        type="primary"
+        type='primary'
         ghost
         block
       >
@@ -79,7 +78,7 @@ const Location = () => {
         }}
       />
       <Button
-        type="primary"
+        type='primary'
         ghost
         block
         loading={isLoading}
@@ -92,7 +91,7 @@ const Location = () => {
       <Divider style={{ fontSize: "0.75rem", margin: "6px 0" }}>OR</Divider>
 
       <Input
-        name="location"
+        name='location'
         value={locationValue}
         style={{ marginBottom: "0.25rem" }}
         placeholder={
@@ -103,7 +102,7 @@ const Location = () => {
         onChange={(e) => handleLocationValueChange(e)}
       />
       <Button
-        type="primary"
+        type='primary'
         ghost
         block
         loading={isLoading}

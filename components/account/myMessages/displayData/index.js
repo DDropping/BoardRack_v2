@@ -33,7 +33,6 @@ const index = () => {
         }
       } catch (err) {
         setError(true);
-        console.log(err.message);
       } finally {
         setLoading(false);
       }

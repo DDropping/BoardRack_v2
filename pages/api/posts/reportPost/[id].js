@@ -20,7 +20,6 @@ const handler = async (req, res) => {
 // @res
 // @access  Protected
 async function handlePatchRequest(req, res) {
-  console.log("inside report post route");
   const {
     query: { id },
   } = req;
@@ -29,8 +28,6 @@ async function handlePatchRequest(req, res) {
   const inappropriateInc = isInappropriate ? 1 : 0;
   const insensitiveInc = isInsensitive ? 1 : 0;
   const scamInc = isScam ? 1 : 0;
-
-  console.log(inappropriateInc, insensitiveInc, scamInc, message);
 
   try {
     const post = await Post.findByIdAndUpdate(id, {

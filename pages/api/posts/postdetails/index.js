@@ -145,7 +145,6 @@ async function handlePostRequest(req, res) {
     let posts, numberOfPosts;
     //find post with search filters
     if (textSearch && textSearch.length > 0) {
-      console.log("inside seach ");
       //find posts with text search and filters
       posts = await Post.aggregate([
         {
@@ -182,7 +181,6 @@ async function handlePostRequest(req, res) {
           $limit: resultsPerPage,
         },
       ]);
-      console.log("posts: ", posts);
 
       let getCount = await Post.aggregate([
         {
@@ -219,8 +217,6 @@ async function handlePostRequest(req, res) {
 
       numberOfPosts = getCount[0].count;
     } else {
-      console.log("inside filter ");
-
       //find posts with only filters
       posts = await Post.find(filterData)
         .populate("user", "username profileImage")
