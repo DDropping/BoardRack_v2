@@ -175,6 +175,9 @@ async function handlePostRequest(req, res) {
           $match: filterData,
         },
         {
+          $sort: sortQuery,
+        },
+        {
           $skip: (currentPage - 1) * resultsPerPage,
         },
         {
@@ -210,9 +213,7 @@ async function handlePostRequest(req, res) {
         {
           $match: filterData,
         },
-        {
-          $count: "count",
-        },
+        { $group: { _id: null, count: { $sum: 1 } } },
       ]);
 
       numberOfPosts = getCount[0].count;
@@ -224,7 +225,7 @@ async function handlePostRequest(req, res) {
         .limit(resultsPerPage)
         .skip((currentPage - 1) * resultsPerPage);
 
-      numberOfPosts = await Post.find(filterData).count();
+      numberOfPosts = await Post.countDocuments(filterData);
     }
 
     if (!posts) {
