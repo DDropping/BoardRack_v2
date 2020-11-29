@@ -126,7 +126,11 @@ const index = ({ quickData, postId, isModalView, isPreview }) => {
                   lng={postData.location.lng}
                 />
               )}
-              <SimilarPosts postId={postData._id} />
+              <SimilarPosts
+                postId={postData._id}
+                boardType={postData.boardType ? postData.boardType : null}
+                volumeValue={postData.volumeValue ? postData.volumeValue : null}
+              />
               <div style={{ flex: 1 }} />
               <Footer />
             </Flexbox>
