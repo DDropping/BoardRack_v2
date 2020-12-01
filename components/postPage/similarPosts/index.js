@@ -29,7 +29,7 @@ const index = ({ postId, boardType, volumeValue }) => {
         boardType,
         volumeValue,
       });
-      const url = `${baseUrl}/api/posts/similarPosts`;
+      const url = `${baseUrl}/api/posts/similarposts`;
       const result = await axios.post(url, body, config);
       if (result) {
         setSimilarPosts(result.data);
