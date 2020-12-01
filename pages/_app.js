@@ -57,6 +57,7 @@ export const theme = {
   //colors
   primaryBlue: "#00458a",
   secondaryBlue: "#4878a9",
+  secondaryLightBlue: "#dfefff",
 
   primaryRed: "#ef4040",
   primaryLightRed: "#ef404017",
