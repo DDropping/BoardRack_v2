@@ -87,7 +87,7 @@ const index = ({ post }) => {
         <ContainerNoOutline>
           <Title>Surfer's Opinion</Title>
           <OpinionsContainer>
-            <div>
+            <div style={{ textAlign: "center" }}>
               <PercentCircleOutline circleFill={5}>
                 <Circle>
                   <IconWrapper>
@@ -104,7 +104,7 @@ const index = ({ post }) => {
               Wave Size(ft)
             </div>
 
-            <div>
+            <div style={{ textAlign: "center" }}>
               <PercentCircleOutline circleFill={parseInt(post.movability)}>
                 <Circle>
                   <IconWrapper>
@@ -119,7 +119,7 @@ const index = ({ post }) => {
               Movability
             </div>
 
-            <div>
+            <div style={{ textAlign: "center" }}>
               <PercentCircleOutline circleFill={parseInt(post.paddlePower)}>
                 <Circle>
                   <IconWrapper>
@@ -134,7 +134,7 @@ const index = ({ post }) => {
               Paddle Power
             </div>
 
-            <div>
+            <div style={{ textAlign: "center" }}>
               <PercentCircleOutline circleFill={parseInt(post.drive)}>
                 <Circle>
                   <IconWrapper>
