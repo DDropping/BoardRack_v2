@@ -80,6 +80,7 @@ const index = ({ isMessageListChild }) => {
                       (messageData) => messageData._id === router.query.thread
                     ).post
                   }
+                  directToPostPage={true}
                 />
               )}
               <DisplayMessages user={user} />

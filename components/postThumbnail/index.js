@@ -1,11 +1,12 @@
 import React from "react";
+import Link from "next/link";
 
 import { Container } from "./style";
 import Images from "./Images";
 import Content from "./Content";
 import Counters from "./Counters";
 
-const index = ({ postData }) => {
+const index = ({ postData, directToPostPage }) => {
   const countersData = {
     postId: postData._id,
     price: postData.price,
@@ -31,11 +32,21 @@ const index = ({ postData }) => {
   };
 
   return (
-    <Container>
-      <Images data={imageData} />
-      <Content data={contentData} />
-      <Counters data={countersData} />
-    </Container>
+    <Link
+      scroll={false}
+      href={
+        directToPostPage
+          ? `/postdetails/${postData._id}`
+          : `/?postId=${postData._id}`
+      }
+      as={`/postdetails/${postData._id}`}
+    >
+      <Container>
+        <Images data={imageData} />
+        <Content data={contentData} />
+        <Counters data={countersData} />
+      </Container>
+    </Link>
   );
 };
 
