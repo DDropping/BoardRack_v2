@@ -8,7 +8,7 @@ export const FiltersBoxContainer = styled.div`
   width: 325px;
   background-color: ${({ theme }) => theme.primaryWhite};
   box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);
-  @media (max-width: ${({ theme }) => theme.sm}) {
+  @media (max-width: ${({ theme }) => theme.md}) {
     width: 100%;
     margin-right: 0;
   }

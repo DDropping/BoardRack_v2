@@ -42,10 +42,14 @@ const Condition = () => {
         </Checkbox>
       </div>
       <div>
-        <CheckboxGroup value={conditionsList} onChange={onChange}>
+        <CheckboxGroup
+          value={conditionsList}
+          onChange={onChange}
+          style={{ width: "100%" }}
+        >
           <Row>
             {conditionOptions.map((option) => (
-              <Col span={12} key={option}>
+              <Col xs={12} sm={6} md={12} key={option}>
                 <Checkbox value={option}>{option}</Checkbox>
               </Col>
             ))}

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: inline-block;
-  margin: 0 5px 10px 5px;
+  margin: 0 10px 10px 10px;
   display: flex;
   flex-direction: row;
   transition: ${({ theme }) => theme.boxShadow};

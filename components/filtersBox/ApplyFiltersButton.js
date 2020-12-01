@@ -6,7 +6,11 @@ const ApplyFiltersButton = ({ fetchPosts }) => {
     <Button
       block
       type='primary'
-      style={{ marginBottom: "10px" }}
+      style={{
+        margin: "0 auto 10px auto",
+        display: "block",
+        maxWidth: "280px",
+      }}
       onClick={fetchPosts}
     >
       Apply Filters

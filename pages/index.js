@@ -13,7 +13,7 @@ import { fetchPosts } from "../actions/fetchPosts";
 import { UPDATE_RESULTS_PER_PAGE, UPDATE_CURRENT_PAGE } from "../actions/types";
 
 const FiltersPostsContainer = styled.div`
-  @media (min-width: ${({ theme }) => theme.sm}) {
+  @media (min-width: ${({ theme }) => theme.md1}) {
     display: flex;
   }
 `;

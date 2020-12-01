@@ -7,6 +7,7 @@ import PostModal from "../postModal";
 import LoadingScreenCard from "../loadingScreens/postCard";
 
 import PostThumbnail from "../postThumbnail";
+import PostList from "../postList";
 
 const index = ({ posts, isLoading }) => {
   const layout = useSelector((state) => state.filters.layout);
@@ -36,6 +37,17 @@ const index = ({ posts, isLoading }) => {
             return (
               <Li key={index}>
                 <PostThumbnail key={index} postData={post} />
+              </Li>
+            );
+          })}
+        </UlList>
+      )}
+      {layout === "List" && (
+        <UlList>
+          {posts.map((post, index) => {
+            return (
+              <Li key={index}>
+                <PostList key={index} postData={post} />
               </Li>
             );
           })}

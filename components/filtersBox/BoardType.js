@@ -45,10 +45,14 @@ const BoardType = () => {
         </Checkbox>
       </div>
       <div>
-        <CheckboxGroup value={boardTypeList} onChange={onChange}>
+        <CheckboxGroup
+          value={boardTypeList}
+          onChange={onChange}
+          style={{ width: "100%" }}
+        >
           <Row>
             {boardTypeOptions.map((option) => (
-              <Col span={12} key={option}>
+              <Col xs={12} sm={6} md={12} key={option}>
                 <Checkbox value={option}>{option}</Checkbox>
               </Col>
             ))}
