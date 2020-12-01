@@ -9,7 +9,7 @@ import {
   FLAG_MESSAGE_AS_READ,
 } from "../../../../actions/types";
 import baseUrl from "../../../../utils/baseUrl";
-import PostListRow from "../../../postListRow";
+import PostThumbnail from "../../../postThumbnail";
 import DisplayMessages from "./DisplayMessages";
 import MessageBox from "./MessageBox";
 
@@ -74,7 +74,7 @@ const index = ({ isMessageListChild }) => {
               {user.messages.find(
                 (messageData) => messageData._id === router.query.thread
               ).post && (
-                <PostListRow
+                <PostThumbnail
                   postData={
                     user.messages.find(
                       (messageData) => messageData._id === router.query.thread
