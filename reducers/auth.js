@@ -25,7 +25,7 @@ const initialState = {
   user: null,
 };
 
-export default function (state = initialState, action) {
+const reducer = function (state = initialState, action) {
   switch (action.type) {
     // update token
     case AUTH_USER:
@@ -152,4 +152,6 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;

@@ -52,7 +52,7 @@ const initialState = {
   condition: [],
 };
 
-export default function (state = initialState, action) {
+const reducer = function (state = initialState, action) {
   switch (action.type) {
     //update fetched posts
     case UPDATE_POSTS:
@@ -272,4 +272,6 @@ export default function (state = initialState, action) {
         ...state,
       };
   }
-}
+};
+
+export default reducer;

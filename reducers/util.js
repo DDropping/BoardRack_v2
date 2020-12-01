@@ -4,7 +4,7 @@ const initialState = {
   viewedPosts: [],
 };
 
-export default function (state = initialState, action) {
+const reducer = function (state = initialState, action) {
   switch (action.type) {
     case ADD_VIEW:
       return {
@@ -14,4 +14,6 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;

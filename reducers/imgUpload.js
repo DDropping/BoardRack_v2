@@ -16,7 +16,7 @@ const initialState = {
   imgList: [],
 };
 
-export default function (state = initialState, action) {
+const reducer = function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case SET_IMG_KEY:
@@ -126,4 +126,6 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;

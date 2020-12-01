@@ -1,4 +1,4 @@
-export default (date) => {
+const timeAgo = (date) => {
   let timePostedAgo = new Date() - new Date(date);
 
   if (timePostedAgo > 8.64e7) {
@@ -21,3 +21,5 @@ export default (date) => {
     }
   } else return "1 minute";
 };
+
+export default timeAgo;

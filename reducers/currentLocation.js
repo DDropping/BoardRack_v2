@@ -26,7 +26,7 @@ const initialState = {
   },
 };
 
-export default function (state = initialState, action) {
+const reducer = function (state = initialState, action) {
   switch (action.type) {
     case LOAD_DEFAULT_LOCATION_TO_CURRENT:
       return {
@@ -78,4 +78,5 @@ export default function (state = initialState, action) {
         ...state,
       };
   }
-}
+};
+export default reducer;
