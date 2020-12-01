@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: inline-block;
+  border-radius: 5px;
   margin: 0 10px 10px 10px;
   display: flex;
   flex-direction: row;
