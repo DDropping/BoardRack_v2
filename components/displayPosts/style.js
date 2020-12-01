@@ -31,4 +31,8 @@ export const Ul = styled.ul`
   }
 `;
 
+export const UlList = styled.div`
+  list-style-type: none;
+`;
+
 export const Li = styled.li``;
