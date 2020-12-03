@@ -37,7 +37,7 @@ async function handlePostRequest(req, res) {
   }
 
   try {
-    const post = await Post.find(filterData)
+    let post = await Post.find(filterData)
       .limit(3)
       .populate("user", "username")
       .sort({ date: -1 });
