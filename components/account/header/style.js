@@ -40,8 +40,8 @@ export const BackgroundMenu = styled.ul`
 `;
 
 export const MenuItem = styled.li`
-  margin-bottom: 5px;
   margin-right: 5px;
+  cursor: pointer;
 `;
 
 export const MiniBackgroundImage = styled.img`
@@ -65,6 +65,7 @@ export const MenuItemColor = styled.li`
   width: calc(25% - 5px);
   display: inline-block;
   margin-right: 5px;
+  cursor: pointer;
 `;
 
 export const ColorBox = styled.div`

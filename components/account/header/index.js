@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { EditOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
 import axios from "axios";
+import Image from "next/image";
 
 import {
   Container,
@@ -14,7 +15,6 @@ import {
   MenuItem,
   BackgroundImageWrapper,
   BackgroundImage,
-  MiniBackgroundImage,
   MenuItemColor,
   ColorBox,
 } from "./style";
@@ -63,7 +63,13 @@ const index = () => {
               updateUserData(item.src, null);
             }}
           >
-            <MiniBackgroundImage alt={item.alt} src={item.src} />
+            <Image
+              src={item.src}
+              alt={item.alt}
+              layout='fixed'
+              width={460}
+              height={60}
+            />
           </MenuItem>
         );
       })}
@@ -95,7 +101,7 @@ const index = () => {
           <EditButton>
             <Dropdown overlay={menu} trigger={["click"]}>
               <a
-                className="ant-dropdown-link"
+                className='ant-dropdown-link'
                 onClick={(e) => e.preventDefault()}
               >
                 <EditOutlined style={{ fontSize: "20px", color: "#cecece" }} />
@@ -105,7 +111,7 @@ const index = () => {
           {user.profileBackground.image && (
             <BackgroundImageWrapper>
               <BackgroundImage
-                alt="user account background image"
+                alt='user account background image'
                 src={user.profileBackground.image}
               />
             </BackgroundImageWrapper>

@@ -1,8 +1,8 @@
 import React from "react";
-import { Col, Row } from "antd";
 import styled from "styled-components";
+import Image from "next/image";
 
-import { ContainerNoOutline, Title, OpinionKey, OpinionValue } from "./style";
+import { ContainerNoOutline, Title } from "./style";
 
 export const IconWrapper = styled.div`
   max-width: 100%;
@@ -91,9 +91,12 @@ const index = ({ post }) => {
               <PercentCircleOutline circleFill={5}>
                 <Circle>
                   <IconWrapper>
-                    <IconImage
+                    <Image
                       src='/images/icons/br_waveSize.png'
                       alt='wave size'
+                      layout='responsive'
+                      width={45}
+                      height={30}
                     />
                     <div style={{ overflow: "hidden", whiteSpace: "nowrap" }}>
                       {post.waveSize && post.waveSize + " ft"}
@@ -108,9 +111,12 @@ const index = ({ post }) => {
               <PercentCircleOutline circleFill={parseInt(post.movability)}>
                 <Circle>
                   <IconWrapper>
-                    <IconImage
+                    <Image
                       src='/images/icons/br_movability.png'
                       alt='wave size'
+                      layout='responsive'
+                      width={45}
+                      height={30}
                     />
                     {post.movability && post.movability + "/5"}
                   </IconWrapper>
@@ -123,9 +129,12 @@ const index = ({ post }) => {
               <PercentCircleOutline circleFill={parseInt(post.paddlePower)}>
                 <Circle>
                   <IconWrapper>
-                    <IconImage
+                    <Image
                       src='/images/icons/br_paddlePower.png'
-                      alt='wave size'
+                      alt='paddle power'
+                      layout='responsive'
+                      width={45}
+                      height={30}
                     />
                     {post.paddlePower && post.paddlePower + "/5"}
                   </IconWrapper>
@@ -138,9 +147,12 @@ const index = ({ post }) => {
               <PercentCircleOutline circleFill={parseInt(post.drive)}>
                 <Circle>
                   <IconWrapper>
-                    <IconImage
+                    <Image
                       src='/images/icons/br_driveSpeed.png'
-                      alt='wave size'
+                      alt='drive and speed'
+                      layout='responsive'
+                      width={45}
+                      height={30}
                     />
                     {post.drive && post.drive + "/5"}
                   </IconWrapper>

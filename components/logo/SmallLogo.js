@@ -1,26 +1,28 @@
-import React from 'react';
-import Link from 'next/link';
-import styled from 'styled-components';
+import React from "react";
+import Link from "next/link";
+import styled from "styled-components";
+import Image from "next/image";
 
 export const ImgWrapper = styled.div`
   padding: 0.5rem;
   max-width: 60px;
   max-height: 60px;
   cursor: pointer;
-  @media (min-width: ${props => props.theme.md}) {
+  @media (min-width: ${(props) => props.theme.md}) {
     display: none;
   }
 `;
 
-export const Img = styled.img`
-  width: 100%;
-`;
-
 const SmallLogo = () => {
   return (
-    <Link href="/">
+    <Link href='/'>
       <ImgWrapper>
-        <Img src="/images/br_logo_small.png" alt="boardrack logo" />
+        <Image
+          src='/images/br_logo_small.png'
+          alt='boardrack'
+          width={50}
+          height={45}
+        />
       </ImgWrapper>
     </Link>
   );
