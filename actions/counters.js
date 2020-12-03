@@ -21,7 +21,7 @@ export const addFavorite = (postId) => async (dispatch) => {
   //update post to DB
   try {
     const res = await axios.put(
-      "/api/posts/favorite/addfavorite",
+      "/api/posts/favorite/addFavorite",
       body,
       config
     );
