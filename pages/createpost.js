@@ -25,6 +25,8 @@ const CreatePost = () => {
     <Container>
       <Head>
         <title>BoardRack | Create Post</title>
+        <meta httpEquiv='Content-type' content='text/html; charset=utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta
           name='description'
           content='Sell your new or used surfboards on BoardRack by creating a new post.'

@@ -51,6 +51,8 @@ const Home = (props) => {
     <div>
       <Head>
         <title>BoardRack | Home</title>
+        <meta httpEquiv='Content-type' content='text/html; charset=utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta
           name='description'
           content='Search for new or used surfboards in your area or create a new post to sell your surfboard using BoardRack.'

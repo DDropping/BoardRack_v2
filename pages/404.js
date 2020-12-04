@@ -6,6 +6,8 @@ export default function Custom404() {
     <div style={{ height: "100%", maxWidth: "1000px", margin: "0 auto" }}>
       <Head>
         <title>BoardRack | 404</title>
+        <meta httpEquiv='Content-type' content='text/html; charset=utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta name='description' content='Page Not Found: 404' />
       </Head>
       <img
