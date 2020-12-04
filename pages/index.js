@@ -51,6 +51,10 @@ const Home = (props) => {
     <div>
       <Head>
         <title>BoardRack | Home</title>
+        <meta
+          name='description'
+          content='Search for new or used surfboards in your area or create a new post to sell your surfboard using BoardRack.'
+        />
       </Head>
       <div style={{ zIndex: 1, position: "relative" }}>
         <Carousel />

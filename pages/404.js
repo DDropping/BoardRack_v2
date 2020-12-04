@@ -1,7 +1,13 @@
+import Head from "next/head";
 import Image from "next/image";
+
 export default function Custom404() {
   return (
     <div style={{ height: "100%", maxWidth: "1000px", margin: "0 auto" }}>
+      <Head>
+        <title>BoardRack | 404</title>
+        <meta name='description' content='Page Not Found: 404' />
+      </Head>
       <img
         alt='404 page not found'
         src={"/images/404NotFound.jpg"}

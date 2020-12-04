@@ -25,6 +25,10 @@ const CreatePost = () => {
     <Container>
       <Head>
         <title>BoardRack | Create Post</title>
+        <meta
+          name='description'
+          content='Sell your new or used surfboards on BoardRack by creating a new post.'
+        />
       </Head>
       <PostSteps step={step} handleStepChange={handleStepChange} />
       <div style={{ flex: 1 }}>
