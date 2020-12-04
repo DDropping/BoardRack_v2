@@ -33,7 +33,11 @@ const index = ({ postId, isModalView, authorId }) => {
   useEffect(() => {
     //check if user has favorited post
     if (user) {
-      setFavorite(user.favorites.includes(postId));
+      setFavorite(
+        user.favorites.filter((post) => post._id === postId).length > 0
+          ? true
+          : false
+      );
     }
   }, [user]);
 

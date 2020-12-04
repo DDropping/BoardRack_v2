@@ -47,7 +47,7 @@ export const removeFavorite = (postId) => async (dispatch) => {
 
   //update post to DB
   try {
-    await axios.put("/api/posts/favorite/removefavorite", body, config);
+    await axios.put("/api/posts/favorite/removeFavorite", body, config);
     dispatch({ type: UPDATE_USER_FAVORITES_REMOVE, payload: postId });
   } catch (err) {
     if (err) {
