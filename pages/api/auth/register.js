@@ -6,7 +6,7 @@ import isLength from "validator/lib/isLength";
 
 import generateInline from "../../../templates/verifyEmail";
 import baseUrl from "../../../utils/baseUrl";
-import connectDb from "../../../utils/ConnectDb";
+import connectDb from "../../../utils/connectDb";
 import User from "../../../models/User";
 import Message from "../../../models/Message";
 

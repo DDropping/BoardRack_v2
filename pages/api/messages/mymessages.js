@@ -1,4 +1,4 @@
-import connectDb from "../../../utils/ConnectDb";
+import connectDb from "../../../utils/connectDb";
 import Message from "../../../models/Message";
 import "../../../models/User";
 import "../../../models/Post";

@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
-import connectDb from "../../../../utils/ConnectDb";
+import connectDb from "../../../../utils/connectDb";
 import User from "../../../../models/User";
 import generateInline from "../../../../templates/verifyForgotPassword";
 import baseUrl from "../../../../utils/baseUrl";

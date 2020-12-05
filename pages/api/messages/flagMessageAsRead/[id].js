@@ -1,4 +1,4 @@
-import connectDb from "../../../../utils/ConnectDb";
+import connectDb from "../../../../utils/connectDb";
 import Message from "../../../../models/Message";
 
 import authenticate from "../../../../middleware/auth";

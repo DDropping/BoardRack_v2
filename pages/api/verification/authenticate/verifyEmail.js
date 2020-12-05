@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-import connectDb from "../../../../utils/ConnectDb";
+import connectDb from "../../../../utils/connectDb";
 import User from "../../../../models/User";
 
 connectDb();

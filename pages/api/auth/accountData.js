@@ -1,7 +1,7 @@
 import User from "../../../models/User";
 import "../../../models/Message";
 import "../../../models/Post";
-import connectDb from "../../../utils/ConnectDb";
+import connectDb from "../../../utils/connectDb";
 import authenticate from "../../../middleware/auth";
 
 connectDb();

@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 
 import generateInline from "../../../../templates/notifyNewMessage";
-import connectDb from "../../../../utils/ConnectDb";
+import connectDb from "../../../../utils/connectDb";
 import User from "../../../../models/User";
 import Authenticate from "../../../../middleware/auth";
 
