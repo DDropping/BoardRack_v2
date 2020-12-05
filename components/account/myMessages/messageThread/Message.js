@@ -37,6 +37,7 @@ const AvatarContainer = styled.div`
 `;
 
 const Body = styled.div`
+  text-align: left;
   display: inline-block;
   padding: 5px;
   border-radius: 10px;
@@ -52,21 +53,23 @@ const TimeStamp = styled.div`
 `;
 
 const Message = ({ message, recieved }) => {
+  //const formatedMessage = message.body.replace(/\n/g, "<br />");
+  const formatedMessage = message.body.split("\n");
   return (
     <Container>
       <Justify recieved={recieved} />
-      {!recieved && (
-        <AvatarContainer recieved={recieved}>
-          {/* <Avatar
-            size={28}
-            profileImage={from.profileImage}
-            userId={from._id}
-            username={from.username}
-          /> */}
-        </AvatarContainer>
-      )}
+      {!recieved && <AvatarContainer recieved={recieved}></AvatarContainer>}
       <MessageContainer recieved={recieved}>
-        <Body recieved={recieved}>{message.body}</Body>
+        <Body recieved={recieved}>
+          {formatedMessage.map((message) => {
+            return (
+              <>
+                {message}
+                <br />
+              </>
+            );
+          })}
+        </Body>
         <TimeStamp>
           {recieved && <div style={{ flex: 1 }} />}
           {recieved ? "Recieved " : "Sent "}

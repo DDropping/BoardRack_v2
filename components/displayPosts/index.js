@@ -1,42 +1,58 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import { useSelector } from "react-redux";
 
-import { Container, Li } from "./style";
-import baseUrl from "../../utils/baseUrl";
+import { Container, Ul, Li, UlList } from "./style";
 import PostCard from "../postCard";
 import PostModal from "../postModal";
 import LoadingScreenCard from "../loadingScreens/postCard";
 
-const index = () => {
-  const [posts, setPosts] = useState([]);
-  const [isLoading, setLoading] = useState(true);
+import PostThumbnail from "../postThumbnail";
+import PostList from "../postList";
 
+const index = ({ posts, isLoading }) => {
+  const layout = useSelector((state) => state.filters.layout);
   let loadingCards = [];
   for (let i = 0; i < 20; ++i) {
     loadingCards.push(<LoadingScreenCard key={i} />);
   }
 
-  useEffect(() => {
-    async function fetchData() {
-      const url = `${baseUrl}/api/posts/postdetails`;
-      const res = await axios.get(url);
-      setPosts(res.data);
-      setLoading(false);
-    }
-    fetchData();
-  }, []);
-
   return (
     <Container>
       {isLoading && loadingCards}
       <PostModal quickData={posts} />
-      {posts.map((post, index) => {
-        return (
-          <Li key={index}>
-            <PostCard key={index} postData={post} />
-          </Li>
-        );
-      })}
+      {layout === "Gallery" && (
+        <Ul>
+          {posts.map((post, index) => {
+            return (
+              <Li key={index}>
+                <PostCard key={index} postData={post} />
+              </Li>
+            );
+          })}
+        </Ul>
+      )}
+      {layout === "Thumbnail" && (
+        <UlList>
+          {posts.map((post, index) => {
+            return (
+              <Li key={index}>
+                <PostThumbnail key={index} postData={post} />
+              </Li>
+            );
+          })}
+        </UlList>
+      )}
+      {layout === "List" && (
+        <UlList>
+          {posts.map((post, index) => {
+            return (
+              <Li key={index}>
+                <PostList key={index} postData={post} />
+              </Li>
+            );
+          })}
+        </UlList>
+      )}
     </Container>
   );
 };

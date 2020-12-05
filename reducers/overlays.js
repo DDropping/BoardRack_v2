@@ -1,23 +1,25 @@
-import { TOGGLE_LOGIN, TOGGLE_REGISTER } from '../actions/types';
+import { TOGGLE_LOGIN, TOGGLE_REGISTER } from "../actions/types";
 
 const initialState = {
   isLogin: false,
-  isRegister: false
+  isRegister: false,
 };
 
-export default function(state = initialState, action) {
+const reducer = function (state = initialState, action) {
   switch (action.type) {
     case TOGGLE_LOGIN:
       return {
         ...state,
-        isLogin: action.payload
+        isLogin: action.payload,
       };
     case TOGGLE_REGISTER:
       return {
         ...state,
-        isRegister: action.payload
+        isRegister: action.payload,
       };
     default:
       return state;
   }
-}
+};
+
+export default reducer;

@@ -11,7 +11,9 @@ const index = ({ price, title, description }) => {
           <Col span={1} />
           <Col span={23}>
             <PostTitle>{"$" + price + " " + title}</PostTitle>
-            <div style={{ marginBottom: "10px" }}>{description}</div>
+            <div style={{ marginBottom: "10px", overflowWrap: "break-word" }}>
+              {description}
+            </div>
           </Col>
         </Row>
       )}

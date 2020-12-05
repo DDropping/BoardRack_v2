@@ -24,7 +24,7 @@ const INITIAL_USER = {
   password: "",
 };
 
-const LoginForm = () => {
+const LoginForm = ({ setForgotPasswordVisible }) => {
   const dispatch = useDispatch();
   const [user, setUser] = useState(INITIAL_USER);
   const [disabled, setDisabled] = useState(true);
@@ -70,36 +70,36 @@ const LoginForm = () => {
       {error}
       <InputWrapper>
         <Input
-          placeholder="Email"
+          placeholder='Email'
           prefix={<MailOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-          size="large"
-          name="email"
+          size='large'
+          name='email'
           value={user.email}
           onChange={handleChange}
-          type="email"
+          type='email'
         />
       </InputWrapper>
       <InputWrapper>
         <Input.Password
-          placeholder="Password"
+          placeholder='Password'
           prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-          size="large"
-          name="password"
+          size='large'
+          name='password'
           value={user.password}
           onChange={handleChange}
-          type="password"
+          type='password'
         />
       </InputWrapper>
-      <Checkbox>Remember me</Checkbox>
-      <Link href="/">
-        <A style={{ float: "right" }}>Forgot password</A>
-      </Link>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Checkbox>Remember me</Checkbox>
+        <A onClick={() => setForgotPasswordVisible(true)}>Forgot password</A>
+      </div>
       <Form.Item>
         <Button
-          type="primary"
-          htmlType="submit"
+          type='primary'
+          htmlType='submit'
           loading={loading}
-          size="large"
+          size='large'
           style={{ width: "100%" }}
           disabled={disabled}
           onClick={handleSubmit}
@@ -109,7 +109,7 @@ const LoginForm = () => {
       </Form.Item>
       <div style={{ marginTop: "1rem" }}>
         Don't have an account yet?{" "}
-        <Link href="/">
+        <Link href='/'>
           <A
             onClick={() => {
               dispatch({ type: TOGGLE_REGISTER, payload: true });

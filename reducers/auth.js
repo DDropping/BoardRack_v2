@@ -2,6 +2,10 @@ import {
   AUTH_USER,
   USER_LOADED,
   DEAUTH_USER,
+  UPDATE_USER_PROFILEBACKGROUND,
+  UPDATE_USER_NOTIFICATIONS,
+  DECREASE_MESSAGE_NOTIFICATION,
+  FLAG_MESSAGE_AS_READ,
   UPDATE_USER_POSTS,
   UPDATE_USER_FAVORITES_ADD,
   UPDATE_USER_FAVORITES_REMOVE,
@@ -15,10 +19,13 @@ import cookie from "js-cookie";
 const initialState = {
   token: cookie.get("token"),
   isAuthenticated: false,
+  notifications: {
+    messages: [],
+  },
   user: null,
 };
 
-export default function (state = initialState, action) {
+const reducer = function (state = initialState, action) {
   switch (action.type) {
     // update token
     case AUTH_USER:
@@ -43,6 +50,34 @@ export default function (state = initialState, action) {
         token: null,
         isAuthenticated: false,
         user: null,
+      };
+    case UPDATE_USER_NOTIFICATIONS:
+      return {
+        ...state,
+        notifications: action.payload,
+      };
+    case DECREASE_MESSAGE_NOTIFICATION:
+      return {
+        ...state,
+        notifications: {
+          ...state.notifications,
+          messages: state.notifications.messages.filter(
+            (message) => message !== action.payload
+          ),
+        },
+      };
+    case FLAG_MESSAGE_AS_READ:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          messages: state.user.messages.map((message) => {
+            if (message._id === action.payload) {
+              message.isRead = true;
+            }
+            return message;
+          }),
+        },
       };
     case UPDATE_USER_POSTS:
       return {
@@ -106,7 +141,17 @@ export default function (state = initialState, action) {
           posts: state.user.posts.filter((item) => item._id !== action.payload),
         },
       };
+    case UPDATE_USER_PROFILEBACKGROUND:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          profileBackground: action.payload,
+        },
+      };
     default:
       return state;
   }
-}
+};
+
+export default reducer;

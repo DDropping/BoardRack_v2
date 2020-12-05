@@ -3,7 +3,7 @@ import cookie from "js-cookie";
 
 import baseUrl from "./baseUrl";
 
-export default async (file) => {
+const uploadFileToBucket = async (file) => {
   const contentType = file.type;
   const key = Date.now();
   const options = {
@@ -38,3 +38,5 @@ export default async (file) => {
     console.log("error message", err);
   }
 };
+
+export default uploadFileToBucket;

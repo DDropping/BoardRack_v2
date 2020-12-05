@@ -30,7 +30,6 @@ const EditPost = () => {
       const getPostData = async () => {
         const url = `${baseUrl}/api/posts/postdetails/${router.query.postId}`;
         let res = await axios.get(url);
-        console.log("post: ", res.data);
         if (res.data.user._id === user._id) {
           dispatch({ type: EDIT_POST_INSERT_DATA, payload: res.data });
         }

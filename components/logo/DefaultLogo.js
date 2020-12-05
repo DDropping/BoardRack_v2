@@ -1,13 +1,14 @@
-import React from 'react';
-import Link from 'next/link';
-import styled from 'styled-components';
+import React from "react";
+import Link from "next/link";
+import styled from "styled-components";
+import Image from "next/image";
 
 export const ImgWrapper = styled.div`
   padding: 0.5rem;
   max-width: 200px;
   max-height: 60px;
   cursor: pointer;
-  @media (max-width: ${props => props.theme.md}) {
+  @media (max-width: ${(props) => props.theme.md}) {
     display: none;
   }
 `;
@@ -18,9 +19,14 @@ export const Img = styled.img`
 
 const DefaultLogo = () => {
   return (
-    <Link href="/">
+    <Link href='/'>
       <ImgWrapper>
-        <Img src="/images/br_logo_black.png" alt="boardrack logo" />
+        <Image
+          src='/images/br_logo_black.png'
+          alt='boardrack'
+          width={256}
+          height={56}
+        />
       </ImgWrapper>
     </Link>
   );

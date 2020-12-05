@@ -23,10 +23,10 @@ import Map from "./map";
 import SimilarPosts from "./similarPosts";
 import Footer from "./footer";
 import { ADD_VIEW } from "../../actions/types";
-import Toolbar from "../postModal/Toolbar";
+import Toolbar from "./toolbar";
 import PostNoLongerExists from "../404/PostNoLongerExists";
 
-const index = ({ quickData, postId, isModalView }) => {
+const index = ({ quickData, postId, isModalView, isPreview }) => {
   const dispatch = useDispatch();
   const viewedPosts = useSelector((state) => state.util.viewedPosts);
   const router = useRouter();
@@ -47,7 +47,7 @@ const index = ({ quickData, postId, isModalView }) => {
         setLoading(false);
       }
     }
-    if (!!router.query.postId) {
+    if (!!router.query.postId && !isPreview) {
       if (!postData || postId !== postData._id) {
         fetchData();
       }
@@ -75,56 +75,69 @@ const index = ({ quickData, postId, isModalView }) => {
   });
 
   return (
-    <PostPageContainer>
-      {!isLoading && !postData && <PostNoLongerExists />}
-      {!isModalView && postData && (
-        <Toolbar postId={router.query.postId} isModalView={isModalView} />
-      )}
+    <>
       {postData && (
-        <ImagesContainer>
-          <ImageList images={postData.images} />
-        </ImagesContainer>
+        <Toolbar
+          postId={router.query.postId}
+          isModalView={isModalView}
+          authorId={postData.user._id}
+        />
       )}
-      {postData && (
-        <DataContainer>
-          <ImageGallery images={postData.images} />
-          <Flexbox>
-            {!postData.isAvailable && <StatusBox isSold={postData.isSold} />}
-            {postData.user && (
-              <UserBox
-                user={postData.user}
-                location={postData.location}
+      <PostPageContainer>
+        {!isLoading && !postData && <PostNoLongerExists />}
+        {postData && (
+          <ImagesContainer>
+            <ImageList images={postData.images} />
+          </ImagesContainer>
+        )}
+        {postData && (
+          <DataContainer>
+            <ImageGallery images={postData.images} />
+            <Flexbox>
+              {!postData.isAvailable && !isPreview && (
+                <StatusBox isSold={postData.isSold} />
+              )}
+              {postData.user && (
+                <UserBox
+                  user={postData.user}
+                  location={postData.location}
+                  postId={postData._id}
+                  phone={postData.contactMethods.phone}
+                  email={postData.contactMethods.email}
+                />
+              )}
+              <CountersBar
+                date={postData.date}
+                views={postData.viewCount}
+                favorites={postData.favorites}
+              />
+              <Description
+                price={postData.price}
+                title={postData.title}
+                description={postData.description}
+              />
+              <GeneralDetails post={postData} />
+              <Dimensions post={postData} />
+              <Opinion post={postData} />
+              {postData.location.locationImage && (
+                <Map
+                  map={postData.location.locationImage}
+                  lat={postData.location.lat}
+                  lng={postData.location.lng}
+                />
+              )}
+              <SimilarPosts
                 postId={postData._id}
+                boardType={postData.boardType ? postData.boardType : null}
+                volumeValue={postData.volumeValue ? postData.volumeValue : null}
               />
-            )}
-
-            <CountersBar
-              date={postData.date}
-              views={postData.viewCount}
-              favorites={postData.favorites}
-            />
-            <Description
-              price={postData.price}
-              title={postData.title}
-              description={postData.description}
-            />
-            <GeneralDetails post={postData} />
-            <Dimensions post={postData} />
-            <Opinion post={postData} />
-            {postData.location.locationImage && (
-              <Map
-                map={postData.location.locationImage}
-                lat={postData.location.lat}
-                lng={postData.location.lng}
-              />
-            )}
-            <SimilarPosts postId={postData._id} />
-            <div style={{ flex: 1 }} />
-            <Footer />
-          </Flexbox>
-        </DataContainer>
-      )}
-    </PostPageContainer>
+              <div style={{ flex: 1 }} />
+              <Footer />
+            </Flexbox>
+          </DataContainer>
+        )}
+      </PostPageContainer>
+    </>
   );
 };
 

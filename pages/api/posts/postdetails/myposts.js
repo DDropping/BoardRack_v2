@@ -1,4 +1,4 @@
-import connectDb from "../../../../utils/ConnectDb";
+import connectDb from "../../../../utils/connectDb";
 import Post from "../../../../models/Post";
 import "../../../../models/User";
 import authenticate from "../../../../middleware/auth";
@@ -23,19 +23,12 @@ const handler = async (req, res) => {
 // @access  Public
 async function handleGetRequest(req, res) {
   try {
-    const posts = await Post.find(
-      {
-        user: new mongoose.Types.ObjectId(req.user.id),
-      },
-      function (err, result) {
-        if (err) {
-          res.status(404).send("Post not found");
-        }
-      }
-    );
+    const posts = await Post.find({
+      user: new mongoose.Types.ObjectId(req.user.id),
+    });
 
     if (!posts) {
-      return res.status(400).json({ msg: "There is no posts" });
+      return res.status(400).send("There is no posts");
     }
 
     res.status(200).json(posts);

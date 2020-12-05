@@ -7,7 +7,7 @@ import Images from "./Images";
 import Content from "./Content";
 import ManagementOptions from "./ManagementOptions";
 
-const index = ({ postData, isManagementView }) => {
+const index = ({ postData, isManagementView, directToPostPage = false }) => {
   const headerData = {
     postId: postData._id,
     price: postData.price,
@@ -33,16 +33,16 @@ const index = ({ postData, isManagementView }) => {
       <Link
         scroll={false}
         href={
-          isManagementView
+          directToPostPage
             ? `/postdetails/${postData._id}`
             : `/?postId=${postData._id}`
         }
         as={`/postdetails/${postData._id}`}
       >
-        <a>
+        <div style={{ cursor: "pointer" }}>
           <Images data={imageData} />
           <Content data={contentData} />
-        </a>
+        </div>
       </Link>
       {isManagementView && (
         <ManagementOptions

@@ -9,6 +9,7 @@ import { DEAUTH_USER } from "../../actions/types";
 import navLinks from "../../constants/navLinks";
 import logoutModal from "../logout";
 import CustomAvatar from "../avatar";
+import BadgeDot from "../badge/Dot";
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.primaryWhite};
@@ -46,6 +47,7 @@ const AvatarContainer = styled.div`
 const AccountMenu = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  const notifications = useSelector((state) => state.auth.notifications);
   const user = useSelector((state) => state.auth.user);
   const router = useRouter();
 
@@ -86,7 +88,15 @@ const AccountMenu = () => {
             <Link href={item.href} key={index}>
               <Li active={router.query.view === item.view}>
                 <a>
-                  {item.icon} {item.title}
+                  {item.icon} {item.title}{" "}
+                  {item.view === "messages" &&
+                    notifications.messages.length > 0 && (
+                      <BadgeDot
+                        size={12}
+                        red
+                        content={notifications.messages.length}
+                      />
+                    )}
                 </a>
               </Li>
             </Link>

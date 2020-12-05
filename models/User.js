@@ -35,6 +35,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  profileBackground: {
+    color: { type: String, default: null },
+    image: { type: String, default: null },
+  },
   location: {
     lat: { type: Number },
     lng: { type: Number },

@@ -8,10 +8,10 @@ const Content = ({ data }) => {
       ? data.lengthFt + "'" + data.lengthIn + '" '
       : "-- ";
   const width = data.width ? " " + data.width + '" ' : " -- ";
-  const depth = data.depth ? " " + data.depth + '" ' : " --";
-  const volume = data.volume ? data.volume + "L" : "--";
-  const shaper = data.shaper ? data.shaper : "--";
-  const model = data.model ? data.model : "--";
+  const depth = data.depth ? " " + data.depth + '" ' : " -- ";
+  const volume = data.volume ? data.volume + "L" : " -- ";
+  const shaper = data.shaper ? data.shaper : " -- ";
+  const model = data.model ? data.model : " -- ";
 
   return (
     <ContentContainer>

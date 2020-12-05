@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Checkbox, InputNumber } from "antd";
 
-import { PriceRangeContainer } from "./style";
+import { InputRangeContainer } from "./style";
 import {
   UPDATE_PRICE_MAX,
   UPDATE_PRICE_MIN,
@@ -14,7 +14,7 @@ const PriceRange = () => {
   const anyPrice = useSelector((state) => state.filters.price.any);
 
   return (
-    <PriceRangeContainer>
+    <InputRangeContainer>
       <strong>Price:</strong>
       <div style={{ borderBottom: "1px solid #E9E9E9", marginBottom: "3px" }}>
         <Checkbox
@@ -33,7 +33,7 @@ const PriceRange = () => {
         style={{ display: "inline-block", marginRight: "10px" }}
       >
         <InputNumber
-          size="small"
+          size='small'
           disabled={anyPrice}
           style={{ cursor: "pointer" }}
           formatter={(value) =>
@@ -51,7 +51,7 @@ const PriceRange = () => {
         style={{ display: "inline-block", marginLeft: "10px" }}
       >
         <InputNumber
-          size="small"
+          size='small'
           disabled={anyPrice}
           formatter={(value) =>
             `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -62,7 +62,7 @@ const PriceRange = () => {
           }}
         />
       </div>
-    </PriceRangeContainer>
+    </InputRangeContainer>
   );
 };
 

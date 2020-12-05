@@ -36,7 +36,7 @@ const index = ({ preview }) => {
           {posts.map((post, index) => {
             return (
               <Li key={index}>
-                <PostCard key={index} postData={post} />
+                <PostCard key={index} postData={post} directToPostPage={true} />
               </Li>
             );
           })}

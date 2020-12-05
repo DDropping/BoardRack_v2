@@ -11,7 +11,7 @@ const initialState = {
   isPublished: false,
 };
 
-export default function (state = initialState, action) {
+const reducer = function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case TOGGLE_CREATE_POST_LOADING:
@@ -42,4 +42,6 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+export default reducer;

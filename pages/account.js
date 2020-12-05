@@ -16,9 +16,15 @@ const Flexbox = styled.div`
 `;
 
 const Account = () => (
-  <div className="container">
+  <div className='container'>
     <Head>
       <title>BoardRack | Account</title>
+      <meta httpEquiv='Content-type' content='text/html; charset=utf-8' />
+      <meta name='viewport' content='width=device-width, initial-scale=1' />
+      <meta
+        name='description'
+        content='Login to manage your BoardRack account and view or respond to messages.'
+      />
     </Head>
     <Container>
       <Header />

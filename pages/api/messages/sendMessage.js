@@ -1,4 +1,4 @@
-import connectDb from "../../../utils/ConnectDb";
+import connectDb from "../../../utils/connectDb";
 import Message from "../../../models/Message";
 import Post from "../../../models/Post";
 import User from "../../../models/User";
@@ -39,7 +39,7 @@ async function handlePostRequest(req, res) {
   try {
     //user: check if message thread exists between the two users
     let messageThread;
-    if (type === "user") {
+    if (type === "user" || type === "support") {
       messageThread = await Message.findOne({
         users: { $all: [sendToUserId, sendFromUserId] },
       });
@@ -56,6 +56,7 @@ async function handlePostRequest(req, res) {
       //add new message to messages
       messageThread.messages.push(message);
       messageThread.lastUpdated = Date.now();
+      messageThread.isRead = false;
       await messageThread.save();
       //make sure both users have the messageThread in their messages (in case a user deleted the message thread)
       //save to users messages[]
@@ -78,6 +79,7 @@ async function handlePostRequest(req, res) {
         post: postId,
         dateCreated: Date.now(),
         lastUpdated: Date.now(),
+        isRead: false,
         messages: [message],
       };
 

@@ -65,7 +65,7 @@ const NavButtons = ({ step, handleStepChange }) => {
     <Container>
       <Button
         onClick={handleCancelConfirm}
-        type="danger"
+        type='danger'
         ghost
         style={{ margin: "0.5rem" }}
       >
@@ -76,7 +76,7 @@ const NavButtons = ({ step, handleStepChange }) => {
         <Button
           onClick={() => handleStepChange(step - 1)}
           style={{ marginRight: "5px" }}
-          type="primary"
+          type='primary'
           ghost
           disabled={step < 1 ? true : false}
           style={{ margin: "0.5rem" }}
@@ -91,7 +91,7 @@ const NavButtons = ({ step, handleStepChange }) => {
       {step !== 2 && (
         <Button
           onClick={() => handleStepChange(step + 1)}
-          type="primary"
+          type='primary'
           ghost
           disabled={step > 1 ? true : false}
           style={{ margin: "0.5rem" }}
@@ -103,9 +103,28 @@ const NavButtons = ({ step, handleStepChange }) => {
 
       {step === 2 && (
         <Button
+          onClick={() => handleStepChange(3)}
+          type='primary'
+          disabled={step !== 2}
+          style={{ margin: "0.5rem" }}
+          disabled={
+            !formData.title ||
+            !formData.price ||
+            !location.lat ||
+            !location.lng ||
+            isMapLoading
+          }
+        >
+          Preview
+          <RightOutlined />
+        </Button>
+      )}
+
+      {step === 3 && (
+        <Button
           onClick={() => handlePublish()}
           loading={isLoading}
-          type="primary"
+          type='primary'
           disabled={
             !formData.title ||
             !formData.price ||

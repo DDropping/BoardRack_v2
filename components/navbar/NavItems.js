@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 import { TOGGLE_LOGIN, TOGGLE_REGISTER } from "../../actions/types";
 import Menu from "./AccountMenu";
+import BadgeDot from "../badge/Dot";
 
 const Ul = styled.ul`
   color: blue;
@@ -27,10 +28,13 @@ const Li = styled.li`
   font-weight: 600;
   ${({ active, theme }) =>
     active && `border-bottom: 2px solid ${theme.primaryBlue};`}
+  div {
+    color: ${({ theme }) => theme.primaryBlack};
+  }
   &:hover {
     background-color: ${({ theme }) => theme.backgroundBlueMenu};
     border-bottom: 2px solid ${({ theme }) => theme.primaryBlue};
-    a {
+    div {
       color: ${({ theme }) => theme.primaryBlue};
     }
   }
@@ -39,6 +43,7 @@ const Li = styled.li`
 const NavItems = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  const notifications = useSelector((state) => state.auth.notifications);
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const isLogin = useSelector((state) => state.overlays.isLogin);
   const isRegister = useSelector((state) => state.overlays.isRegister);
@@ -56,24 +61,33 @@ const NavItems = () => {
       {isAuth && (
         <Link href={"/createpost"}>
           <Li active={isActive("/createpost") && !isLogin && !isRegister}>
-            <a className="create-post-link">Create Post</a>
+            <div>Create Post</div>
           </Li>
         </Link>
       )}
       {!isAuth && (
         <Li onClick={() => dispatch({ type: TOGGLE_LOGIN, payload: true })}>
-          <a className="create-post-link-disabled">Create Post</a>
+          <div>Create Post</div>
         </Li>
       )}
       {isAuth && (
         <Dropdown overlay={<Menu />} overlayStyle={{ zIndex: 1000 }}>
           <Li active={isActive("/account") && !isLogin && !isRegister}>
-            <a
-              className="ant-dropdown-link"
+            <div
+              className='ant-dropdown-link'
               onClick={(e) => e.preventDefault()}
             >
+              {user &&
+                notifications.messages.length >
+                  0 /* add more notification types here */ && (
+                  <BadgeDot
+                    size={12}
+                    red
+                    content={notifications.messages.length}
+                  /> /* add more notification types here */
+                )}{" "}
               {user ? user.username : "My Account"} <DownOutlined />
-            </a>
+            </div>
           </Li>
         </Dropdown>
       )}
@@ -82,7 +96,7 @@ const NavItems = () => {
           active={isLogin}
           onClick={() => dispatch({ type: TOGGLE_LOGIN, payload: true })}
         >
-          <a className="login-link">Login</a>
+          <div>Login</div>
         </Li>
       )}
       {!isAuth && (
@@ -90,7 +104,7 @@ const NavItems = () => {
           active={isRegister}
           onClick={() => dispatch({ type: TOGGLE_REGISTER, payload: true })}
         >
-          <a className="register-link">Register</a>
+          <div>Register</div>
         </Li>
       )}
     </Ul>

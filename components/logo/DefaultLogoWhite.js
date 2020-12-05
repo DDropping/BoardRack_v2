@@ -1,6 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
-import styled from 'styled-components';
+import React from "react";
+import Link from "next/link";
+import styled from "styled-components";
+import Image from "next/image";
 
 export const ImgWrapper = styled.div`
   padding: 0.5rem;
@@ -9,15 +10,17 @@ export const ImgWrapper = styled.div`
   cursor: pointer;
 `;
 
-export const Img = styled.img`
-  width: 100%;
-`;
-
 const DefaultLogoWhite = () => {
   return (
-    <Link href="/">
+    <Link href='/'>
       <ImgWrapper>
-        <Img src="/images/br_logo_white.png" alt="boardrack logo" />
+        <Image
+          src='/images/br_logo_white.png'
+          alt='boardrack'
+          layout='responsive'
+          width={256}
+          height={56}
+        />
       </ImgWrapper>
     </Link>
   );

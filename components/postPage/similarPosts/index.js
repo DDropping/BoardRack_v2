@@ -6,7 +6,7 @@ import baseUrl from "../../../utils/baseUrl";
 import PostCard from "./PostCard";
 import LoadingSimilarCard from "../../loadingScreens/similarPosts";
 
-const index = ({ postId }) => {
+const index = ({ postId, boardType, volumeValue }) => {
   const [isLoading, setLoading] = useState(true);
   const [similarPosts, setSimilarPosts] = useState([]);
 
@@ -17,9 +17,20 @@ const index = ({ postId }) => {
 
   useEffect(() => {
     const fetchSimilarPosts = async () => {
-      const result = await axios.get(
-        `${baseUrl}/api/posts/similarPosts/${postId}`
-      );
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      //stringify the form items
+      const body = JSON.stringify({
+        postId,
+        boardType,
+        volumeValue,
+      });
+      const url = `${baseUrl}/api/posts/similarposts`;
+      const result = await axios.post(url, body, config);
       if (result) {
         setSimilarPosts(result.data);
         setLoading(false);

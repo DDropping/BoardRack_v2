@@ -1,16 +1,16 @@
-import React, { useRef } from 'react';
-import { Carousel } from 'antd';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import React, { useRef } from "react";
+import { Carousel } from "antd";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import Image from "next/image";
 
 import {
   CarouselContainer,
   CarouselWrapper,
   ImgWrapper,
-  Img,
   ArrowWrapper,
   PreviousArrow,
   NextArrow,
-} from './style';
+} from "./style";
 
 const index = () => {
   const carouselRef = useRef();
@@ -32,26 +32,50 @@ const index = () => {
           ref={carouselRef}
           autoplay
           autoplaySpeed={7000}
-          dotPosition="top"
+          dotPosition='top'
         >
           <div>
             <ImgWrapper>
-              <Img src="/images/banner/buysell.png" alt="boardrack logo" />
+              <Image
+                src='/images/banner/buysell.png'
+                alt='boardrack banner'
+                layout='fixed'
+                width={3600}
+                height={500}
+              />
             </ImgWrapper>
           </div>
           <div>
             <ImgWrapper>
-              <Img src="/images/banner/findlove.png" alt="boardrack logo" />
+              <Image
+                src='/images/banner/findlove.png'
+                alt='boardrack banner'
+                layout='fixed'
+                width={3600}
+                height={500}
+              />
             </ImgWrapper>
           </div>
           <div>
             <ImgWrapper>
-              <Img src="/images/banner/calculator.png" alt="boardrack logo" />
+              <Image
+                src='/images/banner/calculator.png'
+                alt='boardrack banner'
+                layout='fixed'
+                width={3600}
+                height={500}
+              />
             </ImgWrapper>
           </div>
           <div>
             <ImgWrapper>
-              <Img src="/images/banner/supportlocal.png" alt="boardrack logo" />
+              <Image
+                src='/images/banner/supportlocal.png'
+                alt='boardrack banner'
+                layout='fixed'
+                width={3600}
+                height={500}
+              />
             </ImgWrapper>
           </div>
         </Carousel>

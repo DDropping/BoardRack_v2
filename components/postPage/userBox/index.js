@@ -15,7 +15,7 @@ import Avatar from "../../avatar";
 
 const { TextArea } = Input;
 
-const index = ({ user, location, postId }) => {
+const index = ({ user, location, postId, phone, email }) => {
   const [isContact, setIsContact] = useState(false);
   const [message, setMessage] = useState("");
   const [isSending, setSending] = useState(false);
@@ -26,7 +26,13 @@ const index = ({ user, location, postId }) => {
     if (message.length > 0) {
       try {
         setSending(true);
-        await sendNewMessage("post", postId, user._id, message);
+        await sendNewMessage(
+          "post",
+          postId,
+          currentUser.username,
+          user._id,
+          message
+        );
         setMessage("");
         setSending(false);
         setSendButtonText("Message Sent!");
@@ -55,15 +61,15 @@ const index = ({ user, location, postId }) => {
       </DetailsContainer>
       <ContactContainer>
         {!isContact && (
-          <Button type="primary" onClick={() => setIsContact(!isContact)}>
+          <Button type='primary' onClick={() => setIsContact(!isContact)}>
             Contact
           </Button>
         )}
         {isContact && (
           <div>
-            <PhoneOutlined /> (831) 535-3535
+            <PhoneOutlined /> {phone ? phone : "n/a"}
             <br />
-            <MailOutlined /> boards@boardrack.com
+            <MailOutlined /> {email ? email : "n/a"}
           </div>
         )}
       </ContactContainer>
@@ -81,7 +87,7 @@ const index = ({ user, location, postId }) => {
           />
           {currentUser ? (
             <Button
-              type="primary"
+              type='primary'
               disabled={currentUser._id === user._id}
               loading={isSending}
               block
@@ -93,7 +99,7 @@ const index = ({ user, location, postId }) => {
               {sendButtonText}
             </Button>
           ) : (
-            <Button type="primary" block disabled>
+            <Button type='primary' block disabled>
               Login to send messages
             </Button>
           )}

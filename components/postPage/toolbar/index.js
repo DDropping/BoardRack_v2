@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { Tooltip } from "antd";
 import {
   StarOutlined,
   StarFilled,
@@ -9,20 +8,36 @@ import {
   CloseCircleOutlined,
 } from "@ant-design/icons";
 
-import { addFavorite, removeFavorite } from "../../actions/counters";
-import { ToolbarContainer, ToolbarButton, ToolbarButtonClose } from "./stlye";
+import { addFavorite, removeFavorite } from "../../../actions/counters";
+import { ToolbarContainer, ToolbarButton, ToolbarButtonClose } from "./style";
+import ReportModal from "./ReportModal";
 
-const Toolbar = ({ postId, isModalView }) => {
+const index = ({ postId, isModalView, authorId }) => {
   const [isFavorite, setFavorite] = useState(false);
+  const [isReportOpen, setReportOpen] = useState(false);
+  const [isPostAuthor, setPostAuthor] = useState(false);
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
   const router = useRouter();
 
+  //disable favorite button for post owner
+  useEffect(() => {
+    if (user && authorId) {
+      if (user._id.toString() === authorId.toString()) {
+        setPostAuthor(true);
+      }
+    }
+  }, [user]);
+
   useEffect(() => {
     //check if user has favorited post
     if (user) {
-      setFavorite(user.favorites.includes(postId));
+      setFavorite(
+        user.favorites.filter((post) => post._id === postId).length > 0
+          ? true
+          : false
+      );
     }
   }, [user]);
 
@@ -32,7 +47,7 @@ const Toolbar = ({ postId, isModalView }) => {
 
   return (
     <ToolbarContainer>
-      {isAuthenticated && !isFavorite && (
+      {isAuthenticated && !isFavorite && !isPostAuthor && (
         <ToolbarButton
           onClick={() => {
             dispatch(addFavorite(postId));
@@ -43,7 +58,7 @@ const Toolbar = ({ postId, isModalView }) => {
           {" Favorite"}
         </ToolbarButton>
       )}
-      {isAuthenticated && isFavorite && (
+      {isAuthenticated && isFavorite && !isPostAuthor && (
         <ToolbarButton
           onClick={() => {
             dispatch(removeFavorite(postId));
@@ -54,10 +69,12 @@ const Toolbar = ({ postId, isModalView }) => {
           {" Unfavorite"}
         </ToolbarButton>
       )}
-      <ToolbarButton>
-        <FlagOutlined />
-        {" Report"}
-      </ToolbarButton>
+      {!isPostAuthor && (
+        <ToolbarButton onClick={() => setReportOpen(!isReportOpen)}>
+          <FlagOutlined />
+          {" Report"}
+        </ToolbarButton>
+      )}
       <span style={{ flex: 1 }} />
       {isModalView && (
         <ToolbarButtonClose onClick={() => closeModal()}>
@@ -65,8 +82,11 @@ const Toolbar = ({ postId, isModalView }) => {
           {" Close"}
         </ToolbarButtonClose>
       )}
+      {isReportOpen && (
+        <ReportModal postId={postId} setReportOpen={setReportOpen} />
+      )}
     </ToolbarContainer>
   );
 };
 
-export default Toolbar;
+export default index;

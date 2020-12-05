@@ -1,4 +1,4 @@
-import connectDb from "../../../../utils/ConnectDb";
+import connectDb from "../../../../utils/connectDb";
 import Post from "../../../../models/Post";
 import "../../../../models/User";
 
@@ -24,17 +24,16 @@ async function handleGetRequest(req, res) {
   } = req;
 
   try {
-    const post = await Post.findById(id, function (err, result) {
-      if (err) {
-        res.status(404).send("Post not found");
-      } else {
-        res.status(200).json(result);
-      }
-    }).populate("user", "username profileImage");
+    const post = await Post.findById(id).populate(
+      "user",
+      "username profileImage"
+    );
 
     if (!post) {
-      return res.status(404).json({ msg: "There is no post with this id" });
+      return res.status(404).send("Post Not Found");
     }
+
+    res.status(200).json(post);
   } catch (err) {
     console.error(err.message);
     if (err.kind === "ObjectId") {

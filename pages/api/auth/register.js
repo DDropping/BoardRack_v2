@@ -1,9 +1,14 @@
-import connectDb from "../../../utils/ConnectDb";
-import User from "../../../models/User";
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 import isEmail from "validator/lib/isEmail";
 import isLength from "validator/lib/isLength";
+
+import generateInline from "../../../templates/verifyEmail";
+import baseUrl from "../../../utils/baseUrl";
+import connectDb from "../../../utils/connectDb";
+import User from "../../../models/User";
+import Message from "../../../models/Message";
 
 connectDb();
 
@@ -58,8 +63,75 @@ async function handlePostRequest(req, res) {
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
 
+    //send welcome message to user from BoardRack
+    const messageBody =
+      "Hello, welcome to BoardRack! \n" +
+      "Before you get started theres a few things you should know. \n\n" +
+      " - This website is only demo! Thus, any posts you view should not be considered real and are only for demonstrative purposes. \n" +
+      " - Filtering by location has been disabled as all demostrative posts will be located in the San Francisco Bay Area. \n" +
+      " - All posts flagged for deletion will not be removed after the designated 7 day wait. Instead, deleted posts will remain visible, but marked as 'Sold' or 'Post Removed' (NOTE: all guest data is wiped on a bi-weekly basis.)\n" +
+      " - Email verification is enabled and all emails will be sent to your registered email address. \n\n " +
+      "Thank you for visiting the site! Feel free to create an account, create a new post, and interact with the site. If you have any questions, encounter any bugs, or just want say hi, please respond here!";
+
+    const message = {
+      from: "5fb86b4e6e10cf407c3dc204",
+      body: messageBody,
+      timeSent: Date.now(),
+    };
+
+    const newMessageThread = {
+      type: "support",
+      users: [user._id, "5fb86b4e6e10cf407c3dc204"],
+      post: null,
+      dateCreated: Date.now(),
+      lastUpdated: Date.now(),
+      isRead: false,
+      messages: [message],
+    };
+
+    let messageThread = new Message(newMessageThread);
+    await messageThread.save();
+
+    //save to users messages[]
+    user.messages = [messageThread._id];
+
     //save user to db
     await user.save();
+
+    //send "verify your email" to user's email address
+    try {
+      const verifyEmailPayload = {
+        verifyUserId: user._id,
+      };
+      const verificationToken = jwt.sign(
+        verifyEmailPayload,
+        process.env.JWT_SECRET
+      );
+
+      const verificationLink = `${baseUrl}/verify/email?token=${verificationToken}`;
+
+      let htmlBody = generateInline(verificationLink);
+
+      const transporter = nodemailer.createTransport({
+        service: process.env.EMAIL_SERVICE,
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS,
+        },
+      });
+
+      const mailOptions = {
+        from: `BoardRack <${process.env.EMAIL_USER}>`,
+        to: user.email,
+        subject: "Verify your email",
+        html: htmlBody,
+      };
+
+      //send email
+      await transporter.sendMail(mailOptions);
+    } catch (err) {
+      console.log("Failed to send verification email");
+    }
 
     //create JWT
     const payload = {

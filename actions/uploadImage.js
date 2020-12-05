@@ -61,10 +61,8 @@ export const uploadImage = (imgKey, file) => async (dispatch) => {
     );
 
     //upload standard image and thumbnail to s3 bucket
-    console.log("after: ", file);
     const standardUrl = await uploadFileToBucket(compressedFileStandard);
     const thumbnailUrl = await uploadFileToBucket(compressedFileThumbnail);
-    console.log("compressed: ", compressedFileStandard);
 
     //update store
     dispatch({
@@ -77,7 +75,6 @@ export const uploadImage = (imgKey, file) => async (dispatch) => {
       payload: { imgKey: imgKey, thumbnailUrl: thumbnailUrl },
     });
   } catch (err) {
-    console.log("error message", err);
     dispatch({ type: UPLOAD_ERROR, payload: imgKey });
     setTimeout(function () {
       dispatch({ type: DELETE_IMG_PREVIEW, payload: imgKey });

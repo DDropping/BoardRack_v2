@@ -18,14 +18,11 @@ export const getLocationWithIp = () => async (dispatch) => {
     const url = `${baseUrl}/api/location/ip`;
     const res = await axios.get(url);
     dispatch({ type: UPDATE_CURRENT_LOCATION_IP, payload: res.data });
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 };
 
 // GET USER'S LOCATION WITH LOCATION FORM ---------------------------------------
 export const handleLocationForm = (value) => async (dispatch) => {
-  console.log("action: ", value);
   dispatch({ type: TOGGLE_LOCATION_LOADING, payload: true });
 
   const url = `${baseUrl}/api/location/locationForm`;

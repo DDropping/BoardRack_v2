@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react';
-import Head from 'next/head';
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
+import React, { useEffect } from "react";
+import Head from "next/head";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 
-import { withRedux } from '../../utils/with-redux-store';
-import Navbar from '../navbar';
-import Footer from '../footer';
-import Login from '../login';
-import Register from '../register';
-import setTokenHeader from '../../utils/setTokenHeader';
+import { withRedux } from "../../utils/with-redux-store";
+import Navbar from "../navbar";
+import Footer from "../footer";
+import Login from "../login";
+import Register from "../register";
+import setTokenHeader from "../../utils/setTokenHeader";
+import VerifyEmailBar from "../verifyEmailBar";
 
-import { loadUserByProps } from '../../actions/auth';
-import { getLocationWithIp } from '../../actions/location';
+import { loadUserByProps } from "../../actions/auth";
+import { getLocationWithIp } from "../../actions/location";
 
 const Container = styled.div`
   display: flex;
@@ -43,9 +44,10 @@ function Layout({ children, user, token }) {
   return (
     <>
       <Head>
-        <link rel="stylesheet" href="nprogress.css" />
+        <link rel='stylesheet' href='nprogress.css' />
       </Head>
       <Container>
+        <VerifyEmailBar />
         <Navbar user />
         <Login />
         <Register />

@@ -14,19 +14,19 @@ const initialState = {
   isLocatedWithIp: false,
   isMapLoading: false,
   location: {
-    lat: null,
-    lng: null,
+    lat: 37.75288,
+    lng: -122.49028,
     country: null,
     state: "CA",
     county: null,
     city: "San Francisco",
     district: null,
-    postalCode: "94121",
+    postalCode: "94122",
     locationImage: null,
   },
 };
 
-export default function (state = initialState, action) {
+const reducer = function (state = initialState, action) {
   switch (action.type) {
     case LOAD_DEFAULT_LOCATION_TO_CURRENT:
       return {
@@ -78,4 +78,5 @@ export default function (state = initialState, action) {
         ...state,
       };
   }
-}
+};
+export default reducer;

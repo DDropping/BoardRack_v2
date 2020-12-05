@@ -1,9 +1,15 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import axios from "axios";
 
-import PostListRow from "../../../postListRow";
+import {
+  DECREASE_MESSAGE_NOTIFICATION,
+  FLAG_MESSAGE_AS_READ,
+} from "../../../../actions/types";
+import baseUrl from "../../../../utils/baseUrl";
+import PostThumbnail from "../../../postThumbnail";
 import DisplayMessages from "./DisplayMessages";
 import MessageBox from "./MessageBox";
 
@@ -28,6 +34,33 @@ const index = ({ isMessageListChild }) => {
   const router = useRouter();
   const user = useSelector((state) => state.auth.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
+
+  //flag message as read
+  useEffect(() => {
+    if (user) {
+      let message = user.messages.find(
+        (messageData) => messageData._id === router.query.thread
+      );
+      if (message) {
+        if (
+          message.messages[message.messages.length - 1].from !== user._id &&
+          !message.isRead
+        ) {
+          const url = `${baseUrl}/api/messages/flagMessageAsRead/${message._id}`;
+          axios.patch(url);
+          dispatch({
+            type: DECREASE_MESSAGE_NOTIFICATION,
+            payload: message._id,
+          });
+          dispatch({
+            type: FLAG_MESSAGE_AS_READ,
+            payload: message._id,
+          });
+        }
+      }
+    }
+  }, [user, router.query.thread]);
 
   return (
     isAuthenticated &&
@@ -41,12 +74,13 @@ const index = ({ isMessageListChild }) => {
               {user.messages.find(
                 (messageData) => messageData._id === router.query.thread
               ).post && (
-                <PostListRow
+                <PostThumbnail
                   postData={
                     user.messages.find(
                       (messageData) => messageData._id === router.query.thread
                     ).post
                   }
+                  directToPostPage={true}
                 />
               )}
               <DisplayMessages user={user} />

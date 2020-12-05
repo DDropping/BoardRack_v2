@@ -46,6 +46,7 @@ const MessageBox = ({ messageData, userId }) => {
       sendNewMessage(
         "post",
         messageData.post ? messageData.post._id : null,
+        user.username,
         from._id,
         message
       );
@@ -79,7 +80,7 @@ const MessageBox = ({ messageData, userId }) => {
           <DeleteMessageThreadButton messageThreadId={messageData._id} />
           <div style={{ flex: 1 }} />
           <Button
-            type="primary"
+            type='primary'
             onClick={messageData && sendMessage}
             disabled={message.length < 1 || !messageData || !from}
           >

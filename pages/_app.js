@@ -57,10 +57,13 @@ export const theme = {
   //colors
   primaryBlue: "#00458a",
   secondaryBlue: "#4878a9",
+  secondaryLightBlue: "#dfefff",
 
   primaryRed: "#ef4040",
   primaryLightRed: "#ef404017",
   secondaryRed: "#ee7a7a",
+
+  primaryOrange: "#ffb700",
 
   primaryBlack: "#222222",
 
@@ -80,6 +83,15 @@ export const theme = {
   backgroundRedMenu: "#ef40401f",
 
   primaryTransparentWhite: "#ffffffd9",
+
+  //dark mode colors
+  darkModePrimaryBlack: "#181818",
+  darkModeSecondaryBlack: "#212121",
+
+  darkModePrimaryGrey: "#303030",
+
+  darkModePrimaryTextWhite: "#ffffff",
+  darkModeSecondaryTextWhite: "#aaa",
 
   //media sizes
   xs: "375px", // extra small devices
@@ -153,7 +165,7 @@ export default class MyApp extends App {
       <ThemeProvider theme={theme}>
         <Layout {...pageProps}>
           <Head>
-            <link rel="shortcut icon" href="/images/br_favicon.ico" />
+            <link rel='shortcut icon' href='/images/br_favicon.ico' />
           </Head>
           <GlobalStyle />
           <Component {...pageProps} />

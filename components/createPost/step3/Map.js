@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { SyncOutlined } from "@ant-design/icons";
+import Image from "next/image";
 
 const MapWrapper = styled.div`
   position: relative;
@@ -29,7 +30,13 @@ const Map = () => {
         (currentLocation.isLocated &&
           !currentLocation.location.locationImage &&
           !currentLocation.isMapLoading)) && (
-        <img src="/images/br_default_map.png" alt="location map" />
+        <Image
+          src='/images/br_default_map.png'
+          alt='location map'
+          layout='responsive'
+          width={500}
+          height={250}
+        />
       )}
 
       {currentLocation.isLocated && currentLocation.isMapLoading && (
@@ -39,13 +46,13 @@ const Map = () => {
               ? currentLocation.location.locationImage
               : "/images/br_default_map.png"
           }
-          alt="location map"
+          alt='location map'
           style={{ filter: "grayscale(100%)" }}
         />
       )}
 
       {currentLocation.isLocated && !currentLocation.isMapLoading && (
-        <img src={currentLocation.location.locationImage} alt="location map" />
+        <img src={currentLocation.location.locationImage} alt='location map' />
       )}
       <LoadingIcon>
         {currentLocation.isMapLoading && <SyncOutlined spin />}

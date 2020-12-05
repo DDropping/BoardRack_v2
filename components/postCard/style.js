@@ -3,14 +3,19 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
   position: relative;
   display: inline-block;
+  border-radius: 5px;
+  overflow: hidden;
   width: 300px;
   margin-left: 10px;
-  margin-top: 10px;
+  margin-bottom: 10px;
   background: ${({ theme }) => theme.primaryWhite};
   transition: ${({ theme }) => theme.boxShadow};
   box-shadow: 0 0 11px rgba(83, 68, 68, 0.2);
   :hover {
     box-shadow: 0 0 11px rgba(33, 33, 33, 0.4);
+  }
+  @media (max-width: ${({ theme }) => theme.sm}) {
+    margin-left: 0;
   }
 `;
 
