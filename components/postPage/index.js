@@ -95,42 +95,62 @@ const index = ({ quickData, postId, isModalView, isPreview }) => {
             <ImageGallery images={postData.images} />
             <Flexbox>
               {!postData.isAvailable && !isPreview && (
-                <StatusBox isSold={postData.isSold} />
+                <div>
+                  <StatusBox isSold={postData.isSold} />
+                </div>
               )}
               {postData.user && (
-                <UserBox
-                  user={postData.user}
-                  location={postData.location}
-                  postId={postData._id}
-                  phone={postData.contactMethods.phone}
-                  email={postData.contactMethods.email}
-                />
+                <div>
+                  <UserBox
+                    user={postData.user}
+                    location={postData.location}
+                    postId={postData._id}
+                    phone={postData.contactMethods.phone}
+                    email={postData.contactMethods.email}
+                  />
+                </div>
               )}
-              <CountersBar
-                date={postData.date}
-                views={postData.viewCount}
-                favorites={postData.favorites}
-              />
-              <Description
-                price={postData.price}
-                title={postData.title}
-                description={postData.description}
-              />
-              <GeneralDetails post={postData} />
-              <Dimensions post={postData} />
-              <Opinion post={postData} />
+              <div>
+                <CountersBar
+                  date={postData.date}
+                  views={postData.viewCount}
+                  favorites={postData.favorites}
+                />
+              </div>
+              <div>
+                <Description
+                  price={postData.price}
+                  title={postData.title}
+                  description={postData.description}
+                />
+              </div>
+              <div>
+                <GeneralDetails post={postData} />
+              </div>
+              <div>
+                <Dimensions post={postData} />
+              </div>
+              <div>
+                <Opinion post={postData} />
+              </div>
               {postData.location.locationImage && (
-                <Map
-                  map={postData.location.locationImage}
-                  lat={postData.location.lat}
-                  lng={postData.location.lng}
-                />
+                <div>
+                  <Map
+                    map={postData.location.locationImage}
+                    lat={postData.location.lat}
+                    lng={postData.location.lng}
+                  />
+                </div>
               )}
-              <SimilarPosts
-                postId={postData._id}
-                boardType={postData.boardType ? postData.boardType : null}
-                volumeValue={postData.volumeValue ? postData.volumeValue : null}
-              />
+              <div>
+                <SimilarPosts
+                  postId={postData._id}
+                  boardType={postData.boardType ? postData.boardType : null}
+                  volumeValue={
+                    postData.volumeValue ? postData.volumeValue : null
+                  }
+                />
+              </div>
               <div style={{ flex: 1 }} />
               <Footer />
             </Flexbox>
