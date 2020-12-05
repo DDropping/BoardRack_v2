@@ -11,8 +11,9 @@ import PostList from "../postList";
 
 const index = ({ posts, isLoading }) => {
   const layout = useSelector((state) => state.filters.layout);
+  const resultsPerPage = useSelector((state) => state.filters.resultsPerPage);
   let loadingCards = [];
-  for (let i = 0; i < 20; ++i) {
+  for (let i = 0; i < resultsPerPage; ++i) {
     loadingCards.push(<LoadingScreenCard key={i} />);
   }
 
