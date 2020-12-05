@@ -117,7 +117,10 @@ const index = () => {
       </ButtonsContainer>
       <MyAccount user={user} userData={userData} setUserData={setUserData} />
       <Location user={user} userData={userData} setUserData={setUserData} />
-      <Preferences />
+      {/* 
+      =========== preferences disabled ===========
+      <Preferences /> 
+      */}
       <Management user={user} />
     </Container>
   );
