@@ -28,15 +28,9 @@ const Li = styled.li`
   font-weight: 600;
   ${({ active, theme }) =>
     active && `border-bottom: 2px solid ${theme.primaryBlue};`}
-  /* div {
-    color: ${({ theme }) => theme.primaryBlack};
-  } */
   &:hover {
     background-color: ${({ theme }) => theme.backgroundBlueMenu};
     border-bottom: 2px solid ${({ theme }) => theme.primaryBlue};
-    /* div {
-      color: ${({ theme }) => theme.primaryBlue};
-    } */
   }
 `;
 
