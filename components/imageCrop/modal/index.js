@@ -65,10 +65,9 @@ const index = ({ file, isOpen, closeModal }) => {
       );
 
       //upload image to bucket
-      await uploadFiletoBucket(croppedImage);
       const fileUrl = await uploadFiletoBucket(compressedCroppedImage);
       await updateUserData(fileUrl);
-      await dispatch({ type: UPDATE_USER_PROFILE_IMAGE, payload: fileUrl });
+      dispatch({ type: UPDATE_USER_PROFILE_IMAGE, payload: fileUrl });
       setMessage("Profile Image Updated!");
       setTimeout(() => {
         closeModal();
@@ -116,14 +115,14 @@ const index = ({ file, isOpen, closeModal }) => {
           {message ? message : "Edit Profile Image"}{" "}
           {uploadPercent && (
             <Progress
-              status="normal"
-              strokeColor="#4878a9"
-              trailColor="#4878a91f"
+              status='normal'
+              strokeColor='#4878a9'
+              trailColor='#4878a91f'
               percent={uploadPercent}
             />
           )}
         </Title>
-        <Button type="primary" onClick={uploadCroppedImage} loading={isLoading}>
+        <Button type='primary' onClick={uploadCroppedImage} loading={isLoading}>
           Save
         </Button>
       </Options>
@@ -133,7 +132,7 @@ const index = ({ file, isOpen, closeModal }) => {
             image={file}
             crop={crop}
             zoom={zoom}
-            cropShape="round"
+            cropShape='round'
             showGrid={false}
             aspect={1 / 1}
             rotation={rotation}
