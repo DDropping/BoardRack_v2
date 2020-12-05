@@ -28,15 +28,16 @@ const Li = styled.li`
   font-weight: 600;
   ${({ active, theme }) =>
     active && `border-bottom: 2px solid ${theme.primaryBlue};`}
-  div {
-    color: ${({ theme }) => theme.primaryBlack};
-  }
   &:hover {
     background-color: ${({ theme }) => theme.backgroundBlueMenu};
     border-bottom: 2px solid ${({ theme }) => theme.primaryBlue};
-    div {
-      color: ${({ theme }) => theme.primaryBlue};
-    }
+  }
+`;
+
+const LiText = styled.div`
+  color: ${({ theme }) => theme.primaryBlack};
+  &:hover {
+    color: ${({ theme }) => theme.primaryBlue};
   }
 `;
 
@@ -61,19 +62,19 @@ const NavItems = () => {
       {isAuth && (
         <Link href={"/createpost"}>
           <Li active={isActive("/createpost") && !isLogin && !isRegister}>
-            <div>Create Post</div>
+            <LiText>Create Post</LiText>
           </Li>
         </Link>
       )}
       {!isAuth && (
         <Li onClick={() => dispatch({ type: TOGGLE_LOGIN, payload: true })}>
-          <div>Create Post</div>
+          <LiText>Create Post</LiText>
         </Li>
       )}
       {isAuth && (
         <Dropdown overlay={<Menu />} overlayStyle={{ zIndex: 1000 }}>
           <Li active={isActive("/account") && !isLogin && !isRegister}>
-            <div
+            <LiText
               className='ant-dropdown-link'
               onClick={(e) => e.preventDefault()}
             >
@@ -87,7 +88,7 @@ const NavItems = () => {
                   /> /* add more notification types here */
                 )}{" "}
               {user ? user.username : "My Account"} <DownOutlined />
-            </div>
+            </LiText>
           </Li>
         </Dropdown>
       )}
@@ -96,7 +97,7 @@ const NavItems = () => {
           active={isLogin}
           onClick={() => dispatch({ type: TOGGLE_LOGIN, payload: true })}
         >
-          <div>Login</div>
+          <LiText>Login</LiText>
         </Li>
       )}
       {!isAuth && (
@@ -104,7 +105,7 @@ const NavItems = () => {
           active={isRegister}
           onClick={() => dispatch({ type: TOGGLE_REGISTER, payload: true })}
         >
-          <div>Register</div>
+          <LiText>Register</LiText>
         </Li>
       )}
     </Ul>
