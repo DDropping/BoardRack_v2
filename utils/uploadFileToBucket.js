@@ -33,7 +33,7 @@ const uploadFileToBucket = async (file) => {
     const token = cookie.get("token");
     axios.defaults.headers.common["Authorization"] = token;
 
-    return `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${key}`;
+    return `https://boardrack.s3.amazonaws.com/${key}`;
   } catch (err) {
     console.log("error message", err);
   }
