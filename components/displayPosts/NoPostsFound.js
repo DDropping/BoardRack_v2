@@ -19,10 +19,12 @@ const ImageWrapper = styled.div`
 
 const Text = styled.div`
   font-size: 1.75rem;
+  text-align: center;
 `;
 
 const NoPostsFound = () => {
-  const searchTerm = useSelector((state) => state.filters.textSearch);
+  const searchTerm = useSelector((state) => state.filters.previousTextSearch);
+
   return (
     <Container>
       <ImageWrapper>

@@ -6,6 +6,7 @@ import {
   UPDATE_NUMBER_OF_RESULTS_FOUND,
   UPDATE_IS_SEARCH_LOADING,
   UPDATE_IS_SEARCH_ERROR,
+  UPDATE_PREVIOUS_TEXT_SEARCH,
 } from "./types";
 import baseUrl from "../utils/baseUrl";
 
@@ -66,6 +67,7 @@ export const fetchPosts = () => async (dispatch) => {
       type: UPDATE_NUMBER_OF_RESULTS_FOUND,
       payload: res.data.totalNumberOfResults,
     });
+    await dispatch({ type: UPDATE_PREVIOUS_TEXT_SEARCH, payload: textSearch });
   } catch (err) {
     await dispatch({ type: UPDATE_IS_SEARCH_ERROR, payload: true });
   } finally {
