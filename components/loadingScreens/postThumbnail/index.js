@@ -4,10 +4,7 @@ import { Skeleton } from "antd";
 import {
   Container,
   ImageContainer,
-  ImageBackgroundWrapper,
-  ImageWrapper,
   ContentContainer,
-  ContnetTitle,
 } from "../../postThumbnail/style";
 
 const index = () => {

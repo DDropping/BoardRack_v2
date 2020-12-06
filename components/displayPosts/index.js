@@ -2,14 +2,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { Container, Ul, Li, UlList } from "./style";
-import PostCard from "../postCard";
 import PostModal from "../postModal";
-import LoadingScreenCard from "../loadingScreens/postCard";
-import LoadingScreenThumbnail from "../loadingScreens/postThumbnail";
 import NoPostsFound from "./NoPostsFound";
 
+import PostCard from "../postCard";
 import PostThumbnail from "../postThumbnail";
 import PostList from "../postList";
+
+import LoadingScreenCard from "../loadingScreens/postCard";
+import LoadingScreenThumbnail from "../loadingScreens/postThumbnail";
+import LoadingScreenList from "../loadingScreens/postList";
 
 const index = ({ posts, isLoading }) => {
   const layout = useSelector((state) => state.filters.layout);
@@ -22,14 +24,14 @@ const index = ({ posts, isLoading }) => {
     } else if (layout === "Thumbnail") {
       loadingCards.push(<LoadingScreenThumbnail key={i} />);
     } else if (layout === "List") {
-      loadingCards.push(<LoadingScreenThumbnail key={i} />);
+      loadingCards.push(<LoadingScreenList key={i} />);
     }
   }
 
   return (
     <Container>
       {!isLoading && numberOfResultsFound < 1 && <NoPostsFound />}
-      {!isLoading && loadingCards}
+      {isLoading && loadingCards}
       <PostModal quickData={posts} />
       {layout === "Gallery" && (
         <Ul>
