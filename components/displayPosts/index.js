@@ -5,6 +5,7 @@ import { Container, Ul, Li, UlList } from "./style";
 import PostCard from "../postCard";
 import PostModal from "../postModal";
 import LoadingScreenCard from "../loadingScreens/postCard";
+import LoadingScreenThumbnail from "../loadingScreens/postThumbnail";
 import NoPostsFound from "./NoPostsFound";
 
 import PostThumbnail from "../postThumbnail";
@@ -16,13 +17,19 @@ const index = ({ posts, isLoading }) => {
   const { numberOfResultsFound } = useSelector((state) => state.filters);
   let loadingCards = [];
   for (let i = 0; i < resultsPerPage; ++i) {
-    loadingCards.push(<LoadingScreenCard key={i} />);
+    if (layout === "Gallery") {
+      loadingCards.push(<LoadingScreenCard key={i} />);
+    } else if (layout === "Thumbnail") {
+      loadingCards.push(<LoadingScreenThumbnail key={i} />);
+    } else if (layout === "List") {
+      loadingCards.push(<LoadingScreenThumbnail key={i} />);
+    }
   }
 
   return (
     <Container>
       {!isLoading && numberOfResultsFound < 1 && <NoPostsFound />}
-      {isLoading && loadingCards}
+      {!isLoading && loadingCards}
       <PostModal quickData={posts} />
       {layout === "Gallery" && (
         <Ul>
