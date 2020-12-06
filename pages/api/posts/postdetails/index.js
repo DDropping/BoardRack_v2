@@ -215,8 +215,7 @@ async function handlePostRequest(req, res) {
         },
         { $group: { _id: null, count: { $sum: 1 } } },
       ]);
-
-      numberOfPosts = getCount[0].count;
+      numberOfPosts = getCount[0] ? getCount[0].count : 0;
     } else {
       //find posts with only filters
       posts = await Post.find(filterData)

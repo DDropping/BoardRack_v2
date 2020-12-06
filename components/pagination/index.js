@@ -78,6 +78,7 @@ const index = ({
           onClick={() => {
             if (pages.includes(currentPage - 1)) {
               setCurrentPage(currentPage - 1);
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }
           }}
         >
@@ -90,7 +91,10 @@ const index = ({
                 key={index}
                 type={currentPage === page ? "primary" : "default"}
                 style={{ margin: "2px" }}
-                onClick={() => setCurrentPage(page)}
+                onClick={() => {
+                  setCurrentPage(page);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
               >
                 {page}
               </Button>
@@ -106,6 +110,7 @@ const index = ({
           onClick={() => {
             if (pages.includes(currentPage + 1)) {
               setCurrentPage(currentPage + 1);
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }
           }}
         >

@@ -3,7 +3,7 @@ const withLess = require("@zeit/next-less");
 const lessToJS = require("less-vars-to-js");
 const fs = require("fs");
 const path = require("path");
-//const envConfig = require("./env.config"); //disabled local env variables
+//const envConfig = require("./env.config"); //env variables | enable/disable if in production/development
 
 // Where your antd-custom.less file lives
 const themeVariables = lessToJS(
@@ -15,7 +15,7 @@ module.exports = withLess({
     javascriptEnabled: true,
     modifyVars: themeVariables, // make your antd custom effective
   },
-  //env: envConfig, //disabled local env variables
+  //env: envConfig, ////env variables | enable/disable if in production/development
   webpack: (config, { isServer }) => {
     if (isServer) {
       const antStyles = /antd\/.*?\/style.*?/;

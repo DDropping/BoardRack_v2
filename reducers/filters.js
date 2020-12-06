@@ -4,6 +4,7 @@ import {
   TOGGLE_FILTERS,
   CHANGE_LAYOUT,
   UPDATE_TEXT_SEARCH,
+  UPDATE_PREVIOUS_TEXT_SEARCH,
   UPDATE_CURRENT_PAGE,
   UPDATE_NUMBER_OF_RESULTS_FOUND,
   UPDATE_RESULTS_PER_PAGE,
@@ -42,6 +43,7 @@ const initialState = {
   isLoading: false,
   isError: true,
   textSearch: "",
+  previousTextSearch: "",
   distance: 25,
   price: { any: true, min: null, max: null },
   length: { any: true, min_ft: null, max_ft: null, min_in: null, max_in: null },
@@ -83,6 +85,11 @@ const reducer = function (state = initialState, action) {
       return {
         ...state,
         textSearch: action.payload,
+      };
+    case UPDATE_PREVIOUS_TEXT_SEARCH:
+      return {
+        ...state,
+        previousTextSearch: action.payload,
       };
     case UPDATE_CURRENT_PAGE:
       return {

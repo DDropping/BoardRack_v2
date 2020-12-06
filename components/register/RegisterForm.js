@@ -84,16 +84,6 @@ const RegisterForm = () => {
       <ErrorMessage>{error}</ErrorMessage>
       <InputWrapper>
         <Input
-          placeholder='Username'
-          prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-          size='large'
-          name='username'
-          value={user.username}
-          onChange={handleChange}
-        />
-      </InputWrapper>
-      <InputWrapper>
-        <Input
           placeholder='Email'
           prefix={<MailOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
           size='large'
@@ -101,6 +91,16 @@ const RegisterForm = () => {
           value={user.email}
           onChange={handleChange}
           type='email'
+        />
+      </InputWrapper>
+      <InputWrapper>
+        <Input
+          placeholder='Username'
+          prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+          size='large'
+          name='username'
+          value={user.username}
+          onChange={handleChange}
         />
       </InputWrapper>
       <InputWrapper>
