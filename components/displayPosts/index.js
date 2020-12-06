@@ -21,7 +21,7 @@ const index = ({ posts, isLoading }) => {
 
   return (
     <Container>
-      {numberOfResultsFound < 1 && <NoPostsFound />}
+      {!isLoading && numberOfResultsFound < 1 && <NoPostsFound />}
       {isLoading && loadingCards}
       <PostModal quickData={posts} />
       {layout === "Gallery" && (
