@@ -1,6 +1,6 @@
 import connectDb from "../../../../utils/connectDb";
 import Post from "../../../../models/Post";
-import "../../../../models/User";
+import User from "../../../../models/User";
 
 connectDb();
 
@@ -183,6 +183,20 @@ async function handlePostRequest(req, res) {
         {
           $limit: resultsPerPage,
         },
+        {
+          $lookup: {
+            from: "users",
+            let: { userId: "$user" },
+            pipeline: [
+              { $match: { $expr: { $eq: ["$_id", "$$userId"] } } },
+              { $project: { _id: 1, profileImage: 1, username: 1 } },
+            ],
+            as: "user",
+          },
+        },
+        {
+          $unwind: "$user",
+        },
       ]);
 
       let getCount = await Post.aggregate([
@@ -215,6 +229,7 @@ async function handlePostRequest(req, res) {
         },
         { $group: { _id: null, count: { $sum: 1 } } },
       ]);
+
       numberOfPosts = getCount[0] ? getCount[0].count : 0;
     } else {
       //find posts with only filters
