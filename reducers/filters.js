@@ -40,8 +40,8 @@ const initialState = {
   currentPage: 1,
   resultsPerPage: 50,
   numberOfResultsFound: 0,
-  isLoading: false,
-  isError: true,
+  isLoading: true,
+  isError: false,
   textSearch: "",
   previousTextSearch: "",
   distance: 25,
@@ -105,6 +105,7 @@ const reducer = function (state = initialState, action) {
       return {
         ...state,
         resultsPerPage: action.payload,
+        currentPage: 1,
       };
     case UPDATE_IS_SEARCH_LOADING:
       return {
