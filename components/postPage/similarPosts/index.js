@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { ContainerOutline, Title } from "./style";
+import { ContainerOutline, Title, PostCardsContainer } from "./style";
 import baseUrl from "../../../utils/baseUrl";
 import PostCard from "./PostCard";
 import LoadingSimilarCard from "../../loadingScreens/similarPosts";
