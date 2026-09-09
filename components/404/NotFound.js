@@ -8,10 +8,9 @@ const NotFound = () => {
       <Image
         src='/images/404NotFound.jpg'
         alt='404 page not found'
-        layout='responsive'
         width={1000}
         height={520}
-        style={{ marginTop: "25px" }}
+        style={{ width: "100%", height: "auto", marginTop: "25px" }}
       />
     </>
   );

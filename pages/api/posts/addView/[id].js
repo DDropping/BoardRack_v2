@@ -1,9 +1,8 @@
 import connectDb from "../../../../utils/connectDb";
 import Post from "../../../../models/Post";
 
-connectDb();
-
 const handler = async (req, res) => {
+  await connectDb();
   switch (req.method) {
     case "PUT":
       await handlePutRequest(req, res);

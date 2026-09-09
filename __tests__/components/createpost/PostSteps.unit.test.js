@@ -1,21 +1,22 @@
-import React from 'react';
-import { shallow } from 'enzyme';
+import React from "react";
 
-import PostSteps from '@components/createPost/PostSteps';
+import PostSteps from "@components/createPost/PostSteps";
+import { renderWithProviders, screen } from "../../testUtils";
 
-let wrapped;
-beforeEach(() => {
-  wrapped = shallow(<PostSteps />);
+it("renders the three post-creation steps", () => {
+  renderWithProviders(<PostSteps step={0} handleStepChange={() => {}} />);
+
+  expect(screen.getByText("Create New Post")).toBeInTheDocument();
+  expect(screen.getByText("Optional Details")).toBeInTheDocument();
+  expect(screen.getByText("Publish Post")).toBeInTheDocument();
 });
 
-afterEach(() => {
-  wrapped.unmount();
-});
+it("marks the current step as active", () => {
+  const { container } = renderWithProviders(
+    <PostSteps step={1} handleStepChange={() => {}} />
+  );
 
-it('has a steps bar', () => {
-  expect(wrapped.find('Steps').length).toBe(1);
-});
-
-it('has three steps', () => {
-  expect(wrapped.find('Step').length).toBe(3);
+  const items = container.querySelectorAll(".ant-steps-item");
+  expect(items).toHaveLength(3);
+  expect(items[1].className).toMatch(/ant-steps-item-process/);
 });

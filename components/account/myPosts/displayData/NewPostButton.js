@@ -35,17 +35,15 @@ const NewPostButton = () => {
   return (
     <Container>
       <Link scroll={false} href={"/createpost"}>
-        <a>
-          <Button
-            style={buttonStyle}
-            type="primary"
-            shape="circle"
-            icon={<PlusOutlined style={iconStyle} />}
-          >
-            <br />
-            New Post
-          </Button>
-        </a>
+        <Button
+          style={buttonStyle}
+          type="primary"
+          shape="circle"
+          icon={<PlusOutlined style={iconStyle} />}
+        >
+          <br />
+          New Post
+        </Button>
       </Link>
     </Container>
   );

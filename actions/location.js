@@ -17,8 +17,15 @@ export const getLocationWithIp = () => async (dispatch) => {
   try {
     const url = `${baseUrl}/api/location/ip`;
     const res = await axios.get(url);
-    dispatch({ type: UPDATE_CURRENT_LOCATION_IP, payload: res.data });
-  } catch (err) {}
+    // The route answers 204 (empty body) when it cannot resolve a location --
+    // on localhost, or with no geo headers and no ipstack key. Dispatching that
+    // would flip isLocatedWithIp to true while leaving the default coordinates.
+    if (res.data && typeof res.data === "object") {
+      dispatch({ type: UPDATE_CURRENT_LOCATION_IP, payload: res.data });
+    }
+  } catch (err) {
+    console.error("getLocationWithIp failed:", err.message);
+  }
 };
 
 // GET USER'S LOCATION WITH LOCATION FORM ---------------------------------------

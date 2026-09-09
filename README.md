@@ -10,21 +10,21 @@ Classified Advertisement Website for New / Used / Custom Suftboards
 
 ## Technologies
 
-- [Next.js](https://github.com/zeit/next.js/) replced Create-React-App for improved Search Engine Optimization and Server Side Rendering.
+- [Next.js](https://nextjs.org/) (v16, Pages Router) replaced Create-React-App for improved Search Engine Optimization and Server Side Rendering.
 
 - Next.js' [pages/api](https://nextjs.org/docs/api-routes/introduction) replaced the custom Express server to allow for a serverless configuration
 
 - [Styled-Components](https://github.com/styled-components/styled-components) replaced CSS to keep the concerns of styling and element architecture separated while also increasing code readability.
 
-- Implementation of unit, integration, & snapshot testing with [Jest](https://github.com/facebook/jest) and [Enzyme](https://github.com/enzymejs/enzyme)
+- Unit and integration testing with [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/react)
 
-- [AWS S3](https://aws.amazon.com/s3/)
+- [AWS S3](https://aws.amazon.com/s3/) via the AWS SDK v3, using presigned URLs for browser uploads.
 
-- [Here API](https://developer.here.com/) integration for location based services.
+- [HERE API](https://developer.here.com/) (Geocoding & Search v7, Map Image v3) for location based services.
 
-- [IPStack API](https://ipstack.com/) integration for IP location based services.
+- IP-based geolocation from Vercel's edge headers, falling back to the [IPStack API](https://ipstack.com/) off-platform.
 
-- [Ant Design](https://ant.design/components/overview/) component library used for rich ui elements.
+- [Ant Design](https://ant.design/components/overview/) v5 (CSS-in-JS) component library used for rich ui elements.
 
 - [Redux](https://redux.js.org/) used for application state management.
 
@@ -42,22 +42,32 @@ Built Using CRA, React, Redux, MongoDB, Express.js, Node.js with Ant design UI f
 
 ## Developer Notes
 
-global theme: /pages/\_app.js  
+global theme: /pages/\_app.js (`theme`)  
 theme provider: /pages/\_app.js  
-antd theme: /public/antd-custom.less  
+antd theme: /pages/\_app.js (`antdTheme` design tokens)  
+global css: /styles/globals.css  
 protected routes: /pages/\_app.js  
+
+## Deployment (Vercel)
+
+1. Copy `.env.example` and set every variable in **Project Settings -> Environment
+   Variables**. `NEXT_PUBLIC_SITE_URL` is optional: without it the app falls back
+   to `NEXT_PUBLIC_VERCEL_URL`, which Vercel injects per deployment.
+2. MongoDB Atlas must allow `0.0.0.0/0` -- Vercel's functions have no static IP.
+3. The S3 bucket needs a **bucket policy** granting public read. Public ACLs are
+   blocked by default since 2023, so the old `ACL: public-read` approach is gone.
+4. Create the support user in the new database and put its `_id` in
+   `SUPPORT_USER_ID`, or leave it unset to skip the welcome message.
 
 ## Production Notes
 
-- change base url: utils/baseUrl
-- create default boardrack user and update welcome message Id: pages/api/auth/register
 - enable location based filtering, code is currently commented out: pages/api/posts/postdetails/index
-- remove "filtering by location disabled for demo" notification on: components/filtersBox/index
+- the welcome message in pages/api/auth/register still describes the site as a demo
 
 ## Other Notes
 
-- fix: pre-load antd library styles into \_app.js
-- note: any antd components used need to be pre-loaded into \_app.js
+- antd v5 is CSS-in-JS: components no longer need their styles pre-loaded in
+  \_app.js, and the theme lives in the `antdTheme` tokens rather than a Less file.
 
 ---
 

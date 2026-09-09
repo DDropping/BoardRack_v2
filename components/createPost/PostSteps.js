@@ -1,33 +1,35 @@
-import React from 'react';
-import { Steps } from 'antd';
+import React from "react";
+import { Steps } from "antd";
 
-const { Step } = Steps;
+// antd v5 replaced <Steps><Step/></Steps> children with an `items` array.
+const items = [
+  {
+    title: "Create New Post",
+    subTitle: "",
+    description: "Photos & Details",
+  },
+  {
+    title: "Optional Details",
+    subTitle: "",
+    description: "Dimensions & more",
+  },
+  {
+    title: "Publish Post",
+    subTitle: "",
+    description: "Location & Confirm",
+  },
+];
 
 const PostSteps = ({ step, handleStepChange }) => {
   return (
     <Steps
-      type="navigation"
-      size="small"
+      type='navigation'
+      size='small'
       current={step}
       onChange={handleStepChange}
-      className="site-navigation-steps"
-    >
-      <Step
-        title="Create New Post"
-        subTitle=""
-        description="Photos & Details"
-      />
-      <Step
-        title="Optional Details"
-        subTitle=""
-        description="Dimensions & more"
-      />
-      <Step
-        title="Publish Post"
-        subTitle=""
-        description="Location & Confirm"
-      />
-    </Steps>
+      className='site-navigation-steps'
+      items={items}
+    />
   );
 };
 

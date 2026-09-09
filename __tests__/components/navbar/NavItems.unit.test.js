@@ -1,139 +1,100 @@
 import React from "react";
-import { mount } from "enzyme";
-import { Provider } from "react-redux";
-import renderer from "react-test-renderer";
+import userEvent from "@testing-library/user-event";
 
 import NavItems from "@components/navbar/NavItems";
-import { initializeStore } from "@store";
+import { TOGGLE_LOGIN, TOGGLE_REGISTER } from "@actions/types";
+import { renderWithProviders, screen } from "../../testUtils";
 
-let initialState, store, wrapper;
+// NOTE: the previous version of this file queried .create-post-link,
+// .login-link and .register-link, none of which exist in the component. These
+// assert against what NavItems actually renders.
 
-describe("NavItems when user is not authenticated", () => {
-  beforeEach(() => {
-    initialState = {};
-    store = initializeStore(initialState);
-    wrapper = mount(
-      <Provider store={store}>
-        <NavItems />
-      </Provider>
-    );
+// A preloaded slice replaces the reducer's default wholesale, so it has to
+// carry `notifications` the same way the real reducer initialises it.
+const authedState = {
+  auth: {
+    token: "test_token",
+    isAuthenticated: true,
+    notifications: { messages: [] },
+    user: { username: "test_username", email: "test_email" },
+  },
+};
+
+describe("when the user is not authenticated", () => {
+  it("shows Create Post, Login and Register", () => {
+    renderWithProviders(<NavItems />);
+
+    expect(screen.getByText("Create Post")).toBeInTheDocument();
+    expect(screen.getByText("Login")).toBeInTheDocument();
+    expect(screen.getByText("Register")).toBeInTheDocument();
   });
 
-  afterEach(() => {
-    wrapper.unmount();
+  it("shows no account dropdown", () => {
+    const { container } = renderWithProviders(<NavItems />);
+
+    expect(container.querySelector(".ant-dropdown-link")).toBeNull();
+    expect(screen.queryByText("My Account")).not.toBeInTheDocument();
   });
 
-  it("matches snapshot", () => {
-    const tree = renderer.create(wrapper).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("opens the login modal instead of navigating to Create Post", async () => {
+    const { store } = renderWithProviders(<NavItems />);
+
+    await userEvent.click(screen.getByText("Create Post"));
+
+    expect(store.getState().overlays.isLogin).toBe(true);
   });
 
-  it("has a create post link that will redirect to login", () => {
-    const link = wrapper.find(".create-post-link-disabled");
-    expect(link.length).toBe(1);
-  });
+  it("dispatches TOGGLE_REGISTER when Register is clicked", async () => {
+    const { store } = renderWithProviders(<NavItems />);
 
-  it("has a login link", () => {
-    const link = wrapper.find(".login-link");
-    expect(link.length).toBe(1);
-  });
+    await userEvent.click(screen.getByText("Register"));
 
-  it("has a register link", () => {
-    const link = wrapper.find(".register-link");
-    expect(link.length).toBe(1);
-  });
-
-  it("does not have a create post link", () => {
-    const link = wrapper.find(".create-post-link");
-    expect(link.length).toBe(0);
-  });
-
-  it("does not have a my account link", () => {
-    const link = wrapper.find(".ant-dropdown-link");
-    expect(link.length).toBe(0);
-  });
-});
-
-describe("NavItems when user is authenticated", () => {
-  beforeEach(() => {
-    initialState = {
-      auth: {
-        token: "test_token",
-        isAuthenticated: true,
-        user: { username: "test_username", email: "test_email" },
-      },
-    };
-    store = initializeStore(initialState);
-    wrapper = mount(
-      <Provider store={store}>
-        <NavItems />
-      </Provider>
-    );
-  });
-
-  afterEach(() => {
-    wrapper.unmount();
-  });
-
-  it("matches snapshot", () => {
-    const tree = renderer.create(wrapper).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it("has a create post link", () => {
-    const link = wrapper.find(".create-post-link");
-    expect(link.length).toBe(1);
-  });
-
-  it("has a my account link", () => {
-    const link = wrapper.find(".ant-dropdown-link");
-    expect(link.length).toBe(1);
-  });
-
-  it("has a my account link", () => {
-    const link = wrapper.find(".ant-dropdown-link");
-    expect(link.text()).toEqual("test_username ");
-  });
-
-  it("does not have a create post link that will redirect to login", () => {
-    const link = wrapper.find(".create-post-link-disabled");
-    expect(link.length).toBe(0);
-  });
-
-  it("does not have a login link", () => {
-    const link = wrapper.find(".login-link");
-    expect(link.length).toBe(0);
-  });
-
-  it("does not have a register link", () => {
-    const link = wrapper.find(".register-link");
-    expect(link.length).toBe(0);
+    expect(store.getState().overlays.isRegister).toBe(true);
   });
 });
 
-describe("NavItems when user is authenticated but loadUser() failed", () => {
-  beforeEach(() => {
-    initialState = {
-      auth: {
-        token: "test_token",
-        isAuthenticated: true,
-      },
-    };
-    store = initializeStore(initialState);
-    wrapper = mount(
-      <Provider store={store}>
-        <NavItems />
-      </Provider>
+describe("when the user is authenticated", () => {
+  it("shows the username in the account dropdown", () => {
+    const { container } = renderWithProviders(<NavItems />, {
+      initialState: authedState,
+    });
+
+    expect(container.querySelector(".ant-dropdown-link")).toHaveTextContent(
+      "test_username"
     );
   });
 
-  it("matches snapshot", () => {
-    const tree = renderer.create(wrapper).toJSON();
-    expect(tree).toMatchSnapshot();
+  it("links Create Post to /createpost rather than opening the modal", () => {
+    renderWithProviders(<NavItems />, { initialState: authedState });
+
+    expect(screen.getByRole("link", { name: /create post/i })).toHaveAttribute(
+      "href",
+      "/createpost"
+    );
   });
 
-  it("has a my account link", () => {
-    const link = wrapper.find(".ant-dropdown-link");
-    expect(link.text()).toEqual("My Account ");
+  it("hides the Login and Register items", () => {
+    renderWithProviders(<NavItems />, { initialState: authedState });
+
+    expect(screen.queryByText("Login")).not.toBeInTheDocument();
+    expect(screen.queryByText("Register")).not.toBeInTheDocument();
+  });
+});
+
+describe("when authenticated but the user record failed to load", () => {
+  it('falls back to "My Account"', () => {
+    const { container } = renderWithProviders(<NavItems />, {
+      initialState: {
+        auth: {
+          token: "test_token",
+          isAuthenticated: true,
+          notifications: { messages: [] },
+        },
+      },
+    });
+
+    expect(container.querySelector(".ant-dropdown-link")).toHaveTextContent(
+      "My Account"
+    );
   });
 });

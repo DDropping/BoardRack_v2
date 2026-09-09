@@ -1,3 +1,14 @@
+/* Global, non-component styles.
+ * Previously split across public/nprogress.css (loaded via a <link> with a
+ * broken relative href) and components/postModal/react-modal-custom.less.
+ */
+
+/* --- react-modal --- */
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+/* --- nprogress --- */
 #nprogress {
   pointer-events: none;
 }

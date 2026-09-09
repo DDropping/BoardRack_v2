@@ -57,11 +57,13 @@ export const loadUserByProps = (user) => async (dispatch) => {
 /*********** CHECK IF USER HAS ANY UNSEEN NOTIFICATIONS ***********/
 export const checkUserNotifications = (user) => async (dispatch) => {
   try {
-    let messageNotifications = user.messages.filter(
-      (messageData) =>
-        messageData.isRead === false &&
-        messageData.messages[messageData.messages.length - 1].from !== user._id
-    );
+    // `messages` is absent for a user with no threads, which previously threw
+    // and silently skipped the notification dispatch entirely.
+    let messageNotifications = (user.messages || []).filter((messageData) => {
+      const thread = messageData.messages || [];
+      const lastMessage = thread[thread.length - 1];
+      return messageData.isRead === false && lastMessage?.from !== user._id;
+    });
     messageNotifications = messageNotifications.map((item) => item._id);
     //add more notification counters here
 

@@ -14,7 +14,7 @@ const index = () => {
   return (
     <Modal
       title={isForgotPasswordVisible ? "Forgot Password" : "Login"}
-      visible={isVisible}
+      open={isVisible}
       onOk={() => dispatch({ type: TOGGLE_LOGIN, payload: false })}
       onCancel={() => dispatch({ type: TOGGLE_LOGIN, payload: false })}
       footer={null}

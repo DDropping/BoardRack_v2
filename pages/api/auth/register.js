@@ -10,9 +10,8 @@ import connectDb from "../../../utils/connectDb";
 import User from "../../../models/User";
 import Message from "../../../models/Message";
 
-connectDb();
-
 const handler = async (req, res) => {
+  await connectDb();
   switch (req.method) {
     case "POST":
       await handlePostRequest(req, res);
@@ -73,27 +72,42 @@ async function handlePostRequest(req, res) {
       " - Email verification is enabled and all emails will be sent to your registered email address. \n\n " +
       "Thank you for visiting the site! Feel free to create an account, create a new post, and interact with the site. If you have any questions, encounter any bugs, or just want say hi, please respond here!";
 
-    const message = {
-      from: "5fb86b4e6e10cf407c3dc204",
-      body: messageBody,
-      timeSent: Date.now(),
-    };
+    // The sender was previously the hardcoded ObjectId 5fb86b4e6e10cf407c3dc204.
+    // That document only exists in the original database, so against a fresh one
+    // every registration failed on an invalid reference. It is now configured
+    // via SUPPORT_USER_ID, and the welcome message is skipped when unset rather
+    // than blocking sign-up.
+    const supportUserId = process.env.SUPPORT_USER_ID;
 
-    const newMessageThread = {
-      type: "support",
-      users: [user._id, "5fb86b4e6e10cf407c3dc204"],
-      post: null,
-      dateCreated: Date.now(),
-      lastUpdated: Date.now(),
-      isRead: false,
-      messages: [message],
-    };
+    if (supportUserId) {
+      const message = {
+        from: supportUserId,
+        body: messageBody,
+        timeSent: Date.now(),
+      };
 
-    let messageThread = new Message(newMessageThread);
-    await messageThread.save();
+      const newMessageThread = {
+        type: "support",
+        users: [user._id, supportUserId],
+        post: null,
+        dateCreated: Date.now(),
+        lastUpdated: Date.now(),
+        isRead: false,
+        messages: [message],
+      };
 
-    //save to users messages[]
-    user.messages = [messageThread._id];
+      const messageThread = new Message(newMessageThread);
+      await messageThread.save();
+
+      //save to users messages[]
+      user.messages = [messageThread._id];
+    } else {
+      console.warn(
+        "SUPPORT_USER_ID is not set; skipping the welcome message for new user",
+        user._id.toString()
+      );
+      user.messages = [];
+    }
 
     //save user to db
     await user.save();

@@ -24,7 +24,7 @@ const Index = () => {
     <Select
       defaultValue={sortType}
       style={{ width: 175 }}
-      bordered={false}
+      variant='borderless'
       onChange={handleSortChange}
     >
       <Option value='Newest'>

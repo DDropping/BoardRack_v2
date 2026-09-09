@@ -18,7 +18,7 @@ export default function Custom404() {
       <Image
         src='/images/404NotFound.jpg'
         alt='404 page not found'
-        layout='responsive'
+        style={{ width: "100%", height: "auto" }}
         width={1000}
         height={545}
       />

@@ -6,9 +6,8 @@ import authenticate from "../../../middleware/auth";
 import mongoose from "mongoose";
 import User from "../../../models/User";
 
-connectDb();
-
 const handler = async (req, res) => {
+  await connectDb();
   switch (req.method) {
     case "GET":
       await handleGetRequest(req, res);

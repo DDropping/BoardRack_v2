@@ -3,9 +3,8 @@ const jwt = require("jsonwebtoken");
 import connectDb from "../../../../utils/connectDb";
 import User from "../../../../models/User";
 
-connectDb();
-
 const handler = async (req, res) => {
+  await connectDb();
   switch (req.method) {
     case "PATCH":
       await handlePatchRequest(req, res);

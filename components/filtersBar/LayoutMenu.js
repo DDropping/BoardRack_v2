@@ -23,7 +23,7 @@ const LayoutMenu = () => {
     <Select
       defaultValue={layout}
       style={{ width: 150 }}
-      bordered={false}
+      variant='borderless'
       onChange={handleLayoutChange}
     >
       <Option value='Gallery'>

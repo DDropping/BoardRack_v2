@@ -33,7 +33,7 @@ const Map = () => {
         <Image
           src='/images/br_default_map.png'
           alt='location map'
-          layout='responsive'
+          style={{ width: "100%", height: "auto" }}
           width={500}
           height={250}
         />

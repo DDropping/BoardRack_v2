@@ -1,4 +1,4 @@
-import { generatePutUrl } from "../../../utils/AWSPresigner";
+import { generatePutUrl } from "../../../utils/s3";
 
 const handler = async (req, res) => {
   switch (req.method) {

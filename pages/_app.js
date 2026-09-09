@@ -2,58 +2,64 @@ import App from "next/app";
 import React from "react";
 import Head from "next/head";
 import axios from "axios";
-import { ThemeProvider } from "styled-components";
-import { createGlobalStyle } from "styled-components";
-import { parseCookies, destroyCookie } from "nookies";
+import {
+  ThemeProvider,
+  createGlobalStyle,
+  StyleSheetManager,
+} from "styled-components";
+import isPropValid from "@emotion/is-prop-valid";
+import { getCookie, destroyCookie } from "../utils/cookies";
+import { ConfigProvider } from "antd";
+import { StyleProvider } from "@ant-design/cssinjs";
+import { Roboto } from "next/font/google";
 
-import "../components/postModal/react-modal-custom.less";
+// antd v5 targets React 16-18; this patch adapts its static APIs
+// (Modal.confirm, notification, message) to the React 19 render API.
+import "@ant-design/v5-patch-for-react-19";
 
-//import "antd/dist/antd.less"; //import entire library styles // import specific styles
-import "antd/lib/button/style";
-import "antd/lib/card/style";
-import "antd/lib/carousel/style";
-import "antd/lib/checkbox/style";
-import "antd/lib/col/style";
-import "antd/lib/divider/style";
-import "antd/lib/drawer/style";
-import "antd/lib/dropdown/style";
-import "antd/lib/form/style";
-import "antd/lib/grid/style";
-import "antd/lib/input/style";
-import "antd/lib/input-number/style";
-import "antd/lib/menu/style";
-import "antd/lib/modal/style";
-import "antd/lib/notification/style";
-import "antd/lib/progress/style";
-import "antd/lib/row/style";
-import "antd/lib/select/style";
-import "antd/lib/skeleton";
-import "antd/lib/slider/style";
-import "antd/lib/steps/style";
-import "antd/lib/switch/style";
-import "antd/lib/tabs/style";
-import "antd/lib/tooltip/style";
+import "../styles/globals.css";
 
 import Layout from "../components/layout";
 import { redirectUser } from "../utils/auth";
 import baseUrl from "../utils/baseUrl";
 
+// styled-components v6 stopped auto-filtering unknown props, so custom props
+// such as `active`, `isSold` and `bgColor` started leaking onto DOM nodes and
+// triggering React attribute warnings. This restores the v5 behaviour: filter
+// props for host (DOM) elements, forward everything to React components.
+function shouldForwardProp(propName, target) {
+  if (typeof target === "string") {
+    return isPropValid(propName);
+  }
+  return true;
+}
+
+const roboto = Roboto({
+  weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  fallback: ["sans-serif"],
+});
+
 const GlobalStyle = createGlobalStyle`
-*{
-  font-family: 'Roboto', sans-serif;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-  a{
-    color: ${(props) => props.theme.primaryBlack}
-    }
-    .ant-menu-item-selected{
-      background-color: none;
-    }
+  * {
+    font-family: ${(props) => props.theme.fontFamily};
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+  }
+  a {
+    color: ${(props) => props.theme.primaryBlack};
+  }
+  .ant-menu-item-selected {
+    background-color: transparent;
   }
 `;
 
 export const theme = {
+  //fonts
+  fontFamily: roboto.style.fontFamily,
+
   //colors
   primaryBlue: "#00458a",
   secondaryBlue: "#4878a9",
@@ -110,10 +116,25 @@ export const theme = {
   boxShadow: "box-shadow 0.3s",
 };
 
+// Replaces public/antd-custom.less. antd v5 is CSS-in-JS, so the old Less
+// variables (@primary-color, @border-radius-base, @layout-header-height and the
+// .ant-drawer-body padding override) become design tokens.
+export const antdTheme = {
+  token: {
+    colorPrimary: theme.primaryBlue,
+    borderRadius: 2,
+    fontFamily: roboto.style.fontFamily,
+  },
+  components: {
+    Layout: { headerHeight: 40 },
+    Drawer: { paddingLG: 0 },
+  },
+};
+
 export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
-    const { token } = parseCookies(ctx);
+    const token = getCookie("token", ctx);
     pageProps.token = token;
 
     if (Component.getInitialProps) {
@@ -152,7 +173,7 @@ export default class MyApp extends App {
         pageProps.user = user;
       } catch (err) {
         console.log(err);
-        destroyCookie(ctx, "token");
+        destroyCookie("token", ctx);
       }
     }
 
@@ -162,15 +183,24 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <ThemeProvider theme={theme}>
-        <Layout {...pageProps}>
-          <Head>
-            <link rel='shortcut icon' href='/images/br_favicon.ico' />
-          </Head>
-          <GlobalStyle />
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
+      <StyleSheetManager shouldForwardProp={shouldForwardProp}>
+        {/* hashPriority="high" drops antd v5's :where() wrapper so the
+            styled-components overrides throughout this app keep winning on
+            specificity, the way they did against antd v4's flat selectors. */}
+        <StyleProvider hashPriority='high'>
+          <ConfigProvider theme={antdTheme}>
+            <ThemeProvider theme={theme}>
+              <Layout {...pageProps}>
+                <Head>
+                  <link rel='shortcut icon' href='/images/br_favicon.ico' />
+                </Head>
+                <GlobalStyle />
+                <Component {...pageProps} />
+              </Layout>
+            </ThemeProvider>
+          </ConfigProvider>
+        </StyleProvider>
+      </StyleSheetManager>
     );
   }
 }

@@ -94,7 +94,7 @@ const index = ({ post }) => {
                     <Image
                       src='/images/icons/br_waveSize.png'
                       alt='wave size'
-                      layout='responsive'
+                      style={{ width: "100%", height: "auto" }}
                       width={45}
                       height={30}
                     />
@@ -114,7 +114,7 @@ const index = ({ post }) => {
                     <Image
                       src='/images/icons/br_movability.png'
                       alt='wave size'
-                      layout='responsive'
+                      style={{ width: "100%", height: "auto" }}
                       width={45}
                       height={30}
                     />
@@ -132,7 +132,7 @@ const index = ({ post }) => {
                     <Image
                       src='/images/icons/br_paddlePower.png'
                       alt='paddle power'
-                      layout='responsive'
+                      style={{ width: "100%", height: "auto" }}
                       width={45}
                       height={30}
                     />
@@ -150,7 +150,7 @@ const index = ({ post }) => {
                     <Image
                       src='/images/icons/br_driveSpeed.png'
                       alt='drive and speed'
-                      layout='responsive'
+                      style={{ width: "100%", height: "auto" }}
                       width={45}
                       height={30}
                     />

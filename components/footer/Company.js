@@ -21,7 +21,7 @@ const Company = () => {
         return (
           <Li key={index}>
             <Link href={companyLink.href}>
-              <a>{companyLink.title}</a>
+              {companyLink.title}
             </Link>
           </Li>
         );

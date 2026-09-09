@@ -13,38 +13,47 @@ const handler = async (req, res) => {
 
 // @route   POST api/location/geo
 // @desc    retrieve user location with developer.here api and geolocation
-// @res     address = { lat, lng, Country, State, County, City, District, PostalCode }
+// @res     address = { lat, lng, country, state, county, city, district, postalCode }
 // @access  Public
 async function handlePostRequest(req, res) {
   const { lat, lng } = req.body;
-  const url = `https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?prox=${lat}%2C${lng}%2C250&mode=retrieveAddresses&maxresults=1&gen=9&apiKey=${process.env.HERE_API_KEY}`;
+
+  if (typeof lat !== "number" || typeof lng !== "number") {
+    return res.status(400).send("lat and lng must be numbers");
+  }
+
+  // HERE Geocoding & Search v7. The old endpoint
+  // (reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json) is part of HERE's
+  // retired legacy service tier. v7 returns a flat `items[]` array instead of
+  // Response.View[0].Result[0].Location.Address.
+  const url = "https://revgeocode.search.hereapi.com/v1/revgeocode";
+
   try {
-    const location = await axios.get(url);
+    const { data } = await axios.get(url, {
+      params: {
+        at: `${lat},${lng}`,
+        limit: 1,
+        lang: "en-US",
+        apiKey: process.env.HERE_API_KEY,
+      },
+    });
 
-    //setup response
-    const {
-      Country,
-      State,
-      County,
-      City,
-      District,
-      PostalCode,
-    } = location.data.Response.View[0].Result[0].Location.Address;
+    const item = data.items && data.items[0];
+    if (!item) return res.status(404).send("No address found for coordinates");
 
-    const address = {
+    const a = item.address;
+    res.json({
       lat,
       lng,
-      country: Country,
-      state: State,
-      county: County,
-      city: City,
-      district: District,
-      postalCode: PostalCode,
-    };
-
-    res.json(address);
+      country: a.countryCode,
+      state: a.stateCode || a.state,
+      county: a.county,
+      city: a.city,
+      district: a.district,
+      postalCode: a.postalCode,
+    });
   } catch (err) {
-    console.log(err);
+    console.error("HERE revgeocode failed:", err.response?.data || err.message);
     res.status(500).send("Server Error");
   }
 }

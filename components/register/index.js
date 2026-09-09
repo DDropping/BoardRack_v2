@@ -11,7 +11,7 @@ const index = () => {
   return (
     <Modal
       title="Register"
-      visible={isVisible}
+      open={isVisible}
       onOk={() => dispatch({ type: TOGGLE_REGISTER, payload: false })}
       onCancel={() => dispatch({ type: TOGGLE_REGISTER, payload: false })}
       footer={null}

@@ -72,14 +72,17 @@ const NavItems = () => {
         </Li>
       )}
       {isAuth && (
-        <Dropdown overlay={<Menu />} overlayStyle={{ zIndex: 1000 }}>
+        <Dropdown
+          popupRender={() => <Menu />}
+          overlayStyle={{ zIndex: 1000 }}
+        >
           <Li active={isActive("/account") && !isLogin && !isRegister}>
             <LiText
               className='ant-dropdown-link'
               onClick={(e) => e.preventDefault()}
             >
               {user &&
-                notifications.messages.length >
+                notifications?.messages?.length >
                   0 /* add more notification types here */ && (
                   <BadgeDot
                     size={12}

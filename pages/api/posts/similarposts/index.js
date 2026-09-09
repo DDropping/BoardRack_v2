@@ -2,9 +2,8 @@ import connectDb from "../../../../utils/connectDb";
 import Post from "../../../../models/Post";
 import "../../../../models/User";
 
-connectDb();
-
 const handler = async (req, res) => {
+  await connectDb();
   switch (req.method) {
     case "POST":
       await handlePostRequest(req, res);

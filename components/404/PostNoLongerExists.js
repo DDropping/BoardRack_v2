@@ -8,7 +8,7 @@ const PostNoLongerExists = () => {
       <Image
         src='/images/404NoLongerExists.jpg'
         alt='404 page not found'
-        layout='responsive'
+        style={{ width: "100%", height: "auto" }}
         width={1000}
         height={520}
       />

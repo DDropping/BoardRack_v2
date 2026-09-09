@@ -66,7 +66,6 @@ const index = () => {
             <Image
               src={item.src}
               alt={item.alt}
-              layout='fixed'
               width={460}
               height={60}
             />
@@ -99,7 +98,7 @@ const index = () => {
           }
         >
           <EditButton>
-            <Dropdown overlay={menu} trigger={["click"]}>
+            <Dropdown popupRender={() => menu} trigger={["click"]}>
               <a
                 className='ant-dropdown-link'
                 onClick={(e) => e.preventDefault()}

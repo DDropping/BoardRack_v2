@@ -39,7 +39,6 @@ const index = () => {
               <Image
                 src='/images/banner/buysell.png'
                 alt='boardrack banner'
-                layout='fixed'
                 width={3600}
                 height={500}
               />
@@ -50,7 +49,6 @@ const index = () => {
               <Image
                 src='/images/banner/findlove.png'
                 alt='boardrack banner'
-                layout='fixed'
                 width={3600}
                 height={500}
               />
@@ -61,7 +59,6 @@ const index = () => {
               <Image
                 src='/images/banner/calculator.png'
                 alt='boardrack banner'
-                layout='fixed'
                 width={3600}
                 height={500}
               />
@@ -72,7 +69,6 @@ const index = () => {
               <Image
                 src='/images/banner/supportlocal.png'
                 alt='boardrack banner'
-                layout='fixed'
                 width={3600}
                 height={500}
               />

@@ -4,9 +4,8 @@ import User from "../../../../models/User";
 
 import authenticate from "../../../../middleware/auth";
 
-connectDb();
-
 const handler = async (req, res) => {
+  await connectDb();
   switch (req.method) {
     case "PATCH":
       await handlePatchRequest(req, res);

@@ -1,36 +1,10 @@
-import React from 'react';
-import { mount } from 'enzyme';
-import { Provider } from 'react-redux';
+import React from "react";
 
-import Details from '@components/createpost/step1/Details';
-import { initializeStore } from '../../../../store';
+import Details from "@components/createPost/step1/Details";
+import { renderWithProviders } from "../../../testUtils";
 
-Object.defineProperty(window, 'matchMedia', {
-  writable: true,
-  value: jest.fn().mockImplementation(query => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(), // deprecated
-    removeListener: jest.fn(), // deprecated
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn()
-  }))
-});
+it("renders five antd rows of detail inputs", () => {
+  const { container } = renderWithProviders(<Details />);
 
-let store, wrapper;
-const initialState = {};
-store = initializeStore(initialState);
-
-beforeEach(() => {
-  wrapper = mount(
-    <Provider store={store}>
-      <Details />
-    </Provider>
-  );
-});
-
-it('has 5 rows', () => {
-  expect(wrapper.find('Row').length).toBe(5);
+  expect(container.querySelectorAll(".ant-row")).toHaveLength(5);
 });
