@@ -17,7 +17,7 @@ const DefaultLogoWhite = () => {
         <Image
           src='/images/br_logo_white.png'
           alt='boardrack'
-          layout='responsive'
+          style={{ width: "100%", height: "auto" }}
           width={256}
           height={56}
         />

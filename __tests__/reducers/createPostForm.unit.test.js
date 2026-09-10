@@ -13,7 +13,7 @@ it('handles action of type SET_INPUT', () => {
 
   const newState = createPostForm({}, action);
 
-  expect(newState).toEqual({ test: 'test input' });
+  expect(newState).toEqual({ isPublished: false, test: 'test input' });
 });
 
 it('handles action of type CANCEL_POST', () => {
@@ -21,7 +21,8 @@ it('handles action of type CANCEL_POST', () => {
 
   const newState = createPostForm({}, action);
 
-  expect(newState).toEqual({ isLoading: false });
+  // CANCEL_POST resets to initialState, which includes isPublished.
+  expect(newState).toEqual({ isLoading: false, isPublished: false });
 });
 
 it('handles action of type TOGGLE_CREATE_POST_LOADING', () => {

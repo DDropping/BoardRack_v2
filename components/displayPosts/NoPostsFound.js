@@ -31,7 +31,7 @@ const NoPostsFound = () => {
         <Image
           src='/images/br_sad_shark.png'
           alt='No results found'
-          layout='responsive'
+          style={{ width: "100%", height: "auto" }}
           width={882}
           height={923}
         />

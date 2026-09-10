@@ -2,12 +2,11 @@ import connectDb from "../../../../utils/connectDb";
 import Post from "../../../../models/Post";
 import User from "../../../../models/User";
 
-connectDb();
-
 const DEGREES_IN_ONE_MILE_LAT = 0.014492;
 const DEGREES_IN_ONE_MILE_LNG = 0.018315;
 
 const handler = async (req, res) => {
+  await connectDb();
   switch (req.method) {
     case "GET":
       await handleGetRequest(req, res);

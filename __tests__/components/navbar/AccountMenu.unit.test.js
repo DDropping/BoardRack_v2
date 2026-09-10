@@ -1,34 +1,36 @@
 import React from "react";
+
 import AccountMenu from "@components/navbar/AccountMenu";
-import { mount } from "enzyme";
-import renderer from "react-test-renderer";
+import navLinks from "../../../constants/navLinks";
+import { renderWithProviders, screen } from "../../testUtils";
 
-import { initializeStore } from "@store";
-import { Provider } from "react-redux";
+// AccountMenu renders navLinks filtered by `protected === isAuthenticated`,
+// not the accountLinks constant.
+const authedState = {
+  auth: {
+    token: "test_token",
+    isAuthenticated: true,
+    notifications: { messages: [] },
+    user: { username: "test_username", email: "test_email" },
+  },
+};
 
-Object.defineProperty(window, "matchMedia", {
-  writable: true,
-  value: jest.fn().mockImplementation((query) => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(), // deprecated
-    removeListener: jest.fn(), // deprecated
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  })),
+it("renders the protected nav links when authenticated", () => {
+  renderWithProviders(<AccountMenu />, { initialState: authedState });
+
+  navLinks
+    .filter((item) => item.protected === true)
+    .forEach((item) => {
+      expect(screen.getByText(item.title)).toBeInTheDocument();
+    });
 });
 
-const initialState = {};
-const store = initializeStore(initialState);
-const wrapper = mount(
-  <Provider store={store}>
-    <AccountMenu />
-  </Provider>
-);
+it("renders the public nav links when not authenticated", () => {
+  renderWithProviders(<AccountMenu />);
 
-it("matches snapshot", () => {
-  const tree = renderer.create(wrapper).toJSON();
-  expect(tree).toMatchSnapshot();
+  navLinks
+    .filter((item) => item.protected === false)
+    .forEach((item) => {
+      expect(screen.getByText(item.title)).toBeInTheDocument();
+    });
 });

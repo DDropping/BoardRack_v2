@@ -21,7 +21,7 @@ const Support = () => {
         return (
           <Li key={index}>
             <Link href={supportLink.href}>
-              <a>{supportLink.title}</a>
+              {supportLink.title}
             </Link>
           </Li>
         );

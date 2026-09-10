@@ -7,7 +7,7 @@ const index = () => {
       <Image
         src='/images/br_post_page_footer.png'
         alt='End of Page Footer'
-        layout='responsive'
+        style={{ width: "100%", height: "auto" }}
         width={2352}
         height={724}
       />

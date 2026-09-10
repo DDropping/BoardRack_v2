@@ -21,7 +21,7 @@ const Policy = () => {
         return (
           <Li key={index}>
             <Link href={policyLink.href}>
-              <a>{policyLink.title}</a>
+              {policyLink.title}
             </Link>
           </Li>
         );

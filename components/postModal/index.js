@@ -2,7 +2,6 @@ import React from "react";
 import Modal from "react-modal";
 import { useRouter } from "next/router";
 
-import "./react-modal-custom.less";
 import PostPage from "../postPage";
 
 Modal.setAppElement("#__next");

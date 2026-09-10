@@ -1,34 +1,12 @@
 import React from "react";
+
 import Navbar from "@components/navbar";
-import { mount } from "enzyme";
-import renderer from "react-test-renderer";
+import { renderWithProviders, screen } from "../../testUtils";
 
-import { initializeStore } from "@store";
-import { Provider } from "react-redux";
+it("renders the navbar with its brand logo and nav items", () => {
+  const { container } = renderWithProviders(<Navbar />);
 
-Object.defineProperty(window, "matchMedia", {
-  writable: true,
-  value: jest.fn().mockImplementation((query) => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(), // deprecated
-    removeListener: jest.fn(), // deprecated
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  })),
-});
-
-const initialState = {};
-const store = initializeStore(initialState);
-const wrapper = mount(
-  <Provider store={store}>
-    <Navbar />
-  </Provider>
-);
-
-it("matches snapshot", () => {
-  const tree = renderer.create(wrapper).toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(container).not.toBeEmptyDOMElement();
+  expect(screen.getAllByAltText(/boardrack/i).length).toBeGreaterThan(0);
+  expect(screen.getAllByText("Create Post").length).toBeGreaterThan(0);
 });

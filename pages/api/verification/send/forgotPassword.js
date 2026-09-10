@@ -6,9 +6,8 @@ import User from "../../../../models/User";
 import generateInline from "../../../../templates/verifyForgotPassword";
 import baseUrl from "../../../../utils/baseUrl";
 
-connectDb();
-
 const handler = async (req, res) => {
+  await connectDb();
   switch (req.method) {
     case "POST":
       await handlePostRequest(req, res);

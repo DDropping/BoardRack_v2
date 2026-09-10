@@ -64,7 +64,7 @@ const index = ({
         <Select
           defaultValue={resultsPerPage}
           style={{ width: 120 }}
-          bordered={false}
+          variant='borderless'
           onChange={(event) => setResultsPerPage(event)}
         >
           <Option value={10}>10 per page</Option>

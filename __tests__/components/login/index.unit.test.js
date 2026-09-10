@@ -1,34 +1,23 @@
 import React from "react";
+
 import Login from "@components/login";
-import { mount } from "enzyme";
-import renderer from "react-test-renderer";
+import { renderWithProviders, screen } from "../../testUtils";
 
-import { initializeStore } from "@store";
-import { Provider } from "react-redux";
+it("stays closed when overlays.isLogin is false", () => {
+  renderWithProviders(<Login />);
 
-Object.defineProperty(window, "matchMedia", {
-  writable: true,
-  value: jest.fn().mockImplementation((query) => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(), // deprecated
-    removeListener: jest.fn(), // deprecated
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  })),
+  expect(screen.queryByText("Login")).not.toBeInTheDocument();
 });
 
-const initialState = {};
-const store = initializeStore(initialState);
-const wrapper = mount(
-  <Provider store={store}>
-    <Login />
-  </Provider>
-);
+it("renders the login dialog when overlays.isLogin is true", () => {
+  renderWithProviders(<Login />, {
+    initialState: { overlays: { isLogin: true, isRegister: false } },
+  });
 
-it("matches snapshot", () => {
-  const tree = renderer.create(wrapper).toJSON();
-  expect(tree).toMatchSnapshot();
+  const dialog = screen.getByRole("dialog");
+  expect(dialog).toBeInTheDocument();
+  // "Login" appears twice: the modal title and the submit button.
+  expect(document.querySelector(".ant-modal-title")).toHaveTextContent(
+    "Login"
+  );
 });

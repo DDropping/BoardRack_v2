@@ -2,9 +2,8 @@ import connectDb from "../../../utils/connectDb";
 import User from "../../../models/User";
 import authenticate from "../../../middleware/auth";
 
-connectDb();
-
 const handler = async (req, res) => {
+  await connectDb();
   switch (req.method) {
     case "PUT":
       await handlePutRequest(req, res);

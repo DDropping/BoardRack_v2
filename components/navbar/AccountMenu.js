@@ -87,17 +87,15 @@ const AccountMenu = () => {
           return (
             <Link href={item.href} key={index}>
               <Li active={router.query.view === item.view}>
-                <a>
-                  {item.icon} {item.title}{" "}
-                  {item.view === "messages" &&
-                    notifications.messages.length > 0 && (
-                      <BadgeDot
-                        size={12}
-                        red
-                        content={notifications.messages.length}
-                      />
-                    )}
-                </a>
+                {item.icon} {item.title}{" "}
+                {item.view === "messages" &&
+                  notifications.messages.length > 0 && (
+                    <BadgeDot
+                      size={12}
+                      red
+                      content={notifications.messages.length}
+                    />
+                  )}
               </Li>
             </Link>
           );

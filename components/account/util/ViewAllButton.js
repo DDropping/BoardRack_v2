@@ -33,16 +33,14 @@ const ViewAllButton = ({ link }) => {
   return (
     <Container>
       <Link href={link} shallow={true}>
-        <a>
-          <Button
-            style={buttonStyle}
-            shape="circle"
-            icon={<ArrowRightOutlined style={iconStyle} />}
-          >
-            <br />
-            View All
-          </Button>
-        </a>
+        <Button
+          style={buttonStyle}
+          shape="circle"
+          icon={<ArrowRightOutlined style={iconStyle} />}
+        >
+          <br />
+          View All
+        </Button>
       </Link>
     </Container>
   );

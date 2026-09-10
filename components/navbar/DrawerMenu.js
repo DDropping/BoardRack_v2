@@ -91,8 +91,8 @@ const DrawerMenu = ({ isDrawer, handleDrawer }) => {
       placement="right"
       closable
       onClose={() => handleDrawer(false)}
-      visible={isDrawer}
-      bodyStyle={{ padding: 0 }}
+      open={isDrawer}
+      styles={{ body: { padding: 0 } }}
     >
       <Link href="/">
         <Img

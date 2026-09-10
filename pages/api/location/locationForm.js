@@ -13,45 +13,52 @@ const handler = async (req, res) => {
 
 // @route   POST api/location/locationForm
 // @desc    retrieve user location with developer.here api and form
-// @res     address = { lat, lng, Label, Country, State, County, City, District, PostalCode
+// @res     address = { lat, lng, label, country, state, county, city, district, postalCode }
 // @access  Public
 async function handlePostRequest(req, res) {
+  const { value } = req.body;
+
+  if (!value || typeof value !== "string") {
+    return res.status(400).send("A search value is required");
+  }
+
+  // HERE Geocoding & Search v7. The old endpoint
+  // (geocoder.ls.hereapi.com/6.2/geocode.json) is part of HERE's retired legacy
+  // service tier. v7 returns a flat `items[]` array instead of
+  // Response.View[0].Result[0].Location.
+  const url = "https://geocode.search.hereapi.com/v1/geocode";
+
   try {
-    const { value } = req.body;
-    const encodedValue = encodeURIComponent(value);
-    const url = `https://geocoder.ls.hereapi.com/6.2/geocode.json?searchtext=${encodedValue}&gen=9&apiKey=${process.env.HERE_API_KEY}`;
-    const location = await axios.get(url);
+    const { data } = await axios.get(url, {
+      params: {
+        q: value,
+        limit: 1,
+        lang: "en-US",
+        apiKey: process.env.HERE_API_KEY,
+      },
+    });
 
-    const {
-      Label,
-      Country,
-      State,
-      County,
-      City,
-      District,
-      PostalCode,
-    } = location.data.Response.View[0].Result[0].Location.Address;
+    const item = data.items && data.items[0];
+    if (!item) return res.status(404).send("No location found");
 
-    const {
-      Latitude,
-      Longitude,
-    } = location.data.Response.View[0].Result[0].Location.DisplayPosition;
+    const a = item.address;
 
-    const address = {
-      lat: Latitude,
-      lng: Longitude,
-      label: Label,
-      country: Country,
-      state: State,
-      country: County,
-      city: City,
-      district: District,
-      postalCode: PostalCode,
-    };
-
-    res.json(address);
+    // NOTE: the v6 version of this route assigned `country:` twice -- once from
+    // Country and again from County -- so the country code was silently
+    // overwritten by the county name and `county` was never returned at all.
+    res.json({
+      lat: item.position.lat,
+      lng: item.position.lng,
+      label: a.label,
+      country: a.countryCode,
+      state: a.stateCode || a.state,
+      county: a.county,
+      city: a.city,
+      district: a.district,
+      postalCode: a.postalCode,
+    });
   } catch (err) {
-    console.log(err);
+    console.error("HERE geocode failed:", err.response?.data || err.message);
     res.status(500).send("Server Error");
   }
 }
